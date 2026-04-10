@@ -4,13 +4,13 @@ title: Children
 
 <Pitfall>
 
-Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
+Việc sử dụng `Children` là không phổ biến và có thể dẫn đến code dễ hỏng. [Xem các lựa chọn thay thế phổ biến.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`Children` lets you manipulate and transform the JSX you received as the [`children` prop.](/learn/passing-props-to-a-component#passing-jsx-as-children)
+`Children` cho phép bạn thao tác và biến đổi JSX mà bạn nhận được như [`children` prop.](/learn/passing-props-to-a-component#passing-jsx-as-children)
 
 ```js
 const mappedChildren = Children.map(children, child =>
@@ -27,11 +27,11 @@ const mappedChildren = Children.map(children, child =>
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `Children.count(children)` {/*children-count*/}
 
-Call `Children.count(children)` to count the number of children in the `children` data structure.
+Gọi `Children.count(children)` để đếm số lượng children trong cấu trúc dữ liệu `children`.
 
 ```js src/RowList.js active
 import { Children } from 'react';
@@ -46,25 +46,25 @@ function RowList({ children }) {
 }
 ```
 
-[See more examples below.](#counting-children)
+[Xem thêm ví dụ bên dưới.](#counting-children)
 
-#### Parameters {/*children-count-parameters*/}
+#### Tham số {/*children-count-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: Giá trị của [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) được nhận bởi component của bạn.
 
-#### Returns {/*children-count-returns*/}
+#### Giá trị trả về {/*children-count-returns*/}
 
-The number of nodes inside these `children`.
+Số lượng node bên trong những `children` này.
 
-#### Caveats {/*children-count-caveats*/}
+#### Lưu ý {/*children-count-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
+- Các node rỗng (`null`, `undefined` và Booleans), strings, numbers và [React elements](/reference/react/createElement) đều được tính là các node riêng lẻ. Mảng không được tính là node riêng lẻ, nhưng children của chúng thì có. **Quá trình duyệt không đi sâu hơn vào React elements:** chúng không được render, và children của chúng không được duyệt. [Fragments](/reference/react/Fragment) không được duyệt.
 
 ---
 
 ### `Children.forEach(children, fn, thisArg?)` {/*children-foreach*/}
 
-Call `Children.forEach(children, fn, thisArg?)` to run some code for each child in the `children` data structure.
+Gọi `Children.forEach(children, fn, thisArg?)` để chạy một số code cho mỗi child trong cấu trúc dữ liệu `children`.
 
 ```js src/RowList.js active
 import { Children } from 'react';
@@ -78,27 +78,27 @@ function SeparatorList({ children }) {
   // ...
 ```
 
-[See more examples below.](#running-some-code-for-each-child)
+[Xem thêm ví dụ bên dưới.](#running-some-code-for-each-child)
 
-#### Parameters {/*children-foreach-parameters*/}
+#### Tham số {/*children-foreach-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
-* `fn`: The function you want to run for each child, similar to the [array `forEach` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call.
-* **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
+* `children`: Giá trị của [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) được nhận bởi component của bạn.
+* `fn`: Hàm bạn muốn chạy cho mỗi child, tương tự như callback của [phương thức `forEach` trên mảng](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach). Nó sẽ được gọi với child như tham số đầu tiên và index của nó như tham số thứ hai. Index bắt đầu từ `0` và tăng lên trong mỗi lần gọi.
+* **tùy chọn** `thisArg`: Giá trị [`this`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) mà hàm `fn` nên được gọi với. Nếu bỏ qua, nó là `undefined`.
 
-#### Returns {/*children-foreach-returns*/}
+#### Giá trị trả về {/*children-foreach-returns*/}
 
-`Children.forEach` returns `undefined`.
+`Children.forEach` trả về `undefined`.
 
-#### Caveats {/*children-foreach-caveats*/}
+#### Lưu ý {/*children-foreach-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
+- Các node rỗng (`null`, `undefined` và Booleans), strings, numbers và [React elements](/reference/react/createElement) đều được tính là các node riêng lẻ. Mảng không được tính là node riêng lẻ, nhưng children của chúng thì có. **Quá trình duyệt không đi sâu hơn vào React elements:** chúng không được render, và children của chúng không được duyệt. [Fragments](/reference/react/Fragment) không được duyệt.
 
 ---
 
 ### `Children.map(children, fn, thisArg?)` {/*children-map*/}
 
-Call `Children.map(children, fn, thisArg?)` to map or transform each child in the `children` data structure.
+Gọi `Children.map(children, fn, thisArg?)` để map hoặc biến đổi mỗi child trong cấu trúc dữ liệu `children`.
 
 ```js src/RowList.js active
 import { Children } from 'react';
@@ -116,32 +116,32 @@ function RowList({ children }) {
 }
 ```
 
-[See more examples below.](#transforming-children)
+[Xem thêm ví dụ bên dưới.](#transforming-children)
 
-#### Parameters {/*children-map-parameters*/}
+#### Tham số {/*children-map-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
-* `fn`: The mapping function, similar to the [array `map` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call. You need to return a React node from this function. This may be an empty node (`null`, `undefined`, or a Boolean), a string, a number, a React element, or an array of other React nodes.
-* **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
+* `children`: Giá trị của [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) được nhận bởi component của bạn.
+* `fn`: Hàm mapping, tương tự như callback của [phương thức `map` trên mảng](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Nó sẽ được gọi với child như tham số đầu tiên và index của nó như tham số thứ hai. Index bắt đầu từ `0` và tăng lên trong mỗi lần gọi. Bạn cần trả về một React node từ hàm này. Đây có thể là một node rỗng (`null`, `undefined` hoặc Boolean), một string, một number, một React element, hoặc một mảng các React node khác.
+* **tùy chọn** `thisArg`: Giá trị [`this`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) mà hàm `fn` nên được gọi với. Nếu bỏ qua, nó là `undefined`.
 
-#### Returns {/*children-map-returns*/}
+#### Giá trị trả về {/*children-map-returns*/}
 
-If `children` is `null` or `undefined`, returns the same value.
+Nếu `children` là `null` hoặc `undefined`, trả về cùng giá trị đó.
 
-Otherwise, returns a flat array consisting of the nodes you've returned from the `fn` function. The returned array will contain all nodes you returned except for `null` and `undefined`.
+Ngược lại, trả về một mảng phẳng gồm các node bạn đã trả về từ hàm `fn`. Mảng được trả về sẽ chứa tất cả các node bạn trả về ngoại trừ `null` và `undefined`.
 
-#### Caveats {/*children-map-caveats*/}
+#### Lưu ý {/*children-map-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
+- Các node rỗng (`null`, `undefined` và Booleans), strings, numbers và [React elements](/reference/react/createElement) đều được tính là các node riêng lẻ. Mảng không được tính là node riêng lẻ, nhưng children của chúng thì có. **Quá trình duyệt không đi sâu hơn vào React elements:** chúng không được render, và children của chúng không được duyệt. [Fragments](/reference/react/Fragment) không được duyệt.
 
-- If you return an element or an array of elements with keys from `fn`, **the returned elements' keys will be automatically combined with the key of the corresponding original item from `children`.** When you return multiple elements from `fn` in an array, their keys only need to be unique locally amongst each other.
+- Nếu bạn trả về một element hoặc mảng các element có keys từ `fn`, **các keys của element được trả về sẽ tự động kết hợp với key của item gốc tương ứng từ `children`.** Khi bạn trả về nhiều element từ `fn` trong một mảng, các keys của chúng chỉ cần là duy nhất cục bộ với nhau.
 
 ---
 
 ### `Children.only(children)` {/*children-only*/}
 
 
-Call `Children.only(children)` to assert that `children` represent a single React element.
+Gọi `Children.only(children)` để xác nhận rằng `children` đại diện cho một React element duy nhất.
 
 ```js
 function Box({ children }) {
@@ -149,25 +149,25 @@ function Box({ children }) {
   // ...
 ```
 
-#### Parameters {/*children-only-parameters*/}
+#### Tham số {/*children-only-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: Giá trị của [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) được nhận bởi component của bạn.
 
-#### Returns {/*children-only-returns*/}
+#### Giá trị trả về {/*children-only-returns*/}
 
-If `children` [is a valid element,](/reference/react/isValidElement) returns that element.
+Nếu `children` [là một element hợp lệ,](/reference/react/isValidElement) trả về element đó.
 
-Otherwise, throws an error.
+Ngược lại, ném ra một lỗi.
 
-#### Caveats {/*children-only-caveats*/}
+#### Lưu ý {/*children-only-caveats*/}
 
-- This method always **throws if you pass an array (such as the return value of `Children.map`) as `children`.** In other words, it enforces that `children` is a single React element, not that it's an array with a single element.
+- Phương thức này luôn **ném ra nếu bạn truyền một mảng (chẳng hạn như giá trị trả về của `Children.map`) như `children`.** Nói cách khác, nó đảm bảo rằng `children` là một React element duy nhất, không phải là một mảng với một element duy nhất.
 
 ---
 
 ### `Children.toArray(children)` {/*children-toarray*/}
 
-Call `Children.toArray(children)` to create an array out of the `children` data structure.
+Gọi `Children.toArray(children)` để tạo một mảng từ cấu trúc dữ liệu `children`.
 
 ```js src/ReversedList.js active
 import { Children } from 'react';
@@ -178,25 +178,25 @@ export default function ReversedList({ children }) {
   // ...
 ```
 
-#### Parameters {/*children-toarray-parameters*/}
+#### Tham số {/*children-toarray-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: Giá trị của [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) được nhận bởi component của bạn.
 
-#### Returns {/*children-toarray-returns*/}
+#### Giá trị trả về {/*children-toarray-returns*/}
 
-Returns a flat array of elements in `children`.
+Trả về một mảng phẳng các element trong `children`.
 
-#### Caveats {/*children-toarray-caveats*/}
+#### Lưu ý {/*children-toarray-caveats*/}
 
-- Empty nodes (`null`, `undefined`, and Booleans) will be omitted in the returned array. **The returned elements' keys will be calculated from the original elements' keys and their level of nesting and position.** This ensures that flattening the array does not introduce changes in behavior.
+- Các node rỗng (`null`, `undefined` và Booleans) sẽ bị bỏ qua trong mảng được trả về. **Các keys của element được trả về sẽ được tính từ keys của element gốc và mức độ lồng nhau và vị trí của chúng.** Điều này đảm bảo rằng việc làm phẳng mảng không gây ra thay đổi trong hành vi.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Transforming children {/*transforming-children*/}
+### Biến đổi children {/*transforming-children*/}
 
-To transform the children JSX that your component [receives as the `children` prop,](/learn/passing-props-to-a-component#passing-jsx-as-children) call `Children.map`:
+Để biến đổi JSX children mà component của bạn [nhận được như `children` prop,](/learn/passing-props-to-a-component#passing-jsx-as-children) hãy gọi `Children.map`:
 
 ```js {6,10}
 import { Children } from 'react';
@@ -214,7 +214,7 @@ function RowList({ children }) {
 }
 ```
 
-In the example above, the `RowList` wraps every child it receives into a `<div className="Row">` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
+Trong ví dụ trên, `RowList` bọc mỗi child mà nó nhận được vào một container `<div className="Row">`. Ví dụ, giả sử component cha truyền ba thẻ `<p>` như `children` prop cho `RowList`:
 
 ```js
 <RowList>
@@ -224,7 +224,7 @@ In the example above, the `RowList` wraps every child it receives into a `<div c
 </RowList>
 ```
 
-Then, with the `RowList` implementation above, the final rendered result will look like this:
+Sau đó, với việc triển khai `RowList` ở trên, kết quả render cuối cùng sẽ trông như thế này:
 
 ```js
 <div className="RowList">
@@ -240,7 +240,7 @@ Then, with the `RowList` implementation above, the final rendered result will lo
 </div>
 ```
 
-`Children.map` is similar to [to transforming arrays with `map()`.](/learn/rendering-lists) The difference is that the `children` data structure is considered *opaque.* This means that even if it's sometimes an array, you should not assume it's an array or any other particular data type. This is why you should use `Children.map` if you need to transform it.
+`Children.map` tương tự như [biến đổi mảng với `map()`.](/learn/rendering-lists) Sự khác biệt là cấu trúc dữ liệu `children` được coi là *mờ đục.* Điều này có nghĩa là ngay cả khi đôi khi nó là một mảng, bạn không nên giả định nó là một mảng hay bất kỳ loại dữ liệu cụ thể nào khác. Đây là lý do tại sao bạn nên sử dụng `Children.map` nếu bạn cần biến đổi nó.
 
 <Sandpack>
 
@@ -293,24 +293,24 @@ export default function RowList({ children }) {
 
 <DeepDive>
 
-#### Why is the children prop not always an array? {/*why-is-the-children-prop-not-always-an-array*/}
+#### Tại sao children prop không phải lúc nào cũng là một mảng? {/*why-is-the-children-prop-not-always-an-array*/}
 
-In React, the `children` prop is considered an *opaque* data structure. This means that you shouldn't rely on how it is structured. To transform, filter, or count children, you should use the `Children` methods.
+Trong React, `children` prop được coi là một cấu trúc dữ liệu *mờ đục*. Điều này có nghĩa là bạn không nên dựa vào cách nó được cấu trúc. Để biến đổi, lọc hoặc đếm children, bạn nên sử dụng các phương thức `Children`.
 
-In practice, the `children` data structure is often represented as an array internally. However, if there is only a single child, then React won't create an extra array since this would lead to unnecessary memory overhead. As long as you use the `Children` methods instead of directly introspecting the `children` prop, your code will not break even if React changes how the data structure is actually implemented.
+Trong thực tế, cấu trúc dữ liệu `children` thường được biểu diễn như một mảng bên trong. Tuy nhiên, nếu chỉ có một child duy nhất, thì React sẽ không tạo thêm mảng vì điều này sẽ dẫn đến tốn bộ nhớ không cần thiết. Miễn là bạn sử dụng các phương thức `Children` thay vì trực tiếp kiểm tra `children` prop, code của bạn sẽ không bị hỏng ngay cả khi React thay đổi cách cấu trúc dữ liệu thực sự được triển khai.
 
-Even when `children` is an array, `Children.map` has useful special behavior. For example, `Children.map` combines the [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key) on the returned elements with the keys on the `children` you've passed to it. This ensures the original JSX children don't "lose" keys even if they get wrapped like in the example above.
+Ngay cả khi `children` là một mảng, `Children.map` có hành vi đặc biệt hữu ích. Ví dụ, `Children.map` kết hợp [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key) trên các element được trả về với keys trên `children` bạn đã truyền cho nó. Điều này đảm bảo rằng JSX children gốc không "mất" keys ngay cả khi chúng bị bọc như trong ví dụ trên.
 
 </DeepDive>
 
 <Pitfall>
 
-The `children` data structure **does not include rendered output** of the components you pass as JSX. In the example below, the `children` received by the `RowList` only contains two items rather than three:
+Cấu trúc dữ liệu `children` **không bao gồm đầu ra đã render** của các component bạn truyền như JSX. Trong ví dụ dưới đây, `children` được nhận bởi `RowList` chỉ chứa hai item thay vì ba:
 
 1. `<p>This is the first item.</p>`
 2. `<MoreRows />`
 
-This is why only two row wrappers are generated in this example:
+Đây là lý do tại sao chỉ có hai row wrappers được tạo ra trong ví dụ này:
 
 <Sandpack>
 
@@ -369,15 +369,15 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
-**There is no way to get the rendered output of an inner component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+**Không có cách nào để lấy đầu ra đã render của một component bên trong** như `<MoreRows />` khi thao tác với `children`. Đây là lý do tại sao [thường tốt hơn khi sử dụng một trong các giải pháp thay thế.](#alternatives)
 
 </Pitfall>
 
 ---
 
-### Running some code for each child {/*running-some-code-for-each-child*/}
+### Chạy một số code cho mỗi child {/*running-some-code-for-each-child*/}
 
-Call `Children.forEach` to iterate over each child in the `children` data structure. It does not return any value and is similar to the [array `forEach` method.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) You can use it to run custom logic like constructing your own array.
+Gọi `Children.forEach` để lặp qua mỗi child trong cấu trúc dữ liệu `children`. Nó không trả về bất kỳ giá trị nào và tương tự như [phương thức `forEach` trên mảng.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) Bạn có thể dùng nó để chạy logic tùy chỉnh như xây dựng mảng của riêng bạn.
 
 <Sandpack>
 
@@ -413,15 +413,15 @@ export default function SeparatorList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Như đã đề cập trước đó, không có cách nào để lấy đầu ra đã render của một component bên trong khi thao tác với `children`. Đây là lý do tại sao [thường tốt hơn khi sử dụng một trong các giải pháp thay thế.](#alternatives)
 
 </Pitfall>
 
 ---
 
-### Counting children {/*counting-children*/}
+### Đếm children {/*counting-children*/}
 
-Call `Children.count(children)` to calculate the number of children.
+Gọi `Children.count(children)` để tính số lượng children.
 
 <Sandpack>
 
@@ -484,15 +484,15 @@ export default function RowList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Như đã đề cập trước đó, không có cách nào để lấy đầu ra đã render của một component bên trong khi thao tác với `children`. Đây là lý do tại sao [thường tốt hơn khi sử dụng một trong các giải pháp thay thế.](#alternatives)
 
 </Pitfall>
 
 ---
 
-### Converting children to an array {/*converting-children-to-an-array*/}
+### Chuyển đổi children thành mảng {/*converting-children-to-an-array*/}
 
-Call `Children.toArray(children)` to turn the `children` data structure into a regular JavaScript array. This lets you manipulate the array with built-in array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), or [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+Gọi `Children.toArray(children)` để biến cấu trúc dữ liệu `children` thành một mảng JavaScript thông thường. Điều này cho phép bạn thao tác mảng với các phương thức mảng tích hợp như [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), hoặc [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
 
 <Sandpack>
 
@@ -524,31 +524,31 @@ export default function ReversedList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Như đã đề cập trước đó, không có cách nào để lấy đầu ra đã render của một component bên trong khi thao tác với `children`. Đây là lý do tại sao [thường tốt hơn khi sử dụng một trong các giải pháp thay thế.](#alternatives)
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## Các lựa chọn thay thế {/*alternatives*/}
 
 <Note>
 
-This section describes alternatives to the `Children` API (with capital `C`) that's imported like this:
+Phần này mô tả các lựa chọn thay thế cho API `Children` (với chữ `C` in hoa) được import như thế này:
 
 ```js
 import { Children } from 'react';
 ```
 
-Don't confuse it with [using the `children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) (lowercase `c`), which is good and encouraged.
+Đừng nhầm lẫn nó với [việc sử dụng `children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) (chữ `c` thường), điều này là tốt và được khuyến khích.
 
 </Note>
 
-### Exposing multiple components {/*exposing-multiple-components*/}
+### Hiển thị nhiều component {/*exposing-multiple-components*/}
 
-Manipulating children with the `Children` methods often leads to fragile code. When you pass children to a component in JSX, you don't usually expect the component to manipulate or transform the individual children.
+Việc thao tác children với các phương thức `Children` thường dẫn đến code dễ hỏng. Khi bạn truyền children cho một component trong JSX, bạn thường không mong đợi component thao tác hoặc biến đổi các children riêng lẻ.
 
-When you can, try to avoid using the `Children` methods. For example, if you want every child of `RowList` to be wrapped in `<div className="Row">`, export a `Row` component, and manually wrap every row into it like this:
+Khi có thể, hãy tránh sử dụng các phương thức `Children`. Ví dụ, nếu bạn muốn mỗi child của `RowList` được bọc trong `<div className="Row">`, hãy export một component `Row` và bọc thủ công mỗi row vào nó như thế này:
 
 <Sandpack>
 
@@ -607,7 +607,7 @@ export function Row({ children }) {
 
 </Sandpack>
 
-Unlike using `Children.map`, this approach does not wrap every child automatically. **However, this approach has a significant benefit compared to the [earlier example with `Children.map`](#transforming-children) because it works even if you keep extracting more components.** For example, it still works if you extract your own `MoreRows` component:
+Không giống như sử dụng `Children.map`, cách tiếp cận này không bọc mỗi child tự động. **Tuy nhiên, cách tiếp cận này có lợi ích đáng kể so với [ví dụ trước với `Children.map`](#transforming-children) vì nó hoạt động ngay cả khi bạn tiếp tục tách thêm các component.** Ví dụ, nó vẫn hoạt động nếu bạn tách component `MoreRows` của riêng bạn:
 
 <Sandpack>
 
@@ -674,13 +674,13 @@ export function Row({ children }) {
 
 </Sandpack>
 
-This wouldn't work with `Children.map` because it would "see" `<MoreRows />` as a single child (and a single row).
+Điều này sẽ không hoạt động với `Children.map` vì nó sẽ "thấy" `<MoreRows />` như một child duy nhất (và một row duy nhất).
 
 ---
 
-### Accepting an array of objects as a prop {/*accepting-an-array-of-objects-as-a-prop*/}
+### Nhận một mảng objects như một prop {/*accepting-an-array-of-objects-as-a-prop*/}
 
-You can also explicitly pass an array as a prop. For example, this `RowList` accepts a `rows` array as a prop:
+Bạn cũng có thể truyền tường minh một mảng như một prop. Ví dụ, `RowList` này nhận một mảng `rows` như một prop:
 
 <Sandpack>
 
@@ -729,9 +729,9 @@ export function RowList({ rows }) {
 
 </Sandpack>
 
-Since `rows` is a regular JavaScript array, the `RowList` component can use built-in array methods like [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on it.
+Vì `rows` là một mảng JavaScript thông thường, component `RowList` có thể sử dụng các phương thức mảng tích hợp như [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) trên nó.
 
-This pattern is especially useful when you want to be able to pass more information as structured data together with children. In the below example, the `TabSwitcher` component receives an array of objects as the `tabs` prop:
+Mẫu này đặc biệt hữu ích khi bạn muốn có thể truyền thêm thông tin như dữ liệu có cấu trúc cùng với children. Trong ví dụ dưới đây, component `TabSwitcher` nhận một mảng objects như `tabs` prop:
 
 <Sandpack>
 
@@ -789,13 +789,13 @@ export default function TabSwitcher({ tabs }) {
 
 </Sandpack>
 
-Unlike passing the children as JSX, this approach lets you associate some extra data like `header` with each item. Because you are working with the `tabs` directly, and it is an array, you do not need the `Children` methods.
+Không giống như việc truyền children như JSX, cách tiếp cận này cho phép bạn liên kết một số dữ liệu thêm như `header` với mỗi item. Vì bạn đang làm việc trực tiếp với `tabs`, và nó là một mảng, bạn không cần các phương thức `Children`.
 
 ---
 
-### Calling a render prop to customize rendering {/*calling-a-render-prop-to-customize-rendering*/}
+### Gọi một render prop để tùy chỉnh việc render {/*calling-a-render-prop-to-customize-rendering*/}
 
-Instead of producing JSX for every single item, you can also pass a function that returns JSX, and call that function when necessary. In this example, the `App` component passes a `renderContent` function to the `TabSwitcher` component. The `TabSwitcher` component calls `renderContent` only for the selected tab:
+Thay vì tạo ra JSX cho mỗi item duy nhất, bạn cũng có thể truyền một hàm trả về JSX và gọi hàm đó khi cần. Trong ví dụ này, component `App` truyền một hàm `renderContent` cho component `TabSwitcher`. Component `TabSwitcher` gọi `renderContent` chỉ cho tab đã chọn:
 
 <Sandpack>
 
@@ -844,9 +844,9 @@ export default function TabSwitcher({ tabIds, getHeader, renderContent }) {
 
 </Sandpack>
 
-A prop like `renderContent` is called a *render prop* because it is a prop that specifies how to render a piece of the user interface. However, there is nothing special about it: it is a regular prop which happens to be a function.
+Một prop như `renderContent` được gọi là *render prop* vì nó là một prop chỉ định cách render một phần của giao diện người dùng. Tuy nhiên, không có gì đặc biệt về nó: nó là một prop thông thường tình cờ là một hàm.
 
-Render props are functions, so you can pass information to them. For example, this `RowList` component passes the `id` and the `index` of each row to the `renderRow` render prop, which uses `index` to highlight even rows:
+Render props là các hàm, vì vậy bạn có thể truyền thông tin cho chúng. Ví dụ, component `RowList` này truyền `id` và `index` của mỗi row cho render prop `renderRow`, sử dụng `index` để tô sáng các row chẵn:
 
 <Sandpack>
 
@@ -927,15 +927,15 @@ export function Row({ children, isHighlighted }) {
 
 </Sandpack>
 
-This is another example of how parent and child components can cooperate without manipulating the children.
+Đây là một ví dụ khác về cách các component cha và con có thể hợp tác mà không cần thao tác children.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I pass a custom component, but the `Children` methods don't show its render result {/*i-pass-a-custom-component-but-the-children-methods-dont-show-its-render-result*/}
+### Tôi truyền một component tùy chỉnh, nhưng các phương thức `Children` không hiển thị kết quả render của nó {/*i-pass-a-custom-component-but-the-children-methods-dont-show-its-render-result*/}
 
-Suppose you pass two children to `RowList` like this:
+Giả sử bạn truyền hai children cho `RowList` như thế này:
 
 ```js
 <RowList>
@@ -944,6 +944,6 @@ Suppose you pass two children to `RowList` like this:
 </RowList>
 ```
 
-If you do `Children.count(children)` inside `RowList`, you will get `2`. Even if `MoreRows` renders 10 different items, or if it returns `null`, `Children.count(children)` will still be `2`. From the `RowList`'s perspective, it only "sees" the JSX it has received. It does not "see" the internals of the `MoreRows` component.
+Nếu bạn thực hiện `Children.count(children)` bên trong `RowList`, bạn sẽ nhận được `2`. Ngay cả khi `MoreRows` render 10 items khác nhau, hoặc nếu nó trả về `null`, `Children.count(children)` vẫn sẽ là `2`. Từ góc độ của `RowList`, nó chỉ "thấy" JSX mà nó đã nhận. Nó không "thấy" nội bộ của component `MoreRows`.
 
-The limitation makes it hard to extract a component. This is why [alternatives](#alternatives) are preferred to using `Children`.
+Hạn chế này làm cho việc tách một component trở nên khó khăn. Đây là lý do tại sao [các lựa chọn thay thế](#alternatives) được ưu tiên hơn so với việc sử dụng `Children`.

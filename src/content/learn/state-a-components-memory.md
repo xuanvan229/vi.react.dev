@@ -1444,19 +1444,19 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
+Hãy thử di chuyển lệnh gọi `useState` thứ hai sau điều kiện `if` và lưu ý cách điều này làm hỏng nó lại.
 
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project.
+Nếu linter của bạn được [cấu hình cho React](/learn/editor-setup#linting), bạn sẽ thấy lỗi lint khi bạn mắc lỗi như thế này. Nếu bạn không thấy lỗi khi thử code bị lỗi cục bộ, bạn cần thiết lập linting cho dự án của mình.
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Xóa state không cần thiết {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
+Khi nút được nhấp, ví dụ này nên hỏi tên của người dùng và sau đó hiển thị alert chào họ. Bạn đã cố gắng sử dụng state để giữ tên, nhưng vì lý do nào đó lần đầu tiên nó hiển thị "Hello, !", và sau đó "Hello, [name]!" với input trước đó mỗi lần sau.
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+Để sửa code này, hãy xóa state variable không cần thiết. (Chúng ta sẽ thảo luận về [tại sao điều này không hoạt động](/learn/state-as-a-snapshot) sau.)
 
-Can you explain why this state variable was unnecessary?
+Bạn có thể giải thích tại sao state variable này là không cần thiết không?
 
 <Sandpack>
 
@@ -1483,7 +1483,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Here is a fixed version that uses a regular `name` variable declared in the function that needs it:
+Đây là phiên bản đã sửa sử dụng biến `name` thông thường được khai báo trong hàm cần nó:
 
 <Sandpack>
 
@@ -1504,7 +1504,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+Một state variable chỉ cần thiết để giữ thông tin giữa các lần re-render của component. Trong một event handler duy nhất, một biến thông thường sẽ hoạt động tốt. Đừng giới thiệu state variable khi một biến thông thường hoạt động tốt.
 
 </Solution>
 

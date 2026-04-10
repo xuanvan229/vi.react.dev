@@ -1,17 +1,17 @@
 ---
-title: "Introducing react.dev"
+title: "Giới thiệu react.dev"
 author: Dan Abramov and Rachel Nabors
 date: 2023/03/16
-description: Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+description: Hôm nay chúng tôi rất vui mừng được ra mắt react.dev, ngôi nhà mới của React và tài liệu của nó. Trong bài viết này, chúng tôi muốn đưa bạn tham quan trang web mới.
 ---
 
-March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+Ngày 16 tháng 3, 2023 bởi [Dan Abramov](https://bsky.app/profile/danabra.mov) và [Rachel Nabors](https://twitter.com/rachelnabors)
 
 ---
 
 <Intro>
 
-Today we are thrilled to launch [react.dev](https://react.dev), the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+Hôm nay chúng tôi rất vui mừng được ra mắt [react.dev](https://react.dev), ngôi nhà mới của React và tài liệu của nó. Trong bài viết này, chúng tôi muốn đưa bạn tham quan trang web mới.
 
 </Intro>
 
@@ -19,44 +19,44 @@ Today we are thrilled to launch [react.dev](https://react.dev), the new home for
 
 ## tl;dr {/*tldr*/}
 
-* The new React site ([react.dev](https://react.dev)) teaches modern React with function components and Hooks.
-* We've included diagrams, illustrations, challenges, and over 600 new interactive examples.
-* The previous React documentation site has now moved to [legacy.reactjs.org](https://legacy.reactjs.org).
+* Trang web React mới ([react.dev](https://react.dev)) dạy React hiện đại với function components và Hooks.
+* Chúng tôi đã bao gồm các sơ đồ, hình minh họa, thử thách và hơn 600 ví dụ tương tác mới.
+* Trang tài liệu React trước đây đã chuyển sang [legacy.reactjs.org](https://legacy.reactjs.org).
 
-## New site, new domain, new homepage {/*new-site-new-domain-new-homepage*/}
+## Trang web mới, domain mới, trang chủ mới {/*new-site-new-domain-new-homepage*/}
 
-First, a little bit of housekeeping.
+Đầu tiên, một chút công việc vặt vãnh.
 
-To celebrate the launch of the new docs and, more importantly, to clearly separate the old and the new content, we've moved to the shorter [react.dev](https://react.dev) domain. The old [reactjs.org](https://reactjs.org) domain will now redirect here.
+Để kỷ niệm việc ra mắt tài liệu mới và, quan trọng hơn, để phân tách rõ ràng nội dung cũ và mới, chúng tôi đã chuyển sang domain ngắn hơn [react.dev](https://react.dev). Domain cũ [reactjs.org](https://reactjs.org) bây giờ sẽ chuyển hướng đến đây.
 
-The old React docs are now archived at [legacy.reactjs.org](https://legacy.reactjs.org). All existing links to the old content will automatically redirect there to avoid "breaking the web", but the legacy site will not get many more updates.
+Tài liệu React cũ bây giờ được lưu trữ tại [legacy.reactjs.org](https://legacy.reactjs.org). Tất cả các liên kết hiện có đến nội dung cũ sẽ tự động chuyển hướng đến đó để tránh "phá vỡ web", nhưng trang legacy sẽ không nhận được nhiều cập nhật hơn.
 
-Believe it or not, React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today, and updated the getting started guides to more prominently mention modern React-based frameworks.
+Tin hay không, React sẽ sớm được mười tuổi. Trong thế giới JavaScript, đó như là cả một thế kỷ! Chúng tôi đã [làm mới trang chủ React](https://react.dev) để phản ánh lý do tại sao chúng tôi nghĩ React là một cách tuyệt vời để tạo giao diện người dùng ngày nay, và cập nhật các hướng dẫn bắt đầu để đề cập nổi bật hơn đến các framework hiện đại dựa trên React.
 
-If you haven't seen the new homepage yet, check it out!
+Nếu bạn chưa thấy trang chủ mới, hãy xem nó!
 
-## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
+## Đặt cược tất cả vào React hiện đại với Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 
-When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class components and then once again with Hooks.
+Khi chúng tôi phát hành React Hooks năm 2018, tài liệu Hooks giả định rằng người đọc quen thuộc với class components. Điều này đã giúp cộng đồng áp dụng Hooks rất nhanh chóng, nhưng sau một thời gian tài liệu cũ không phục vụ được người đọc mới. Người đọc mới phải học React hai lần: một lần với class components và sau đó một lần nữa với Hooks.
 
-**The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
+**Tài liệu mới dạy React với Hooks từ đầu.** Tài liệu được chia thành hai phần chính:
 
-* **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
-* **[API Reference](/reference)** provides the details and usage examples for every React API.
+* **[Học React](/learn)** là một khóa học tự học dạy React từ đầu.
+* **[Tham chiếu API](/reference)** cung cấp chi tiết và ví dụ sử dụng cho mọi API React.
 
-Let's have a closer look at what you can find in each section.
+Hãy xem kỹ hơn những gì bạn có thể tìm thấy trong mỗi phần.
 
 <Note>
 
-There are still a few rare class component use cases that do not yet have a Hook-based equivalent. Class components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
+Vẫn còn một vài trường hợp sử dụng class component hiếm gặp chưa có tương đương dựa trên Hook. Class components vẫn được hỗ trợ, và được ghi lại trong phần [Legacy API](/reference/react/legacy) của trang mới.
 
 </Note>
 
-## Quick start {/*quick-start*/}
+## Bắt đầu nhanh {/*quick-start*/}
 
-The Learn section begins with the [Quick Start](/learn) page. It is a short introductory tour of React. It introduces the syntax for concepts like components, props, and state, but doesn't go into much detail on how to use them.
+Phần Learn bắt đầu với trang [Bắt đầu nhanh](/learn). Đây là một tour giới thiệu ngắn về React. Nó giới thiệu cú pháp cho các khái niệm như components, props và state, nhưng không đi vào nhiều chi tiết về cách sử dụng chúng.
 
-If you like to learn by doing, we recommend checking out the [Tic-Tac-Toe Tutorial](/learn/tutorial-tic-tac-toe) next. It walks you through building a little game with React, while teaching the skills you'll use every day. Here's what you'll build:
+Nếu bạn thích học bằng cách thực hành, chúng tôi khuyên bạn nên xem [Hướng dẫn Tic-Tac-Toe](/learn/tutorial-tic-tac-toe) tiếp theo. Nó hướng dẫn bạn xây dựng một trò chơi nhỏ với React, trong khi dạy các kỹ năng bạn sẽ sử dụng hàng ngày. Đây là những gì bạn sẽ xây dựng:
 
 <Sandpack>
 
@@ -225,43 +225,43 @@ body {
 
 </Sandpack>
 
-We'd also like to highlight [Thinking in React](/learn/thinking-in-react)—that's the tutorial that made React "click" for many of us. **We've updated both of these classic tutorials to use function components and Hooks,** so they're as good as new.
+Chúng tôi cũng muốn nhấn mạnh [Thinking in React](/learn/thinking-in-react)—đó là hướng dẫn đã làm React "click" đối với nhiều người trong chúng tôi. **Chúng tôi đã cập nhật cả hai hướng dẫn cổ điển này để sử dụng function components và Hooks,** vì vậy chúng tốt như mới.
 
 <Note>
 
-The example above is a *sandbox*. We've added a lot of sandboxes—over 600!—everywhere throughout the site. You can edit any sandbox, or press "Fork" in the upper right corner to open it in a separate tab. Sandboxes let you quickly play with the React APIs, explore your ideas, and check your understanding.
+Ví dụ trên là một *sandbox*. Chúng tôi đã thêm rất nhiều sandboxes—hơn 600!—ở khắp nơi trên trang web. Bạn có thể chỉnh sửa bất kỳ sandbox nào, hoặc nhấn "Fork" ở góc trên bên phải để mở nó trong một tab riêng. Sandboxes cho phép bạn nhanh chóng chơi với các API React, khám phá ý tưởng của bạn và kiểm tra sự hiểu biết của bạn.
 
 </Note>
 
-## Learn React step by step {/*learn-react-step-by-step*/}
+## Học React từng bước {/*learn-react-step-by-step*/}
 
-We'd like everyone in the world to have an equal opportunity to learn React for free on their own.
+Chúng tôi muốn mọi người trên thế giới có cơ hội bình đẳng để học React miễn phí theo cách riêng của họ.
 
-This is why the Learn section is organized like a self-paced course split into chapters. The first two chapters describe the fundamentals of React. If you're new to React, or want to refresh it in your memory, start here:
+Đây là lý do tại sao phần Learn được tổ chức như một khóa học tự học được chia thành các chương. Hai chương đầu tiên mô tả các nguyên tắc cơ bản của React. Nếu bạn mới học React, hoặc muốn ôn lại trong bộ nhớ của bạn, hãy bắt đầu từ đây:
 
-- **[Describing the UI](/learn/describing-the-ui)** teaches how to display information with components.
-- **[Adding Interactivity](/learn/adding-interactivity)** teaches how to update the screen in response to user input.
+- **[Mô tả UI](/learn/describing-the-ui)** dạy cách hiển thị thông tin với components.
+- **[Thêm tính tương tác](/learn/adding-interactivity)** dạy cách cập nhật màn hình để phản hồi với đầu vào của người dùng.
 
-The next two chapters are more advanced, and will give you a deeper insight into the trickier parts:
+Hai chương tiếp theo nâng cao hơn, và sẽ giúp bạn có cái nhìn sâu hơn về các phần khó hơn:
 
-- **[Managing State](/learn/managing-state)** teaches how to organize your logic as your app grows in complexity.
-- **[Escape Hatches](/learn/escape-hatches)** teaches how you can "step outside" React, and when it makes most sense to do so.
+- **[Quản lý State](/learn/managing-state)** dạy cách tổ chức logic của bạn khi ứng dụng của bạn phát triển về mức độ phức tạp.
+- **[Lối thoát](/learn/escape-hatches)** dạy cách bạn có thể "bước ra ngoài" React, và khi nào thì hợp lý nhất để làm như vậy.
 
-Every chapter consists of several related pages. Most of these pages teach a specific skill or a technique—for example, [Writing Markup with JSX](/learn/writing-markup-with-jsx), [Updating Objects in State](/learn/updating-objects-in-state), or [Sharing State Between Components](/learn/sharing-state-between-components). Some of the pages focus on explaining an idea—like [Render and Commit](/learn/render-and-commit), or [State as a Snapshot](/learn/state-as-a-snapshot). And there are a few, like [You Might Not Need an Effect](/learn/you-might-not-need-an-effect), that share our suggestions based on what we've learned over these years.
+Mỗi chương bao gồm một số trang liên quan. Hầu hết các trang này dạy một kỹ năng hoặc kỹ thuật cụ thể—ví dụ: [Viết Markup với JSX](/learn/writing-markup-with-jsx), [Cập nhật Objects trong State](/learn/updating-objects-in-state), hoặc [Chia sẻ State giữa các Components](/learn/sharing-state-between-components). Một số trang tập trung vào việc giải thích một ý tưởng—như [Render và Commit](/learn/render-and-commit), hoặc [State như một Snapshot](/learn/state-as-a-snapshot). Và có một vài trang, như [Bạn có thể không cần một Effect](/learn/you-might-not-need-an-effect), chia sẻ các gợi ý của chúng tôi dựa trên những gì chúng tôi đã học trong những năm qua.
 
-You don't have to read these chapters as a sequence. Who has the time for this?! But you could. Pages in the Learn section only rely on concepts introduced by the earlier pages. If you want to read it like a book, go for it!
+Bạn không phải đọc các chương này theo thứ tự. Ai có thời gian cho điều đó?! Nhưng bạn có thể. Các trang trong phần Learn chỉ dựa trên các khái niệm được giới thiệu bởi các trang trước đó. Nếu bạn muốn đọc nó như một cuốn sách, hãy làm!
 
-### Check your understanding with challenges {/*check-your-understanding-with-challenges*/}
+### Kiểm tra sự hiểu biết của bạn với các thử thách {/*check-your-understanding-with-challenges*/}
 
-Most pages in the Learn section end with a few challenges to check your understanding. For example, here are a few challenges from the page about [Conditional Rendering](/learn/conditional-rendering#challenges).
+Hầu hết các trang trong phần Learn kết thúc bằng một vài thử thách để kiểm tra sự hiểu biết của bạn. Ví dụ: đây là một vài thử thách từ trang về [Conditional Rendering](/learn/conditional-rendering#challenges).
 
-You don't have to solve them right now! Unless you *really* want to.
+Bạn không phải giải chúng ngay bây giờ! Trừ khi bạn *thực sự* muốn.
 
 <Challenges noTitle={true}>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### Hiển thị biểu tượng cho các mục chưa hoàn chỉnh với `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+Sử dụng toán tử điều kiện (`cond ? a : b`) để render ❌ nếu `isPacked` không phải là `true`.
 
 <Sandpack>
 
@@ -339,15 +339,15 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### Hiển thị tầm quan trọng của mục với `&&` {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+Trong ví dụ này, mỗi `Item` nhận một prop `importance` dạng số. Sử dụng toán tử `&&` để render "_(Độ quan trọng: X)_" in nghiêng, nhưng chỉ cho các mục có độ quan trọng khác không. Danh sách mục của bạn nên trông như thế này:
 
 * Space suit _(Importance: 9)_
 * Helmet with a golden leaf
 * Photo of Tam _(Importance: 6)_
 
-Don't forget to add a space between the two labels!
+Đừng quên thêm khoảng trắng giữa hai nhãn!
 
 <Sandpack>
 
@@ -387,7 +387,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+Đây sẽ là cách giải:
 
 <Sandpack>
 
@@ -429,53 +429,53 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+Lưu ý rằng bạn phải viết `importance > 0 && ...` thay vì `importance && ...` để nếu `importance` là `0`, `0` không được render là kết quả!
 
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+Trong giải pháp này, hai điều kiện riêng biệt được sử dụng để chèn khoảng trắng giữa tên và nhãn độ quan trọng. Ngoài ra, bạn có thể sử dụng Fragment với khoảng trắng ở đầu: `importance > 0 && <> <i>...</i></>` hoặc thêm khoảng trắng ngay bên trong `<i>`: `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
 </Challenges>
 
-Notice the "Show solution" button in the left bottom corner. It's handy if you want to check yourself!
+Chú ý nút "Hiển thị giải pháp" ở góc dưới bên trái. Nó tiện dụng nếu bạn muốn kiểm tra bản thân!
 
-### Build an intuition with diagrams and illustrations {/*build-an-intuition-with-diagrams-and-illustrations*/}
+### Xây dựng trực giác với sơ đồ và hình minh họa {/*build-an-intuition-with-diagrams-and-illustrations*/}
 
-When we couldn't figure out how to explain something with code and words alone, we've added diagrams that help provide some intuition. For example, here is one of the diagrams from [Preserving and Resetting State](/learn/preserving-and-resetting-state):
+Khi chúng tôi không thể tìm ra cách giải thích điều gì đó chỉ bằng code và chữ, chúng tôi đã thêm các sơ đồ giúp cung cấp một số trực giác. Ví dụ: đây là một trong các sơ đồ từ [Bảo tồn và Đặt lại State](/learn/preserving-and-resetting-state):
 
 <Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
-When `section` changes to `div`, the `section` is deleted and the new `div` is added
+Khi `section` thay đổi thành `div`, `section` bị xóa và `div` mới được thêm vào
 
 </Diagram>
 
-You'll also see some illustrations throughout the docs--here's one of the [browser painting the screen](/learn/render-and-commit#epilogue-browser-paint):
+Bạn cũng sẽ thấy một số hình minh họa trong toàn bộ tài liệu--đây là một hình về [trình duyệt vẽ màn hình](/learn/render-and-commit#epilogue-browser-paint):
 
 <Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
 
-We've confirmed with the browser vendors that this depiction is 100% scientifically accurate.
+Chúng tôi đã xác nhận với các nhà cung cấp trình duyệt rằng hình ảnh mô tả này chính xác 100% về mặt khoa học.
 
-## A new, detailed API Reference {/*a-new-detailed-api-reference*/}
+## Tham chiếu API mới, chi tiết {/*a-new-detailed-api-reference*/}
 
-In the [API Reference](/reference/react), every React API now has a dedicated page. This includes all kinds of APIs:
+Trong [Tham chiếu API](/reference/react), mỗi API React bây giờ có một trang riêng. Điều này bao gồm tất cả các loại API:
 
-- Built-in Hooks like [`useState`](/reference/react/useState).
-- Built-in components like [`<Suspense>`](/reference/react/Suspense).
-- Built-in browser components like [`<input>`](/reference/react-dom/components/input).
-- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
-- Other React APIs like [`memo`](/reference/react/memo).
+- Các Hook tích hợp như [`useState`](/reference/react/useState).
+- Các component tích hợp như [`<Suspense>`](/reference/react/Suspense).
+- Các component trình duyệt tích hợp như [`<input>`](/reference/react-dom/components/input).
+- Các API hướng framework như [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
+- Các API React khác như [`memo`](/reference/react/memo).
 
-You'll notice that every API page is split into at least two segments: *Reference* and *Usage*.
+Bạn sẽ nhận thấy rằng mỗi trang API được chia thành ít nhất hai phần: *Tham chiếu* và *Cách sử dụng*.
 
-[Reference](/reference/react/useState#reference) describes the formal API signature by listing its arguments and return values. It's concise, but it can feel a bit abstract if you're not familiar with that API. It describes what an API does, but not how to use it.
+[Tham chiếu](/reference/react/useState#reference) mô tả chữ ký API chính thức bằng cách liệt kê các đối số và giá trị trả về của nó. Nó súc tích, nhưng có thể cảm thấy hơi trừu tượng nếu bạn không quen thuộc với API đó. Nó mô tả những gì một API làm, nhưng không phải cách sử dụng nó.
 
-[Usage](/reference/react/useState#usage) shows why and how you would use this API in practice, like a colleague or a friend might explain. It shows the **canonical scenarios for how each API was meant to be used by the React team.** We've added color-coded snippets, examples of using different APIs together, and recipes that you can copy and paste from:
+[Cách sử dụng](/reference/react/useState#usage) hiển thị lý do tại sao và cách bạn sẽ sử dụng API này trong thực tế, như một đồng nghiệp hoặc một người bạn có thể giải thích. Nó hiển thị **các tình huống chuẩn về cách mỗi API được thiết kế để sử dụng bởi nhóm React.** Chúng tôi đã thêm các đoạn code có màu sắc, ví dụ về việc sử dụng các API khác nhau cùng nhau, và các công thức mà bạn có thể sao chép và dán:
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
-#### Counter (number) {/*counter-number*/}
+#### Bộ đếm (number) {/*counter-number*/}
 
-In this example, the `count` state variable holds a number. Clicking the button increments it.
+Trong ví dụ này, biến state `count` giữ một số. Nhấp vào nút tăng nó lên.
 
 <Sandpack>
 
@@ -501,9 +501,9 @@ export default function Counter() {
 
 <Solution />
 
-#### Text field (string) {/*text-field-string*/}
+#### Trường văn bản (string) {/*text-field-string*/}
 
-In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+Trong ví dụ này, biến state `text` giữ một chuỗi. Khi bạn gõ, `handleChange` đọc giá trị đầu vào mới nhất từ phần tử DOM input của trình duyệt, và gọi `setText` để cập nhật state. Điều này cho phép bạn hiển thị `text` hiện tại bên dưới.
 
 <Sandpack>
 
@@ -535,7 +535,7 @@ export default function MyInput() {
 
 #### Checkbox (boolean) {/*checkbox-boolean*/}
 
-In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+Trong ví dụ này, biến state `liked` giữ một boolean. Khi bạn nhấp vào input, `setLiked` cập nhật biến state `liked` với việc checkbox của trình duyệt có được check hay không. Biến `liked` được sử dụng để render văn bản bên dưới checkbox.
 
 <Sandpack>
 
@@ -569,9 +569,9 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### Form (hai biến) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+Bạn có thể khai báo nhiều hơn một biến state trong cùng một component. Mỗi biến state hoàn toàn độc lập.
 
 <Sandpack>
 

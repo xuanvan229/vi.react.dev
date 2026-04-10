@@ -1,23 +1,23 @@
 ---
-title: Queueing a Series of State Updates
+title: Đưa Vào Hàng Đợi Một Loạt Cập Nhật State
 ---
 
 <Intro>
 
-Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.
+Đặt một state variable sẽ đưa vào hàng đợi một render khác. Nhưng đôi khi bạn có thể muốn thực hiện nhiều thao tác trên giá trị trước khi đưa vào hàng đợi lần render tiếp theo. Để làm điều này, việc hiểu cách React xử lý theo lô các cập nhật state sẽ có ích.
 
 </Intro>
 
 <YouWillLearn>
 
-* What "batching" is and how React uses it to process multiple state updates
-* How to apply several updates to the same state variable in a row
+* "Batching" là gì và React sử dụng nó như thế nào để xử lý nhiều cập nhật state
+* Cách áp dụng nhiều cập nhật liên tiếp cho cùng một state variable
 
 </YouWillLearn>
 
-## React batches state updates {/*react-batches-state-updates*/}
+## React xử lý theo lô các cập nhật state {/*react-batches-state-updates*/}
 
-You might expect that clicking the "+3" button will increment the counter three times because it calls `setNumber(number + 1)` three times:
+Bạn có thể mong đợi rằng nhấp vào nút "+3" sẽ tăng bộ đếm ba lần vì nó gọi `setNumber(number + 1)` ba lần:
 
 <Sandpack>
 
@@ -47,7 +47,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-However, as you might recall from the previous section, [each render's state values are fixed](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), so the value of `number` inside the first render's event handler is always `0`, no matter how many times you call `setNumber(1)`:
+Tuy nhiên, như bạn có thể nhớ từ phần trước, [các giá trị state của mỗi lần render là cố định](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), vì vậy giá trị của `number` bên trong event handler của lần render đầu tiên luôn là `0`, bất kể bạn gọi `setNumber(1)` bao nhiêu lần:
 
 ```js
 setNumber(0 + 1);

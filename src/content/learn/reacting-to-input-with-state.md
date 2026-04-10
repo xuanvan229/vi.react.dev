@@ -137,7 +137,7 @@ React được xây dựng để giải quyết vấn đề này.
 
 Trong React, bạn không trực tiếp thao tác UI--có nghĩa là bạn không enable, disable, hiển thị, hoặc ẩn các component trực tiếp. Thay vào đó, bạn **khai báo những gì bạn muốn hiển thị,** và React tìm cách cập nhật UI. Hãy nghĩ về việc lên taxi và nói với tài xế nơi bạn muốn đến thay vì nói chính xác họ phải rẽ đâu. Công việc của tài xế là đưa bạn đến đó, và họ thậm chí có thể biết một số lối tắt mà bạn chưa nghĩ đến!
 
-<Illustration src=”/images/docs/illustrations/i_declarative-ui-programming.png” alt=”In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that.” />
+<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
 
 ## Tư duy về UI theo kiểu khai báo {/*thinking-about-ui-declaratively*/}
 
@@ -151,17 +151,17 @@ Bạn đã thấy cách triển khai một form theo kiểu mệnh lệnh ở tr
 
 ### Bước 1: Xác định các trạng thái trực quan khác nhau của component {/*step-1-identify-your-components-different-visual-states*/}
 
-Trong khoa học máy tính, bạn có thể nghe về [“state machine”](https://en.wikipedia.org/wiki/Finite-state_machine) ở một trong nhiều “trạng thái”. Nếu bạn làm việc với một nhà thiết kế, bạn có thể đã thấy các mockup cho các “trạng thái trực quan” khác nhau. React đứng ở giao điểm của thiết kế và khoa học máy tính, vì vậy cả hai ý tưởng này đều là nguồn cảm hứng.
+Trong khoa học máy tính, bạn có thể nghe về ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) ở một trong nhiều "trạng thái". Nếu bạn làm việc với một nhà thiết kế, bạn có thể đã thấy các mockup cho các "trạng thái trực quan" khác nhau. React đứng ở giao điểm của thiết kế và khoa học máy tính, vì vậy cả hai ý tưởng này đều là nguồn cảm hứng.
 
-Đầu tiên, bạn cần trực quan hóa tất cả các “trạng thái” khác nhau của UI mà người dùng có thể thấy:
+Đầu tiên, bạn cần trực quan hóa tất cả các "trạng thái" khác nhau của UI mà người dùng có thể thấy:
 
-* **Empty**: Form có nút “Submit” bị disabled.
-* **Typing**: Form có nút “Submit” được enabled.
+* **Empty**: Form có nút "Submit" bị disabled.
+* **Typing**: Form có nút "Submit" được enabled.
 * **Submitting**: Form bị disabled hoàn toàn. Spinner được hiển thị.
-* **Success**: Thông báo “Thank you” được hiển thị thay cho form.
+* **Success**: Thông báo "Thank you" được hiển thị thay cho form.
 * **Error**: Giống như trạng thái Typing, nhưng có thêm thông báo lỗi.
 
-Giống như một nhà thiết kế, bạn sẽ muốn “mock up” hoặc tạo “mock” cho các trạng thái khác nhau trước khi thêm logic. Ví dụ, đây là một mock chỉ cho phần trực quan của form. Mock này được kiểm soát bởi một prop gọi là `status` với giá trị mặc định là `'empty'`:
+Giống như một nhà thiết kế, bạn sẽ muốn "mock up" hoặc tạo "mock" cho các trạng thái khác nhau trước khi thêm logic. Ví dụ, đây là một mock chỉ cho phần trực quan của form. Mock này được kiểm soát bởi một prop gọi là `status` với giá trị mặc định là `'empty'`:
 
 <Sandpack>
 
@@ -395,7 +395,7 @@ Bạn biết chúng là cần thiết, vì bạn không thể loại bỏ bất 
 
 <DeepDive>
 
-#### Loại bỏ các trạng thái “không thể” bằng reducer {/*eliminating-impossible-states-with-a-reducer*/}
+#### Loại bỏ các trạng thái "không thể" bằng reducer {/*eliminating-impossible-states-with-a-reducer*/}
 
 Ba biến này là biểu diễn đủ tốt của state của form này. Tuy nhiên, vẫn còn một số trạng thái trung gian không hoàn toàn có nghĩa. Ví dụ, một `error` không null không có nghĩa khi `status` là `'success'`. Để mô hình hóa state chính xác hơn, bạn có thể [trích xuất nó vào một reducer.](/learn/extracting-state-logic-into-a-reducer) Reducer cho phép bạn hợp nhất nhiều biến state thành một object duy nhất và gom tất cả các logic liên quan!
 

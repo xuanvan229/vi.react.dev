@@ -1,5 +1,5 @@
 ---
-title: “React Labs: Chúng tôi đã làm gì – Tháng 6 năm 2022”
+title: "React Labs: Chúng tôi đã làm gì – Tháng 6 năm 2022"
 author:  Andrew Clark, Dan Abramov, Jan Kassens, Joseph Savona, Josh Story, Lauren Tan, Luna Ruan, Mengdi Chen, Rick Hanlon, Robert Zhang, Sathya Gunasekaran, Sebastian Markbage, and Xuan Huang
 date: 2022/06/15
 description: React 18 đã mất nhiều năm để hoàn thành, và cùng với đó đã mang lại những bài học quý giá cho nhóm React. Việc phát hành của nó là kết quả của nhiều năm nghiên cứu và khám phá nhiều con đường. Một số con đường đó đã thành công; nhiều con đường hơn là những con đường cụt dẫn đến những hiểu biết mới. Một bài học chúng tôi đã học được là thật bực bội khi cộng đồng phải chờ đợi các tính năng mới mà không có cái nhìn về những con đường chúng tôi đang khám phá.
@@ -34,7 +34,7 @@ Chúng tôi đang làm việc cùng với Vercel và Shopify để thống nhấ
 Hiện tại, các asset như scripts, external styles, fonts và images thường được preload và tải bằng các hệ thống bên ngoài. Điều này có thể làm cho việc điều phối trên các môi trường mới như streaming, Server Components, và nhiều hơn nữa trở nên phức tạp.
 Chúng tôi đang xem xét việc thêm các API để preload và tải các external asset deduplicated thông qua các API React hoạt động trong tất cả các môi trường React.
 
-Chúng tôi cũng đang xem xét việc có những hỗ trợ Suspense này để bạn có thể có hình ảnh, CSS và fonts chặn hiển thị cho đến khi chúng được tải nhưng không chặn streaming và concurrent rendering. Điều này có thể giúp tránh [“popcorning”](https://twitter.com/sebmarkbage/status/1516852731251724293) khi các hình ảnh bật lên và layout thay đổi.
+Chúng tôi cũng đang xem xét việc có những hỗ trợ Suspense này để bạn có thể có hình ảnh, CSS và fonts chặn hiển thị cho đến khi chúng được tải nhưng không chặn streaming và concurrent rendering. Điều này có thể giúp tránh ["popcorning"](https://twitter.com/sebmarkbage/status/1516852731251724293) khi các hình ảnh bật lên và layout thay đổi.
 
 ## Tối ưu hóa Static Server Rendering {/*static-server-rendering-optimizations*/}
 

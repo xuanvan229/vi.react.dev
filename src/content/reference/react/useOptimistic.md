@@ -4,7 +4,7 @@ title: useOptimistic
 
 <Intro>
 
-`useOptimistic` is a React Hook that lets you optimistically update the UI.
+`useOptimistic` là một React Hook cho phép bạn cập nhật giao diện một cách lạc quan (optimistically).
 
 ```js
 const [optimisticState, setOptimistic] = useOptimistic(value, reducer?);
@@ -16,11 +16,11 @@ const [optimisticState, setOptimistic] = useOptimistic(value, reducer?);
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `useOptimistic(value, reducer?)` {/*useoptimistic*/}
 
-Call `useOptimistic` at the top level of your component to create optimistic state for a value.
+Gọi `useOptimistic` ở cấp cao nhất của component để tạo trạng thái lạc quan cho một giá trị.
 
 ```js
 import { useOptimistic } from 'react';
@@ -33,25 +33,25 @@ function MyComponent({name, todos}) {
 }
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `value`: The value returned when there are no pending Actions.
-* **optional** `reducer(currentState, action)`: The reducer function that specifies how the optimistic state gets updated. It must be pure, should take the current state and reducer action arguments, and should return the next optimistic state.
+* `value`: Giá trị được trả về khi không có Action nào đang chờ xử lý.
+* **tùy chọn** `reducer(currentState, action)`: Hàm reducer chỉ định cách trạng thái lạc quan được cập nhật. Nó phải là pure, nhận tham số là trạng thái hiện tại và action của reducer, và phải trả về trạng thái lạc quan tiếp theo.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`useOptimistic` returns an array with exactly two values:
+`useOptimistic` trả về một mảng chính xác hai giá trị:
 
-1. `optimisticState`: The current optimistic state. It is equal to `value` unless an Action is pending, in which case it is equal to the state returned by `reducer` (or the value passed to the set function if no `reducer` was provided).
-2. The [`set` function](#setoptimistic) that lets you update the optimistic state to a different value inside an Action.
+1. `optimisticState`: Trạng thái lạc quan hiện tại. Nó bằng với `value` trừ khi có một Action đang chờ xử lý, trong trường hợp đó nó bằng với trạng thái được trả về bởi `reducer` (hoặc giá trị được truyền vào hàm set nếu không có `reducer` nào được cung cấp).
+2. [Hàm `set`](#setoptimistic) cho phép bạn cập nhật trạng thái lạc quan thành một giá trị khác bên trong một Action.
 
 ---
 
-### `set` functions, like `setOptimistic(optimisticState)` {/*setoptimistic*/}
+### Các hàm `set`, như `setOptimistic(optimisticState)` {/*setoptimistic*/}
 
-The `set` function returned by `useOptimistic` lets you update the state for the duration of an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). You can pass the next state directly, or a function that calculates it from the previous state:
+Hàm `set` được trả về bởi `useOptimistic` cho phép bạn cập nhật trạng thái trong thời gian một [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions) đang diễn ra. Bạn có thể truyền trạng thái tiếp theo trực tiếp, hoặc một hàm tính toán nó từ trạng thái trước:
 
 ```js
 const [optimisticLike, setOptimisticLike] = useOptimistic(false);
@@ -66,24 +66,24 @@ function handleClick() {
 }
 ```
 
-#### Parameters {/*setoptimistic-parameters*/}
+#### Tham số {/*setoptimistic-parameters*/}
 
-* `optimisticState`: The value that you want the optimistic state to be during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you provided a `reducer` to `useOptimistic`, this value will be passed as the second argument to your reducer. It can be a value of any type.
-    * If you pass a function as `optimisticState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next optimistic state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying the queued updaters to the previous state similar to [`useState` updaters](/reference/react/useState#setstate-parameters).
+* `optimisticState`: Giá trị bạn muốn trạng thái lạc quan trở thành trong thời gian một [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). Nếu bạn cung cấp `reducer` cho `useOptimistic`, giá trị này sẽ được truyền như là tham số thứ hai cho reducer của bạn. Nó có thể là một giá trị của bất kỳ kiểu nào.
+    * Nếu bạn truyền một hàm như `optimisticState`, nó sẽ được coi là một _hàm updater_. Nó phải là pure, nhận trạng thái đang chờ là tham số duy nhất, và phải trả về trạng thái lạc quan tiếp theo. React sẽ đặt hàm updater của bạn vào hàng đợi và render lại component của bạn. Trong lần render tiếp theo, React sẽ tính toán trạng thái tiếp theo bằng cách áp dụng các updater được xếp hàng đối với trạng thái trước tương tự như [các updater `useState`](/reference/react/useState#setstate-parameters).
 
-#### Returns {/*setoptimistic-returns*/}
+#### Giá trị trả về {/*setoptimistic-returns*/}
 
-`set` functions do not have a return value.
+Các hàm `set` không có giá trị trả về.
 
-#### Caveats {/*setoptimistic-caveats*/}
+#### Lưu ý {/*setoptimistic-caveats*/}
 
-* The `set` function must be called inside an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you call the setter outside an Action, [React will show a warning](#an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic state will briefly render.
+* Hàm `set` phải được gọi bên trong một [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). Nếu bạn gọi setter bên ngoài một Action, [React sẽ hiển thị cảnh báo](#an-optimistic-state-update-occurred-outside-a-transition-or-action) và trạng thái lạc quan sẽ render ngắn gọn.
 
 <DeepDive>
 
-#### How optimistic state works {/*how-optimistic-state-works*/}
+#### Cơ chế hoạt động của trạng thái lạc quan {/*how-optimistic-state-works*/}
 
-`useOptimistic` lets you show a temporary value while a Action is in progress:
+`useOptimistic` cho phép bạn hiển thị một giá trị tạm thời trong khi một Action đang diễn ra:
 
 ```js
 const [value, setValue] = useState('a');
@@ -96,57 +96,57 @@ startTransition(async () => {
 });
 ```
 
-When the setter is called inside an Action, `useOptimistic` will trigger a re-render to show that state while the Action is in progress. Otherwise, the `value` passed to `useOptimistic` is returned.
+Khi setter được gọi bên trong một Action, `useOptimistic` sẽ kích hoạt render lại để hiển thị trạng thái đó trong khi Action đang diễn ra. Ngược lại, `value` được truyền vào `useOptimistic` được trả về.
 
-This state is called the "optimistic" because it is used to immediately present the user with the result of performing an Action, even though the Action actually takes time to complete.
+Trạng thái này được gọi là "lạc quan" vì nó được sử dụng để ngay lập tức trình bày cho người dùng kết quả của việc thực hiện một Action, mặc dù Action thực sự cần thời gian để hoàn thành.
 
-**How the update flows**
+**Luồng cập nhật diễn ra như thế nào**
 
-1. **Update immediately**: When `setOptimistic('b')` is called, React immediately renders with `'b'`.
+1. **Cập nhật ngay lập tức**: Khi `setOptimistic('b')` được gọi, React ngay lập tức render với `'b'`.
 
-2. **(Optional) await in Action**: If you await in the Action, React continues showing `'b'`.
+2. **(Tùy chọn) await trong Action**: Nếu bạn await trong Action, React tiếp tục hiển thị `'b'`.
 
-3. **Transition scheduled**: `setValue(newValue)` schedules an update to the real state.
+3. **Transition được lên lịch**: `setValue(newValue)` lên lịch một cập nhật cho trạng thái thực.
 
-4. **(Optional) wait for Suspense**: If `newValue` suspends, React continues showing `'b'`.
+4. **(Tùy chọn) đợi Suspense**: Nếu `newValue` tạm dừng, React tiếp tục hiển thị `'b'`.
 
-5. **Single render commit**: Finally, the `newValue` commits for `value` and `optimistic`.
+5. **Cam kết render đơn lẻ**: Cuối cùng, `newValue` được cam kết cho cả `value` và `optimistic`.
 
-There's no extra render to "clear" the optimistic state. The optimistic and real state converge in the same render when the Transition completes.
+Không có render thêm nào để "xóa" trạng thái lạc quan. Trạng thái lạc quan và trạng thái thực hội tụ trong cùng một lần render khi Transition hoàn thành.
 
 <Note>
 
-#### Optimistic state is temporary {/*optimistic-state-is-temporary*/}
+#### Trạng thái lạc quan là tạm thời {/*optimistic-state-is-temporary*/}
 
-Optimistic state only renders while an Action is in progress, otherwise `value` is rendered.
+Trạng thái lạc quan chỉ render trong khi một Action đang diễn ra, nếu không thì `value` được render.
 
-If `saveChanges` returned `'c'`, then both `value` and `optimistic` will be `'c'`, not `'b'`.
+Nếu `saveChanges` trả về `'c'`, thì cả `value` và `optimistic` sẽ là `'c'`, không phải `'b'`.
 
 </Note>
 
-**How the final state is determined**
+**Cách trạng thái cuối cùng được xác định**
 
-The `value` argument to `useOptimistic` determines what displays after the Action finishes. How this works depends on the pattern you use:
+Tham số `value` cho `useOptimistic` xác định những gì hiển thị sau khi Action kết thúc. Cách hoạt động này phụ thuộc vào pattern bạn sử dụng:
 
-- **Hardcoded values** like `useOptimistic(false)`: After the Action, `state` is still `false`, so the UI shows `false`. This is useful for pending states where you always start from `false`.
+- **Các giá trị hardcoded** như `useOptimistic(false)`: Sau Action, `state` vẫn là `false`, vì vậy giao diện hiển thị `false`. Điều này hữu ích cho các trạng thái chờ mà bạn luôn bắt đầu từ `false`.
 
-- **Props or state passed in** like `useOptimistic(isLiked)`: If the parent updates `isLiked` during the Action, the new value is used after the Action completes. This is how the UI reflects the result of the Action.
+- **Props hoặc state được truyền vào** như `useOptimistic(isLiked)`: Nếu cha cập nhật `isLiked` trong khi Action đang diễn ra, giá trị mới được sử dụng sau khi Action hoàn thành. Đây là cách giao diện phản ánh kết quả của Action.
 
-- **Reducer pattern** like `useOptimistic(items, fn)`: If `items` changes while the Action is pending, React re-runs your `reducer` with the new `items` to recalculate the state. This keeps your optimistic additions on top of the latest data.
+- **Pattern reducer** như `useOptimistic(items, fn)`: Nếu `items` thay đổi trong khi Action đang chờ, React chạy lại `reducer` của bạn với `items` mới để tính toán lại trạng thái. Điều này giữ các mục bổ sung lạc quan của bạn trên dữ liệu mới nhất.
 
-**What happens when the Action fails**
+**Điều gì xảy ra khi Action thất bại**
 
-If the Action throws an error, the Transition still ends, and React renders with whatever `value` currently is. Since the parent typically only updates `value` on success, a failure means `value` hasn't changed, so the UI shows what it showed before the optimistic update. You can catch the error to show a message to the user.
+Nếu Action ném lỗi, Transition vẫn kết thúc, và React render với bất kỳ giá trị `value` nào hiện tại. Vì cha thường chỉ cập nhật `value` khi thành công, một thất bại có nghĩa là `value` chưa thay đổi, vì vậy giao diện hiển thị những gì nó hiển thị trước khi cập nhật lạc quan. Bạn có thể bắt lỗi để hiển thị thông báo cho người dùng.
 
 </DeepDive>
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Adding optimistic state to a component {/*adding-optimistic-state-to-a-component*/}
+### Thêm trạng thái lạc quan vào một component {/*adding-optimistic-state-to-a-component*/}
 
-Call `useOptimistic` at the top level of your component to declare one or more optimistic states.
+Gọi `useOptimistic` ở cấp cao nhất của component để khai báo một hoặc nhiều trạng thái lạc quan.
 
 ```js [[1, 4, "age"], [1, 5, "name"], [1, 6, "todos"], [2, 4, "optimisticAge"], [2, 5, "optimisticName"], [2, 6, "optimisticTodos"], [3, 4, "setOptimisticAge"], [3, 5, "setOptimisticName"], [3, 6, "setOptimisticTodos"], [4, 6, "reducer"]]
 import { useOptimistic } from 'react';
@@ -158,15 +158,15 @@ function MyComponent({age, name, todos}) {
   // ...
 ```
 
-`useOptimistic` returns an array with exactly two items:
+`useOptimistic` trả về một mảng chính xác hai mục:
 
-1. The <CodeStep step={2}>optimistic state</CodeStep>, initially set to the <CodeStep step={1}>value</CodeStep> provided.
-2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
-   * If a <CodeStep step={4}>reducer</CodeStep> is provided, it will run before returning the optimistic state.
+1. <CodeStep step={2}>Trạng thái lạc quan</CodeStep>, ban đầu được đặt thành <CodeStep step={1}>giá trị</CodeStep> được cung cấp.
+2. <CodeStep step={3}>Hàm set</CodeStep> cho phép bạn tạm thời thay đổi trạng thái trong thời gian một [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+   * Nếu một <CodeStep step={4}>reducer</CodeStep> được cung cấp, nó sẽ chạy trước khi trả về trạng thái lạc quan.
 
-To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action.
+Để sử dụng <CodeStep step={2}>trạng thái lạc quan</CodeStep>, hãy gọi hàm `set` bên trong một Action.
 
-Actions are functions called inside `startTransition`:
+Các Action là các hàm được gọi bên trong `startTransition`:
 
 ```js {3}
 function onAgeChange(e) {
@@ -178,13 +178,13 @@ function onAgeChange(e) {
 }
 ```
 
-React will render the optimistic state `42` first while the `age` remains the current age. The Action waits for POST, and then renders the `newAge` for both `age` and `optimisticAge`.
+React sẽ render trạng thái lạc quan `42` trước trong khi `age` vẫn là giá trị hiện tại. Action chờ POST, sau đó render `newAge` cho cả `age` và `optimisticAge`.
 
-See [How optimistic state works](#how-optimistic-state-works) for a deep dive.
+Xem [Cơ chế hoạt động của trạng thái lạc quan](#how-optimistic-state-works) để tìm hiểu sâu hơn.
 
 <Note>
 
-When using [Action props](/reference/react/useTransition#exposing-action-props-from-components), you can call the set function without `startTransition`:
+Khi sử dụng [Action props](/reference/react/useTransition#exposing-action-props-from-components), bạn có thể gọi hàm set mà không cần `startTransition`:
 
 ```js [[3, 2, "setOptimisticName"]]
 async function submitAction() {
@@ -193,19 +193,19 @@ async function submitAction() {
 }
 ```
 
-This works because Action props are already called inside `startTransition`.
+Điều này hoạt động vì Action props đã được gọi bên trong `startTransition`.
 
-For an example, see: [Using optimistic state in Action props](#using-optimistic-state-in-action-props).
+Để xem ví dụ, hãy xem: [Sử dụng trạng thái lạc quan trong Action props](#using-optimistic-state-in-action-props).
 
 </Note>
 
 ---
 
-### Using optimistic state in Action props {/*using-optimistic-state-in-action-props*/}
+### Sử dụng trạng thái lạc quan trong Action props {/*using-optimistic-state-in-action-props*/}
 
-In an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can call the optimistic setter directly without `startTransition`.
+Trong một [Action prop](/reference/react/useTransition#exposing-action-props-from-components), bạn có thể gọi setter lạc quan trực tiếp mà không cần `startTransition`.
 
-This example sets optimistic state inside a `<form>` `submitAction` prop:
+Ví dụ này đặt trạng thái lạc quan bên trong prop `submitAction` của `<form>`:
 
 <Sandpack>
 
@@ -262,27 +262,27 @@ export async function updateName(name) {
 
 </Sandpack>
 
-In this example, when the user submits the form, the `optimisticName` updates immediately to show the `newName` optimistically while the server request is in progress. When the request completes, `name` and `optimisticName` are rendered with the actual `updatedName` from the response.
+Trong ví dụ này, khi người dùng gửi form, `optimisticName` cập nhật ngay lập tức để hiển thị `newName` một cách lạc quan trong khi yêu cầu server đang diễn ra. Khi yêu cầu hoàn thành, `name` và `optimisticName` được render với `updatedName` thực tế từ phản hồi.
 
 <DeepDive>
 
-#### Why doesn't this need `startTransition`? {/*why-doesnt-this-need-starttransition*/}
+#### Tại sao điều này không cần `startTransition`? {/*why-doesnt-this-need-starttransition*/}
 
-By convention, props called inside `startTransition` are named with "Action".
+Theo quy ước, các props được gọi bên trong `startTransition` được đặt tên với "Action".
 
-Since `submitAction` is named with "Action", you know it's already called inside `startTransition`.
+Vì `submitAction` được đặt tên với "Action", bạn biết nó đã được gọi bên trong `startTransition`.
 
-See [Exposing `action` prop from components](/reference/react/useTransition#exposing-action-props-from-components) for the Action prop pattern.
+Xem [Tiếp xúc prop `action` từ các component](/reference/react/useTransition#exposing-action-props-from-components) để biết pattern Action prop.
 
 </DeepDive>
 
 ---
 
-### Adding optimistic state to Action props {/*adding-optimistic-state-to-action-props*/}
+### Thêm trạng thái lạc quan vào Action props {/*adding-optimistic-state-to-action-props*/}
 
-When creating an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can add `useOptimistic` to show immediate feedback.
+Khi tạo một [Action prop](/reference/react/useTransition#exposing-action-props-from-components), bạn có thể thêm `useOptimistic` để hiển thị phản hồi ngay lập tức.
 
-Here's a button that shows "Submitting..." while the `action` is pending:
+Đây là một nút hiển thị "Submitting..." trong khi `action` đang chờ:
 
 <Sandpack>
 
@@ -337,21 +337,21 @@ export async function submitForm() {
 
 </Sandpack>
 
-When the button is clicked, `setIsPending(true)` uses optimistic state to immediately show "Submitting..." and disable the button. When the Action is done, `isPending` is rendered as `false` automatically.
+Khi nút được nhấp, `setIsPending(true)` sử dụng trạng thái lạc quan để ngay lập tức hiển thị "Submitting..." và vô hiệu hóa nút. Khi Action hoàn thành, `isPending` được render là `false` tự động.
 
-This pattern automatically shows a pending state however `action` prop is used with `Button`:
+Pattern này tự động hiển thị trạng thái chờ dù prop `action` được sử dụng với `Button` như thế nào:
 
 ```js
-// Show pending state for a state update
+// Hiển thị trạng thái chờ cho cập nhật state
 <Button action={() => { setState(c => c + 1) }} />
 
-// Show pending state for a navigation
+// Hiển thị trạng thái chờ cho điều hướng
 <Button action={() => { navigate('/done') }} />
 
-// Show pending state for a POST
+// Hiển thị trạng thái chờ cho một POST
 <Button action={async () => { await fetch(/* ... */) }} />
 
-// Show pending state for any combination
+// Hiển thị trạng thái chờ cho bất kỳ sự kết hợp nào
 <Button action={async () => {
   setState(c => c + 1);
   await fetch(/* ... */);
@@ -359,23 +359,23 @@ This pattern automatically shows a pending state however `action` prop is used w
 }} />
 ```
 
-The pending state will be shown until everything in the `action` prop is finished.
+Trạng thái chờ sẽ được hiển thị cho đến khi mọi thứ trong prop `action` hoàn thành.
 
 <Note>
 
-You can also use [`useTransition`](/reference/react/useTransition) to get pending state via `isPending`.
+Bạn cũng có thể sử dụng [`useTransition`](/reference/react/useTransition) để lấy trạng thái chờ qua `isPending`.
 
-The difference is that `useTransition` gives you the `startTransition` function, while `useOptimistic` works with any Transition. Use whichever fits your component's needs.
+Sự khác biệt là `useTransition` cho bạn hàm `startTransition`, trong khi `useOptimistic` hoạt động với bất kỳ Transition nào. Sử dụng cái nào phù hợp với nhu cầu của component của bạn.
 
 </Note>
 
 ---
 
-### Updating props or state optimistically {/*updating-props-or-state-optimistically*/}
+### Cập nhật props hoặc state một cách lạc quan {/*updating-props-or-state-optimistically*/}
 
-You can wrap props or state in `useOptimistic` to update it immediately while an Action is in progress.
+Bạn có thể bọc props hoặc state trong `useOptimistic` để cập nhật nó ngay lập tức trong khi một Action đang diễn ra.
 
-In this example, `LikeButton` receives `isLiked` as a prop and immediately toggles it when clicked:
+Trong ví dụ này, `LikeButton` nhận `isLiked` như một prop và ngay lập tức bật tắt nó khi được nhấp:
 
 <Sandpack>
 
@@ -438,23 +438,23 @@ root.render(<App />);
 
 </Sandpack>
 
-When the button is clicked, `setOptimisticIsLiked` immediately updates the displayed state to show the heart as liked. Meanwhile, `await toggleLike` runs in the background. When the `await` completes, `setIsLiked` parent updates the "real" `isLiked` state, and the optimistic state is rendered to match this new value.
+Khi nút được nhấp, `setOptimisticIsLiked` ngay lập tức cập nhật trạng thái hiển thị để hiển thị trái tim là đã thích. Trong khi đó, `await toggleLike` chạy ở nền. Khi `await` hoàn thành, `setIsLiked` cha cập nhật trạng thái `isLiked` "thực", và trạng thái lạc quan được render khớp với giá trị mới này.
 
 <Note>
 
-This example reads from `optimisticIsLiked` to calculate the next value. This works when the base state won't change, but if the base state might change while your Action is pending, you may want to use a state updater or the reducer.
+Ví dụ này đọc từ `optimisticIsLiked` để tính toán giá trị tiếp theo. Điều này hoạt động khi trạng thái cơ sở sẽ không thay đổi, nhưng nếu trạng thái cơ sở có thể thay đổi trong khi Action của bạn đang chờ, bạn có thể muốn sử dụng hàm updater state hoặc reducer.
 
-See [Updating state based on the current state](#updating-state-based-on-current-state) for an example.
+Xem [Cập nhật state dựa trên trạng thái hiện tại](#updating-state-based-on-current-state) để có ví dụ.
 
 </Note>
 
 ---
 
-### Updating multiple values together {/*updating-multiple-values-together*/}
+### Cập nhật nhiều giá trị cùng nhau {/*updating-multiple-values-together*/}
 
-When an optimistic update affects multiple related values, use a reducer to update them together. This ensures the UI stays consistent.
+Khi một cập nhật lạc quan ảnh hưởng đến nhiều giá trị liên quan, hãy sử dụng reducer để cập nhật chúng cùng nhau. Điều này đảm bảo giao diện luôn nhất quán.
 
-Here's a follow button that updates both the follow state and follower count:
+Đây là nút theo dõi cập nhật cả trạng thái theo dõi và số lượng người theo dõi:
 
 <Sandpack>
 
@@ -533,48 +533,48 @@ export async function unfollowUser(name) {
 
 </Sandpack>
 
-The reducer receives the new `isFollowing` value and calculates both the new follow state and the updated follower count in a single update. This ensures the button text and count always stay in sync.
+Reducer nhận giá trị `isFollowing` mới và tính toán cả trạng thái theo dõi mới và số lượng người theo dõi đã cập nhật trong một lần cập nhật duy nhất. Điều này đảm bảo văn bản nút và số lượng luôn đồng bộ.
 
 
 <DeepDive>
 
-#### Choosing between updaters and reducers {/*choosing-between-updaters-and-reducers*/}
+#### Chọn giữa updater và reducer {/*choosing-between-updaters-and-reducers*/}
 
-`useOptimistic` supports two patterns for calculating state based on current state:
+`useOptimistic` hỗ trợ hai pattern để tính toán state dựa trên trạng thái hiện tại:
 
-**Updater functions** work like [useState updaters](/reference/react/useState#updating-state-based-on-the-previous-state). Pass a function to the setter:
+**Hàm updater** hoạt động giống như [updater của useState](/reference/react/useState#updating-state-based-on-the-previous-state). Truyền một hàm vào setter:
 
 ```js
 const [optimistic, setOptimistic] = useOptimistic(value);
 setOptimistic(current => !current);
 ```
 
-**Reducers** separate the update logic from the setter call:
+**Reducer** tách logic cập nhật ra khỏi lời gọi setter:
 
 ```js
 const [optimistic, dispatch] = useOptimistic(value, (current, action) => {
-  // Calculate next state based on current and action
+  // Tính toán trạng thái tiếp theo dựa trên current và action
 });
 dispatch(action);
 ```
 
-**Use updaters** for calculations where the setter call naturally describes the update. This is similar to using `setState(prev => ...)` with `useState`.
+**Sử dụng updater** cho các tính toán mà lời gọi setter tự nhiên mô tả cập nhật. Điều này tương tự như sử dụng `setState(prev => ...)` với `useState`.
 
-**Use reducers** when you need to pass data to the update (like which item to add) or when handling multiple types of updates with a single hook.
+**Sử dụng reducer** khi bạn cần truyền dữ liệu cho cập nhật (như mục nào cần thêm) hoặc khi xử lý nhiều loại cập nhật với một hook duy nhất.
 
-**Why use a reducer?**
+**Tại sao sử dụng reducer?**
 
-Reducers are essential when the base state might change while your Transition is pending. If `todos` changes while your add is pending (for example, another user added a todo), React will re-run your reducer with the new `todos` to recalculate what to show. This ensures your new todo is added to the latest list, not an outdated copy.
+Reducer là thiết yếu khi trạng thái cơ sở có thể thay đổi trong khi Transition của bạn đang chờ. Nếu `todos` thay đổi trong khi việc thêm của bạn đang chờ (ví dụ, người dùng khác đã thêm một todo), React sẽ chạy lại reducer của bạn với `todos` mới để tính toán lại những gì hiển thị. Điều này đảm bảo todo mới của bạn được thêm vào danh sách mới nhất, không phải bản sao lỗi thời.
 
-An updater function like `setOptimistic(prev => [...prev, newItem])` would only see the state from when the Transition started, missing any updates that happened during the async work.
+Một hàm updater như `setOptimistic(prev => [...prev, newItem])` sẽ chỉ thấy trạng thái từ khi Transition bắt đầu, bỏ lỡ bất kỳ cập nhật nào xảy ra trong quá trình làm việc async.
 
 </DeepDive>
 
 ---
 
-### Optimistically adding to a list {/*optimistically-adding-to-a-list*/}
+### Thêm lạc quan vào danh sách {/*optimistically-adding-to-a-list*/}
 
-When you need to optimistically add items to a list, use a `reducer`:
+Khi bạn cần thêm các mục vào danh sách một cách lạc quan, hãy sử dụng `reducer`:
 
 <Sandpack>
 
@@ -644,21 +644,21 @@ export async function addTodo(todo) {
 
 </Sandpack>
 
-The `reducer` receives the current list of todos and the new todo to add. This is important because if the `todos` prop changes while your add is pending (for example, another user added a todo), React will update your optimistic state by re-running the reducer with the updated list. This ensures your new todo is added to the latest list, not an outdated copy.
+`reducer` nhận danh sách todos hiện tại và todo mới cần thêm. Điều này quan trọng vì nếu prop `todos` thay đổi trong khi việc thêm của bạn đang chờ (ví dụ, người dùng khác đã thêm một todo), React sẽ cập nhật trạng thái lạc quan của bạn bằng cách chạy lại reducer với danh sách được cập nhật. Điều này đảm bảo todo mới của bạn được thêm vào danh sách mới nhất, không phải bản sao lỗi thời.
 
 <Note>
 
-Each optimistic item includes a `pending: true` flag so you can show loading state for individual items. When the server responds and the parent updates the canonical `todos` list with the saved item, the optimistic state updates to the confirmed item without the pending flag.
+Mỗi mục lạc quan bao gồm cờ `pending: true` để bạn có thể hiển thị trạng thái tải cho các mục riêng lẻ. Khi server phản hồi và cha cập nhật danh sách `todos` chính thức với mục đã lưu, trạng thái lạc quan cập nhật thành mục đã xác nhận mà không có cờ chờ.
 
 </Note>
 
 ---
 
-### Handling multiple `action` types {/*handling-multiple-action-types*/}
+### Xử lý nhiều kiểu `action` {/*handling-multiple-action-types*/}
 
-When you need to handle multiple types of optimistic updates (like adding and removing items), use a reducer pattern with `action` objects.
+Khi bạn cần xử lý nhiều loại cập nhật lạc quan (như thêm và xóa mục), hãy sử dụng pattern reducer với các object `action`.
 
-This shopping cart example shows how to handle add and remove with a single reducer:
+Ví dụ giỏ hàng này cho thấy cách xử lý thêm và xóa với một reducer duy nhất:
 
 <Sandpack>
 
@@ -822,15 +822,15 @@ export async function updateQuantity(id, quantity) {
 
 </Sandpack>
 
-The reducer handles three `action` types (`add`, `remove`, `update_quantity`) and returns the new optimistic state for each. Each `action` sets a `pending: true` flag so you can show visual feedback while the [Server Function](/reference/rsc/server-functions) runs.
+Reducer xử lý ba kiểu `action` (`add`, `remove`, `update_quantity`) và trả về trạng thái lạc quan mới cho mỗi kiểu. Mỗi `action` đặt cờ `pending: true` để bạn có thể hiển thị phản hồi trực quan trong khi [Server Function](/reference/rsc/server-functions) chạy.
 
 ---
 
-### Optimistic delete with error recovery {/*optimistic-delete-with-error-recovery*/}
+### Xóa lạc quan với phục hồi lỗi {/*optimistic-delete-with-error-recovery*/}
 
-When deleting items optimistically, you should handle the case where the Action fails.
+Khi xóa các mục một cách lạc quan, bạn nên xử lý trường hợp Action thất bại.
 
-This example shows how to display an error message when a delete fails, and the UI automatically rolls back to show the item again.
+Ví dụ này cho thấy cách hiển thị thông báo lỗi khi xóa thất bại, và giao diện tự động quay lại để hiển thị mục đó lại.
 
 <Sandpack>
 
@@ -930,15 +930,15 @@ export async function deleteItem(id) {
 
 </Sandpack>
 
-Try deleting 'Deploy to production'. When the delete fails, the item automatically reappears in the list.
+Thử xóa 'Deploy to production'. Khi việc xóa thất bại, mục đó tự động xuất hiện lại trong danh sách.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I'm getting an error: "An optimistic state update occurred outside a Transition or Action" {/*an-optimistic-state-update-occurred-outside-a-transition-or-action*/}
+### Tôi nhận được lỗi: "An optimistic state update occurred outside a Transition or Action" {/*an-optimistic-state-update-occurred-outside-a-transition-or-action*/}
 
-You may see this error:
+Bạn có thể thấy lỗi này:
 
 <ConsoleBlockMulti>
 
@@ -950,16 +950,16 @@ An optimistic state update occurred outside a Transition or Action. To fix, move
 
 </ConsoleBlockMulti>
 
-The optimistic setter function must be called inside `startTransition`:
+Hàm setter lạc quan phải được gọi bên trong `startTransition`:
 
 ```js
-// 🚩 Incorrect: outside a Transition
+// 🚩 Không đúng: nằm ngoài một Transition
 function handleClick() {
   setOptimistic(newValue);  // Warning!
   // ...
 }
 
-// ✅ Correct: inside a Transition
+// ✅ Đúng: bên trong một Transition
 function handleClick() {
   startTransition(async () => {
     setOptimistic(newValue);
@@ -967,18 +967,18 @@ function handleClick() {
   });
 }
 
-// ✅ Also correct: inside an Action prop
+// ✅ Cũng đúng: bên trong một Action prop
 function submitAction(formData) {
   setOptimistic(newValue);
   // ...
 }
 ```
 
-When you call the setter outside an Action, the optimistic state will briefly appear and then immediately revert back to the original value. This happens because there's no Transition to "hold" the optimistic state while your Action runs.
+Khi bạn gọi setter bên ngoài một Action, trạng thái lạc quan sẽ xuất hiện ngắn gọn và sau đó ngay lập tức quay lại giá trị ban đầu. Điều này xảy ra vì không có Transition để "giữ" trạng thái lạc quan trong khi Action của bạn chạy.
 
-### I'm getting an error: "Cannot update optimistic state while rendering" {/*cannot-update-optimistic-state-while-rendering*/}
+### Tôi nhận được lỗi: "Cannot update optimistic state while rendering" {/*cannot-update-optimistic-state-while-rendering*/}
 
-You may see this error:
+Bạn có thể thấy lỗi này:
 
 <ConsoleBlockMulti>
 
@@ -990,20 +990,20 @@ Cannot update optimistic state while rendering.
 
 </ConsoleBlockMulti>
 
-This error occurs when you call the optimistic setter during the render phase of a component. You can only call it from event handlers, effects, or other callbacks:
+Lỗi này xảy ra khi bạn gọi setter lạc quan trong giai đoạn render của một component. Bạn chỉ có thể gọi nó từ các event handler, effect, hoặc các callback khác:
 
 ```js
-// 🚩 Incorrect: calling during render
+// 🚩 Không đúng: gọi trong khi render
 function MyComponent({ items }) {
   const [isPending, setPending] = useOptimistic(false);
 
-  // This runs during render - not allowed!
+  // Điều này chạy trong khi render - không được phép!
   setPending(true);
 
   // ...
 }
 
-// ✅ Correct: calling inside startTransition
+// ✅ Đúng: gọi bên trong startTransition
 function MyComponent({ items }) {
   const [isPending, setPending] = useOptimistic(false);
 
@@ -1017,7 +1017,7 @@ function MyComponent({ items }) {
   // ...
 }
 
-// ✅ Also correct: calling from an Action
+// ✅ Cũng đúng: gọi từ một Action
 function MyComponent({ items }) {
   const [isPending, setPending] = useOptimistic(false);
 
@@ -1030,36 +1030,36 @@ function MyComponent({ items }) {
 }
 ```
 
-### My optimistic updates show stale values {/*my-optimistic-updates-show-stale-values*/}
+### Các cập nhật lạc quan của tôi hiển thị giá trị cũ {/*my-optimistic-updates-show-stale-values*/}
 
-If your optimistic state seems to be based on old data, consider using an updater function or reducer to calculate the optimistic state relative to the current state.
+Nếu trạng thái lạc quan của bạn có vẻ dựa trên dữ liệu cũ, hãy xem xét sử dụng hàm updater hoặc reducer để tính toán trạng thái lạc quan tương đối so với trạng thái hiện tại.
 
 ```js
-// May show stale data if state changes during Action
+// Có thể hiển thị dữ liệu cũ nếu state thay đổi trong khi Action
 const [optimistic, setOptimistic] = useOptimistic(count);
-setOptimistic(5);  // Always sets to 5, even if count changed
+setOptimistic(5);  // Luôn đặt thành 5, ngay cả khi count đã thay đổi
 
-// Better: relative updates handle state changes correctly
+// Tốt hơn: các cập nhật tương đối xử lý thay đổi state đúng cách
 const [optimistic, adjust] = useOptimistic(count, (current, delta) => current + delta);
-adjust(1);  // Always adds 1 to whatever the current count is
+adjust(1);  // Luôn cộng 1 vào bất kỳ giá trị hiện tại nào của count
 ```
 
-See [Updating state based on the current state](#updating-state-based-on-current-state) for details.
+Xem [Cập nhật state dựa trên trạng thái hiện tại](#updating-state-based-on-current-state) để biết chi tiết.
 
-### I don't know if my optimistic update is pending {/*i-dont-know-if-my-optimistic-update-is-pending*/}
+### Tôi không biết liệu cập nhật lạc quan của mình có đang chờ không {/*i-dont-know-if-my-optimistic-update-is-pending*/}
 
-To know when `useOptimistic` is pending, you have three options:
+Để biết khi nào `useOptimistic` đang chờ, bạn có ba tùy chọn:
 
-1. **Check if `optimisticValue === value`**
+1. **Kiểm tra nếu `optimisticValue === value`**
 
 ```js
 const [optimistic, setOptimistic] = useOptimistic(value);
 const isPending = optimistic !== value;
 ```
 
-If the values are not equal, there's a Transition in progress.
+Nếu các giá trị không bằng nhau, có một Transition đang diễn ra.
 
-2. **Add a `useTransition`**
+2. **Thêm một `useTransition`**
 
 ```js
 const [isPending, startTransition] = useTransition();
@@ -1071,9 +1071,9 @@ startTransition(() => {
 })
 ```
 
-Since `useTransition` uses `useOptimistic` for `isPending` under the hood, this is equivalent to option 1.
+Vì `useTransition` sử dụng `useOptimistic` cho `isPending` ở bên dưới, đây tương đương với tùy chọn 1.
 
-3. **Add a `pending` flag in your reducer**
+3. **Thêm cờ `pending` trong reducer của bạn**
 
 ```js
 const [optimistic, addOptimistic] = useOptimistic(
@@ -1082,4 +1082,4 @@ const [optimistic, addOptimistic] = useOptimistic(
 );
 ```
 
-Since each optimistic item has its own flag, you can show loading state for individual items.
+Vì mỗi mục lạc quan có cờ riêng của nó, bạn có thể hiển thị trạng thái tải cho các mục riêng lẻ.
