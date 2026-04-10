@@ -1,19 +1,19 @@
 ---
-title: React calls Components and Hooks
+title: React gọi Components và Hooks
 ---
 
 <Intro>
-React is responsible for rendering components and Hooks when necessary to optimize the user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
+React chịu trách nhiệm render các component và Hooks khi cần thiết để tối ưu hóa trải nghiệm người dùng. Nó mang tính khai báo: bạn nói cho React biết cần render gì trong logic của component, và React sẽ tìm ra cách tốt nhất để hiển thị nó cho người dùng.
 </Intro>
 
 <InlineToc />
 
 ---
 
-## Never call component functions directly {/*never-call-component-functions-directly*/}
-Components should only be used in JSX. Don't call them as regular functions. React should call it.
+## Không bao giờ gọi trực tiếp hàm component {/*never-call-component-functions-directly*/}
+Các component chỉ nên được sử dụng trong JSX. Đừng gọi chúng như các hàm thông thường. React nên gọi chúng.
 
-React must decide when your component function is called [during rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). In React, you do this using JSX.
+React phải quyết định khi nào hàm component của bạn được gọi [trong quá trình rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). Trong React, bạn thực hiện điều này bằng JSX.
 
 ```js {2}
 function BlogPost() {
@@ -27,29 +27,29 @@ function BlogPost() {
 }
 ```
 
-If a component contains Hooks, it's easy to violate the [Rules of Hooks](/reference/rules/rules-of-hooks) when components are called directly in a loop or conditionally.
+Nếu một component chứa Hooks, việc gọi trực tiếp các component trong vòng lặp hoặc có điều kiện rất dễ vi phạm [Các quy tắc của Hooks](/reference/rules/rules-of-hooks).
 
-Letting React orchestrate rendering also allows a number of benefits:
+Để React điều phối rendering cũng mang lại nhiều lợi ích:
 
-* **Components become more than functions.** React can augment them with features like _local state_ through Hooks that are tied to the component's identity in the tree.
-* **Component types participate in reconciliation.** By letting React call your components, you also tell it more about the conceptual structure of your tree. For example, when you move from rendering `<Feed>` to the `<Profile>` page, React won’t attempt to re-use them.
-* **React can enhance your user experience.** For example, it can let the browser do some work between component calls so that re-rendering a large component tree doesn’t block the main thread.
-* **A better debugging story.** If components are first-class citizens that the library is aware of, we can build rich developer tools for introspection in development.
-* **More efficient reconciliation.** React can decide exactly which components in the tree need re-rendering and skip over the ones that don't. That makes your app faster and more snappy.
+* **Các component trở thành nhiều hơn là hàm.** React có thể tăng cường chúng với các tính năng như _local state_ thông qua Hooks gắn liền với danh tính của component trong cây.
+* **Các kiểu component tham gia vào reconciliation.** Bằng cách để React gọi các component của bạn, bạn cũng cho nó biết thêm về cấu trúc khái niệm của cây của bạn. Ví dụ, khi bạn chuyển từ render `<Feed>` sang trang `<Profile>`, React sẽ không cố gắng tái sử dụng chúng.
+* **React có thể nâng cao trải nghiệm người dùng.** Ví dụ, nó có thể cho phép trình duyệt thực hiện một số công việc giữa các lần gọi component để việc re-render một cây component lớn không chặn luồng chính.
+* **Một câu chuyện debug tốt hơn.** Nếu các component là công dân hạng nhất mà thư viện nhận biết, chúng ta có thể xây dựng các công cụ phát triển phong phú để kiểm tra trong quá trình phát triển.
+* **Reconciliation hiệu quả hơn.** React có thể quyết định chính xác component nào trong cây cần re-render và bỏ qua những cái không cần. Điều đó làm cho ứng dụng của bạn nhanh hơn và mượt mà hơn.
 
 ---
 
-## Never pass around Hooks as regular values {/*never-pass-around-hooks-as-regular-values*/}
+## Không bao giờ truyền Hooks như giá trị thông thường {/*never-pass-around-hooks-as-regular-values*/}
 
-Hooks should only be called inside of components or Hooks. Never pass it around as a regular value.
+Hooks chỉ nên được gọi bên trong các component hoặc Hooks. Không bao giờ truyền nó như một giá trị thông thường.
 
-Hooks allow you to augment a component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a component can do by looking at that component in isolation.
+Hooks cho phép bạn tăng cường component với các tính năng React. Chúng phải luôn được gọi như một hàm, và không bao giờ được truyền đi như một giá trị thông thường. Điều này cho phép _local reasoning_, hay khả năng cho các developer hiểu tất cả những gì một component có thể làm bằng cách nhìn vào component đó một cách độc lập.
 
-Breaking this rule will cause React to not automatically optimize your component.
+Vi phạm quy tắc này sẽ khiến React không tự động tối ưu hóa component của bạn.
 
-### Don't dynamically mutate a Hook {/*dont-dynamically-mutate-a-hook*/}
+### Không dynamically mutate một Hook {/*dont-dynamically-mutate-a-hook*/}
 
-Hooks should be as "static" as possible. This means you shouldn't dynamically mutate them. For example, this means you shouldn't write higher order Hooks:
+Hooks nên "tĩnh" nhất có thể. Điều này có nghĩa là bạn không nên dynamically mutate chúng. Ví dụ, điều này có nghĩa là bạn không nên viết higher order Hooks:
 
 ```js {expectedErrors: {'react-compiler': [2, 3]}} {2}
 function ChatInput() {
@@ -58,7 +58,7 @@ function ChatInput() {
 }
 ```
 
-Hooks should be immutable and not be mutated. Instead of mutating a Hook dynamically, create a static version of the Hook with the desired functionality.
+Hooks nên bất biến và không được mutate. Thay vì dynamically mutate một Hook, hãy tạo một phiên bản tĩnh của Hook với chức năng mong muốn.
 
 ```js {2,6}
 function ChatInput() {
@@ -70,9 +70,9 @@ function useDataWithLogging() {
 }
 ```
 
-### Don't dynamically use Hooks {/*dont-dynamically-use-hooks*/}
+### Không dynamically sử dụng Hooks {/*dont-dynamically-use-hooks*/}
 
-Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component by passing a Hook as a value:
+Hooks cũng không nên được sử dụng một cách dynamic: ví dụ, thay vì thực hiện dependency injection trong component bằng cách truyền một Hook như một giá trị:
 
 ```js {expectedErrors: {'react-compiler': [2]}} {2}
 function ChatInput() {
@@ -80,7 +80,7 @@ function ChatInput() {
 }
 ```
 
-You should always inline the call of the Hook into that component and handle any logic in there.
+Bạn phải luôn inline lời gọi Hook vào component đó và xử lý bất kỳ logic nào ở đó.
 
 ```js {6}
 function ChatInput() {
@@ -97,5 +97,4 @@ function useDataWithLogging() {
 }
 ```
 
-This way, `<Button />` is much easier to understand and debug. When Hooks are used in dynamic ways, it increases the complexity of your app greatly and inhibits local reasoning, making your team less productive in the long term. It also makes it easier to accidentally break the [Rules of Hooks](/reference/rules/rules-of-hooks) that Hooks should not be called conditionally. If you find yourself needing to mock components for tests, it's better to mock the server instead to respond with canned data. If possible, it's also usually more effective to test your app with end-to-end tests.
-
+Theo cách này, `<Button />` dễ hiểu và debug hơn nhiều. Khi Hooks được sử dụng theo cách dynamic, nó tăng đáng kể độ phức tạp của ứng dụng và ức chế local reasoning, làm cho team của bạn kém năng suất hơn về lâu dài. Nó cũng làm cho việc vô tình vi phạm [Các quy tắc của Hooks](/reference/rules/rules-of-hooks) rằng Hooks không nên được gọi có điều kiện dễ xảy ra hơn. Nếu bạn thấy mình cần mock các component cho các bài test, tốt hơn là mock server để phản hồi với dữ liệu cố định. Nếu có thể, thông thường cũng hiệu quả hơn khi test ứng dụng của bạn với các end-to-end tests.

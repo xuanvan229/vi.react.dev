@@ -4,7 +4,7 @@ title: resumeAndPrerenderToNodeStream
 
 <Intro>
 
-`resumeAndPrerenderToNodeStream` continues a prerendered React tree to a static HTML string using a a [Node.js Stream.](https://nodejs.org/api/stream.html).
+`resumeAndPrerenderToNodeStream` tiếp tục một cây React đã được prerender thành một chuỗi HTML tĩnh sử dụng một [Node.js Stream.](https://nodejs.org/api/stream.html)
 
 ```js
 const {prelude, postponed} = await resumeAndPrerenderToNodeStream(reactNode, postponedState, options?)
@@ -16,17 +16,17 @@ const {prelude, postponed} = await resumeAndPrerenderToNodeStream(reactNode, pos
 
 <Note>
 
-This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`prerender`](/reference/react-dom/static/prerender) instead.
+API này dành riêng cho Node.js. Các môi trường có [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) như Deno và các edge runtime hiện đại, nên sử dụng [`prerender`](/reference/react-dom/static/prerender) thay thế.
 
 </Note>
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `resumeAndPrerenderToNodeStream(reactNode, postponedState, options?)` {/*resumeandprerendertolnodestream*/}
 
-Call `resumeAndPrerenderToNodeStream` to continue a prerendered React tree to a static HTML string.
+Gọi `resumeAndPrerenderToNodeStream` để tiếp tục một cây React đã được prerender thành một chuỗi HTML tĩnh.
 
 ```js
 import { resumeAndPrerenderToNodeStream } from 'react-dom/static';
@@ -39,46 +39,45 @@ async function handler(request, writable) {
 }
 ```
 
-On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
+Trên client, gọi [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) để làm cho HTML được tạo từ server trở nên tương tác.
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `reactNode`: The React node you called `prerender` (or a previous `resumeAndPrerenderToNodeStream`) with. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` component should render the `<html>` tag.
-* `postponedState`: The opaque `postpone` object returned from a [prerender API](/reference/react-dom/static/index), loaded from wherever you stored it (e.g. redis, a file, or S3).
-* **optional** `options`: An object with streaming options.
-  * **optional** `signal`: An [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that lets you [abort server rendering](#aborting-server-rendering) and render the rest on the client.
-  * **optional** `onError`: A callback that fires whenever there is a server error, whether [recoverable](#recovering-from-errors-outside-the-shell) or [not.](#recovering-from-errors-inside-the-shell) By default, this only calls `console.error`. If you override it to [log crash reports,](#logging-crashes-on-the-server) make sure that you still call `console.error`.
+* `reactNode`: React node mà bạn đã gọi `prerender` (hoặc một `resumeAndPrerenderToNodeStream` trước đó) với. Ví dụ, một phần tử JSX như `<App />`. Nó được kỳ vọng đại diện cho toàn bộ tài liệu, vì vậy component `App` nên render thẻ `<html>`.
+* `postponedState`: Object `postpone` opaque được trả về từ [prerender API](/reference/react-dom/static/index), được tải từ nơi bạn đã lưu trữ nó (ví dụ: redis, một file, hoặc S3).
+* **tùy chọn** `options`: Một object với các tùy chọn streaming.
+  * **tùy chọn** `signal`: Một [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) cho phép bạn [hủy bỏ render phía server](#aborting-server-rendering) và render phần còn lại trên client.
+  * **tùy chọn** `onError`: Một callback được kích hoạt bất cứ khi nào có lỗi server, dù là [có thể phục hồi](#recovering-from-errors-outside-the-shell) hay [không.](#recovering-from-errors-inside-the-shell) Mặc định, nó chỉ gọi `console.error`. Nếu bạn ghi đè nó để [ghi log báo cáo lỗi,](#logging-crashes-on-the-server) hãy đảm bảo rằng bạn vẫn gọi `console.error`.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`resumeAndPrerenderToNodeStream` returns a Promise:
-- If rendering the is successful, the Promise will resolve to an object containing:
-  - `prelude`: a [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
-  - `postponed`: an JSON-serializeable, opaque object that can be passed to [`resumeToNodeStream`](/reference/react-dom/server/resume) or [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) if `resumeAndPrerenderToNodeStream` is aborted.
-- If rendering fails, the Promise will be rejected. [Use this to output a fallback shell.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)
+`resumeAndPrerenderToNodeStream` trả về một Promise:
+- Nếu render thành công, Promise sẽ resolve thành một object chứa:
+  - `prelude`: một [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) của HTML. Bạn có thể sử dụng stream này để gửi response theo từng chunk, hoặc bạn có thể đọc toàn bộ stream thành một chuỗi.
+  - `postponed`: một object opaque có thể serialize JSON có thể được truyền cho [`resumeToNodeStream`](/reference/react-dom/server/resume) hoặc [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) nếu `resumeAndPrerenderToNodeStream` bị hủy bỏ.
+- Nếu render thất bại, Promise sẽ bị reject. [Sử dụng điều này để xuất một shell dự phòng.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-`nonce` is not an available option when prerendering. Nonces must be unique per request and if you use nonces to secure your application with [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) it would be inappropriate and insecure to include the nonce value in the prerender itself.
+`nonce` không phải là tùy chọn có sẵn khi prerendering. Các nonce phải là duy nhất cho mỗi request và nếu bạn sử dụng nonce để bảo mật ứng dụng với [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP), sẽ không phù hợp và không an toàn khi đưa giá trị nonce vào trong chính prerender.
 
 <Note>
 
-### When should I use `resumeAndPrerenderToNodeStream`? {/*when-to-use-prerender*/}
+### Khi nào nên sử dụng `resumeAndPrerenderToNodeStream`? {/*when-to-use-prerender*/}
 
-The static `resumeAndPrerenderToNodeStream` API is used for static server-side generation (SSG). Unlike `renderToString`, `resumeAndPrerenderToNodeStream` waits for all data to load before resolving. This makes it suitable for generating static HTML for a full page, including data that needs to be fetched using Suspense. To stream content as it loads, use a streaming server-side render (SSR) API like [renderToReadableStream](/reference/react-dom/server/renderToReadableStream).
+API `resumeAndPrerenderToNodeStream` tĩnh được sử dụng cho tạo trang tĩnh phía server (SSG). Không giống như `renderToString`, `resumeAndPrerenderToNodeStream` chờ tất cả dữ liệu tải xong trước khi resolve. Điều này làm cho nó phù hợp để tạo HTML tĩnh cho một trang đầy đủ, bao gồm dữ liệu cần được fetch bằng Suspense. Để stream nội dung khi nó tải, hãy sử dụng streaming server-side render (SSR) API như [renderToReadableStream](/reference/react-dom/server/renderToReadableStream).
 
-`resumeAndPrerenderToNodeStream` can be aborted and later either continued with another `resumeAndPrerenderToNodeStream` or resumed with `resume` to support partial pre-rendering.
+`resumeAndPrerenderToNodeStream` có thể bị hủy bỏ và sau đó tiếp tục với một `resumeAndPrerenderToNodeStream` khác hoặc tiếp tục với `resume` để hỗ trợ partial pre-rendering.
 
 </Note>
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Further reading {/*further-reading*/}
+### Đọc thêm {/*further-reading*/}
 
-`resumeAndPrerenderToNodeStream` behaves similarly to [`prerender`](/reference/react-dom/static/prerender) but can be used to continue a previously started prerendering process that was aborted.
-For more information about resuming a prerendered tree, see the [resume documentation](/reference/react-dom/server/resume#resuming-a-prerender).
-
+`resumeAndPrerenderToNodeStream` hoạt động tương tự như [`prerender`](/reference/react-dom/static/prerender) nhưng có thể được sử dụng để tiếp tục một quy trình prerendering đã bắt đầu trước đó và bị hủy bỏ.
+Để biết thêm thông tin về việc tiếp tục một cây đã được prerender, hãy xem [tài liệu resume](/reference/react-dom/server/resume#resuming-a-prerender).

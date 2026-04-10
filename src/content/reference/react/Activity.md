@@ -4,7 +4,7 @@ title: <Activity>
 
 <Intro>
 
-`<Activity>` lets you hide and restore the UI and internal state of its children.
+`<Activity>` cho phép bạn ẩn và khôi phục UI cùng state nội bộ của các component con.
 
 ```js
 <Activity mode={visibility}>
@@ -18,11 +18,11 @@ title: <Activity>
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `<Activity>` {/*activity*/}
 
-You can use Activity to hide part of your application:
+Bạn có thể sử dụng Activity để ẩn một phần ứng dụng của mình:
 
 ```js [[1, 1, "\\"hidden\\""], [2, 2, "<Sidebar />"], [3, 1, "\\"visible\\""]]
 <Activity mode={isShowingSidebar ? "visible" : "hidden"}>
@@ -30,33 +30,33 @@ You can use Activity to hide part of your application:
 </Activity>
 ```
 
-When an Activity boundary is <CodeStep step={1}>hidden</CodeStep>, React will visually hide <CodeStep step={2}>its children</CodeStep> using the `display: "none"` CSS property. It will also destroy their Effects, cleaning up any active subscriptions.
+Khi một Activity boundary ở trạng thái <CodeStep step={1}>hidden</CodeStep>, React sẽ ẩn <CodeStep step={2}>các component con</CodeStep> bằng thuộc tính CSS `display: "none"`. Nó cũng sẽ hủy các Effect của chúng, dọn dẹp mọi subscription đang hoạt động.
 
-While hidden, children still re-render in response to new props, albeit at a lower priority than the rest of the content.
+Trong khi bị ẩn, các component con vẫn re-render để phản hồi props mới, mặc dù ở mức ưu tiên thấp hơn so với phần còn lại của nội dung.
 
-When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and re-create their Effects.
+Khi boundary trở nên <CodeStep step={3}>visible</CodeStep> trở lại, React sẽ hiển thị lại các component con với state trước đó được khôi phục, và tạo lại các Effect của chúng.
 
-In this way, Activity can be thought of as a mechanism for rendering "background activity". Rather than completely discarding content that's likely to become visible again, you can use Activity to maintain and restore that content's UI and internal state, while ensuring that your hidden content has no unwanted side effects.
+Theo cách này, Activity có thể được coi là một cơ chế để render "hoạt động nền". Thay vì loại bỏ hoàn toàn nội dung có khả năng sẽ hiển thị lại, bạn có thể sử dụng Activity để duy trì và khôi phục UI và state nội bộ của nội dung đó, đồng thời đảm bảo rằng nội dung bị ẩn của bạn không có side effect không mong muốn.
 
-[See more examples below.](#usage)
+[Xem thêm ví dụ bên dưới.](#usage)
 
 #### Props {/*props*/}
 
-* `children`: The UI you intend to show and hide.
-* `mode`: A string value of either `'visible'` or `'hidden'`. If omitted, defaults to `'visible'`.
+* `children`: UI bạn muốn hiện và ẩn.
+* `mode`: Một giá trị chuỗi là `’visible’` hoặc `’hidden’`. Nếu bỏ qua, mặc định là `’visible’`.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
-- A *hidden* Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`. `<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` will render visible text.
+- Nếu một Activity được render bên trong một [ViewTransition](/reference/react/ViewTransition), và nó trở nên visible do một cập nhật gây ra bởi [startTransition](/reference/react/startTransition), nó sẽ kích hoạt animation `enter` của ViewTransition. Nếu nó bị ẩn, nó sẽ kích hoạt animation `exit` của nó.
+- Một Activity *hidden* chỉ render văn bản sẽ không render gì cả thay vì render văn bản bị ẩn, vì không có phần tử DOM tương ứng để áp dụng thay đổi visibility. Ví dụ, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` sẽ không tạo ra bất kỳ output nào trong DOM cho `const ComponentThatJustReturnsText = () => "Hello, World!"`. `<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` sẽ render văn bản hiển thị.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Restoring the state of hidden components {/*restoring-the-state-of-hidden-components*/}
+### Khôi phục state của các component bị ẩn {/*restoring-the-state-of-hidden-components*/}
 
-In React, when you want to conditionally show or hide a component, you typically mount or unmount it based on that condition:
+Trong React, khi bạn muốn hiển thị hoặc ẩn một component có điều kiện, bạn thường mount hoặc unmount nó dựa trên điều kiện đó:
 
 ```jsx
 {isShowingSidebar && (
@@ -64,9 +64,9 @@ In React, when you want to conditionally show or hide a component, you typically
 )}
 ```
 
-But unmounting a component destroys its internal state, which is not always what you want.
+Nhưng việc unmount một component sẽ hủy state nội bộ của nó, điều này không phải lúc nào cũng là điều bạn muốn.
 
-When you hide a component using an Activity boundary instead, React will "save" its state for later:
+Khi bạn ẩn một component bằng Activity boundary thay thế, React sẽ "lưu" state của nó để sử dụng sau:
 
 ```jsx
 <Activity mode={isShowingSidebar ? "visible" : "hidden"}>
@@ -74,11 +74,11 @@ When you hide a component using an Activity boundary instead, React will "save" 
 </Activity>
 ```
 
-This makes it possible to hide and then later restore components in the state they were previously in.
+Điều này cho phép ẩn và sau đó khôi phục các component ở trạng thái chúng đã có trước đó.
 
-The following example has a sidebar with an expandable section. You can press "Overview" to reveal the three subitems below it. The main app area also has a button that hides and shows the sidebar.
+Ví dụ sau có một sidebar với một phần có thể mở rộng. Bạn có thể nhấn "Overview" để hiển thị ba mục con bên dưới nó. Khu vực ứng dụng chính cũng có một nút ẩn và hiển thị sidebar.
 
-Try expanding the Overview section, and then toggling the sidebar closed then open:
+Hãy thử mở rộng phần Overview, sau đó chuyển đổi sidebar đóng rồi mở:
 
 <Sandpack>
 
@@ -167,11 +167,11 @@ h1 {
 
 </Sandpack>
 
-The Overview section always starts out collapsed. Because we unmount the sidebar when `isShowingSidebar` flips to `false`, all its internal state is lost.
+Phần Overview luôn bắt đầu ở trạng thái thu gọn. Vì chúng ta unmount sidebar khi `isShowingSidebar` chuyển sang `false`, tất cả state nội bộ của nó bị mất.
 
-This is a perfect use case for Activity. We can preserve the internal state of our sidebar, even when visually hiding it.
+Đây là trường hợp sử dụng hoàn hảo cho Activity. Chúng ta có thể giữ nguyên state nội bộ của sidebar, ngay cả khi ẩn nó về mặt trực quan.
 
-Let's replace the conditional rendering of our sidebar with an Activity boundary:
+Hãy thay thế conditional rendering của sidebar bằng một Activity boundary:
 
 ```jsx {7,9}
 // Before
@@ -185,7 +185,7 @@ Let's replace the conditional rendering of our sidebar with an Activity boundary
 </Activity>
 ```
 
-and check out the new behavior:
+và xem hành vi mới:
 
 <Sandpack>
 
@@ -275,15 +275,15 @@ h1 {
 
 </Sandpack>
 
-Our sidebar's internal state is now restored, without any changes to its implementation.
+State nội bộ của sidebar hiện đã được khôi phục, mà không cần thay đổi gì trong implementation của nó.
 
 ---
 
-### Restoring the DOM of hidden components {/*restoring-the-dom-of-hidden-components*/}
+### Khôi phục DOM của các component bị ẩn {/*restoring-the-dom-of-hidden-components*/}
 
-Since Activity boundaries hide their children using `display: none`, their children's DOM is also preserved when hidden. This makes them great for maintaining ephemeral state in parts of the UI that the user is likely to interact with again.
+Vì Activity boundaries ẩn các component con của chúng bằng `display: none`, DOM của các component con cũng được giữ lại khi bị ẩn. Điều này làm cho chúng rất phù hợp để duy trì trạng thái tạm thời trong các phần của UI mà người dùng có khả năng tương tác lại.
 
-In this example, the Contact tab has a `<textarea>` where the user can enter a message. If you enter some text, change to the Home tab, then change back to the Contact tab, the draft message is lost:
+Trong ví dụ này, tab Contact có một `<textarea>` nơi người dùng có thể nhập tin nhắn. Nếu bạn nhập một số văn bản, chuyển sang tab Home, sau đó chuyển lại tab Contact, tin nhắn nháp sẽ bị mất:
 
 <Sandpack>
 
@@ -369,9 +369,9 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-This is because we're fully unmounting `Contact` in `App`. When the Contact tab unmounts, the `<textarea>` element's internal DOM state is lost.
+Điều này là do chúng ta đang unmount hoàn toàn `Contact` trong `App`. Khi tab Contact unmount, state DOM nội bộ của phần tử `<textarea>` bị mất.
 
-If we switch to using an Activity boundary to show and hide the active tab, we can preserve the state of each tab's DOM. Try entering text and switching tabs again, and you'll see the draft message is no longer reset:
+Nếu chúng ta chuyển sang sử dụng Activity boundary để hiện và ẩn tab đang hoạt động, chúng ta có thể giữ nguyên state DOM của mỗi tab. Hãy thử nhập văn bản và chuyển đổi tab lại, và bạn sẽ thấy tin nhắn nháp không còn bị đặt lại:
 
 <Sandpack>
 
@@ -461,15 +461,15 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Again, the Activity boundary let us preserve the Contact tab's internal state without changing its implementation.
+Một lần nữa, Activity boundary cho phép chúng ta giữ nguyên state nội bộ của tab Contact mà không thay đổi implementation của nó.
 
 ---
 
-### Pre-rendering content that's likely to become visible {/*pre-rendering-content-thats-likely-to-become-visible*/}
+### Pre-render nội dung có khả năng trở nên hiển thị {/*pre-rendering-content-thats-likely-to-become-visible*/}
 
-So far, we've seen how Activity can hide some content that the user has interacted with, without discarding that content's ephemeral state.
+Cho đến nay, chúng ta đã thấy cách Activity có thể ẩn một số nội dung mà người dùng đã tương tác, mà không loại bỏ trạng thái tạm thời của nội dung đó.
 
-But Activity boundaries can also be used to _prepare_ content that the user has yet to see for the first time:
+Nhưng Activity boundaries cũng có thể được sử dụng để _chuẩn bị_ nội dung mà người dùng chưa thấy lần đầu tiên:
 
 ```jsx [[1, 1, "\\"hidden\\""]]
 <Activity mode="hidden">
@@ -477,13 +477,13 @@ But Activity boundaries can also be used to _prepare_ content that the user has 
 </Activity>
 ```
 
-When an Activity boundary is <CodeStep step={1}>hidden</CodeStep> during its initial render, its children won't be visible on the page — but they will _still be rendered_, albeit at a lower priority than the visible content, and without mounting their Effects.
+Khi một Activity boundary ở trạng thái <CodeStep step={1}>hidden</CodeStep> trong lần render ban đầu, các component con của nó sẽ không hiển thị trên trang — nhưng chúng _vẫn sẽ được render_, mặc dù ở mức ưu tiên thấp hơn so với nội dung hiển thị, và không mount các Effect của chúng.
 
-This _pre-rendering_ allows the children to load any code or data they need ahead of time, so that later, when the Activity boundary becomes visible, the children can appear faster with reduced loading times.
+_Pre-rendering_ này cho phép các component con tải mọi code hoặc dữ liệu cần thiết trước, để sau này, khi Activity boundary trở nên visible, các component con có thể hiển thị nhanh hơn với thời gian tải giảm.
 
-Let's look at an example.
+Hãy xem một ví dụ.
 
-In this demo, the Posts tab loads some data. If you press it, you'll see a Suspense fallback displayed while the data is being fetched:
+Trong demo này, tab Posts tải một số dữ liệu. Nếu bạn nhấn vào nó, bạn sẽ thấy Suspense fallback được hiển thị trong khi dữ liệu đang được tải:
 
 <Sandpack>
 
@@ -611,11 +611,11 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-This is because `App` doesn't mount `Posts` until its tab is active.
+Điều này là do `App` không mount `Posts` cho đến khi tab của nó được kích hoạt.
 
-If we update `App` to use an Activity boundary to show and hide the active tab, `Posts` will be pre-rendered when the app first loads, allowing it to fetch its data before it becomes visible.
+Nếu chúng ta cập nhật `App` để sử dụng Activity boundary để hiện và ẩn tab đang hoạt động, `Posts` sẽ được pre-render khi ứng dụng tải lần đầu, cho phép nó tải dữ liệu trước khi trở nên visible.
 
-Try clicking the Posts tab now:
+Hãy thử nhấp vào tab Posts bây giờ:
 
 <Sandpack>
 
@@ -747,36 +747,36 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-`Posts` was able to prepare itself for a faster render, thanks to the hidden Activity boundary.
+`Posts` đã có thể chuẩn bị bản thân cho việc render nhanh hơn, nhờ vào Activity boundary bị ẩn.
 
 ---
 
-Pre-rendering components with hidden Activity boundaries is a powerful way to reduce loading times for parts of the UI that the user is likely to interact with next.
+Pre-rendering các component với Activity boundary bị ẩn là một cách mạnh mẽ để giảm thời gian tải cho các phần của UI mà người dùng có khả năng tương tác tiếp theo.
 
 <Note>
 
-**Only Suspense-enabled data sources will be fetched during pre-rendering.** They include:
+**Chỉ các nguồn dữ liệu được Suspense hỗ trợ mới được tải trong quá trình pre-rendering.** Chúng bao gồm:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
+- Tải dữ liệu với các framework có Suspense như [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) và [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
+- Lazy-loading code component với [`lazy`](/reference/react/lazy)
+- Đọc giá trị của một Promise đã được cache với [`use`](/reference/react/use)
 
-Activity **does not** detect data that is fetched inside an Effect.
+Activity **không** phát hiện dữ liệu được tải bên trong một Effect.
 
-The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+Cách chính xác để tải dữ liệu trong component `Posts` ở trên phụ thuộc vào framework của bạn. Nếu bạn sử dụng một framework có Suspense, bạn sẽ tìm thấy chi tiết trong tài liệu về tải dữ liệu của nó.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+Tải dữ liệu với Suspense mà không sử dụng framework có quan điểm cụ thể chưa được hỗ trợ. Các yêu cầu để triển khai một nguồn dữ liệu có Suspense vẫn chưa ổn định và chưa được ghi lại. Một API chính thức để tích hợp các nguồn dữ liệu với Suspense sẽ được phát hành trong phiên bản React tương lai.
 
 </Note>
 
 ---
 
 
-### Speeding up interactions during page load {/*speeding-up-interactions-during-page-load*/}
+### Tăng tốc tương tác trong quá trình tải trang {/*speeding-up-interactions-during-page-load*/}
 
-React includes an under-the-hood performance optimization called Selective Hydration. It works by hydrating your app's initial HTML _in chunks_, enabling some components to become interactive even if other components on the page haven't loaded their code or data yet.
+React bao gồm một tối ưu hóa hiệu suất ẩn gọi là Selective Hydration. Nó hoạt động bằng cách hydrate HTML ban đầu của ứng dụng _theo từng phần_, cho phép một số component trở nên tương tác ngay cả khi các component khác trên trang chưa tải code hoặc dữ liệu của chúng.
 
-Suspense boundaries participate in Selective Hydration, because they naturally divide your component tree into units that are independent from one another:
+Suspense boundaries tham gia vào Selective Hydration, vì chúng tự nhiên chia cây component của bạn thành các đơn vị độc lập với nhau:
 
 ```jsx
 function Page() {
@@ -792,13 +792,13 @@ function Page() {
 }
 ```
 
-Here, `MessageComposer` can be fully hydrated during the initial render of the page, even before `Chats` is mounted and starts to fetch its data.
+Ở đây, `MessageComposer` có thể được hydrate hoàn toàn trong quá trình render ban đầu của trang, ngay cả trước khi `Chats` được mount và bắt đầu tải dữ liệu của nó.
 
-So by breaking up your component tree into discrete units, Suspense allows React to hydrate your app's server-rendered HTML in chunks, enabling parts of your app to become interactive as fast as possible.
+Vì vậy, bằng cách chia nhỏ cây component của bạn thành các đơn vị riêng biệt, Suspense cho phép React hydrate HTML được render server của ứng dụng theo từng phần, cho phép các phần của ứng dụng trở nên tương tác nhanh nhất có thể.
 
-But what about pages that don't use Suspense?
+Nhưng còn những trang không sử dụng Suspense thì sao?
 
-Take this tabs example:
+Hãy lấy ví dụ về tabs này:
 
 ```jsx
 function Page() {
@@ -824,9 +824,9 @@ function Page() {
 }
 ```
 
-Here, React must hydrate the entire page all at once. If `Home` or `Video` are slower to render, they could make the tab buttons feel unresponsive during hydration.
+Ở đây, React phải hydrate toàn bộ trang cùng một lúc. Nếu `Home` hoặc `Video` render chậm hơn, chúng có thể làm cho các nút tab cảm thấy không phản hồi trong quá trình hydration.
 
-Adding Suspense around the active tab would solve this:
+Thêm Suspense xung quanh tab đang hoạt động sẽ giải quyết vấn đề này:
 
 ```jsx {13,20}
 function Page() {
@@ -854,11 +854,11 @@ function Page() {
 }
 ```
 
-...but it would also change the UI, since the `Placeholder` fallback would be displayed on the initial render.
+...nhưng nó cũng sẽ thay đổi UI, vì fallback `Placeholder` sẽ được hiển thị trong lần render ban đầu.
 
-Instead, we can use Activity. Since Activity boundaries show and hide their children, they already naturally divide the component tree into independent units. And just like Suspense, this feature allows them to participate in Selective Hydration.
+Thay vào đó, chúng ta có thể sử dụng Activity. Vì Activity boundaries hiện và ẩn các component con của chúng, chúng đã tự nhiên chia cây component thành các đơn vị độc lập. Và giống như Suspense, tính năng này cho phép chúng tham gia vào Selective Hydration.
 
-Let's update our example to use Activity boundaries around the active tab:
+Hãy cập nhật ví dụ của chúng ta để sử dụng Activity boundaries xung quanh tab đang hoạt động:
 
 ```jsx {13-18}
 function Page() {
@@ -884,13 +884,13 @@ function Page() {
 }
 ```
 
-Now our initial server-rendered HTML looks the same as it did in the original version, but thanks to Activity, React can hydrate the tab buttons first, before it even mounts `Home` or `Video`.
+Bây giờ HTML được render server ban đầu của chúng ta trông giống như trong phiên bản gốc, nhưng nhờ Activity, React có thể hydrate các nút tab trước, trước khi nó mount `Home` hoặc `Video`.
 
 ---
 
-Thus, in addition to hiding and showing content, Activity boundaries help improve your app's performance during hydration by letting React know which parts of your page can become interactive in isolation.
+Do đó, ngoài việc ẩn và hiển thị nội dung, Activity boundaries giúp cải thiện hiệu suất của ứng dụng trong quá trình hydration bằng cách cho React biết các phần nào của trang có thể trở nên tương tác độc lập.
 
-And even if your page doesn't ever hide part of its content, you can still add always-visible Activity boundaries to improve hydration performance:
+Và ngay cả khi trang của bạn không bao giờ ẩn một phần nội dung, bạn vẫn có thể thêm các Activity boundary luôn hiển thị để cải thiện hiệu suất hydration:
 
 ```jsx
 function Page() {
@@ -908,15 +908,15 @@ function Page() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### My hidden components have unwanted side effects {/*my-hidden-components-have-unwanted-side-effects*/}
+### Các component bị ẩn của tôi có side effect không mong muốn {/*my-hidden-components-have-unwanted-side-effects*/}
 
-An Activity boundary hides its content by setting `display: none` on its children and cleaning up any of their Effects. So, most well-behaved React components that properly clean up their side effects will already be robust to being hidden by Activity.
+Một Activity boundary ẩn nội dung của nó bằng cách đặt `display: none` trên các component con và dọn dẹp tất cả Effect của chúng. Vì vậy, hầu hết các React component có hành vi tốt và dọn dẹp side effect đúng cách đã đủ mạnh để được ẩn bởi Activity.
 
-But there _are_ some situations where a hidden component behaves differently than an unmounted one. Most notably, since a hidden component's DOM is not destroyed, any side effects from that DOM will persist, even after the component is hidden.
+Nhưng _có_ một số tình huống mà một component bị ẩn hoạt động khác với một component bị unmount. Đáng chú ý nhất là vì DOM của một component bị ẩn không bị hủy, bất kỳ side effect nào từ DOM đó sẽ tồn tại, ngay cả sau khi component bị ẩn.
 
-As an example, consider a `<video>` tag. Typically it doesn't require any cleanup, because even if you're playing a video, unmounting the tag stops the video and audio from playing in the browser. Try playing the video and then pressing Home in this demo:
+Ví dụ, hãy xem thẻ `<video>`. Thông thường nó không cần bất kỳ cleanup nào, vì ngay cả khi bạn đang phát video, việc unmount thẻ sẽ dừng video và âm thanh phát trong trình duyệt. Hãy thử phát video rồi nhấn Home trong demo này:
 
 <Sandpack>
 
@@ -999,13 +999,13 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-The video stops playing as expected.
+Video dừng phát như mong đợi.
 
-Now, let's say we wanted to preserve the timecode where the user last watched, so that when they tab back to the video, it doesn't start over from the beginning again.
+Bây giờ, giả sử chúng ta muốn giữ lại timecode nơi người dùng đã xem lần cuối, để khi họ chuyển lại tab video, nó không bắt đầu lại từ đầu.
 
-This is a great use case for Activity!
+Đây là trường hợp sử dụng tuyệt vời cho Activity!
 
-Let's update `App` to hide the inactive tab with a hidden Activity boundary instead of unmounting it, and see how the demo behaves this time:
+Hãy cập nhật `App` để ẩn tab không hoạt động bằng một Activity boundary bị ẩn thay vì unmount nó, và xem cách demo hoạt động lần này:
 
 <Sandpack>
 
@@ -1092,9 +1092,9 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-Whoops! The video and audio continue to play even after it's been hidden, because the tab's `<video>` element is still in the DOM.
+Ôi không! Video và âm thanh tiếp tục phát ngay cả sau khi nó bị ẩn, vì phần tử `<video>` của tab vẫn còn trong DOM.
 
-To fix this, we can add an Effect with a cleanup function that pauses the video:
+Để khắc phục điều này, chúng ta có thể thêm một Effect với hàm cleanup dừng video:
 
 ```jsx {2,4-10,14}
 export default function VideoTab() {
@@ -1120,9 +1120,9 @@ export default function VideoTab() {
 }
 ```
 
-We call `useLayoutEffect` instead of `useEffect` because conceptually the clean-up code is tied to the component's UI being visually hidden. If we used a regular effect, the code could be delayed by (say) a re-suspending Suspense boundary or a View Transition.
+Chúng ta gọi `useLayoutEffect` thay vì `useEffect` vì về mặt khái niệm code cleanup gắn liền với UI của component bị ẩn về mặt trực quan. Nếu chúng ta sử dụng một effect thông thường, code có thể bị trì hoãn bởi (chẳng hạn) một Suspense boundary đang re-suspend hoặc một View Transition.
 
-Let's see the new behavior. Try playing the video, switching to the Home tab, then back to the Video tab:
+Hãy xem hành vi mới. Thử phát video, chuyển sang tab Home, rồi quay lại tab Video:
 
 <Sandpack>
 
@@ -1222,31 +1222,31 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-It works great! Our cleanup function ensures that the video stops playing if it's ever hidden by an Activity boundary, and even better, because the `<video>` tag is never destroyed, the timecode is preserved, and the video itself doesn't need to be initialized or downloaded again when the user switches back to keep watching it.
+Hoạt động tốt! Hàm cleanup của chúng ta đảm bảo rằng video dừng phát nếu nó bị ẩn bởi Activity boundary, và thậm chí tốt hơn nữa, vì thẻ `<video>` không bao giờ bị hủy, timecode được giữ lại, và video không cần phải được khởi tạo lại hoặc tải xuống lại khi người dùng chuyển lại để tiếp tục xem.
 
-This is a great example of using Activity to preserve ephemeral DOM state for parts of the UI that become hidden, but the user is likely to interact with again soon.
+Đây là một ví dụ tuyệt vời về việc sử dụng Activity để giữ trạng thái DOM tạm thời cho các phần của UI trở nên bị ẩn, nhưng người dùng có khả năng tương tác lại sớm.
 
 ---
 
-Our example illustrates that for certain tags like `<video>`, unmounting and hiding have different behavior. If a component renders DOM that has a side effect, and you want to prevent that side effect when an Activity boundary hides it, add an Effect with a return function to clean it up.
+Ví dụ của chúng ta minh họa rằng đối với một số thẻ nhất định như `<video>`, unmounting và hiding có hành vi khác nhau. Nếu một component render DOM có side effect, và bạn muốn ngăn side effect đó khi Activity boundary ẩn nó, hãy thêm một Effect với hàm return để dọn dẹp nó.
 
-The most common cases of this will be from the following tags:
+Các trường hợp phổ biến nhất của điều này sẽ đến từ các thẻ sau:
 
   - `<video>`
   - `<audio>`
   - `<iframe>`
 
-Typically, though, most of your React components should already be robust to being hidden by an Activity boundary. And conceptually, you should think of "hidden" Activities as being unmounted.
+Tuy nhiên, thông thường, hầu hết các React component của bạn đã đủ mạnh để được ẩn bởi Activity boundary. Và về mặt khái niệm, bạn nên nghĩ đến các Activity "hidden" như đang bị unmounted.
 
-To eagerly discover other Effects that don't have proper cleanup, which is important not only for Activity boundaries but for many other behaviors in React, we recommend using [`<StrictMode>`](/reference/react/StrictMode).
+Để sớm phát hiện các Effect khác không có cleanup đúng cách, điều này quan trọng không chỉ cho Activity boundaries mà còn cho nhiều hành vi khác trong React, chúng tôi khuyến nghị sử dụng [`<StrictMode>`](/reference/react/StrictMode).
 
 ---
 
 
-### My hidden components have Effects that aren't running {/*my-hidden-components-have-effects-that-arent-running*/}
+### Các component bị ẩn của tôi có Effect không chạy {/*my-hidden-components-have-effects-that-arent-running*/}
 
-When an `<Activity>` is "hidden", all its children's Effects are cleaned up. Conceptually, the children are unmounted, but React saves their state for later. This is a feature of Activity because it means subscriptions won't be active for hidden parts of the UI, reducing the amount of work needed for hidden content.
+Khi một `<Activity>` ở trạng thái "hidden", tất cả Effect của các component con của nó được dọn dẹp. Về mặt khái niệm, các component con bị unmounted, nhưng React lưu state của chúng để sử dụng sau. Đây là một tính năng của Activity vì nó có nghĩa là các subscription sẽ không hoạt động đối với các phần ẩn của UI, giảm lượng công việc cần thiết cho nội dung ẩn.
 
-If you're relying on an Effect mounting to clean up a component's side effects, refactor the Effect to do the work in the returned cleanup function instead.
+Nếu bạn đang dựa vào việc mount một Effect để dọn dẹp side effect của component, hãy cấu trúc lại Effect để thực hiện công việc trong hàm cleanup được trả về thay thế.
 
-To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects.
+Để sớm tìm thấy các Effect có vấn đề, chúng tôi khuyến nghị thêm [`<StrictMode>`](/reference/react/StrictMode) sẽ chủ động thực hiện unmount và mount Activity để bắt bất kỳ side effect không mong muốn nào.

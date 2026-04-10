@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
+Component [`<input>` có sẵn trong trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) cho phép bạn render các loại input form khác nhau.
 
 ```js
 <input />
@@ -16,37 +16,37 @@ The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `<input>` {/*input*/}
 
-To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component.
+Để hiển thị một input, render component [`<input>` có sẵn trong trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
 #### Props {/*props*/}
 
-`<input>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<input>` hỗ trợ tất cả [common element props.](/reference/react-dom/components/common#common-props)
 
-- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): Một chuỗi hoặc hàm. Ghi đè `<form action>` cha cho `type="submit"` và `type="image"`. Khi một URL được truyền cho `action`, form sẽ hoạt động như một form HTML chuẩn. Khi một hàm được truyền cho `formAction`, hàm đó sẽ xử lý việc gửi form. Xem [`<form action>`](/reference/react-dom/components/form#props).
 
-You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
+Bạn có thể [làm cho input được kiểm soát](#controlling-an-input-with-a-state-variable) bằng cách truyền một trong các props này:
 
 * [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, controls whether it is selected.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, controls its text. (For a radio button, specifies its form data.)
 
-When you pass either of them, you must also pass an `onChange` handler that updates the passed value.
+Khi bạn truyền một trong hai, bạn cũng phải truyền một handler `onChange` cập nhật giá trị được truyền.
 
-These `<input>` props are only relevant for uncontrolled inputs:
+Các props `<input>` này chỉ liên quan đến các input không được kiểm soát:
 
 * [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
 * [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A string. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
 
-These `<input>` props are relevant both for uncontrolled and controlled inputs:
+Các props `<input>` này liên quan đến cả input không được kiểm soát và được kiểm soát:
 
 * [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
 * [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.
@@ -88,22 +88,22 @@ These `<input>` props are relevant both for uncontrolled and controlled inputs:
 * [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): A string. One of the [input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 * [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  A string. Specifies the image width for a `type="image"` input.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- Checkboxes need `checked` (or `defaultChecked`), not `value` (or `defaultValue`).
-- If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- An input can't be both controlled and uncontrolled at the same time.
-- An input cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled input needs an `onChange` event handler that synchronously updates its backing value.
+- Checkbox cần `checked` (hoặc `defaultChecked`), không phải `value` (hoặc `defaultValue`).
+- Nếu một text input nhận một prop `value` là chuỗi, nó sẽ được [coi là controlled.](#controlling-an-input-with-a-state-variable)
+- Nếu một checkbox hoặc radio button nhận một prop `checked` là boolean, nó sẽ được [coi là controlled.](#controlling-an-input-with-a-state-variable)
+- Một input không thể vừa controlled vừa uncontrolled cùng một lúc.
+- Một input không thể chuyển đổi giữa controlled và uncontrolled trong suốt vòng đời của nó.
+- Mỗi controlled input cần một event handler `onChange` đồng bộ cập nhật giá trị backing của nó.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Displaying inputs of different types {/*displaying-inputs-of-different-types*/}
+### Hiển thị các loại input khác nhau {/*displaying-inputs-of-different-types*/}
 
-To display an input, render an `<input>` component. By default, it will be a text input. You can pass `type="checkbox"` for a checkbox, `type="radio"` for a radio button, [or one of the other input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+Để hiển thị một input, render một component `<input>`. Theo mặc định, nó sẽ là một text input. Bạn có thể truyền `type="checkbox"` cho checkbox, `type="radio"` cho radio button, [hoặc một trong các loại input khác.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 
 <Sandpack>
 
@@ -148,11 +148,11 @@ input { margin: 5px; }
 
 ---
 
-### Providing a label for an input {/*providing-a-label-for-an-input*/}
+### Cung cấp nhãn cho input {/*providing-a-label-for-an-input*/}
 
-Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that input. When the user clicks the label, the browser will automatically focus the input. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the associated input.
+Thông thường, bạn sẽ đặt mỗi `<input>` bên trong một thẻ [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Điều này cho trình duyệt biết nhãn này được liên kết với input đó. Khi người dùng nhấp vào nhãn, trình duyệt sẽ tự động focus vào input. Điều này cũng rất quan trọng cho khả năng trợ năng: trình đọc màn hình sẽ thông báo chú thích nhãn khi người dùng focus vào input liên kết.
 
-If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Nếu bạn không thể lồng `<input>` vào một `<label>`, hãy liên kết chúng bằng cách truyền cùng ID cho `<input id>` và [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Để tránh xung đột giữa nhiều instance của một component, hãy tạo ID đó với [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -183,9 +183,9 @@ input { margin: 5px; }
 
 ---
 
-### Providing an initial value for an input {/*providing-an-initial-value-for-an-input*/}
+### Cung cấp giá trị ban đầu cho input {/*providing-an-initial-value-for-an-input*/}
 
-You can optionally specify the initial value for any input. Pass it as the `defaultValue` string for text inputs. Checkboxes and radio buttons should specify the initial value with the `defaultChecked` boolean instead.
+Bạn có thể tùy chọn chỉ định giá trị ban đầu cho bất kỳ input nào. Truyền nó như chuỗi `defaultValue` cho text inputs. Checkbox và radio button nên chỉ định giá trị ban đầu với boolean `defaultChecked` thay vào đó.
 
 <Sandpack>
 
@@ -235,9 +235,9 @@ input { margin: 5px; }
 
 ---
 
-### Reading the input values when submitting a form {/*reading-the-input-values-when-submitting-a-form*/}
+### Đọc giá trị input khi gửi form {/*reading-the-input-values-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your inputs with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Thêm một [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) xung quanh các input của bạn với một [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) bên trong. Nó sẽ gọi event handler `<form onSubmit>` của bạn. Theo mặc định, trình duyệt sẽ gửi dữ liệu form đến URL hiện tại và tải lại trang. Bạn có thể ghi đè hành vi đó bằng cách gọi `e.preventDefault()`. Đọc dữ liệu form với [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
@@ -291,23 +291,23 @@ input { margin: 5px; }
 
 <Note>
 
-Give a `name` to every `<input>`, for example `<input name="firstName" defaultValue="Taylor" />`. The `name` you specified will be used as a key in the form data, for example `{ firstName: "Taylor" }`.
+Đặt `name` cho mỗi `<input>`, ví dụ `<input name="firstName" defaultValue="Taylor" />`. `name` bạn chỉ định sẽ được sử dụng như một key trong dữ liệu form, ví dụ `{ firstName: "Taylor" }`.
 
 </Note>
 
 <Pitfall>
 
-By default, a `<button>` inside a `<form>` without a `type` attribute will submit it. This can be surprising! If you have your own custom `Button` React component, consider using [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<button>` (with no type). Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Theo mặc định, một `<button>` bên trong `<form>` không có thuộc tính `type` sẽ gửi nó. Điều này có thể gây bất ngờ! Nếu bạn có component React `Button` tùy chỉnh của riêng mình, hãy xem xét sử dụng [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) thay vì `<button>` (không có type). Sau đó, để rõ ràng, hãy sử dụng `<button type="submit">` cho các nút *được* dự định gửi form.
 
 </Pitfall>
 
 ---
 
-### Controlling an input with a state variable {/*controlling-an-input-with-a-state-variable*/}
+### Kiểm soát input với biến state {/*controlling-an-input-with-a-state-variable*/}
 
-An input like `<input />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-an-input) like `<input defaultValue="Initial text" />`, your JSX only specifies the initial value. It does not control what the value should be right now.
+Một input như `<input />` là *uncontrolled.* Ngay cả khi bạn [truyền giá trị ban đầu](#providing-an-initial-value-for-an-input) như `<input defaultValue="Initial text" />`, JSX của bạn chỉ chỉ định giá trị ban đầu. Nó không kiểm soát giá trị nên là gì ngay bây giờ.
 
-**To render a _controlled_ input, pass the `value` prop to it (or `checked` for checkboxes and radios).** React will force the input to always have the `value` you passed. Usually, you would do this by declaring a [state variable:](/reference/react/useState)
+**Để render một input *controlled*, hãy truyền prop `value` cho nó (hoặc `checked` cho checkbox và radio).** React sẽ buộc input luôn có `value` bạn đã truyền. Thường thì bạn sẽ làm điều này bằng cách khai báo một [biến state:](/reference/react/useState)
 
 ```js {2,6,7}
 function Form() {
@@ -322,7 +322,7 @@ function Form() {
 }
 ```
 
-A controlled input makes sense if you needed state anyway--for example, to re-render your UI on every edit:
+Một controlled input có ý nghĩa nếu bạn cần state dù sao--ví dụ, để re-render UI của bạn trên mỗi lần chỉnh sửa:
 
 ```js {2,9}
 function Form() {
@@ -337,7 +337,7 @@ function Form() {
       ...
 ```
 
-It's also useful if you want to offer multiple ways to adjust the input state (for example, by clicking a button):
+Nó cũng hữu ích nếu bạn muốn cung cấp nhiều cách để điều chỉnh state input (ví dụ, bằng cách nhấp vào nút):
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -358,7 +358,7 @@ function Form() {
         </button>
 ```
 
-The `value` you pass to controlled components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
+Giá trị `value` bạn truyền cho các controlled component không nên là `undefined` hoặc `null`. Nếu bạn cần giá trị ban đầu là rỗng (chẳng hạn với trường `firstName` bên dưới), hãy khởi tạo biến state của bạn với chuỗi rỗng (`''`).
 
 <Sandpack>
 
@@ -410,17 +410,17 @@ p { font-weight: bold; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to type into the input.** When you control an input by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the input after every keystroke back to the `value` that you specified.
+**Nếu bạn truyền `value` mà không có `onChange`, sẽ không thể gõ vào input.** Khi bạn kiểm soát input bằng cách truyền một `value` cho nó, bạn *buộc* nó luôn có giá trị bạn đã truyền. Vì vậy, nếu bạn truyền một biến state như là `value` nhưng quên cập nhật biến state đó một cách đồng bộ trong event handler `onChange`, React sẽ hoàn nguyên input sau mỗi lần gõ phím về `value` mà bạn đã chỉ định.
 
 </Pitfall>
 
 ---
 
-### Optimizing re-rendering on every keystroke {/*optimizing-re-rendering-on-every-keystroke*/}
+### Tối ưu hóa re-rendering trên mỗi lần gõ phím {/*optimizing-re-rendering-on-every-keystroke*/}
 
-When you use a controlled input, you set the state on every keystroke. If the component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
+Khi bạn sử dụng controlled input, bạn đặt state trên mỗi lần gõ phím. Nếu component chứa state của bạn re-render một cây lớn, điều này có thể chậm. Có một vài cách bạn có thể tối ưu hóa hiệu suất re-rendering.
 
-For example, suppose you start with a form that re-renders all page content on every keystroke:
+Ví dụ, giả sử bạn bắt đầu với một form re-render tất cả nội dung trang trên mỗi lần gõ phím:
 
 ```js {5-8}
 function App() {
@@ -436,7 +436,7 @@ function App() {
 }
 ```
 
-Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own component:
+Vì `<PageContent />` không phụ thuộc vào state input, bạn có thể di chuyển state input vào component riêng của nó:
 
 ```js {4,10-17}
 function App() {
@@ -458,17 +458,17 @@ function SignupForm() {
 }
 ```
 
-This significantly improves performance because now only `SignupForm` re-renders on every keystroke.
+Điều này cải thiện đáng kể hiệu suất vì bây giờ chỉ `SignupForm` re-render trên mỗi lần gõ phím.
 
-If there is no way to avoid re-rendering (for example, if `PageContent` depends on the search input's value), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
+Nếu không có cách nào để tránh re-rendering (ví dụ, nếu `PageContent` phụ thuộc vào giá trị của search input), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) cho phép bạn giữ controlled input phản hồi ngay cả giữa một lần re-render lớn.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### My text input doesn't update when I type into it {/*my-text-input-doesnt-update-when-i-type-into-it*/}
+### Text input của tôi không cập nhật khi tôi gõ vào nó {/*my-text-input-doesnt-update-when-i-type-into-it*/}
 
-If you render an input with `value` but no `onChange`, you will see an error in the console:
+Nếu bạn render một input với `value` nhưng không có `onChange`, bạn sẽ thấy lỗi trong console:
 
 ```js
 // 🔴 Bug: controlled text input with no onChange handler
@@ -481,21 +481,21 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-an-input) pass `defaultValue` instead:
+Như thông báo lỗi gợi ý, nếu bạn chỉ muốn [chỉ định giá trị *ban đầu*,](#providing-an-initial-value-for-an-input) hãy truyền `defaultValue` thay thế:
 
 ```js
 // ✅ Good: uncontrolled input with an initial value
 <input defaultValue={something} />
 ```
 
-If you want [to control this input with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
+Nếu bạn muốn [kiểm soát input này với một biến state,](#controlling-an-input-with-a-state-variable) hãy chỉ định một handler `onChange`:
 
 ```js
 // ✅ Good: controlled input with onChange
 <input value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-If the value is intentionally read-only, add a `readOnly` prop to suppress the error:
+Nếu giá trị cố ý chỉ đọc, hãy thêm prop `readOnly` để tắt lỗi:
 
 ```js
 // ✅ Good: readonly controlled input without on change
@@ -504,9 +504,9 @@ If the value is intentionally read-only, add a `readOnly` prop to suppress the e
 
 ---
 
-### My checkbox doesn't update when I click on it {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
+### Checkbox của tôi không cập nhật khi tôi nhấp vào nó {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
 
-If you render a checkbox with `checked` but no `onChange`, you will see an error in the console:
+Nếu bạn render một checkbox với `checked` nhưng không có `onChange`, bạn sẽ thấy lỗi trong console:
 
 ```js
 // 🔴 Bug: controlled checkbox with no onChange handler
@@ -519,14 +519,14 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-an-input) pass `defaultChecked` instead:
+Như thông báo lỗi gợi ý, nếu bạn chỉ muốn [chỉ định giá trị *ban đầu*,](#providing-an-initial-value-for-an-input) hãy truyền `defaultChecked` thay thế:
 
 ```js
 // ✅ Good: uncontrolled checkbox with an initial value
 <input type="checkbox" defaultChecked={something} />
 ```
 
-If you want [to control this checkbox with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
+Nếu bạn muốn [kiểm soát checkbox này với một biến state,](#controlling-an-input-with-a-state-variable) hãy chỉ định một handler `onChange`:
 
 ```js
 // ✅ Good: controlled checkbox with onChange
@@ -535,11 +535,11 @@ If you want [to control this checkbox with a state variable,](#controlling-an-in
 
 <Pitfall>
 
-You need to read `e.target.checked` rather than `e.target.value` for checkboxes.
+Bạn cần đọc `e.target.checked` thay vì `e.target.value` cho checkbox.
 
 </Pitfall>
 
-If the checkbox is intentionally read-only, add a `readOnly` prop to suppress the error:
+Nếu checkbox cố ý chỉ đọc, hãy thêm prop `readOnly` để tắt lỗi:
 
 ```js
 // ✅ Good: readonly controlled input without on change
@@ -548,11 +548,11 @@ If the checkbox is intentionally read-only, add a `readOnly` prop to suppress th
 
 ---
 
-### My input caret jumps to the beginning on every keystroke {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### Con trỏ input của tôi nhảy về đầu trên mỗi lần gõ phím {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-If you [control an input,](#controlling-an-input-with-a-state-variable) you must update its state variable to the input's value from the DOM during `onChange`.
+Nếu bạn [kiểm soát một input,](#controlling-an-input-with-a-state-variable) bạn phải cập nhật biến state của nó thành giá trị của input từ DOM trong khi `onChange`.
 
-You can't update it to something other than `e.target.value` (or `e.target.checked` for checkboxes):
+Bạn không thể cập nhật nó sang thứ gì khác ngoài `e.target.value` (hoặc `e.target.checked` cho checkbox):
 
 ```js
 function handleChange(e) {
@@ -561,7 +561,7 @@ function handleChange(e) {
 }
 ```
 
-You also can't update it asynchronously:
+Bạn cũng không thể cập nhật nó một cách không đồng bộ:
 
 ```js
 function handleChange(e) {
@@ -572,7 +572,7 @@ function handleChange(e) {
 }
 ```
 
-To fix your code, update it synchronously to `e.target.value`:
+Để sửa code của bạn, hãy cập nhật nó đồng bộ thành `e.target.value`:
 
 ```js
 function handleChange(e) {
@@ -581,17 +581,17 @@ function handleChange(e) {
 }
 ```
 
-If this doesn't fix the problem, it's possible that the input gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render, for example if the input or one of its parents always receives a different `key` attribute, or if you nest component function definitions (which is not supported and causes the "inner" component to always be considered a different tree).
+Nếu điều này không sửa vấn đề, có thể input bị xóa và thêm lại từ DOM trên mỗi lần gõ phím. Điều này có thể xảy ra nếu bạn vô tình [reset state](/learn/preserving-and-resetting-state) trên mỗi lần re-render, ví dụ nếu input hoặc một trong các cha của nó luôn nhận thuộc tính `key` khác, hoặc nếu bạn lồng các định nghĩa hàm component (không được hỗ trợ và khiến component "bên trong" luôn được coi là một cây khác).
 
 ---
 
-### I'm getting an error: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Tôi gặp lỗi: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-If you provide a `value` to the component, it must remain a string throughout its lifetime.
+Nếu bạn cung cấp `value` cho component, nó phải luôn là một chuỗi trong suốt vòng đời của nó.
 
-You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
+Bạn không thể truyền `value={undefined}` trước và sau đó truyền `value="some string"` vì React sẽ không biết bạn muốn component là uncontrolled hay controlled. Một controlled component nên luôn nhận một chuỗi `value`, không phải `null` hoặc `undefined`.
 
-If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
+Nếu `value` của bạn đến từ API hoặc biến state, nó có thể được khởi tạo thành `null` hoặc `undefined`. Trong trường hợp đó, hãy đặt nó thành chuỗi rỗng (`''`) ban đầu, hoặc truyền `value={someValue ?? ''}` để đảm bảo `value` là một chuỗi.
 
-Similarly, if you pass `checked` to a checkbox, ensure it's always a boolean.
+Tương tự, nếu bạn truyền `checked` cho một checkbox, hãy đảm bảo nó luôn là một boolean.

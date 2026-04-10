@@ -1,78 +1,78 @@
 ---
-title: 'Synchronizing with Effects'
+title: 'Đồng bộ với Effects'
 ---
 
 <Intro>
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your component with some system outside of React.
+Một số component cần đồng bộ với các hệ thống bên ngoài. Ví dụ, bạn có thể muốn điều khiển một component không phải React dựa trên state React, thiết lập kết nối server, hoặc gửi log analytics khi một component xuất hiện trên màn hình. *Effects* cho phép bạn chạy một số code sau khi render để bạn có thể đồng bộ component với một số hệ thống bên ngoài React.
 
 </Intro>
 
 <YouWillLearn>
 
-- What Effects are
-- How Effects are different from events
-- How to declare an Effect in your component
-- How to skip re-running an Effect unnecessarily
-- Why Effects run twice in development and how to fix them
+- Effects là gì
+- Effects khác với events như thế nào
+- Cách khai báo Effect trong component của bạn
+- Cách bỏ qua việc chạy lại Effect một cách không cần thiết
+- Tại sao Effects chạy hai lần trong development và cách sửa chúng
 
 </YouWillLearn>
 
-## What are Effects and how are they different from events? {/*what-are-effects-and-how-are-they-different-from-events*/}
+## Effects là gì và chúng khác với events như thế nào? {/*what-are-effects-and-how-are-they-different-from-events*/}
 
-Before getting to Effects, you need to be familiar with two types of logic inside React components:
+Trước khi tìm hiểu về Effects, bạn cần quen thuộc với hai loại logic bên trong React components:
 
-- **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
+- **Rendering code** (được giới thiệu trong [Mô tả UI](/learn/describing-the-ui)) nằm ở cấp độ trên cùng của component của bạn. Đây là nơi bạn lấy props và state, biến đổi chúng, và trả về JSX bạn muốn thấy trên màn hình. [Rendering code phải là pure.](/learn/keeping-components-pure) Giống như công thức toán học, nó chỉ nên _tính toán_ kết quả, không làm gì khác.
 
-- **Event handlers** (introduced in [Adding Interactivity](/learn/adding-interactivity)) are nested functions inside your components that *do* things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (they change the program's state) caused by a specific user action (for example, a button click or typing).
+- **Event handlers** (được giới thiệu trong [Thêm Tương tác](/learn/adding-interactivity)) là các hàm lồng nhau bên trong component của bạn mà *làm* những việc thay vì chỉ tính toán chúng. Một event handler có thể cập nhật trường input, gửi HTTP POST request để mua sản phẩm, hoặc điều hướng người dùng đến màn hình khác. Event handlers chứa ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (chúng thay đổi trạng thái chương trình) được gây ra bởi một hành động cụ thể của người dùng (ví dụ, nhấp nút hoặc gõ phím).
 
-Sometimes this isn't enough. Consider a `ChatRoom` component that must connect to the chat server whenever it's visible on the screen. Connecting to a server is not a pure calculation (it's a side effect) so it can't happen during rendering. However, there is no single particular event like a click that causes `ChatRoom` to be displayed.
+Đôi khi điều này chưa đủ. Hãy xem xét component `ChatRoom` phải kết nối đến server chat bất cứ khi nào nó hiển thị trên màn hình. Kết nối đến server không phải là tính toán thuần túy (đó là side effect) vì vậy nó không thể xảy ra trong quá trình render. Tuy nhiên, không có sự kiện cụ thể nào như nhấp chuột khiến `ChatRoom` được hiển thị.
 
-***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *Effect* because it should happen no matter which interaction caused the component to appear. Effects run at the end of a [commit](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
+***Effects* cho phép bạn chỉ định các side effects được gây ra bởi chính quá trình render, thay vì bởi một sự kiện cụ thể.** Gửi tin nhắn trong chat là một *event* vì nó được gây ra trực tiếp bởi người dùng nhấp vào một nút cụ thể. Tuy nhiên, thiết lập kết nối server là một *Effect* vì nó nên xảy ra bất kể tương tác nào đã khiến component xuất hiện. Effects chạy ở cuối [commit](/learn/render-and-commit) sau khi màn hình cập nhật. Đây là thời điểm tốt để đồng bộ các React component với một hệ thống bên ngoài (như network hoặc thư viện bên thứ ba).
 
 <Note>
 
-Here and later in this text, capitalized "Effect" refers to the React-specific definition above, i.e. a side effect caused by rendering. To refer to the broader programming concept, we'll say "side effect".
+Ở đây và sau trong văn bản này, "Effect" viết hoa đề cập đến định nghĩa React-specific ở trên, tức là side effect được gây ra bởi rendering. Để đề cập đến khái niệm lập trình rộng hơn, chúng ta sẽ nói "side effect".
 
 </Note>
 
 
-## You might not need an Effect {/*you-might-not-need-an-effect*/}
+## Bạn có thể không cần Effect {/*you-might-not-need-an-effect*/}
 
-**Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+**Đừng vội vàng thêm Effects vào component của bạn.** Hãy nhớ rằng Effects thường được dùng để "bước ra" khỏi code React và đồng bộ với một hệ thống *bên ngoài* nào đó. Điều này bao gồm browser APIs, các widget bên thứ ba, network, v.v. Nếu Effect của bạn chỉ điều chỉnh một số state dựa trên state khác, [bạn có thể không cần Effect.](/learn/you-might-not-need-an-effect)
 
-## How to write an Effect {/*how-to-write-an-effect*/}
+## Cách viết Effect {/*how-to-write-an-effect*/}
 
-To write an Effect, follow these three steps:
+Để viết Effect, hãy làm theo ba bước sau:
 
-1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
-2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+1. **Khai báo Effect.** Theo mặc định, Effect của bạn sẽ chạy sau mỗi [commit](/learn/render-and-commit).
+2. **Chỉ định dependencies của Effect.** Hầu hết Effects chỉ nên chạy lại *khi cần* thay vì sau mỗi lần render. Ví dụ, animation fade-in chỉ nên kích hoạt khi component xuất hiện. Kết nối và ngắt kết nối với phòng chat chỉ nên xảy ra khi component xuất hiện và biến mất, hoặc khi phòng chat thay đổi. Bạn sẽ học cách kiểm soát điều này bằng cách chỉ định *dependencies.*
+3. **Thêm cleanup nếu cần.** Một số Effects cần chỉ định cách dừng, hoàn tác, hoặc dọn dẹp những gì chúng đang làm. Ví dụ, "connect" cần "disconnect", "subscribe" cần "unsubscribe", và "fetch" cần "cancel" hoặc "ignore". Bạn sẽ học cách làm điều này bằng cách trả về một *hàm cleanup*.
 
-Let's look at each of these steps in detail.
+Hãy xem xét từng bước này một cách chi tiết.
 
-### Step 1: Declare an Effect {/*step-1-declare-an-effect*/}
+### Bước 1: Khai báo Effect {/*step-1-declare-an-effect*/}
 
-To declare an Effect in your component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
+Để khai báo Effect trong component của bạn, hãy import [`useEffect` Hook](/reference/react/useEffect) từ React:
 
 ```js
 import { useEffect } from 'react';
 ```
 
-Then, call it at the top level of your component and put some code inside your Effect:
+Sau đó, gọi nó ở cấp độ trên cùng của component và đặt một số code bên trong Effect:
 
 ```js {2-4}
 function MyComponent() {
   useEffect(() => {
-    // Code here will run after *every* render
+    // Code ở đây sẽ chạy sau *mỗi* lần render
   });
   return <div />;
 }
 ```
 
-Every time your component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
+Mỗi khi component của bạn render, React sẽ cập nhật màn hình *và sau đó* chạy code bên trong `useEffect`. Nói cách khác, **`useEffect` "trì hoãn" một đoạn code khỏi việc chạy cho đến khi lần render đó được phản ánh trên màn hình.**
 
-Let's see how you can use an Effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
+Hãy xem cách bạn có thể dùng Effect để đồng bộ với một hệ thống bên ngoài. Xem xét component React `<VideoPlayer>`. Sẽ tốt nếu kiểm soát nó đang phát hay tạm dừng bằng cách truyền prop `isPlaying` vào nó:
 
 ```js
 <VideoPlayer isPlaying={isPlaying} />;
@@ -87,11 +87,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with calls like `play()` and `pause()`.**
+Tuy nhiên, thẻ `<video>` của browser không có prop `isPlaying`. Cách duy nhất để kiểm soát nó là gọi thủ công các phương thức [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) và [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) trên phần tử DOM. **Bạn cần đồng bộ giá trị của prop `isPlaying`, cho biết video có _nên_ đang phát hay không, với các lời gọi như `play()` và `pause()`.**
 
-We'll need to first [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node.
+Chúng ta sẽ cần trước tiên [lấy ref](/learn/manipulating-the-dom-with-refs) đến DOM node `<video>`.
 
-You might be tempted to try to call `play()` or `pause()` during rendering, but that isn't correct:
+Bạn có thể bị cám dỗ cố gọi `play()` hoặc `pause()` trong quá trình rendering, nhưng điều đó không đúng:
 
 <Sandpack>
 
@@ -133,11 +133,11 @@ video { width: 250px; }
 
 </Sandpack>
 
-The reason this code isn't correct is that it tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM.
+Lý do code này không đúng là vì nó cố làm gì đó với DOM node trong quá trình rendering. Trong React, [rendering nên là tính toán thuần túy](/learn/keeping-components-pure) của JSX và không nên chứa side effects như sửa đổi DOM.
 
-Moreover, when `VideoPlayer` is called for the first time, its DOM does not exist yet! There isn't a DOM node yet to call `play()` or `pause()` on, because React doesn't know what DOM to create until you return the JSX.
+Hơn nữa, khi `VideoPlayer` được gọi lần đầu tiên, DOM của nó chưa tồn tại! Chưa có DOM node để gọi `play()` hoặc `pause()` trên đó, vì React không biết DOM cần tạo gì cho đến khi bạn trả về JSX.
 
-The solution here is to **wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+Giải pháp ở đây là **bọc side effect với `useEffect` để di chuyển nó ra khỏi tính toán rendering:**
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';
@@ -157,11 +157,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-By wrapping the DOM update in an Effect, you let React update the screen first. Then your Effect runs.
+Bằng cách bọc cập nhật DOM trong một Effect, bạn cho phép React cập nhật màn hình trước. Sau đó Effect của bạn chạy.
 
-When your `VideoPlayer` component renders (either the first time or if it re-renders), a few things will happen. First, React will update the screen, ensuring the `<video>` tag is in the DOM with the right props. Then React will run your Effect. Finally, your Effect will call `play()` or `pause()` depending on the value of `isPlaying`.
+Khi component `VideoPlayer` của bạn render (lần đầu tiên hoặc nếu nó re-renders), một số điều sẽ xảy ra. Đầu tiên, React sẽ cập nhật màn hình, đảm bảo thẻ `<video>` ở trong DOM với đúng props. Sau đó React sẽ chạy Effect của bạn. Cuối cùng, Effect của bạn sẽ gọi `play()` hoặc `pause()` tùy thuộc vào giá trị của `isPlaying`.
 
-Press Play/Pause multiple times and see how the video player stays synchronized to the `isPlaying` value:
+Nhấn Play/Pause nhiều lần và xem video player giữ đồng bộ với giá trị `isPlaying` như thế nào:
 
 <Sandpack>
 

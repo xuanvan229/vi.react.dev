@@ -4,7 +4,7 @@ title: resume
 
 <Intro>
 
-`resume` streams a pre-rendered React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+`resume` stream một cây React đã được pre-render thành một [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 const stream = await resume(reactNode, postponedState, options?)
@@ -16,17 +16,17 @@ const stream = await resume(reactNode, postponedState, options?)
 
 <Note>
 
-This API depends on [Web Streams.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) For Node.js, use [`resumeToNodeStream`](/reference/react-dom/server/renderToPipeableStream) instead.
+API này phụ thuộc vào [Web Streams.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) Đối với Node.js, hãy sử dụng [`resumeToNodeStream`](/reference/react-dom/server/renderToPipeableStream) thay thế.
 
 </Note>
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `resume(node, postponedState, options?)` {/*resume*/}
 
-Call `resume` to resume rendering a pre-rendered React tree as HTML into a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+Gọi `resume` để tiếp tục render một cây React đã được pre-render thành HTML vào một [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 import { resume } from 'react-dom/server';
@@ -39,39 +39,39 @@ async function handler(request, writable) {
 }
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `reactNode`: The React node you called `prerender` with. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` component should render the `<html>` tag.
-* `postponedState`: The opaque `postpone` object returned from a [prerender API](/reference/react-dom/static/index), loaded from wherever you stored it (e.g. redis, a file, or S3).
-* **optional** `options`: An object with streaming options.
-  * **optional** `nonce`: A [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) string to allow scripts for [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
-  * **optional** `signal`: An [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that lets you [abort server rendering](#aborting-server-rendering) and render the rest on the client.
-  * **optional** `onError`: A callback that fires whenever there is a server error, whether [recoverable](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell) or [not.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell) By default, this only calls `console.error`. If you override it to [log crash reports,](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server) make sure that you still call `console.error`.
+* `reactNode`: React node mà bạn đã gọi `prerender` với. Ví dụ, một phần tử JSX như `<App />`. Nó được kỳ vọng đại diện cho toàn bộ tài liệu, vì vậy component `App` nên render thẻ `<html>`.
+* `postponedState`: Object `postpone` opaque được trả về từ [prerender API](/reference/react-dom/static/index), được tải từ nơi bạn đã lưu trữ nó (ví dụ: redis, một file, hoặc S3).
+* **tùy chọn** `options`: Một object với các tùy chọn streaming.
+  * **tùy chọn** `nonce`: Một chuỗi [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) để cho phép script cho [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
+  * **tùy chọn** `signal`: Một [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) cho phép bạn [hủy bỏ render phía server](#aborting-server-rendering) và render phần còn lại trên client.
+  * **tùy chọn** `onError`: Một callback được kích hoạt bất cứ khi nào có lỗi server, dù là [có thể phục hồi](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell) hay [không.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell) Mặc định, nó chỉ gọi `console.error`. Nếu bạn ghi đè nó để [ghi log báo cáo lỗi,](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server) hãy đảm bảo rằng bạn vẫn gọi `console.error`.
 
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`resume` returns a Promise:
+`resume` trả về một Promise:
 
-- If `resume` successfully produced a [shell](/reference/react-dom/server/renderToReadableStream#specifying-what-goes-into-the-shell), that Promise will resolve to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) that can be piped to a [Writable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream).
-- If an error happens in the shell, the Promise will reject with that error.
+- Nếu `resume` tạo ra thành công một [shell](/reference/react-dom/server/renderToReadableStream#specifying-what-goes-into-the-shell), Promise đó sẽ resolve thành một [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) có thể được pipe đến một [Writable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream).
+- Nếu có lỗi trong shell, Promise sẽ bị reject với lỗi đó.
 
-The returned stream has an additional property:
+Stream trả về có một thuộc tính bổ sung:
 
-* `allReady`: A Promise that resolves when all rendering is complete. You can `await stream.allReady` before returning a response [for crawlers and static generation.](/reference/react-dom/server/renderToReadableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation) If you do that, you won't get any progressive loading. The stream will contain the final HTML.
+* `allReady`: Một Promise resolve khi tất cả việc render hoàn tất. Bạn có thể `await stream.allReady` trước khi trả về response [cho các crawler và tạo trang tĩnh.](/reference/react-dom/server/renderToReadableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation) Nếu bạn làm vậy, bạn sẽ không có progressive loading. Stream sẽ chứa HTML cuối cùng.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- `resume` does not accept options for `bootstrapScripts`, `bootstrapScriptContent`, or `bootstrapModules`. Instead, you need to pass these options to the `prerender` call that generates the `postponedState`. You can also inject bootstrap content into the writable stream manually.
-- `resume` does not accept `identifierPrefix` since the prefix needs to be the same in both `prerender` and `resume`.
-- Since `nonce` cannot be provided to prerender, you should only provide `nonce` to `resume` if you're not providing scripts to prerender.
-- `resume` re-renders from the root until it finds a component that was not fully pre-rendered. Only fully prerendered Components (the Component and its children finished prerendering) are skipped entirely.
+- `resume` không chấp nhận các tùy chọn cho `bootstrapScripts`, `bootstrapScriptContent`, hoặc `bootstrapModules`. Thay vào đó, bạn cần truyền những tùy chọn này cho lệnh gọi `prerender` tạo ra `postponedState`. Bạn cũng có thể chèn nội dung bootstrap vào writable stream theo cách thủ công.
+- `resume` không chấp nhận `identifierPrefix` vì prefix cần phải giống nhau trong cả `prerender` và `resume`.
+- Vì `nonce` không thể được cung cấp cho prerender, bạn chỉ nên cung cấp `nonce` cho `resume` nếu bạn không cung cấp script cho prerender.
+- `resume` re-render từ root cho đến khi tìm thấy một component chưa được pre-render đầy đủ. Chỉ các Component được pre-render đầy đủ (Component và các children của nó đã hoàn thành prerendering) mới bị bỏ qua hoàn toàn.
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Resuming a prerender {/*resuming-a-prerender*/}
+### Tiếp tục một prerender {/*resuming-a-prerender*/}
 
 <Sandpack>
 
@@ -230,7 +230,7 @@ export function sleep(timeoutMS) {
 
 </Sandpack>
 
-### Further reading {/*further-reading*/}
+### Đọc thêm {/*further-reading*/}
 
-Resuming behaves like `renderToReadableStream`. For more examples, check out the [usage section of `renderToReadableStream`](/reference/react-dom/server/renderToReadableStream#usage).
-The [usage section of `prerender`](/reference/react-dom/static/prerender#usage) includes examples of how to use `prerender` specifically.
+Việc tiếp tục (resuming) hoạt động giống như `renderToReadableStream`. Để biết thêm ví dụ, hãy xem [phần usage của `renderToReadableStream`](/reference/react-dom/server/renderToReadableStream#usage).
+[Phần usage của `prerender`](/reference/react-dom/static/prerender#usage) bao gồm các ví dụ về cách sử dụng `prerender` cụ thể.

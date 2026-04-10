@@ -1,17 +1,17 @@
 ---
 title: "use memo"
-titleForTitleTag: "'use memo' directive"
+titleForTitleTag: "Directive 'use memo'"
 ---
 
 <Intro>
 
-`"use memo"` marks a function for React Compiler optimization.
+`"use memo"` đánh dấu một hàm để React Compiler tối ưu hóa.
 
 </Intro>
 
 <Note>
 
-In most cases, you don't need `"use memo"`. It's primarily needed in `annotation` mode where you must explicitly mark functions for optimization. In `infer` mode, the compiler automatically detects components and hooks by their naming patterns (PascalCase for components, `use` prefix for hooks). If a component or hook isn't being compiled in `infer` mode, you should fix its naming convention rather than forcing compilation with `"use memo"`.
+Trong hầu hết trường hợp, bạn không cần `"use memo"`. Nó chủ yếu cần thiết trong chế độ `annotation` nơi bạn phải đánh dấu rõ ràng các hàm để tối ưu hóa. Trong chế độ `infer`, compiler tự động phát hiện các component và hook theo mẫu đặt tên (PascalCase cho component, tiền tố `use` cho hook). Nếu một component hoặc hook không được compile trong chế độ `infer`, bạn nên sửa quy ước đặt tên thay vì ép buộc compile bằng `"use memo"`.
 
 </Note>
 
@@ -19,11 +19,11 @@ In most cases, you don't need `"use memo"`. It's primarily needed in `annotation
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `"use memo"` {/*use-memo*/}
 
-Add `"use memo"` at the beginning of a function to mark it for React Compiler optimization.
+Thêm `"use memo"` ở đầu hàm để đánh dấu nó cho việc tối ưu hóa của React Compiler.
 
 ```js {1}
 function MyComponent() {
@@ -32,59 +32,59 @@ function MyComponent() {
 }
 ```
 
-When a function contains `"use memo"`, the React Compiler will analyze and optimize it during build time. The compiler will automatically memoize values and components to prevent unnecessary re-computations and re-renders.
+Khi một hàm chứa `"use memo"`, React Compiler sẽ phân tích và tối ưu hóa nó trong quá trình build. Compiler sẽ tự động memo hóa các giá trị và component để ngăn chặn việc tính toán lại và render lại không cần thiết.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* `"use memo"` must be at the very beginning of a function body, before any imports or other code (comments are OK).
-* The directive must be written with double or single quotes, not backticks.
-* The directive must exactly match `"use memo"`.
-* Only the first directive in a function is processed; additional directives are ignored.
-* The effect of the directive depends on your [`compilationMode`](/reference/react-compiler/compilationMode) setting.
+* `"use memo"` phải ở ngay đầu thân hàm, trước bất kỳ import hoặc mã nào khác (comment thì được).
+* Directive phải được viết bằng dấu ngoặc kép đơn hoặc kép, không phải backtick.
+* Directive phải khớp chính xác `"use memo"`.
+* Chỉ directive đầu tiên trong hàm được xử lý; các directive bổ sung bị bỏ qua.
+* Hiệu lực của directive phụ thuộc vào cài đặt [`compilationMode`](/reference/react-compiler/compilationMode) của bạn.
 
-### How `"use memo"` marks functions for optimization {/*how-use-memo-marks*/}
+### Cách `"use memo"` đánh dấu các hàm để tối ưu hóa {/*how-use-memo-marks*/}
 
-In a React app that uses the React Compiler, functions are analyzed at build time to determine if they can be optimized. By default, the compiler automatically infers which components to memoize, but this can depend on your [`compilationMode`](/reference/react-compiler/compilationMode) setting if you've set it.
+Trong một ứng dụng React sử dụng React Compiler, các hàm được phân tích tại thời điểm build để xác định xem chúng có thể được tối ưu hóa hay không. Theo mặc định, compiler tự động suy luận component nào cần memo hóa, nhưng điều này có thể phụ thuộc vào cài đặt [`compilationMode`](/reference/react-compiler/compilationMode) nếu bạn đã thiết lập.
 
-`"use memo"` explicitly marks a function for optimization, overriding the default behavior:
+`"use memo"` đánh dấu rõ ràng một hàm để tối ưu hóa, ghi đè hành vi mặc định:
 
-* In `annotation` mode: Only functions with `"use memo"` are optimized
-* In `infer` mode: The compiler uses heuristics, but `"use memo"` forces optimization
-* In `all` mode: Everything is optimized by default, making `"use memo"` redundant
+* Trong chế độ `annotation`: Chỉ các hàm có `"use memo"` được tối ưu hóa
+* Trong chế độ `infer`: Compiler sử dụng phương pháp suy luận, nhưng `"use memo"` buộc tối ưu hóa
+* Trong chế độ `all`: Mọi thứ được tối ưu hóa theo mặc định, khiến `"use memo"` trở nên thừa
 
-The directive creates a clear boundary in your codebase between optimized and non-optimized code, giving you fine-grained control over the compilation process.
+Directive tạo ra ranh giới rõ ràng trong codebase giữa mã được tối ưu hóa và không được tối ưu hóa, cho bạn khả năng kiểm soát chi tiết quá trình compile.
 
-### When to use `"use memo"` {/*when-to-use*/}
+### Khi nào sử dụng `"use memo"` {/*when-to-use*/}
 
-You should consider using `"use memo"` when:
+Bạn nên cân nhắc sử dụng `"use memo"` khi:
 
-#### You're using annotation mode {/*annotation-mode-use*/}
-In `compilationMode: 'annotation'`, the directive is required for any function you want optimized:
+#### Bạn đang sử dụng chế độ annotation {/*annotation-mode-use*/}
+Trong `compilationMode: 'annotation'`, directive là bắt buộc cho bất kỳ hàm nào bạn muốn tối ưu hóa:
 
 ```js
-// ✅ This component will be optimized
+// ✅ Component này sẽ được tối ưu hóa
 function OptimizedList() {
   "use memo";
   // ...
 }
 
-// ❌ This component won't be optimized
+// ❌ Component này sẽ không được tối ưu hóa
 function SimpleWrapper() {
   // ...
 }
 ```
 
-#### You're gradually adopting React Compiler {/*gradual-adoption*/}
-Start with `annotation` mode and selectively optimize stable components:
+#### Bạn đang áp dụng React Compiler dần dần {/*gradual-adoption*/}
+Bắt đầu với chế độ `annotation` và tối ưu hóa có chọn lọc các component ổn định:
 
 ```js
-// Start by optimizing leaf components
+// Bắt đầu bằng cách tối ưu hóa các component lá
 function Button({ onClick, children }) {
   "use memo";
   // ...
 }
 
-// Gradually move up the tree as you verify behavior
+// Dần dần di chuyển lên cây component khi bạn xác nhận hành vi
 function ButtonGroup({ buttons }) {
   "use memo";
   // ...
@@ -93,65 +93,65 @@ function ButtonGroup({ buttons }) {
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Working with different compilation modes {/*compilation-modes*/}
+### Làm việc với các chế độ compile khác nhau {/*compilation-modes*/}
 
-The behavior of `"use memo"` changes based on your compiler configuration:
+Hành vi của `"use memo"` thay đổi dựa trên cấu hình compiler:
 
 ```js
 // babel.config.js
 module.exports = {
   plugins: [
     ['babel-plugin-react-compiler', {
-      compilationMode: 'annotation' // or 'infer' or 'all'
+      compilationMode: 'annotation' // hoặc 'infer' hoặc 'all'
     }]
   ]
 };
 ```
 
-#### Annotation mode {/*annotation-mode-example*/}
+#### Chế độ annotation {/*annotation-mode-example*/}
 ```js
-// ✅ Optimized with "use memo"
+// ✅ Được tối ưu hóa với "use memo"
 function ProductCard({ product }) {
   "use memo";
   // ...
 }
 
-// ❌ Not optimized (no directive)
+// ❌ Không được tối ưu hóa (không có directive)
 function ProductList({ products }) {
   // ...
 }
 ```
 
-#### Infer mode (default) {/*infer-mode-example*/}
+#### Chế độ infer (mặc định) {/*infer-mode-example*/}
 ```js
-// Automatically memoized because this is named like a Component
+// Tự động được memo hóa vì đặt tên giống Component
 function ComplexDashboard({ data }) {
   // ...
 }
 
-// Skipped: Is not named like a Component
+// Bị bỏ qua: Không đặt tên giống Component
 function simpleDisplay({ text }) {
   // ...
 }
 ```
 
-In `infer` mode, the compiler automatically detects components and hooks by their naming patterns (PascalCase for components, `use` prefix for hooks). If a component or hook isn't being compiled in `infer` mode, you should fix its naming convention rather than forcing compilation with `"use memo"`.
+Trong chế độ `infer`, compiler tự động phát hiện các component và hook theo mẫu đặt tên (PascalCase cho component, tiền tố `use` cho hook). Nếu một component hoặc hook không được compile trong chế độ `infer`, bạn nên sửa quy ước đặt tên thay vì ép buộc compile bằng `"use memo"`.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### Verifying optimization {/*verifying-optimization*/}
+### Xác minh tối ưu hóa {/*verifying-optimization*/}
 
-To confirm your component is being optimized:
+Để xác nhận component của bạn đang được tối ưu hóa:
 
-1. Check the compiled output in your build
-2. Use React DevTools to check for Memo ✨ badge
+1. Kiểm tra đầu ra đã compile trong bản build
+2. Sử dụng React DevTools để kiểm tra huy hiệu Memo ✨
 
-### See also {/*see-also*/}
+### Xem thêm {/*see-also*/}
 
-* [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) - Opt out of compilation
-* [`compilationMode`](/reference/react-compiler/compilationMode) - Configure compilation behavior
-* [React Compiler](/learn/react-compiler) - Getting started guide
+* [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) - Loại khỏi danh sách compile
+* [`compilationMode`](/reference/react-compiler/compilationMode) - Cấu hình hành vi compile
+* [React Compiler](/learn/react-compiler) - Hướng dẫn bắt đầu

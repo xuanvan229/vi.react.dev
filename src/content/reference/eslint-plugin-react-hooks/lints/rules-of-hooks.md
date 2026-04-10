@@ -4,89 +4,89 @@ title: rules-of-hooks
 
 <Intro>
 
-Validates that components and hooks follow the [Rules of Hooks](/reference/rules/rules-of-hooks).
+Kiểm tra rằng component và hook tuân theo [Quy tắc của Hook](/reference/rules/rules-of-hooks).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-React relies on the order in which hooks are called to correctly preserve state between renders. Each time your component renders, React expects the exact same hooks to be called in the exact same order. When hooks are called conditionally or in loops, React loses track of which state corresponds to which hook call, leading to bugs like state mismatches and "Rendered fewer/more hooks than expected" errors.
+React dựa vào thứ tự gọi hook để bảo toàn state đúng cách giữa các lần render. Mỗi lần component render, React mong đợi chính xác các hook giống nhau được gọi theo đúng thứ tự. Khi hook được gọi có điều kiện hoặc trong vòng lặp, React mất dấu state nào tương ứng với lệnh gọi hook nào, dẫn đến lỗi như state không khớp và lỗi "Rendered fewer/more hooks than expected".
 
-## Common Violations {/*common-violations*/}
+## Các vi phạm phổ biến {/*common-violations*/}
 
-These patterns violate the Rules of Hooks:
+Các pattern này vi phạm Quy tắc của Hook:
 
-- **Hooks in conditions** (`if`/`else`, ternary, `&&`/`||`)
-- **Hooks in loops** (`for`, `while`, `do-while`)
-- **Hooks after early returns**
-- **Hooks in callbacks/event handlers**
-- **Hooks in async functions**
-- **Hooks in class methods**
-- **Hooks at module level**
+- **Hook trong điều kiện** (`if`/`else`, toán tử ba ngôi, `&&`/`||`)
+- **Hook trong vòng lặp** (`for`, `while`, `do-while`)
+- **Hook sau return sớm**
+- **Hook trong callback/event handler**
+- **Hook trong hàm async**
+- **Hook trong phương thức class**
+- **Hook ở cấp module**
 
 <Note>
 
-### `use` hook {/*use-hook*/}
+### Hook `use` {/*use-hook*/}
 
-The `use` hook is different from other React hooks. You can call it conditionally and in loops:
+Hook `use` khác với các React hook khác. Bạn có thể gọi nó có điều kiện và trong vòng lặp:
 
 ```js
-// ✅ `use` can be conditional
+// ✅ `use` có thể có điều kiện
 if (shouldFetch) {
   const data = use(fetchPromise);
 }
 
-// ✅ `use` can be in loops
+// ✅ `use` có thể trong vòng lặp
 for (const promise of promises) {
   results.push(use(promise));
 }
 ```
 
-However, `use` still has restrictions:
-- Can't be wrapped in try/catch
-- Must be called inside a component or hook
+Tuy nhiên, `use` vẫn có hạn chế:
+- Không thể bọc trong try/catch
+- Phải được gọi bên trong component hoặc hook
 
-Learn more: [`use` API Reference](/reference/react/use)
+Tìm hiểu thêm: [Tham chiếu API `use`](/reference/react/use)
 
 </Note>
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js
-// ❌ Hook in condition
+// ❌ Hook trong điều kiện
 if (isLoggedIn) {
   const [user, setUser] = useState(null);
 }
 
-// ❌ Hook after early return
+// ❌ Hook sau return sớm
 if (!data) return <Loading />;
 const [processed, setProcessed] = useState(data);
 
-// ❌ Hook in callback
+// ❌ Hook trong callback
 <button onClick={() => {
   const [clicked, setClicked] = useState(false);
 }}/>
 
-// ❌ `use` in try/catch
+// ❌ `use` trong try/catch
 try {
   const data = use(promise);
 } catch (e) {
-  // error handling
+  // xử lý lỗi
 }
 
-// ❌ Hook at module level
-const globalState = useState(0); // Outside component
+// ❌ Hook ở cấp module
+const globalState = useState(0); // Ngoài component
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
 function Component({ isSpecial, shouldFetch, fetchPromise }) {
-  // ✅ Hooks at top level
+  // ✅ Hook ở cấp cao nhất
   const [count, setCount] = useState(0);
   const [name, setName] = useState('');
 
@@ -95,7 +95,7 @@ function Component({ isSpecial, shouldFetch, fetchPromise }) {
   }
 
   if (shouldFetch) {
-    // ✅ `use` can be conditional
+    // ✅ `use` có thể có điều kiện
     const data = use(fetchPromise);
     return <div>{data}</div>;
   }
@@ -104,14 +104,14 @@ function Component({ isSpecial, shouldFetch, fetchPromise }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I want to fetch data based on some condition {/*conditional-data-fetching*/}
+### Tôi muốn fetch dữ liệu dựa trên điều kiện {/*conditional-data-fetching*/}
 
-You're trying to conditionally call useEffect:
+Bạn đang cố gọi useEffect có điều kiện:
 
 ```js
-// ❌ Conditional hook
+// ❌ Hook có điều kiện
 if (isLoggedIn) {
   useEffect(() => {
     fetchUserData();
@@ -119,10 +119,10 @@ if (isLoggedIn) {
 }
 ```
 
-Call the hook unconditionally, check condition inside:
+Gọi hook không điều kiện, kiểm tra điều kiện bên trong:
 
 ```js
-// ✅ Condition inside hook
+// ✅ Điều kiện bên trong hook
 useEffect(() => {
   if (isLoggedIn) {
     fetchUserData();
@@ -132,18 +132,18 @@ useEffect(() => {
 
 <Note>
 
-There are better ways to fetch data rather than in a useEffect. Consider using TanStack Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
+Có những cách tốt hơn để fetch dữ liệu thay vì trong useEffect. Hãy xem xét sử dụng TanStack Query, useSWR, hoặc React Router 6.4+ để fetch dữ liệu. Các giải pháp này xử lý việc loại bỏ request trùng lặp, cache response, và tránh waterfall mạng.
 
-Learn more: [Fetching Data](/learn/synchronizing-with-effects#fetching-data)
+Tìm hiểu thêm: [Fetch dữ liệu](/learn/synchronizing-with-effects#fetching-data)
 
 </Note>
 
-### I need different state for different scenarios {/*conditional-state-initialization*/}
+### Tôi cần state khác nhau cho các tình huống khác nhau {/*conditional-state-initialization*/}
 
-You're trying to conditionally initialize state:
+Bạn đang cố khởi tạo state có điều kiện:
 
 ```js
-// ❌ Conditional state
+// ❌ State có điều kiện
 if (userType === 'admin') {
   const [permissions, setPermissions] = useState(adminPerms);
 } else {
@@ -151,18 +151,18 @@ if (userType === 'admin') {
 }
 ```
 
-Always call useState, conditionally set the initial value:
+Luôn gọi useState, đặt giá trị khởi tạo có điều kiện:
 
 ```js
-// ✅ Conditional initial value
+// ✅ Giá trị khởi tạo có điều kiện
 const [permissions, setPermissions] = useState(
   userType === 'admin' ? adminPerms : userPerms
 );
 ```
 
-## Options {/*options*/}
+## Tùy chọn {/*options*/}
 
-You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.1 and later):
+Bạn có thể cấu hình các effect hook tùy chỉnh sử dụng cài đặt ESLint chung (có sẵn trong `eslint-plugin-react-hooks` 6.1.1 trở lên):
 
 ```js
 {
@@ -174,6 +174,6 @@ You can configure custom effect hooks using shared ESLint settings (available in
 }
 ```
 
-- `additionalEffectHooks`: Regex pattern matching custom hooks that should be treated as effects. This allows `useEffectEvent` and similar event functions to be called from your custom effect hooks.
+- `additionalEffectHooks`: Pattern regex khớp với các hook tùy chỉnh cần được coi là effect. Điều này cho phép `useEffectEvent` và các hàm event tương tự được gọi từ các effect hook tùy chỉnh của bạn.
 
-This shared configuration is used by both `rules-of-hooks` and `exhaustive-deps` rules, ensuring consistent behavior across all hook-related linting.
+Cấu hình chung này được sử dụng bởi cả quy tắc `rules-of-hooks` và `exhaustive-deps`, đảm bảo hành vi nhất quán cho tất cả lint liên quan đến hook.

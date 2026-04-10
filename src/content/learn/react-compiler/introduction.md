@@ -1,28 +1,28 @@
 ---
-title: Introduction
+title: Giới thiệu
 ---
 
 <Intro>
-React Compiler is a new build-time tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+React Compiler là một công cụ build-time mới tự động tối ưu hóa ứng dụng React của bạn. Nó hoạt động với JavaScript thuần, và hiểu [Quy tắc của React](/reference/rules), nên bạn không cần viết lại bất kỳ code nào để sử dụng nó.
 </Intro>
 
 <YouWillLearn>
 
-* What React Compiler does
-* Getting started with the compiler
-* Incremental adoption strategies
-* Debugging and troubleshooting when things go wrong
-* Using the compiler on your React library
+* React Compiler làm gì
+* Bắt đầu với compiler
+* Chiến lược áp dụng dần dần
+* Gỡ lỗi và xử lý sự cố khi gặp vấn đề
+* Sử dụng compiler trên thư viện React của bạn
 
 </YouWillLearn>
 
-## What does React Compiler do? {/*what-does-react-compiler-do*/}
+## React Compiler làm gì? {/*what-does-react-compiler-do*/}
 
-React Compiler automatically optimizes your React application at build time. React is often fast enough without optimization, but sometimes you need to manually memoize components and values to keep your app responsive. This manual memoization is tedious, easy to get wrong, and adds extra code to maintain. React Compiler does this optimization automatically for you, freeing you from this mental burden so you can focus on building features.
+React Compiler tự động tối ưu hóa ứng dụng React của bạn tại thời điểm build. React thường đủ nhanh mà không cần tối ưu hóa, nhưng đôi khi bạn cần thủ công memoize component và giá trị để giữ ứng dụng phản hồi nhanh. Việc memoization thủ công này nhàm chán, dễ sai, và thêm code cần bảo trì. React Compiler thực hiện tối ưu hóa này tự động cho bạn, giải phóng bạn khỏi gánh nặng tinh thần này để bạn có thể tập trung vào việc xây dựng tính năng.
 
-### Before React Compiler {/*before-react-compiler*/}
+### Trước React Compiler {/*before-react-compiler*/}
 
-Without the compiler, you need to manually memoize components and values to optimize re-renders:
+Không có compiler, bạn cần thủ công memoize component và giá trị để tối ưu hóa re-render:
 
 ```js
 import { useMemo, useCallback, memo } from 'react';
@@ -49,21 +49,21 @@ const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
 
 <Note>
 
-This manual memoization has a subtle bug that breaks memoization:
+Memoization thủ công này có một bug tinh vi làm hỏng memoization:
 
 ```js [[2, 1, "() => handleClick(item)"]]
 <Item key={item.id} onClick={() => handleClick(item)} />
 ```
 
-Even though `handleClick` is wrapped in `useCallback`, the arrow function `() => handleClick(item)` creates a new function every time the component renders. This means that `Item` will always receive a new `onClick` prop, breaking memoization.
+Mặc dù `handleClick` được bọc trong `useCallback`, arrow function `() => handleClick(item)` tạo một hàm mới mỗi khi component render. Điều này có nghĩa là `Item` sẽ luôn nhận prop `onClick` mới, làm hỏng memoization.
 
-React Compiler is able to optimize this correctly with or without the arrow function, ensuring that `Item` only re-renders when `props.onClick` changes.
+React Compiler có thể tối ưu hóa điều này đúng cách có hoặc không có arrow function, đảm bảo rằng `Item` chỉ re-render khi `props.onClick` thay đổi.
 
 </Note>
 
-### After React Compiler {/*after-react-compiler*/}
+### Sau React Compiler {/*after-react-compiler*/}
 
-With React Compiler, you write the same code without manual memoization:
+Với React Compiler, bạn viết cùng code mà không cần memoization thủ công:
 
 ```js
 function ExpensiveComponent({ data, onClick }) {
@@ -83,23 +83,23 @@ function ExpensiveComponent({ data, onClick }) {
 }
 ```
 
-_[See this example in the React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)_
+_[Xem ví dụ này trong React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)_
 
-React Compiler automatically applies the optimal memoization, ensuring your app only re-renders when necessary.
+React Compiler tự động áp dụng memoization tối ưu, đảm bảo ứng dụng của bạn chỉ re-render khi cần thiết.
 
 <DeepDive>
-#### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}
+#### React Compiler thêm loại memoization nào? {/*what-kind-of-memoization-does-react-compiler-add*/}
 
-React Compiler's automatic memoization is primarily focused on **improving update performance** (re-rendering existing components), so it focuses on these two use cases:
+Memoization tự động của React Compiler chủ yếu tập trung vào **cải thiện hiệu suất cập nhật** (re-render các component hiện có), nên nó tập trung vào hai trường hợp sử dụng:
 
-1. **Skipping cascading re-rendering of components**
-    * Re-rendering `<Parent />` causes many components in its component tree to re-render, even though only `<Parent />` has changed
-1. **Skipping expensive calculations from outside of React**
-    * For example, calling `expensivelyProcessAReallyLargeArrayOfObjects()` inside of your component or hook that needs that data
+1. **Bỏ qua re-render lan truyền của component**
+    * Re-render `<Parent />` gây ra nhiều component trong cây component re-render, mặc dù chỉ `<Parent />` thay đổi
+1. **Bỏ qua các phép tính tốn kém bên ngoài React**
+    * Ví dụ, gọi `expensivelyProcessAReallyLargeArrayOfObjects()` bên trong component hoặc hook cần dữ liệu đó
 
-#### Optimizing Re-renders {/*optimizing-re-renders*/}
+#### Tối ưu hóa re-render {/*optimizing-re-renders*/}
 
-React lets you express your UI as a function of their current state (more concretely: their props, state, and context). In its current implementation, when a component's state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`'s state changes:
+React cho phép bạn biểu diễn UI như một hàm của state hiện tại (cụ thể hơn: props, state, và context). Trong triển khai hiện tại, khi state của một component thay đổi, React sẽ re-render component đó _và tất cả con của nó_ -- trừ khi bạn đã áp dụng memoization thủ công với `useMemo()`, `useCallback()`, hoặc `React.memo()`. Ví dụ, trong ví dụ sau, `<MessageButton>` sẽ re-render mỗi khi state của `<FriendList>` thay đổi:
 
 ```javascript
 function FriendList({ friends }) {
@@ -118,74 +118,74 @@ function FriendList({ friends }) {
   );
 }
 ```
-[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
+[_Xem ví dụ này trong React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-React Compiler automatically applies the equivalent of manual memoization, ensuring that only the relevant parts of an app re-render as state changes, which is sometimes referred to as "fine-grained reactivity". In the above example, React Compiler determines that the return value of `<FriendListCard />` can be reused even as `friends` changes, and can avoid recreating this JSX _and_ avoid re-rendering `<MessageButton>` as the count changes.
+React Compiler tự động áp dụng tương đương memoization thủ công, đảm bảo chỉ các phần liên quan của ứng dụng re-render khi state thay đổi, đôi khi được gọi là "fine-grained reactivity". Trong ví dụ trên, React Compiler xác định rằng giá trị trả về của `<FriendListCard />` có thể được tái sử dụng ngay cả khi `friends` thay đổi, và có thể tránh tạo lại JSX này _và_ tránh re-render `<MessageButton>` khi count thay đổi.
 
-#### Expensive calculations also get memoized {/*expensive-calculations-also-get-memoized*/}
+#### Các phép tính tốn kém cũng được memoize {/*expensive-calculations-also-get-memoized*/}
 
-React Compiler can also automatically memoize expensive calculations used during rendering:
+React Compiler cũng có thể tự động memoize các phép tính tốn kém được sử dụng trong rendering:
 
 ```js
-// **Not** memoized by React Compiler, since this is not a component or hook
+// **Không** được memoize bởi React Compiler, vì đây không phải component hay hook
 function expensivelyProcessAReallyLargeArrayOfObjects() { /* ... */ }
 
-// Memoized by React Compiler since this is a component
+// Được memoize bởi React Compiler vì đây là component
 function TableContainer({ items }) {
-  // This function call would be memoized:
+  // Lời gọi hàm này sẽ được memoize:
   const data = expensivelyProcessAReallyLargeArrayOfObjects(items);
   // ...
 }
 ```
-[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
+[_Xem ví dụ này trong React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
 
-However, if `expensivelyProcessAReallyLargeArrayOfObjects` is truly an expensive function, you may want to consider implementing its own memoization outside of React, because:
+Tuy nhiên, nếu `expensivelyProcessAReallyLargeArrayOfObjects` thực sự là một hàm tốn kém, bạn có thể muốn cân nhắc triển khai memoization riêng bên ngoài React, vì:
 
-- React Compiler only memoizes React components and hooks, not every function
-- React Compiler's memoization is not shared across multiple components or hooks
+- React Compiler chỉ memoize component và hook React, không phải mọi hàm
+- Memoization của React Compiler không được chia sẻ giữa nhiều component hoặc hook
 
-So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different components, even if the same exact items were passed down, that expensive calculation would be run repeatedly. We recommend [profiling](reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) first to see if it really is that expensive before making code more complicated.
+Vì vậy nếu `expensivelyProcessAReallyLargeArrayOfObjects` được sử dụng trong nhiều component khác nhau, ngay cả khi cùng items được truyền xuống, phép tính tốn kém đó sẽ được chạy lại nhiều lần. Chúng tôi khuyên bạn nên [profiling](reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) trước để xem nó có thực sự tốn kém không trước khi làm code phức tạp hơn.
 </DeepDive>
 
-## Should I try out the compiler? {/*should-i-try-out-the-compiler*/}
+## Tôi có nên thử compiler không? {/*should-i-try-out-the-compiler*/}
 
-We encourage everyone to start using React Compiler. While the compiler is still an optional addition to React today, in the future some features may require the compiler in order to fully work.
+Chúng tôi khuyến khích mọi người bắt đầu sử dụng React Compiler. Mặc dù compiler hiện vẫn là phần bổ sung tùy chọn cho React, trong tương lai một số tính năng có thể yêu cầu compiler để hoạt động đầy đủ.
 
-### Is it safe to use? {/*is-it-safe-to-use*/}
+### Có an toàn để sử dụng không? {/*is-it-safe-to-use*/}
 
-React Compiler is now stable and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+React Compiler hiện đã ổn định và đã được kiểm tra rộng rãi trong production. Mặc dù nó đã được sử dụng trong production tại các công ty như Meta, việc triển khai compiler cho production cho ứng dụng của bạn sẽ phụ thuộc vào sức khỏe của codebase và mức độ bạn đã tuân theo [Quy tắc của React](/reference/rules).
 
-## What build tools are supported? {/*what-build-tools-are-supported*/}
+## Công cụ build nào được hỗ trợ? {/*what-build-tools-are-supported*/}
 
-React Compiler can be installed across [several build tools](/learn/react-compiler/installation) such as Babel, Vite, Metro, and Rsbuild.
+React Compiler có thể được cài đặt qua [nhiều công cụ build](/learn/react-compiler/installation) như Babel, Vite, Metro, và Rsbuild.
 
-React Compiler is primarily a light Babel plugin wrapper around the core compiler, which was designed to be decoupled from Babel itself. While the initial stable version of the compiler will remain primarily a Babel plugin, we are working with the swc and [oxc](https://github.com/oxc-project/oxc/issues/10048) teams to build first class support for React Compiler so you won't have to add Babel back to your build pipelines in the future.
+React Compiler chủ yếu là một Babel plugin wrapper nhẹ xung quanh compiler lõi, được thiết kế để tách biệt khỏi Babel. Mặc dù phiên bản ổn định ban đầu của compiler sẽ vẫn chủ yếu là Babel plugin, chúng tôi đang làm việc với các team swc và [oxc](https://github.com/oxc-project/oxc/issues/10048) để xây dựng hỗ trợ hạng nhất cho React Compiler để bạn không phải thêm Babel trở lại pipeline build trong tương lai.
 
-Next.js users can enable the swc-invoked React Compiler by using [v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) and up.
+Người dùng Next.js có thể bật React Compiler được gọi qua swc bằng cách sử dụng [v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) trở lên.
 
-## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
+## Tôi nên làm gì với useMemo, useCallback, và React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 
-By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or moreso, than what you may have written.
+Theo mặc định, React Compiler sẽ memoize code của bạn dựa trên phân tích và heuristic. Trong hầu hết trường hợp, memoization này sẽ chính xác, hoặc hơn, so với những gì bạn có thể viết.
 
-However, in some cases developers may need more control over memoization. The `useMemo` and `useCallback` hooks can continue to be used with React Compiler as an escape hatch to provide control over which values are memoized. A common use-case for this is if a memoized value is used as an effect dependency, in order to ensure that an effect does not fire repeatedly even when its dependencies do not meaningfully change.
+Tuy nhiên, trong một số trường hợp, developer có thể cần kiểm soát nhiều hơn đối với memoization. Hook `useMemo` và `useCallback` có thể tiếp tục được sử dụng với React Compiler như một cửa thoát để cung cấp quyền kiểm soát giá trị nào được memoize. Một trường hợp sử dụng phổ biến là nếu giá trị được memoize được sử dụng làm dependency của effect, để đảm bảo effect không chạy lại nhiều lần ngay cả khi dependency không thay đổi có ý nghĩa.
 
-For new code, we recommend relying on the compiler for memoization and using `useMemo`/`useCallback` where needed to achieve precise control.
+Đối với code mới, chúng tôi khuyên bạn nên dựa vào compiler cho memoization và sử dụng `useMemo`/`useCallback` khi cần để đạt được kiểm soát chính xác.
 
-For existing code, we recommend either leaving existing memoization in place (removing it can change compilation output) or carefully testing before removing the memoization.
+Đối với code hiện có, chúng tôi khuyên bạn nên giữ memoization hiện có (xóa nó có thể thay đổi output biên dịch) hoặc kiểm tra cẩn thận trước khi xóa memoization.
 
-## Try React Compiler {/*try-react-compiler*/}
+## Thử React Compiler {/*try-react-compiler*/}
 
-This section will help you get started with React Compiler and understand how to use it effectively in your projects.
+Phần này sẽ giúp bạn bắt đầu với React Compiler và hiểu cách sử dụng nó hiệu quả trong dự án.
 
-* **[Installation](/learn/react-compiler/installation)** - Install React Compiler and configure it for your build tools
-* **[React Version Compatibility](/reference/react-compiler/target)** - Support for React 17, 18, and 19
-* **[Configuration](/reference/react-compiler/configuration)** - Customize the compiler for your specific needs
-* **[Incremental Adoption](/learn/react-compiler/incremental-adoption)** - Strategies for gradually rolling out the compiler in existing codebases
-* **[Debugging and Troubleshooting](/learn/react-compiler/debugging)** - Identify and fix issues when using the compiler
-* **[Compiling Libraries](/reference/react-compiler/compiling-libraries)** - Best practices for shipping compiled code
-* **[API Reference](/reference/react-compiler/configuration)** - Detailed documentation of all configuration options
+* **[Cài đặt](/learn/react-compiler/installation)** - Cài đặt React Compiler và cấu hình cho công cụ build của bạn
+* **[Tương thích phiên bản React](/reference/react-compiler/target)** - Hỗ trợ React 17, 18, và 19
+* **[Cấu hình](/reference/react-compiler/configuration)** - Tùy chỉnh compiler cho nhu cầu cụ thể của bạn
+* **[Áp dụng dần dần](/learn/react-compiler/incremental-adoption)** - Chiến lược triển khai dần dần compiler trong codebase hiện có
+* **[Gỡ lỗi và xử lý sự cố](/learn/react-compiler/debugging)** - Xác định và sửa lỗi khi sử dụng compiler
+* **[Biên dịch thư viện](/reference/react-compiler/compiling-libraries)** - Thực hành tốt nhất cho việc phân phối code đã biên dịch
+* **[Tham chiếu API](/reference/react-compiler/configuration)** - Tài liệu chi tiết của tất cả tùy chọn cấu hình
 
-## Additional resources {/*additional-resources*/}
+## Tài nguyên bổ sung {/*additional-resources*/}
 
-In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
+Ngoài tài liệu này, chúng tôi khuyên bạn nên xem [React Compiler Working Group](https://github.com/reactwg/react-compiler) để biết thêm thông tin và thảo luận về compiler.
 

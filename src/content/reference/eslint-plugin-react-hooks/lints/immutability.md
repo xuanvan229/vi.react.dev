@@ -4,85 +4,85 @@ title: immutability
 
 <Intro>
 
-Validates against mutating props, state, and other values that [are immutable](/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable).
+Kiểm tra việc thay đổi props, state và các giá trị [bất biến](/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable) khác.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-A component’s props and state are immutable snapshots. Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
+Props và state của component là các snapshot bất biến. Không bao giờ thay đổi chúng trực tiếp. Thay vào đó, hãy truyền props mới xuống, và sử dụng hàm setter từ `useState`.
 
-## Common Violations {/*common-violations*/}
+## Các vi phạm phổ biến {/*common-violations*/}
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
 ```js
-// ❌ Array push mutation
+// ❌ Thay đổi mảng bằng push
 function Component() {
   const [items, setItems] = useState([1, 2, 3]);
 
   const addItem = () => {
-    items.push(4); // Mutating!
-    setItems(items); // Same reference, no re-render
+    items.push(4); // Đang thay đổi!
+    setItems(items); // Cùng tham chiếu, không re-render
   };
 }
 
-// ❌ Object property assignment
+// ❌ Gán thuộc tính object
 function Component() {
   const [user, setUser] = useState({name: 'Alice'});
 
   const updateName = () => {
-    user.name = 'Bob'; // Mutating!
-    setUser(user); // Same reference
+    user.name = 'Bob'; // Đang thay đổi!
+    setUser(user); // Cùng tham chiếu
   };
 }
 
-// ❌ Sort without spreading
+// ❌ Sort mà không spread
 function Component() {
   const [items, setItems] = useState([3, 1, 2]);
 
   const sortItems = () => {
-    setItems(items.sort()); // sort mutates!
+    setItems(items.sort()); // sort thay đổi mảng gốc!
   };
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
 ```js
-// ✅ Create new array
+// ✅ Tạo mảng mới
 function Component() {
   const [items, setItems] = useState([1, 2, 3]);
 
   const addItem = () => {
-    setItems([...items, 4]); // New array
+    setItems([...items, 4]); // Mảng mới
   };
 }
 
-// ✅ Create new object
+// ✅ Tạo object mới
 function Component() {
   const [user, setUser] = useState({name: 'Alice'});
 
   const updateName = () => {
-    setUser({...user, name: 'Bob'}); // New object
+    setUser({...user, name: 'Bob'}); // Object mới
   };
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I need to add items to an array {/*add-items-array*/}
+### Tôi cần thêm phần tử vào mảng {/*add-items-array*/}
 
-Mutating arrays with methods like `push()` won't trigger re-renders:
+Thay đổi mảng bằng các phương thức như `push()` sẽ không kích hoạt re-render:
 
 ```js
-// ❌ Wrong: Mutating the array
+// ❌ Sai: Thay đổi mảng
 function TodoList() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (id, text) => {
     todos.push({id, text});
-    setTodos(todos); // Same array reference!
+    setTodos(todos); // Cùng tham chiếu mảng!
   };
 
   return (
@@ -93,16 +93,16 @@ function TodoList() {
 }
 ```
 
-Create a new array instead:
+Tạo một mảng mới thay vì:
 
 ```js
-// ✅ Better: Create a new array
+// ✅ Tốt hơn: Tạo mảng mới
 function TodoList() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (id, text) => {
     setTodos([...todos, {id, text}]);
-    // Or: setTodos(todos => [...todos, {id: Date.now(), text}])
+    // Hoặc: setTodos(todos => [...todos, {id: Date.now(), text}])
   };
 
   return (
@@ -113,12 +113,12 @@ function TodoList() {
 }
 ```
 
-### I need to update nested objects {/*update-nested-objects*/}
+### Tôi cần cập nhật object lồng nhau {/*update-nested-objects*/}
 
-Mutating nested properties doesn't trigger re-renders:
+Thay đổi thuộc tính lồng nhau không kích hoạt re-render:
 
 ```js
-// ❌ Wrong: Mutating nested object
+// ❌ Sai: Thay đổi object lồng nhau
 function UserProfile() {
   const [user, setUser] = useState({
     name: 'Alice',
@@ -129,16 +129,16 @@ function UserProfile() {
   });
 
   const toggleTheme = () => {
-    user.settings.theme = 'dark'; // Mutation!
-    setUser(user); // Same object reference
+    user.settings.theme = 'dark'; // Thay đổi trực tiếp!
+    setUser(user); // Cùng tham chiếu object
   };
 }
 ```
 
-Spread at each level that needs updating:
+Spread ở mỗi cấp cần cập nhật:
 
 ```js
-// ✅ Better: Create new objects at each level
+// ✅ Tốt hơn: Tạo object mới ở mỗi cấp
 function UserProfile() {
   const [user, setUser] = useState({
     name: 'Alice',

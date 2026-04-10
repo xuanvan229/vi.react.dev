@@ -1,18 +1,18 @@
 ---
 title: "'use client'"
-titleForTitleTag: "'use client' directive"
+titleForTitleTag: "Directive 'use client'"
 ---
 
 <RSC>
 
-`'use client'` is for use with [React Server Components](/reference/rsc/server-components).
+`'use client'` được dùng với [React Server Components](/reference/rsc/server-components).
 
 </RSC>
 
 
 <Intro>
 
-`'use client'` lets you mark what code runs on the client.
+`'use client'` cho phép bạn đánh dấu code nào chạy trên client.
 
 </Intro>
 
@@ -20,11 +20,11 @@ titleForTitleTag: "'use client' directive"
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `'use client'` {/*use-client*/}
 
-Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
+Thêm `'use client'` vào đầu file để đánh dấu module đó và các dependency bắc cầu của nó là code client.
 
 ```js {1}
 'use client';
@@ -41,26 +41,26 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/creating-a-react-app#full-stack-frameworks) will treat the module import as a boundary between server-run and client-run code.
+Khi một file được đánh dấu bằng `'use client'` được import từ Server Component, [các bundler tương thích](/learn/creating-a-react-app#full-stack-frameworks) sẽ coi việc import module đó như một ranh giới giữa code chạy trên server và code chạy trên client.
 
-As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be evaluated on the client regardless of whether their modules contain a `'use client'` directive. Note that a single module may be evaluated on the server when imported from server code and on the client when imported from client code.
+Là các dependency của `RichTextEditor`, `formatDate` và `Button` cũng sẽ được đánh giá trên client bất kể module của chúng có chứa directive `'use client'` hay không. Lưu ý rằng một module duy nhất có thể được đánh giá trên server khi được import từ code server và trên client khi được import từ code client.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
-* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
-* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
-	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
-* Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
-* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
+* `'use client'` phải nằm ở đầu file, trước bất kỳ import hoặc code nào khác (comment thì được). Chúng phải được viết bằng dấu nháy đơn hoặc đôi, nhưng không phải dấu backtick.
+* Khi một module `'use client'` được import từ một module được render trên client khác, directive đó không có tác dụng.
+* Khi một module component chứa directive `'use client'`, mọi cách sử dụng component đó đều được đảm bảo là Client Component. Tuy nhiên, một component vẫn có thể được đánh giá trên client ngay cả khi không có directive `'use client'`.
+	* Một cách sử dụng component được coi là Client Component nếu nó được định nghĩa trong module có directive `'use client'` hoặc khi nó là một dependency bắc cầu của một module chứa directive `'use client'`. Nếu không, nó là một Server Component.
+* Code được đánh dấu để đánh giá trên client không chỉ giới hạn ở các component. Tất cả code là một phần của cây con module Client đều được gửi đến và chạy bởi client.
+* Khi một module được đánh giá trên server import các giá trị từ một module `'use client'`, các giá trị đó phải là một React component hoặc [các giá trị prop có thể serialize được hỗ trợ](#passing-props-from-server-to-client-components) để truyền cho Client Component. Bất kỳ trường hợp sử dụng nào khác sẽ throw một exception.
 
-### How `'use client'` marks client code {/*how-use-client-marks-client-code*/}
+### Cách `'use client'` đánh dấu code client {/*how-use-client-marks-client-code*/}
 
-In a React app, components are often split into separate files, or [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
+Trong ứng dụng React, các component thường được tách thành các file riêng biệt, hay còn gọi là [module](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
 
-For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a subtree of Client modules.
+Đối với các ứng dụng sử dụng React Server Components, ứng dụng được server-render theo mặc định. `'use client'` giới thiệu một ranh giới server-client trong [cây dependency module](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), hiệu quả tạo ra một cây con của các module Client.
 
-To better illustrate this, consider the following React Server Components app.
+Để minh họa rõ hơn, hãy xem xét ứng dụng React Server Components sau đây.
 
 <Sandpack>
 
@@ -121,7 +121,7 @@ export default function Copyright({year}) {
 
 ```js src/inspirations.js
 export default [
-  "Don’t let yesterday take up too much of today.” — Will Rogers",
+  "Don't let yesterday take up too much of today." — Will Rogers",
   "Ambition is putting a ladder against the sky.",
   "A joy that's shared is a joy made double.",
 ];
@@ -145,144 +145,144 @@ export default [
 
 </Sandpack>
 
-In the module dependency tree of this example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as Client modules. The subtree starting at `InspirationGenerator.js` is now marked as Client modules.
+Trong cây dependency module của ứng dụng ví dụ này, directive `'use client'` trong `InspirationGenerator.js` đánh dấu module đó và tất cả các dependency bắc cầu của nó là các module Client. Cây con bắt đầu tại `InspirationGenerator.js` hiện được đánh dấu là các module Client.
 
-<Diagram name="use_client_module_dependency" height={250} width={545} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'.">
-`'use client'` segments the module dependency tree of the React Server Components app, marking `InspirationGenerator.js` and all of its dependencies as client-rendered.
+<Diagram name="use_client_module_dependency" height={250} width={545} alt="Đồ thị cây với nút trên cùng đại diện cho module 'App.js'. 'App.js' có ba nút con: 'Copyright.js', 'FancyText.js', và 'InspirationGenerator.js'. 'InspirationGenerator.js' có hai nút con: 'FancyText.js' và 'inspirations.js'. Các nút bên dưới và bao gồm 'InspirationGenerator.js' có màu nền vàng để biểu thị rằng đồ thị con này được render trên client do directive 'use client' trong 'InspirationGenerator.js'.">
+`'use client'` phân đoạn cây dependency module của ứng dụng React Server Components, đánh dấu `InspirationGenerator.js` và tất cả các dependency của nó là được render trên client.
 </Diagram>
 
-During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
+Trong quá trình render, framework sẽ server-render component gốc và tiếp tục qua [cây render](/learn/understanding-your-ui-as-a-tree#the-render-tree), không đánh giá bất kỳ code nào được import từ code được đánh dấu client.
 
-The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
+Phần được server-render của cây render sau đó được gửi đến client. Client, với code client đã được tải xuống, sau đó hoàn thành việc render phần còn lại của cây.
 
-<Diagram name="use_client_render_tree" height={250} width={500} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">
-The render tree for the React Server Components app. `InspirationGenerator` and its child component `FancyText` are components exported from client-marked code and considered Client Components.
+<Diagram name="use_client_render_tree" height={250} width={500} alt="Đồ thị cây trong đó mỗi nút đại diện cho một component và các nút con của nó là các component con. Nút cấp cao nhất được gán nhãn 'App' và có hai component con 'InspirationGenerator' và 'FancyText'. 'InspirationGenerator' có hai component con, 'FancyText' và 'Copyright'. Cả 'InspirationGenerator' và component con 'FancyText' của nó đều được đánh dấu để render trên client.">
+Cây render cho ứng dụng React Server Components. `InspirationGenerator` và component con `FancyText` của nó là các component được xuất từ code được đánh dấu client và được coi là Client Components.
 </Diagram>
 
-We introduce the following definitions:
+Chúng tôi giới thiệu các định nghĩa sau:
 
-* **Client Components** are components in a render tree that are rendered on the client.
-* **Server Components** are components in a render tree that are rendered on the server.
+* **Client Components** là các component trong cây render được render trên client.
+* **Server Components** là các component trong cây render được render trên server.
 
-Working through the example app, `App`, `FancyText` and `Copyright` are all server-rendered and considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component `InspirationGenerator` and its child component `FancyText` are Client Components.
+Làm việc qua ứng dụng ví dụ, `App`, `FancyText` và `Copyright` đều được server-render và được coi là Server Components. Vì `InspirationGenerator.js` và các dependency bắc cầu của nó được đánh dấu là code client, component `InspirationGenerator` và component con `FancyText` của nó là Client Components.
 
 <DeepDive>
-#### How is `FancyText` both a Server and a Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
+#### Làm thế nào `FancyText` vừa là Server Component vừa là Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
 
-By the above definitions, the component `FancyText` is both a Server and Client Component, how can that be?
+Theo các định nghĩa trên, component `FancyText` vừa là Server vừa là Client Component, điều này có thể xảy ra như thế nào?
 
-First, let's clarify that the term "component" is not very precise. Here are just two ways "component" can be understood:
+Trước tiên, hãy làm rõ rằng thuật ngữ "component" không chính xác lắm. Đây chỉ là hai cách hiểu về "component":
 
-1. A "component" can refer to a **component definition**. In most cases this will be a function.
+1. Một "component" có thể chỉ đến một **định nghĩa component**. Trong hầu hết các trường hợp đây sẽ là một hàm.
 
 ```js
-// This is a definition of a component
+// Đây là định nghĩa của một component
 function MyComponent() {
   return <p>My Component</p>
 }
 ```
 
-2. A "component" can also refer to a **component usage** of its definition.
+2. Một "component" cũng có thể chỉ đến **cách sử dụng component** của định nghĩa đó.
 ```js
 import MyComponent from './MyComponent';
 
 function App() {
-  // This is a usage of a component
+  // Đây là cách sử dụng một component
   return <MyComponent />;
 }
 ```
 
-Often, the imprecision is not important when explaining concepts, but in this case it is.
+Thường thì sự không chính xác không quan trọng khi giải thích các khái niệm, nhưng trong trường hợp này thì có.
 
-When we talk about Server or Client Components, we are referring to component usages.
+Khi chúng ta nói về Server hoặc Client Components, chúng ta đang đề cập đến cách sử dụng component.
 
-* If the component is defined in a module with a `'use client'` directive, or the component is imported and called in a Client Component, then the component usage is a Client Component.
-* Otherwise, the component usage is a Server Component.
+* Nếu component được định nghĩa trong một module có directive `'use client'`, hoặc component được import và gọi trong một Client Component, thì cách sử dụng component đó là Client Component.
+* Nếu không, cách sử dụng component đó là Server Component.
 
 
-<Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">A render tree illustrates component usages.</Diagram>
+<Diagram name="use_client_render_tree" height={150} width={450} alt="Đồ thị cây trong đó mỗi nút đại diện cho một component và các nút con của nó là các component con. Nút cấp cao nhất được gán nhãn 'App' và có hai component con 'InspirationGenerator' và 'FancyText'. 'InspirationGenerator' có hai component con, 'FancyText' và 'Copyright'. Cả 'InspirationGenerator' và component con 'FancyText' của nó đều được đánh dấu để render trên client.">Cây render minh họa các cách sử dụng component.</Diagram>
 
-Back to the question of `FancyText`, we see that the component definition does _not_ have a `'use client'` directive and it has two usages.
+Trở lại câu hỏi về `FancyText`, chúng ta thấy rằng định nghĩa component _không_ có directive `'use client'` và nó có hai cách sử dụng.
 
-The usage of `FancyText` as a child of `App`, marks that usage as a Server Component. When `FancyText` is imported and called under `InspirationGenerator`, that usage of `FancyText` is a Client Component as `InspirationGenerator` contains a `'use client'` directive.
+Cách sử dụng `FancyText` như một con của `App`, đánh dấu cách sử dụng đó là Server Component. Khi `FancyText` được import và gọi dưới `InspirationGenerator`, cách sử dụng `FancyText` đó là Client Component vì `InspirationGenerator` chứa directive `'use client'`.
 
-This means that the component definition for `FancyText` will both be evaluated on the server and also downloaded by the client to render its Client Component usage.
+Điều này có nghĩa là định nghĩa component cho `FancyText` sẽ vừa được đánh giá trên server vừa được tải xuống bởi client để render cách sử dụng Client Component của nó.
 
 </DeepDive>
 
 <DeepDive>
 
-#### Why is `Copyright` a Server Component? {/*why-is-copyright-a-server-component*/}
+#### Tại sao `Copyright` là Server Component? {/*why-is-copyright-a-server-component*/}
 
-Because `Copyright` is rendered as a child of the Client Component `InspirationGenerator`, you might be surprised that it is a Server Component.
+Vì `Copyright` được render như một con của Client Component `InspirationGenerator`, bạn có thể ngạc nhiên rằng nó là Server Component.
 
-Recall that `'use client'` defines the boundary between server and client code on the _module dependency tree_, not the render tree.
+Nhớ lại rằng `'use client'` định nghĩa ranh giới giữa code server và client trên _cây dependency module_, không phải cây render.
 
-<Diagram name="use_client_module_dependency" height={200} width={500} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'.">
-`'use client'` defines the boundary between server and client code on the module dependency tree.
+<Diagram name="use_client_module_dependency" height={200} width={500} alt="Đồ thị cây với nút trên cùng đại diện cho module 'App.js'. 'App.js' có ba nút con: 'Copyright.js', 'FancyText.js', và 'InspirationGenerator.js'. 'InspirationGenerator.js' có hai nút con: 'FancyText.js' và 'inspirations.js'. Các nút bên dưới và bao gồm 'InspirationGenerator.js' có màu nền vàng để biểu thị rằng đồ thị con này được render trên client do directive 'use client' trong 'InspirationGenerator.js'.">
+`'use client'` định nghĩa ranh giới giữa code server và client trên cây dependency module.
 </Diagram>
 
-In the module dependency tree, we see that `App.js` imports and calls `Copyright` from the `Copyright.js` module. As `Copyright.js` does not contain a `'use client'` directive, the component usage is rendered on the server. `App` is rendered on the server as it is the root component.
+Trong cây dependency module, chúng ta thấy rằng `App.js` import và gọi `Copyright` từ module `Copyright.js`. Vì `Copyright.js` không chứa directive `'use client'`, cách sử dụng component được render trên server. `App` được render trên server vì nó là component gốc.
 
-Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` receives `Copyright` as [children](/learn/passing-props-to-a-component#passing-jsx-as-children). However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`. In fact, the `Copyright` component is fully executed before `InspirationGenerator` starts rendering.
+Client Components có thể render Server Components vì bạn có thể truyền JSX như props. Trong trường hợp này, `InspirationGenerator` nhận `Copyright` như [children](/learn/passing-props-to-a-component#passing-jsx-as-children). Tuy nhiên, module `InspirationGenerator` không bao giờ trực tiếp import module `Copyright` hay gọi component đó, tất cả điều đó được thực hiện bởi `App`. Trên thực tế, component `Copyright` được thực thi hoàn toàn trước khi `InspirationGenerator` bắt đầu render.
 
-The takeaway is that a parent-child render relationship between components does not guarantee the same render environment.
+Bài học là mối quan hệ render cha-con giữa các component không đảm bảo cùng môi trường render.
 
 </DeepDive>
 
-### When to use `'use client'` {/*when-to-use-use-client*/}
+### Khi nào sử dụng `'use client'` {/*when-to-use-use-client*/}
 
-With `'use client'`, you can determine when components are Client Components. As Server Components are default, here is a brief overview of the advantages and limitations to Server Components to determine when you need to mark something as client rendered.
+Với `'use client'`, bạn có thể xác định khi nào các component là Client Components. Vì Server Components là mặc định, đây là tổng quan ngắn gọn về các ưu điểm và hạn chế của Server Components để xác định khi nào bạn cần đánh dấu thứ gì đó là được render trên client.
 
-For simplicity, we talk about Server Components, but the same principles apply to all code in your app that is server run.
+Để đơn giản, chúng tôi nói về Server Components, nhưng các nguyên tắc tương tự áp dụng cho tất cả code trong ứng dụng của bạn được chạy trên server.
 
-#### Advantages of Server Components {/*advantages*/}
-* Server Components can reduce the amount of code sent and run by the client. Only Client modules are bundled and evaluated by the client.
-* Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
+#### Ưu điểm của Server Components {/*advantages*/}
+* Server Components có thể giảm lượng code được gửi và chạy bởi client. Chỉ các module Client được đóng gói và đánh giá bởi client.
+* Server Components được hưởng lợi từ việc chạy trên server. Chúng có thể truy cập hệ thống tệp cục bộ và có thể trải nghiệm độ trễ thấp cho việc fetch dữ liệu và các network request.
 
-#### Limitations of Server Components {/*limitations*/}
-* Server Components cannot support interaction as event handlers must be registered and triggered by a client.
-	* For example, event handlers like `onClick` can only be defined in Client Components.
-* Server Components cannot use most Hooks.
-	* When Server Components are rendered, their output is essentially a list of components for the client to render. Server Components do not persist in memory after render and cannot have their own state.
+#### Hạn chế của Server Components {/*limitations*/}
+* Server Components không thể hỗ trợ tương tác vì event handlers phải được đăng ký và kích hoạt bởi client.
+	* Ví dụ, event handlers như `onClick` chỉ có thể được định nghĩa trong Client Components.
+* Server Components không thể sử dụng hầu hết các Hooks.
+	* Khi Server Components được render, đầu ra của chúng về cơ bản là một danh sách các component để client render. Server Components không tồn tại trong bộ nhớ sau khi render và không thể có state riêng.
 
-### Serializable types returned by Server Components {/*serializable-types*/}
+### Các kiểu có thể serialize được trả về bởi Server Components {/*serializable-types*/}
 
-As in any React app, parent components pass data to child components. As they are rendered in different environments, passing data from a Server Component to a Client Component requires extra consideration.
+Như trong bất kỳ ứng dụng React nào, các component cha truyền dữ liệu cho các component con. Vì chúng được render trong các môi trường khác nhau, việc truyền dữ liệu từ Server Component sang Client Component đòi hỏi sự cân nhắc thêm.
 
-Prop values passed from a Server Component to Client Component must be serializable.
+Các giá trị prop được truyền từ Server Component sang Client Component phải có thể serialize được.
 
-Serializable props include:
-* Primitives
+Các prop có thể serialize bao gồm:
+* Kiểu nguyên thủy
 	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
 	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
 	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
 	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
 	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
-* Iterables containing serializable values
+	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), chỉ các symbol được đăng ký trong Symbol registry toàn cục thông qua [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Các iterable chứa các giá trị có thể serialize
 	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) và [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Functions](/reference/rsc/server-functions)
-* Client or Server Component elements (JSX)
+* [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) thuần túy: những object được tạo bằng [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), với các thuộc tính có thể serialize
+* Các hàm là [Server Functions](/reference/rsc/server-functions)
+* Các phần tử Client hoặc Server Component (JSX)
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-Notably, these are not supported:
-* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with [`'use server'`](/reference/rsc/use-server)
+Đặc biệt, những thứ này không được hỗ trợ:
+* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) không được xuất từ các module được đánh dấu client hoặc được đánh dấu bằng [`'use server'`](/reference/rsc/use-server)
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
-* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
-* Symbols not registered globally, ex. `Symbol('my new symbol')`
+* Object là các instance của bất kỳ class nào (ngoài các built-in được đề cập) hoặc object có [prototype null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Các symbol không được đăng ký toàn cục, ví dụ `Symbol('my new symbol')`
 
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Building with interactivity and state {/*building-with-interactivity-and-state*/}
+### Xây dựng với tính tương tác và state {/*building-with-interactivity-and-state*/}
 
 <Sandpack>
 
@@ -307,9 +307,9 @@ export default function Counter({initialValue = 0}) {
 
 </Sandpack>
 
-As `Counter` requires both the `useState` Hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
+Vì `Counter` cần cả Hook `useState` lẫn event handlers để tăng hoặc giảm giá trị, component này phải là Client Component và sẽ yêu cầu directive `'use client'` ở đầu.
 
-In contrast, a component that renders UI without interaction will not need to be a Client Component.
+Ngược lại, một component render UI mà không có tương tác sẽ không cần là Client Component.
 
 ```js
 import { readFile } from 'node:fs/promises';
@@ -321,9 +321,9 @@ export default async function CounterContainer() {
 }
 ```
 
-For example, `Counter`'s parent component, `CounterContainer`, does not require `'use client'` as it is not interactive and does not use state. In addition, `CounterContainer` must be a Server Component as it reads from the local file system on the server, which is possible only in a Server Component.
+Ví dụ, component cha của `Counter`, `CounterContainer`, không yêu cầu `'use client'` vì nó không có tương tác và không sử dụng state. Ngoài ra, `CounterContainer` phải là Server Component vì nó đọc từ hệ thống tệp cục bộ trên server, điều này chỉ có thể thực hiện trong Server Component.
 
-There are also components that don't use any server or client-only features and can be agnostic to where they render. In our earlier example, `FancyText` is one such component.
+Ngoài ra còn có các component không sử dụng bất kỳ tính năng chỉ dành cho server hoặc client nào và có thể không phân biệt nơi chúng render. Trong ví dụ trước của chúng tôi, `FancyText` là một component như vậy.
 
 ```js
 export default function FancyText({title, text}) {
@@ -333,15 +333,15 @@ export default function FancyText({title, text}) {
 }
 ```
 
-In this case, we don't add the `'use client'` directive, resulting in `FancyText`'s _output_ (rather than its source code) to be sent to the browser when referenced from a Server Component. As demonstrated in the earlier Inspirations app example, `FancyText` is used as both a Server or Client Component, depending on where it is imported and used.
+Trong trường hợp này, chúng tôi không thêm directive `'use client'`, dẫn đến _đầu ra_ của `FancyText` (thay vì source code của nó) được gửi đến trình duyệt khi được tham chiếu từ Server Component. Như được minh họa trong ví dụ ứng dụng Inspirations trước đó, `FancyText` được sử dụng như cả Server Component lẫn Client Component, tùy thuộc vào nơi nó được import và sử dụng.
 
-But if `FancyText`'s HTML output was large relative to its source code (including dependencies), it might be more efficient to force it to always be a Client Component. Components that return a long SVG path string are one case where it may be more efficient to force a component to be a Client Component.
+Nhưng nếu đầu ra HTML của `FancyText` lớn so với source code của nó (bao gồm các dependency), có thể hiệu quả hơn khi buộc nó luôn là Client Component. Các component trả về một chuỗi SVG path dài là một trường hợp có thể hiệu quả hơn khi buộc component là Client Component.
 
-### Using client APIs {/*using-client-apis*/}
+### Sử dụng client APIs {/*using-client-apis*/}
 
-Your React app may use client-specific APIs, such as the browser's APIs for web storage, audio and video manipulation, and device hardware, among [others](https://developer.mozilla.org/en-US/docs/Web/API).
+Ứng dụng React của bạn có thể sử dụng các API dành riêng cho client, chẳng hạn như các API của trình duyệt cho web storage, thao tác audio và video, và phần cứng thiết bị, trong số [những thứ khác](https://developer.mozilla.org/en-US/docs/Web/API).
 
-In this example, the component uses [DOM APIs](https://developer.mozilla.org/en-US/docs/Glossary/DOM) to manipulate a [`canvas`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element. Since those APIs are only available in the browser, it must be marked as a Client Component.
+Trong ví dụ này, component sử dụng [DOM APIs](https://developer.mozilla.org/en-US/docs/Glossary/DOM) để thao tác phần tử [`canvas`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). Vì những API đó chỉ có sẵn trong trình duyệt, nó phải được đánh dấu là Client Component.
 
 ```js
 'use client';
@@ -362,18 +362,18 @@ export default function Circle() {
 }
 ```
 
-### Using third-party libraries {/*using-third-party-libraries*/}
+### Sử dụng thư viện bên thứ ba {/*using-third-party-libraries*/}
 
-Often in a React app, you'll leverage third-party libraries to handle common UI patterns or logic.
+Thông thường trong ứng dụng React, bạn sẽ tận dụng các thư viện bên thứ ba để xử lý các pattern UI hoặc logic phổ biến.
 
-These libraries may rely on component Hooks or client APIs. Third-party components that use any of the following React APIs must run on the client:
+Những thư viện này có thể dựa vào component Hooks hoặc client APIs. Các component bên thứ ba sử dụng bất kỳ API React nào sau đây phải chạy trên client:
 * [createContext](/reference/react/createContext)
-* [`react`](/reference/react/hooks) and [`react-dom`](/reference/react-dom/hooks) Hooks, excluding [`use`](/reference/react/use) and [`useId`](/reference/react/useId)
+* [`react`](/reference/react/hooks) và [`react-dom`](/reference/react-dom/hooks) Hooks, ngoại trừ [`use`](/reference/react/use) và [`useId`](/reference/react/useId)
 * [forwardRef](/reference/react/forwardRef)
 * [memo](/reference/react/memo)
 * [startTransition](/reference/react/startTransition)
-* If they use client APIs, ex. DOM insertion or native platform views
+* Nếu chúng sử dụng client APIs, ví dụ chèn DOM hoặc native platform views
 
-If these libraries have been updated to be compatible with React Server Components, then they will already include `'use client'` markers of their own, allowing you to use them directly from your Server Components. If a library hasn't been updated, or if a component needs props like event handlers that can only be specified on the client, you may need to add your own Client Component file in between the third-party Client Component and your Server Component where you'd like to use it.
+Nếu những thư viện này đã được cập nhật để tương thích với React Server Components, thì chúng sẽ đã bao gồm các marker `'use client'` của riêng chúng, cho phép bạn sử dụng chúng trực tiếp từ Server Components của bạn. Nếu một thư viện chưa được cập nhật, hoặc nếu một component cần props như event handlers chỉ có thể được chỉ định trên client, bạn có thể cần thêm file Client Component của riêng mình giữa Client Component bên thứ ba và Server Component nơi bạn muốn sử dụng nó.
 
 [TODO]: <> (Troubleshooting - need use-cases)

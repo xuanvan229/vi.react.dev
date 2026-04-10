@@ -4,7 +4,7 @@ title: <Profiler>
 
 <Intro>
 
-`<Profiler>` lets you measure rendering performance of a React tree programmatically.
+`<Profiler>` cho phép bạn đo hiệu suất render của một cây React theo chương trình.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -18,11 +18,11 @@ title: <Profiler>
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `<Profiler>` {/*profiler*/}
 
-Wrap a component tree in a `<Profiler>` to measure its rendering performance.
+Bọc một cây component trong `<Profiler>` để đo hiệu suất render của nó.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -32,41 +32,41 @@ Wrap a component tree in a `<Profiler>` to measure its rendering performance.
 
 #### Props {/*props*/}
 
-* `id`: A string identifying the part of the UI you are measuring.
-* `onRender`: An [`onRender` callback](#onrender-callback) that React calls every time components within the profiled tree update. It receives information about what was rendered and how much time it took.
+* `id`: Một chuỗi xác định phần UI mà bạn đang đo.
+* `onRender`: Một [`onRender` callback](#onrender-callback) mà React gọi mỗi khi các component trong cây được profiled cập nhật. Nó nhận thông tin về những gì đã được render và mất bao lâu.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
+* Profiling thêm một số overhead bổ sung, vì vậy **nó bị vô hiệu hóa trong bản build production theo mặc định.** Để bật profiling production, bạn cần kích hoạt một [bản build production đặc biệt có bật profiling.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
 
 ---
 
 ### `onRender` callback {/*onrender-callback*/}
 
-React will call your `onRender` callback with information about what was rendered.
+React sẽ gọi `onRender` callback của bạn với thông tin về những gì đã được render.
 
 ```js
 function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
-  // Aggregate or log render timings...
+  // Tổng hợp hoặc ghi log thời gian render...
 }
 ```
 
-#### Parameters {/*onrender-parameters*/}
+#### Tham số {/*onrender-parameters*/}
 
-* `id`: The string `id` prop of the `<Profiler>` tree that has just committed. This lets you identify which part of the tree was committed if you are using multiple profilers.
-* `phase`: `"mount"`, `"update"` or `"nested-update"`. This lets you know whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or Hooks.
-* `actualDuration`: The number of milliseconds spent rendering the `<Profiler>` and its descendants for the current update. This indicates how well the subtree makes use of memoization (e.g. [`memo`](/reference/react/memo) and [`useMemo`](/reference/react/useMemo)). Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
-* `baseDuration`: The number of milliseconds estimating how much time it would take to re-render the entire `<Profiler>` subtree without any optimizations. It is calculated by summing up the most recent render durations of each component in the tree. This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization). Compare `actualDuration` against it to see if memoization is working.
-* `startTime`: A numeric timestamp for when React began rendering the current update.
-* `commitTime`: A numeric timestamp for when React committed the current update. This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
+* `id`: Prop `id` kiểu chuỗi của cây `<Profiler>` vừa commit. Điều này cho phép bạn xác định phần nào của cây đã được commit nếu bạn sử dụng nhiều profiler.
+* `phase`: `"mount"`, `"update"` hoặc `"nested-update"`. Điều này cho bạn biết cây vừa được mount lần đầu hay re-render do thay đổi props, state, hoặc Hooks.
+* `actualDuration`: Số mili giây dành cho việc render `<Profiler>` và các con của nó cho lần cập nhật hiện tại. Điều này cho biết cây con sử dụng memoization tốt đến mức nào (ví dụ [`memo`](/reference/react/memo) và [`useMemo`](/reference/react/useMemo)). Lý tưởng, giá trị này nên giảm đáng kể sau lần mount đầu tiên vì nhiều con chỉ cần re-render nếu props cụ thể của chúng thay đổi.
+* `baseDuration`: Số mili giây ước tính thời gian cần để re-render toàn bộ cây con `<Profiler>` mà không có bất kỳ tối ưu nào. Nó được tính bằng cách cộng thời gian render gần nhất của mỗi component trong cây. Giá trị này ước tính chi phí render trong trường hợp xấu nhất (ví dụ lần mount đầu tiên hoặc cây không có memoization). So sánh `actualDuration` với nó để xem memoization có hoạt động không.
+* `startTime`: Một timestamp số cho thời điểm React bắt đầu render lần cập nhật hiện tại.
+* `commitTime`: Một timestamp số cho thời điểm React commit lần cập nhật hiện tại. Giá trị này được chia sẻ giữa tất cả các profiler trong một commit, cho phép nhóm chúng lại nếu cần.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Measuring rendering performance programmatically {/*measuring-rendering-performance-programmatically*/}
+### Đo hiệu suất render theo chương trình {/*measuring-rendering-performance-programmatically*/}
 
-Wrap the `<Profiler>` component around a React tree to measure its rendering performance.
+Bọc component `<Profiler>` quanh một cây React để đo hiệu suất render của nó.
 
 ```js {2,4}
 <App>
@@ -77,28 +77,28 @@ Wrap the `<Profiler>` component around a React tree to measure its rendering per
 </App>
 ```
 
-It requires two props: an `id` (string) and an `onRender` callback (function) which React calls any time a component within the tree "commits" an update.
+Nó yêu cầu hai props: một `id` (chuỗi) và một `onRender` callback (hàm) mà React gọi bất cứ khi nào một component trong cây "commit" một cập nhật.
 
 <Pitfall>
 
-Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
+Profiling thêm một số overhead bổ sung, vì vậy **nó bị vô hiệu hóa trong bản build production theo mặc định.** Để bật profiling production, bạn cần kích hoạt một [bản build production đặc biệt có bật profiling.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
 
 </Pitfall>
 
 <Note>
 
-`<Profiler>` lets you gather measurements programmatically. If you're looking for an interactive profiler, try the Profiler tab in [React Developer Tools](/learn/react-developer-tools). It exposes similar functionality as a browser extension.
+`<Profiler>` cho phép bạn thu thập các phép đo theo chương trình. Nếu bạn đang tìm một profiler tương tác, hãy thử tab Profiler trong [React Developer Tools](/learn/react-developer-tools). Nó cung cấp chức năng tương tự dưới dạng extension trình duyệt.
 
-Components wrapped in `<Profiler>` will also be marked in the [Component tracks](/reference/dev-tools/react-performance-tracks#components) of React Performance tracks even in profiling builds.
-In development builds, all components are marked in the Components track regardless of whether they're wrapped in `<Profiler>`.
+Các component được bọc trong `<Profiler>` cũng sẽ được đánh dấu trong [Component tracks](/reference/dev-tools/react-performance-tracks#components) của React Performance tracks ngay cả trong bản build profiling.
+Trong bản build development, tất cả các component đều được đánh dấu trong Component tracks bất kể chúng có được bọc trong `<Profiler>` hay không.
 
 </Note>
 
 ---
 
-### Measuring different parts of the application {/*measuring-different-parts-of-the-application*/}
+### Đo các phần khác nhau của ứng dụng {/*measuring-different-parts-of-the-application*/}
 
-You can use multiple `<Profiler>` components to measure different parts of your application:
+Bạn có thể sử dụng nhiều component `<Profiler>` để đo các phần khác nhau của ứng dụng:
 
 ```js {5,7}
 <App>
@@ -111,7 +111,7 @@ You can use multiple `<Profiler>` components to measure different parts of your 
 </App>
 ```
 
-You can also nest `<Profiler>` components:
+Bạn cũng có thể lồng các component `<Profiler>`:
 
 ```js {5,7,9,12}
 <App>
@@ -129,7 +129,6 @@ You can also nest `<Profiler>` components:
 </App>
 ```
 
-Although `<Profiler>` is a lightweight component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.
+Mặc dù `<Profiler>` là một component nhẹ, nó chỉ nên được sử dụng khi cần thiết. Mỗi lần sử dụng thêm một chút overhead CPU và bộ nhớ cho ứng dụng.
 
 ---
-

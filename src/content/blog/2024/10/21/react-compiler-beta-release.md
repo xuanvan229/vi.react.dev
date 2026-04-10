@@ -2,7 +2,7 @@
 title: "React Compiler Beta Release"
 author: Lauren Tan
 date: 2024/10/21
-description: At React Conf 2024, we announced the experimental release of React Compiler, a build-time tool that optimizes your React app through automatic memoization. In this post, we want to share what's next for open source, and our progress on the compiler.
+description: Tại React Conf 2024, chúng tôi đã công bố bản phát hành thử nghiệm của React Compiler, một công cụ build-time tối ưu hóa ứng dụng React của bạn thông qua memoization tự động. Trong bài viết này, chúng tôi muốn chia sẻ những gì tiếp theo cho mã nguồn mở và tiến trình của chúng tôi trên compiler.
 
 ---
 
@@ -12,123 +12,123 @@ October 21, 2024 by [Lauren Tan](https://twitter.com/potetotes).
 
 <Note>
 
-### React Compiler is now stable! {/*react-compiler-is-now-in-rc*/}
+### React Compiler hiện đã ổn định! {/*react-compiler-is-now-in-rc*/}
 
-Please see the [stable release blog post](/blog/2025/10/07/react-compiler-1) for details.
+Vui lòng xem [bài viết phát hành ổn định](/blog/2025/10/07/react-compiler-1) để biết chi tiết.
 
 </Note>
 
 <Intro>
 
-The React team is excited to share new updates:
+Nhóm React hào hứng chia sẻ các cập nhật mới:
 
 </Intro>
 
-1. We're publishing React Compiler Beta today, so that early adopters and library maintainers can try it and provide feedback.
-2. We're officially supporting React Compiler for apps on React 17+, through an optional `react-compiler-runtime` package.
-3. We're opening up public membership of the [React Compiler Working Group](https://github.com/reactwg/react-compiler) to prepare the community for gradual adoption of the compiler.
+1. Chúng tôi đang phát hành React Compiler Beta hôm nay, để những người áp dụng sớm và người bảo trì thư viện có thể thử và cung cấp phản hồi.
+2. Chúng tôi chính thức hỗ trợ React Compiler cho các ứng dụng trên React 17+, thông qua gói tùy chọn `react-compiler-runtime`.
+3. Chúng tôi đang mở rộng tư cách thành viên công khai của [React Compiler Working Group](https://github.com/reactwg/react-compiler) để chuẩn bị cộng đồng cho việc áp dụng compiler dần dần.
 
 ---
 
-At [React Conf 2024](/blog/2024/05/22/react-conf-2024-recap), we announced the experimental release of React Compiler, a build-time tool that optimizes your React app through automatic memoization. [You can find an introduction to React Compiler here](/learn/react-compiler).
+Tại [React Conf 2024](/blog/2024/05/22/react-conf-2024-recap), chúng tôi đã công bố bản phát hành thử nghiệm của React Compiler, một công cụ build-time tối ưu hóa ứng dụng React của bạn thông qua memoization tự động. [Bạn có thể tìm thấy phần giới thiệu về React Compiler tại đây](/learn/react-compiler).
 
-Since the first release, we've fixed numerous bugs reported by the React community, received several high quality bug fixes and contributions[^1] to the compiler, made the compiler more resilient to the broad diversity of JavaScript patterns, and have continued to roll out the compiler more widely at Meta.
+Kể từ lần phát hành đầu tiên, chúng tôi đã sửa nhiều lỗi được báo cáo bởi cộng đồng React, nhận được một số bản sửa lỗi và đóng góp[^1] chất lượng cao cho compiler, làm cho compiler trở nên linh hoạt hơn với sự đa dạng rộng lớn của các mẫu JavaScript, và tiếp tục triển khai compiler rộng rãi hơn tại Meta.
 
-In this post, we want to share what's next for React Compiler.
+Trong bài viết này, chúng tôi muốn chia sẻ những gì tiếp theo cho React Compiler.
 
-## Try React Compiler Beta today {/*try-react-compiler-beta-today*/}
+## Thử React Compiler Beta ngay hôm nay {/*try-react-compiler-beta-today*/}
 
-At [React India 2024](https://www.youtube.com/watch?v=qd5yk2gxbtg), we shared an update on React Compiler. Today, we are excited to announce a new Beta release of React Compiler and ESLint plugin. New betas are published to npm using the `@beta` tag.
+Tại [React India 2024](https://www.youtube.com/watch?v=qd5yk2gxbtg), chúng tôi đã chia sẻ cập nhật về React Compiler. Hôm nay, chúng tôi hào hứng công bố bản phát hành Beta mới của React Compiler và plugin ESLint. Các bản beta mới được xuất bản lên npm sử dụng tag `@beta`.
 
-To install React Compiler Beta:
+Để cài đặt React Compiler Beta:
 
 <TerminalBlock>
 npm install -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
-Or, if you're using Yarn:
+Hoặc, nếu bạn đang dùng Yarn:
 
 <TerminalBlock>
 yarn add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
-You can watch [Sathya Gunasekaran's](https://twitter.com/_gsathya) talk at React India here:
+Bạn có thể xem bài nói của [Sathya Gunasekaran](https://twitter.com/_gsathya) tại React India tại đây:
 
 <YouTubeIframe src="https://www.youtube.com/embed/qd5yk2gxbtg" />
 
-## We recommend everyone use the React Compiler linter today {/*we-recommend-everyone-use-the-react-compiler-linter-today*/}
+## Chúng tôi khuyến nghị tất cả mọi người dùng React Compiler linter ngay hôm nay {/*we-recommend-everyone-use-the-react-compiler-linter-today*/}
 
-React Compiler’s ESLint plugin helps developers proactively identify and correct [Rules of React](/reference/rules) violations. **We strongly recommend everyone use the linter today**. The linter does not require that you have the compiler installed, so you can use it independently, even if you are not ready to try out the compiler.
+Plugin ESLint của React Compiler giúp các nhà phát triển chủ động xác định và sửa các vi phạm [Rules of React](/reference/rules). **Chúng tôi khuyến nghị mạnh mẽ tất cả mọi người dùng linter ngay hôm nay**. Linter không yêu cầu bạn phải cài đặt compiler, vì vậy bạn có thể sử dụng nó độc lập, ngay cả khi bạn chưa sẵn sàng thử compiler.
 
-To install the linter only:
+Để chỉ cài đặt linter:
 
 <TerminalBlock>
 npm install -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
-Or, if you're using Yarn:
+Hoặc, nếu bạn đang dùng Yarn:
 
 <TerminalBlock>
 yarn add -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
-After installation you can enable the linter by [adding it to your ESLint config](/learn/react-compiler/installation#eslint-integration). Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
+Sau khi cài đặt, bạn có thể kích hoạt linter bằng cách [thêm nó vào cấu hình ESLint của bạn](/learn/react-compiler/installation#eslint-integration). Việc sử dụng linter giúp xác định các vi phạm Rules of React, giúp việc áp dụng compiler dễ dàng hơn khi nó được phát hành đầy đủ.
 
-## Backwards Compatibility {/*backwards-compatibility*/}
+## Tương thích ngược {/*backwards-compatibility*/}
 
-React Compiler produces code that depends on runtime APIs added in React 19, but we've since added support for the compiler to also work with React 17 and 18. If you are not on React 19 yet, in the Beta release you can now try out React Compiler by specifying a minimum `target` in your compiler config, and adding `react-compiler-runtime` as a dependency. [You can find docs on this here](/reference/react-compiler/configuration#react-17-18).
+React Compiler tạo ra code phụ thuộc vào các runtime API được thêm vào trong React 19, nhưng chúng tôi đã thêm hỗ trợ cho compiler để cũng hoạt động với React 17 và 18. Nếu bạn chưa dùng React 19, trong bản Beta bạn có thể thử React Compiler bằng cách chỉ định `target` tối thiểu trong cấu hình compiler của bạn, và thêm `react-compiler-runtime` như một dependency. [Bạn có thể tìm tài liệu về điều này tại đây](/reference/react-compiler/configuration#react-17-18).
 
-## Using React Compiler in libraries {/*using-react-compiler-in-libraries*/}
+## Sử dụng React Compiler trong thư viện {/*using-react-compiler-in-libraries*/}
 
-Our initial release was focused on identifying major issues with using the compiler in applications. We've gotten great feedback and have substantially improved the compiler since then. We're now ready for broad feedback from the community, and for library authors to try out the compiler to improve performance and the developer experience of maintaining your library.
+Lần phát hành ban đầu của chúng tôi tập trung vào việc xác định các vấn đề lớn khi sử dụng compiler trong các ứng dụng. Chúng tôi đã nhận được phản hồi tuyệt vời và đã cải thiện đáng kể compiler kể từ đó. Chúng tôi hiện đã sẵn sàng cho phản hồi rộng rãi từ cộng đồng, và cho các tác giả thư viện thử compiler để cải thiện hiệu suất và trải nghiệm phát triển khi duy trì thư viện của bạn.
 
-React Compiler can also be used to compile libraries. Because React Compiler needs to run on the original source code prior to any code transformations, it is not possible for an application's build pipeline to compile the libraries they use. Hence, our recommendation is for library maintainers to independently compile and test their libraries with the compiler, and ship compiled code to npm.
+React Compiler cũng có thể được dùng để compile thư viện. Vì React Compiler cần chạy trên mã nguồn gốc trước bất kỳ biến đổi code nào, không thể để pipeline build của ứng dụng compile các thư viện mà chúng sử dụng. Do đó, khuyến nghị của chúng tôi là để người bảo trì thư viện độc lập compile và kiểm tra thư viện của họ với compiler, và giao code đã được compile lên npm.
 
-Because your code is pre-compiled, users of your library will not need to have the compiler enabled in order to benefit from the automatic memoization applied to your library. If your library targets apps not yet on React 19, specify a minimum `target` and add `react-compiler-runtime` as a direct dependency. The runtime package will use the correct implementation of APIs depending on the application's version, and polyfill the missing APIs if necessary.
+Vì code của bạn đã được pre-compiled, người dùng thư viện của bạn sẽ không cần phải bật compiler để được hưởng lợi từ memoization tự động được áp dụng cho thư viện của bạn. Nếu thư viện của bạn nhắm đến các ứng dụng chưa có React 19, hãy chỉ định `target` tối thiểu và thêm `react-compiler-runtime` như một direct dependency. Gói runtime sẽ sử dụng triển khai đúng của các API tùy thuộc vào phiên bản của ứng dụng, và polyfill các API còn thiếu nếu cần.
 
-[You can find more docs on this here.](/reference/react-compiler/compiling-libraries)
+[Bạn có thể tìm thêm tài liệu về điều này tại đây.](/reference/react-compiler/compiling-libraries)
 
-## Opening up React Compiler Working Group to everyone {/*opening-up-react-compiler-working-group-to-everyone*/}
+## Mở rộng React Compiler Working Group cho mọi người {/*opening-up-react-compiler-working-group-to-everyone*/}
 
-We previously announced the invite-only [React Compiler Working Group](https://github.com/reactwg/react-compiler) at React Conf to provide feedback, ask questions, and collaborate on the compiler's experimental release.
+Chúng tôi đã công bố trước đó [React Compiler Working Group](https://github.com/reactwg/react-compiler) chỉ theo lời mời tại React Conf để cung cấp phản hồi, đặt câu hỏi, và cộng tác về bản phát hành thử nghiệm của compiler.
 
-From today, together with the Beta release of React Compiler, we are opening up Working Group membership to everyone. The goal of the React Compiler Working Group is to prepare the ecosystem for a smooth, gradual adoption of React Compiler by existing applications and libraries. Please continue to file bug reports in the [React repo](https://github.com/facebook/react), but please leave feedback, ask questions, or share ideas in the [Working Group discussion forum](https://github.com/reactwg/react-compiler/discussions).
+Từ hôm nay, cùng với bản phát hành Beta của React Compiler, chúng tôi đang mở rộng tư cách thành viên Working Group cho mọi người. Mục tiêu của React Compiler Working Group là chuẩn bị hệ sinh thái cho việc áp dụng React Compiler một cách suôn sẻ, dần dần bởi các ứng dụng và thư viện hiện có. Vui lòng tiếp tục nộp báo cáo lỗi trong [repo React](https://github.com/facebook/react), nhưng hãy để lại phản hồi, đặt câu hỏi, hoặc chia sẻ ý tưởng trong [diễn đàn thảo luận Working Group](https://github.com/reactwg/react-compiler/discussions).
 
-The core team will also use the discussions repo to share our research findings. As the Stable Release gets closer, any important information will also be posted on this forum.
+Nhóm cốt lõi cũng sẽ sử dụng repo thảo luận để chia sẻ các phát hiện nghiên cứu của chúng tôi. Khi Stable Release ngày càng gần hơn, mọi thông tin quan trọng cũng sẽ được đăng trên diễn đàn này.
 
-## React Compiler at Meta {/*react-compiler-at-meta*/}
+## React Compiler tại Meta {/*react-compiler-at-meta*/}
 
-At [React Conf](/blog/2024/05/22/react-conf-2024-recap), we shared that our rollout of the compiler on Quest Store and Instagram were successful. Since then, we've deployed React Compiler across several more major web apps at Meta, including [Facebook](https://www.facebook.com) and [Threads](https://www.threads.net). That means if you've used any of these apps recently, you may have had your experience powered by the compiler. We were able to onboard these apps onto the compiler with few code changes required, in a monorepo with more than 100,000 React components.
+Tại [React Conf](/blog/2024/05/22/react-conf-2024-recap), chúng tôi đã chia sẻ rằng việc triển khai compiler trên Quest Store và Instagram đã thành công. Kể từ đó, chúng tôi đã triển khai React Compiler trên một số ứng dụng web lớn hơn tại Meta, bao gồm [Facebook](https://www.facebook.com) và [Threads](https://www.threads.net). Điều đó có nghĩa là nếu bạn đã sử dụng bất kỳ ứng dụng nào trong số này gần đây, trải nghiệm của bạn có thể đã được hỗ trợ bởi compiler. Chúng tôi đã có thể tích hợp các ứng dụng này vào compiler với ít thay đổi code cần thiết, trong một monorepo với hơn 100,000 React component.
 
-We've seen notable performance improvements across all of these apps. As we've rolled out, we're continuing to see results on the order of [the wins we shared previously at ReactConf](https://youtu.be/lyEKhv8-3n0?t=3223). These apps have already been heavily hand tuned and optimized by Meta engineers and React experts over the years, so even improvements on the order of a few percent are a huge win for us.
+Chúng tôi đã thấy cải thiện hiệu suất đáng kể trên tất cả các ứng dụng này. Khi chúng tôi triển khai, chúng tôi tiếp tục thấy kết quả theo thứ tự của [các thành quả chúng tôi đã chia sẻ trước đó tại ReactConf](https://youtu.be/lyEKhv8-3n0?t=3223). Các ứng dụng này đã được điều chỉnh thủ công và tối ưu hóa kỹ lưỡng bởi các kỹ sư Meta và các chuyên gia React trong nhiều năm, vì vậy ngay cả những cải thiện khoảng vài phần trăm cũng là một thắng lợi to lớn đối với chúng tôi.
 
-We also expected developer productivity wins from React Compiler. To measure this, we collaborated with our data science partners at Meta[^2] to conduct a thorough statistical analysis of the impact of manual memoization on productivity. Before rolling out the compiler at Meta, we discovered that only about 8% of React pull requests used manual memoization and that these pull requests took 31-46% longer to author[^3]. This confirmed our intuition that manual memoization introduces cognitive overhead, and we anticipate that React Compiler will lead to more efficient code authoring and review. Notably, React Compiler also ensures that *all* code is memoized by default, not just the (in our case) 8% where developers explicitly apply memoization.
+Chúng tôi cũng kỳ vọng lợi ích về năng suất của nhà phát triển từ React Compiler. Để đo lường điều này, chúng tôi đã hợp tác với các đối tác khoa học dữ liệu tại Meta[^2] để tiến hành phân tích thống kê kỹ lưỡng về tác động của memoization thủ công đến năng suất. Trước khi triển khai compiler tại Meta, chúng tôi phát hiện rằng chỉ khoảng 8% pull request React sử dụng memoization thủ công và những pull request này mất 31-46% thời gian lâu hơn để tạo[^3]. Điều này xác nhận trực giác của chúng tôi rằng memoization thủ công gây ra overhead nhận thức, và chúng tôi dự đoán rằng React Compiler sẽ dẫn đến việc tạo và review code hiệu quả hơn. Đáng chú ý, React Compiler cũng đảm bảo rằng *tất cả* code được memoize theo mặc định, không chỉ 8% (trong trường hợp của chúng tôi) nơi các nhà phát triển áp dụng memoization một cách rõ ràng.
 
-## Roadmap to Stable {/*roadmap-to-stable*/}
+## Lộ trình đến Stable {/*roadmap-to-stable*/}
 
-*This is not a final roadmap, and is subject to change.*
+*Đây không phải là lộ trình cuối cùng, và có thể thay đổi.*
 
-We intend to ship a Release Candidate of the compiler in the near future following the Beta release, when the majority of apps and libraries that follow the Rules of React have been proven to work well with the compiler. After a period of final feedback from the community, we plan on a Stable Release for the compiler. The Stable Release will mark the beginning of a new foundation for React, and all apps and libraries will be strongly recommended to use the compiler and ESLint plugin.
+Chúng tôi có kế hoạch phát hành Release Candidate của compiler trong tương lai gần sau bản Beta, khi phần lớn các ứng dụng và thư viện tuân theo Rules of React đã được chứng minh là hoạt động tốt với compiler. Sau một giai đoạn phản hồi cuối cùng từ cộng đồng, chúng tôi lên kế hoạch phát hành Stable Release cho compiler. Stable Release sẽ đánh dấu sự khởi đầu của một nền tảng mới cho React, và tất cả các ứng dụng và thư viện sẽ được khuyến nghị mạnh mẽ sử dụng compiler và plugin ESLint.
 
-* ✅ Experimental: Released at React Conf 2024, primarily for feedback from early adopters.
-* ✅ Public Beta: Available today, for feedback from the wider community.
-* 🚧 Release Candidate (RC): React Compiler works for the majority of rule-following apps and libraries without issue.
-* 🚧 General Availability: After final feedback period from the community.
+* ✅ Experimental: Phát hành tại React Conf 2024, chủ yếu để nhận phản hồi từ những người áp dụng sớm.
+* ✅ Public Beta: Có sẵn hôm nay, để nhận phản hồi từ cộng đồng rộng hơn.
+* 🚧 Release Candidate (RC): React Compiler hoạt động cho phần lớn các ứng dụng và thư viện tuân theo quy tắc mà không gặp vấn đề.
+* 🚧 General Availability: Sau giai đoạn phản hồi cuối cùng từ cộng đồng.
 
-These releases also include the compiler's ESLint plugin, which surfaces diagnostics statically analyzed by the compiler. We plan to combine the existing eslint-plugin-react-hooks plugin with the compiler's ESLint plugin, so only one plugin needs to be installed.
+Các bản phát hành này cũng bao gồm plugin ESLint của compiler, hiển thị các chẩn đoán được phân tích tĩnh bởi compiler. Chúng tôi có kế hoạch kết hợp plugin eslint-plugin-react-hooks hiện có với plugin ESLint của compiler, để chỉ cần cài đặt một plugin.
 
-Post-Stable, we plan to add more compiler optimizations and improvements. This includes both continual improvements to automatic memoization, and new optimizations altogether, with minimal to no change of product code. Upgrading to each new release of the compiler is aimed to be straightforward, and each upgrade will continue to improve performance and add better handling of diverse JavaScript and React patterns.
+Sau Stable, chúng tôi có kế hoạch thêm nhiều tối ưu hóa và cải tiến compiler hơn. Điều này bao gồm cả những cải tiến liên tục cho memoization tự động và các tối ưu hóa mới hoàn toàn, với sự thay đổi tối thiểu đến không có của code sản phẩm. Việc nâng cấp lên mỗi bản phát hành mới của compiler nhằm mục đích đơn giản, và mỗi lần nâng cấp sẽ tiếp tục cải thiện hiệu suất và thêm khả năng xử lý tốt hơn các mẫu JavaScript và React đa dạng.
 
-Throughout this process, we also plan to prototype an IDE extension for React. It is still very early in research, so we expect to be able to share more of our findings with you in a future React Labs blog post.
-
----
-
-Thanks to [Sathya Gunasekaran](https://twitter.com/_gsathya), [Joe Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Alex Taylor](https://github.com/alexmckenley), [Jason Bonta](https://twitter.com/someextent), and [Eli White](https://twitter.com/Eli_White) for reviewing and editing this post.
+Trong suốt quá trình này, chúng tôi cũng có kế hoạch tạo nguyên mẫu cho một IDE extension cho React. Vẫn còn rất sớm trong nghiên cứu, vì vậy chúng tôi hy vọng có thể chia sẻ thêm các phát hiện của mình với bạn trong một bài viết React Labs tương lai.
 
 ---
 
-[^1]: Thanks [@nikeee](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Anikeee), [@henryqdineen](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Ahenryqdineen), [@TrickyPi](https://github.com/facebook/react/pulls?q=is%3Apr+author%3ATrickyPi), and several others for their contributions to the compiler.
+Cảm ơn [Sathya Gunasekaran](https://twitter.com/_gsathya), [Joe Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Alex Taylor](https://github.com/alexmckenley), [Jason Bonta](https://twitter.com/someextent), và [Eli White](https://twitter.com/Eli_White) đã review và chỉnh sửa bài viết này.
 
-[^2]: Thanks [Vaishali Garg](https://www.linkedin.com/in/vaishaligarg09) for leading this study on React Compiler at Meta, and for reviewing this post.
+---
 
-[^3]: After controlling on author tenure, diff length/complexity, and other potential confounding factors.
+[^1]: Cảm ơn [@nikeee](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Anikeee), [@henryqdineen](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Ahenryqdineen), [@TrickyPi](https://github.com/facebook/react/pulls?q=is%3Apr+author%3ATrickyPi), và một số người khác vì đóng góp của họ cho compiler.
+
+[^2]: Cảm ơn [Vaishali Garg](https://www.linkedin.com/in/vaishaligarg09) đã dẫn dắt nghiên cứu này về React Compiler tại Meta, và đã review bài viết này.
+
+[^3]: Sau khi kiểm soát thâm niên tác giả, độ dài/phức tạp của diff, và các yếu tố gây nhiễu tiềm năng khác.

@@ -1,57 +1,57 @@
 ---
-title: React Reference Overview
+title: Tổng quan Tham chiếu React
 ---
 
 <Intro>
 
-This section provides detailed reference documentation for working with React. For an introduction to React, please visit the [Learn](/learn) section.
+Phần này cung cấp tài liệu tham chiếu chi tiết cho việc làm việc với React. Để giới thiệu về React, vui lòng truy cập phần [Học](/learn).
 
 </Intro>
 
-The React reference documentation is broken down into functional subsections:
+Tài liệu tham chiếu React được chia thành các phần chức năng:
 
 ## React {/*react*/}
 
-Programmatic React features:
+Các tính năng lập trình của React:
 
-* [Hooks](/reference/react/hooks) - Use different React features from your components.
-* [Components](/reference/react/components) - Built-in components that you can use in your JSX.
-* [APIs](/reference/react/apis) - APIs that are useful for defining components.
-* [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
+* [Hooks](/reference/react/hooks) - Sử dụng các tính năng khác nhau của React từ component của bạn.
+* [Components](/reference/react/components) - Các component tích hợp sẵn mà bạn có thể sử dụng trong JSX.
+* [APIs](/reference/react/apis) - Các API hữu ích cho việc định nghĩa component.
+* [Directives](/reference/rsc/directives) - Cung cấp hướng dẫn cho các bundler tương thích với React Server Components.
 
 ## React DOM {/*react-dom*/}
 
-React DOM contains features that are only supported for web applications (which run in the browser DOM environment). This section is broken into the following:
+React DOM chứa các tính năng chỉ được hỗ trợ cho các ứng dụng web (chạy trong môi trường DOM của trình duyệt). Phần này được chia thành các mục sau:
 
-* [Hooks](/reference/react-dom/hooks) - Hooks for web applications which run in the browser DOM environment.
-* [Components](/reference/react-dom/components) - React supports all of the browser built-in HTML and SVG components.
-* [APIs](/reference/react-dom) - The `react-dom` package contains methods supported only in web applications.
-* [Client APIs](/reference/react-dom/client) - The `react-dom/client` APIs let you render React components on the client (in the browser).
-* [Server APIs](/reference/react-dom/server) - The `react-dom/server` APIs let you render React components to HTML on the server.
-* [Static APIs](/reference/react-dom/static) - The `react-dom/static` APIs let you generate static HTML for React components.
+* [Hooks](/reference/react-dom/hooks) - Hooks cho các ứng dụng web chạy trong môi trường DOM của trình duyệt.
+* [Components](/reference/react-dom/components) - React hỗ trợ tất cả các component HTML và SVG tích hợp sẵn của trình duyệt.
+* [APIs](/reference/react-dom) - Package `react-dom` chứa các phương thức chỉ được hỗ trợ trong ứng dụng web.
+* [Client APIs](/reference/react-dom/client) - Các API `react-dom/client` cho phép bạn render các component React phía client (trong trình duyệt).
+* [Server APIs](/reference/react-dom/server) - Các API `react-dom/server` cho phép bạn render các component React thành HTML trên server.
+* [Static APIs](/reference/react-dom/static) - Các API `react-dom/static` cho phép bạn tạo HTML tĩnh cho các component React.
 
 ## React Compiler {/*react-compiler*/}
 
-The React Compiler is a build-time optimization tool that automatically memoizes your React components and values:
+React Compiler là một công cụ tối ưu hóa tại thời điểm build, tự động memo hóa các component và giá trị React của bạn:
 
-* [Configuration](/reference/react-compiler/configuration) - Configuration options for React Compiler.
-* [Directives](/reference/react-compiler/directives) - Function-level directives to control compilation.
-* [Compiling Libraries](/reference/react-compiler/compiling-libraries) - Guide for shipping pre-compiled library code.
+* [Cấu hình](/reference/react-compiler/configuration) - Các tùy chọn cấu hình cho React Compiler.
+* [Directives](/reference/react-compiler/directives) - Các directive cấp hàm để kiểm soát quá trình biên dịch.
+* [Biên dịch thư viện](/reference/react-compiler/compiling-libraries) - Hướng dẫn phát hành mã thư viện đã được biên dịch sẵn.
 
 ## ESLint Plugin React Hooks {/*eslint-plugin-react-hooks*/}
 
-The [ESLint plugin for React Hooks](/reference/eslint-plugin-react-hooks) helps enforce the Rules of React:
+[Plugin ESLint cho React Hooks](/reference/eslint-plugin-react-hooks) giúp thực thi các Quy tắc của React:
 
-* [Lints](/reference/eslint-plugin-react-hooks) - Detailed documentation for each lint with examples.
+* [Lints](/reference/eslint-plugin-react-hooks) - Tài liệu chi tiết cho từng lint với các ví dụ.
 
-## Rules of React {/*rules-of-react*/}
+## Quy tắc của React {/*rules-of-react*/}
 
-React has idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications:
+React có các idiom — hay quy tắc — về cách biểu diễn các pattern theo cách dễ hiểu và tạo ra các ứng dụng chất lượng cao:
 
-* [Components and Hooks must be pure](/reference/rules/components-and-hooks-must-be-pure) – Purity makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
-* [React calls Components and Hooks](/reference/rules/react-calls-components-and-hooks) – React is responsible for rendering components and hooks when necessary to optimize the user experience.
-* [Rules of Hooks](/reference/rules/rules-of-hooks) – Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
+* [Components và Hooks phải pure](/reference/rules/components-and-hooks-must-be-pure) – Tính pure giúp code của bạn dễ hiểu hơn, dễ debug hơn, và cho phép React tự động tối ưu hóa các component và hooks của bạn một cách chính xác.
+* [React gọi Components và Hooks](/reference/rules/react-calls-components-and-hooks) – React chịu trách nhiệm render các component và hooks khi cần thiết để tối ưu hóa trải nghiệm người dùng.
+* [Quy tắc của Hooks](/reference/rules/rules-of-hooks) – Hooks được định nghĩa bằng các hàm JavaScript, nhưng chúng đại diện cho một loại logic UI có thể tái sử dụng đặc biệt với các hạn chế về nơi chúng có thể được gọi.
 
-## Legacy APIs {/*legacy-apis*/}
+## API Kế thừa {/*legacy-apis*/}
 
-* [Legacy APIs](/reference/react/legacy) - Exported from the `react` package, but not recommended for use in newly written code.
+* [API Kế thừa](/reference/react/legacy) - Được export từ package `react`, nhưng không được khuyến nghị sử dụng trong code viết mới.

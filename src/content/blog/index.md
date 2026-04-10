@@ -1,161 +1,161 @@
 ---
-title: React Blog
+title: Blog React
 ---
 
 <Intro>
 
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.
+Blog này là nguồn thông tin chính thức cho các cập nhật từ đội ngũ React. Bất kỳ thông tin quan trọng nào, bao gồm ghi chú phát hành hoặc thông báo ngừng hỗ trợ, sẽ được đăng tải ở đây trước tiên.
 
-You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account on Bluesky, or [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+Bạn cũng có thể theo dõi tài khoản [@react.dev](https://bsky.app/profile/react.dev) trên Bluesky, hoặc tài khoản [@reactjs](https://twitter.com/reactjs) trên Twitter, nhưng bạn sẽ không bỏ lỡ bất kỳ thông tin thiết yếu nào nếu chỉ đọc blog này.
 
 </Intro>
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="The React Foundation: A New Home for React Hosted by the Linux Foundation" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
+<BlogCard title="The React Foundation: Ngôi Nhà Mới Cho React Dưới Sự Bảo Trợ Của Linux Foundation" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
 
-The React Foundation has officially launched under the Linux Foundation.
-
-</BlogCard>
-
-<BlogCard title="Denial of Service and Source Code Exposure in React Server Components" date="December 11, 2025" url="/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">
-
-Security researchers have found and disclosed two additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability...
+The React Foundation đã chính thức ra mắt dưới sự bảo trợ của Linux Foundation.
 
 </BlogCard>
 
-<BlogCard title="Critical Security Vulnerability in React Server Components" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
+<BlogCard title="Từ Chối Dịch Vụ và Lộ Lộ Mã Nguồn Trong React Server Components" date="December 11, 2025" url="/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">
 
-There is an unauthenticated remote code execution vulnerability in React Server Components. A fix has been published in versions 19.0.1, 19.1.2, and 19.2.1. We recommend upgrading immediately.
+Các nhà nghiên cứu bảo mật đã phát hiện và công bố hai lỗ hổng bổ sung trong React Server Components khi cố gắng khai thác các bản vá của lỗ hổng nghiêm trọng tuần trước...
 
 </BlogCard>
 
-<BlogCard title="React Conf 2025 Recap" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
+<BlogCard title="Lỗ Hổng Bảo Mật Nghiêm Trọng Trong React Server Components" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
 
-Last week we hosted React Conf 2025. In this post, we summarize the talks and announcements from the event...
+Có một lỗ hổng thực thi mã từ xa không cần xác thực trong React Server Components. Bản vá đã được phát hành trong các phiên bản 19.0.1, 19.1.2, và 19.2.1. Chúng tôi khuyến bạn nâng cấp ngay lập tức.
+
+</BlogCard>
+
+<BlogCard title="Tổng Kết React Conf 2025" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
+
+Tuần trước chúng tôi đã tổ chức React Conf 2025. Trong bài viết này, chúng tôi tóm tắt các bài nói và thông báo từ sự kiện...
 
 </BlogCard>
 
 <BlogCard title="React Compiler v1.0" date="October 7, 2025" url="/blog/2025/10/07/react-compiler-1">
 
-We're releasing the compiler's first stable release today, plus linting and tooling improvements to make adoption easier.
+Chúng tôi phát hành phiên bản ổn định đầu tiên của compiler hôm nay, cùng với các cải tiến về linting và tooling để việc áp dụng dễ dàng hơn.
 
 </BlogCard>
 
-<BlogCard title="Introducing the React Foundation" date="October 7, 2025" url="/blog/2025/10/07/introducing-the-react-foundation">
+<BlogCard title="Giới Thiệu React Foundation" date="October 7, 2025" url="/blog/2025/10/07/introducing-the-react-foundation">
 
-Today, we're announcing our plans to create the React Foundation and a new technical governance structure ...
+Hôm nay, chúng tôi thông báo kế hoạch thành lập React Foundation và cơ cấu quản trị kỹ thuật mới...
 
 </BlogCard>
 
 <BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
 
-React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more. In this post ...
+React 19.2 thêm các tính năng mới như Activity, React Performance Tracks, useEffectEvent, và nhiều hơn nữa. Trong bài viết này...
 
 </BlogCard>
 
-<BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+<BlogCard title="React Labs: View Transitions, Activity, và nhiều hơn nữa" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
 
-In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...
-
-</BlogCard>
-
-<BlogCard title="Sunsetting Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
-
-Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch ...
+Trong các bài viết React Labs, chúng tôi viết về các dự án đang nghiên cứu và phát triển. Trong bài viết này, chúng tôi chia sẻ hai tính năng thử nghiệm mới sẵn sàng để thử, và chia sẻ các lĩnh vực khác mà chúng tôi đang làm việc...
 
 </BlogCard>
 
-<BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
+<BlogCard title="Ngừng Hỗ Trợ Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
 
-In the React 19 Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
-
-</BlogCard>
-
-<BlogCard title="React Compiler Beta Release" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
-
-We announced an experimental release of React Compiler at React Conf 2024. We've made a lot of progress since then, and in this post we want to share what's next for React Compiler ...
+Hôm nay, chúng tôi ngừng hỗ trợ Create React App cho các ứng dụng mới, và khuyến khích các ứng dụng hiện tại chuyển sang framework, hoặc chuyển sang công cụ build như Vite, Parcel, hoặc RSBuild. Chúng tôi cũng cung cấp tài liệu cho trường hợp framework không phù hợp với dự án của bạn, bạn muốn xây dựng framework riêng, hoặc bạn chỉ muốn học cách React hoạt động bằng cách xây dựng ứng dụng React từ đầu...
 
 </BlogCard>
 
-<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+<BlogCard title="React v19" date="December 5, 2024" url="/blog/2024/12/05/react-19">
 
-Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
-
-</BlogCard>
-
-<BlogCard title="React 19 Upgrade Guide" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
-
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 ...
+Trong Hướng Dẫn Nâng Cấp React 19, chúng tôi đã chia sẻ các bước chi tiết để nâng cấp ứng dụng của bạn lên React 19. Trong bài viết này, chúng tôi sẽ cung cấp tổng quan về các tính năng mới trong React 19, và cách bạn có thể áp dụng chúng...
 
 </BlogCard>
 
-<BlogCard title="React Labs: What We've Been Working On – February 2024" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
+<BlogCard title="Phát Hành Beta React Compiler" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
 
-In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Compiler, new features, and React 19, and we'd like to share what we learned.
-
-</BlogCard>
-
-<BlogCard title="React Canaries: Incremental Feature Rollout Outside Meta" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
-
-Traditionally, new React features used to only be available at Meta first, and land in the open source releases later. We'd like to offer the React community an option to adopt individual new features as soon as their design is close to final--similar to how Meta uses React internally. We are introducing a new officially supported Canary release channel. It lets curated setups like frameworks decouple adoption of individual React features from the React release schedule.
+Chúng tôi đã thông báo phát hành thử nghiệm React Compiler tại React Conf 2024. Chúng tôi đã đạt được nhiều tiến bộ kể từ đó, và trong bài viết này chúng tôi muốn chia sẻ bước tiếp theo cho React Compiler...
 
 </BlogCard>
 
-<BlogCard title="React Labs: What We've Been Working On – March 2023" date="March 22, 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
+<BlogCard title="Tổng Kết React Conf 2024" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
 
-In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Server Components, Asset Loading, Optimizing Compiler, Offscreen Rendering, and Transition Tracing, and we'd like to share what we learned.
+Tuần trước chúng tôi đã tổ chức React Conf 2024, hội nghị hai ngày tại Henderson, Nevada với hơn 700 người tham dự trực tiếp để thảo luận về những điều mới nhất trong kỹ thuật UI. Đây là hội nghị trực tiếp đầu tiên của chúng tôi kể từ 2019, và chúng tôi rất vui được quy tụ cộng đồng lại...
 
 </BlogCard>
 
+<BlogCard title="Hướng Dẫn Nâng Cấp React 19" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
-<BlogCard title="Introducing react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
+Các cải tiến thêm vào React 19 đòi hỏi một số thay đổi không tương thích ngược, nhưng chúng tôi đã nỗ lực để việc nâng cấp suôn sẻ nhất có thể, và chúng tôi không cho rằng các thay đổi sẽ ảnh hưởng đến hầu hết các ứng dụng. Trong bài viết này, chúng tôi sẽ hướng dẫn bạn các bước nâng cấp thư viện lên React 19...
 
-Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+</BlogCard>
+
+<BlogCard title="React Labs: Những Gì Chúng Tôi Đang Làm - Tháng 2 2024" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
+
+Trong các bài viết React Labs, chúng tôi viết về các dự án đang nghiên cứu và phát triển. Kể từ lần cập nhật trước, chúng tôi đã đạt được tiến bộ đáng kể với React Compiler, các tính năng mới, và React 19, và chúng tôi muốn chia sẻ những gì đã học được.
+
+</BlogCard>
+
+<BlogCard title="React Canaries: Triển Khai Tính Năng Tăng Dần Bên Ngoài Meta" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
+
+Theo truyền thống, các tính năng React mới thường chỉ có tại Meta trước, và xuất hiện trong các bản phát hành mã nguồn mở sau đó. Chúng tôi muốn cung cấp cho cộng đồng React một lựa chọn để áp dụng các tính năng mới riêng lẻ ngay khi thiết kế gần hoàn thiện--tương tự như cách Meta sử dụng React nội bộ. Chúng tôi giới thiệu kênh phát hành Canary được hỗ trợ chính thức. Nó cho phép các thiết lập được tuyển chọn như framework tách rời việc áp dụng các tính năng React riêng lẻ khỏi lịch phát hành React.
+
+</BlogCard>
+
+<BlogCard title="React Labs: Những Gì Chúng Tôi Đang Làm - Tháng 3 2023" date="March 22, 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
+
+Trong các bài viết React Labs, chúng tôi viết về các dự án đang nghiên cứu và phát triển. Kể từ lần cập nhật trước, chúng tôi đã đạt được tiến bộ đáng kể với React Server Components, Asset Loading, Optimizing Compiler, Offscreen Rendering, và Transition Tracing, và chúng tôi muốn chia sẻ những gì đã học được.
 
 </BlogCard>
 
 
-<BlogCard title="React Labs: What We've Been Working On – June 2022" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
-React 18 was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring...
+<BlogCard title="Giới thiệu react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
+
+Hôm nay chúng tôi rất vui mừng ra mắt react.dev, ngôi nhà mới cho React và tài liệu của nó. Trong bài viết này, chúng tôi muốn đưa bạn tham quan trang web mới.
+
+</BlogCard>
+
+
+<BlogCard title="React Labs: Những Gì Chúng Tôi Đang Làm - Tháng 6 2022" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
+React 18 đã mất nhiều năm để phát triển, và với nó mang đến những bài học quý giá cho đội ngũ React. Việc phát hành là kết quả của nhiều năm nghiên cứu và khám phá nhiều hướng đi. Một số hướng đi thành công; nhiều hướng khác là ngõ cụt nhưng dẫn đến những hiểu biết mới. Một bài học chúng tôi rút ra là cộng đồng cảm thấy thất vọng khi phải chờ đợi các tính năng mới mà không có cái nhìn sâu về những hướng đi mà chúng tôi đang khám phá...
 </BlogCard>
 
 <BlogCard title="React v18.0" date="March 29, 2022" url="/blog/2022/03/29/react-v18">
-React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we’ll give an overview of what’s new in React 18, and what it means for the future...
+React 18 hiện đã có trên npm! Trong bài viết trước, chúng tôi đã chia sẻ hướng dẫn từng bước để nâng cấp ứng dụng của bạn lên React 18. Trong bài viết này, chúng tôi sẽ cung cấp tổng quan về những gì mới trong React 18, và ý nghĩa của nó cho tương lai...
 </BlogCard>
 
-<BlogCard title="How to Upgrade to React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
-As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18...
+<BlogCard title="Cách Nâng Cấp Lên React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
+Như chúng tôi đã chia sẻ trong bài viết phát hành, React 18 giới thiệu các tính năng được hỗ trợ bởi concurrent renderer mới, với chiến lược áp dụng dần dần cho các ứng dụng hiện tại. Trong bài viết này, chúng tôi sẽ hướng dẫn bạn các bước nâng cấp lên React 18...
 </BlogCard>
 
-<BlogCard title="React Conf 2021 Recap" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
-Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features...
+<BlogCard title="Tổng Kết React Conf 2021" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
+Tuần trước chúng tôi đã tổ chức React Conf lần thứ 6. Trong những năm trước, chúng tôi đã sử dụng sân khấu React Conf để đưa ra các thông báo thay đổi ngành như React Native và React Hooks. Năm nay, chúng tôi chia sẻ tầm nhìn đa nền tảng cho React, bắt đầu với việc phát hành React 18 và áp dụng dần dần các tính năng concurrent...
 </BlogCard>
 
-<BlogCard title="The Plan for React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
-The React team is excited to share a few updates:
+<BlogCard title="Kế Hoạch Cho React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
+Đội ngũ React vui mừng chia sẻ một số cập nhật:
 
-- We’ve started work on the React 18 release, which will be our next major version.
-- We’ve created a Working Group to prepare the community for gradual adoption of new features in React 18.
-- We’ve published a React 18 Alpha so that library authors can try it and provide feedback...
+- Chúng tôi đã bắt đầu làm việc trên bản phát hành React 18, sẽ là phiên bản chính tiếp theo.
+- Chúng tôi đã tạo Working Group để chuẩn bị cho cộng đồng áp dụng dần dần các tính năng mới trong React 18.
+- Chúng tôi đã phát hành React 18 Alpha để các tác giả thư viện có thể thử và cung cấp phản hồi...
 </BlogCard>
 
-<BlogCard title="Introducing Zero-Bundle-Size React Server Components" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year...
+<BlogCard title="Giới Thiệu React Server Components Không Cần Bundle" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
+2020 là một năm dài. Khi năm sắp kết thúc, chúng tôi muốn chia sẻ một Bản Cập Nhật Ngày Lễ đặc biệt về nghiên cứu của chúng tôi về React Server Components không cần bundle. Để giới thiệu React Server Components, chúng tôi đã chuẩn bị một bài nói và một bản demo. Nếu muốn, bạn có thể xem chúng trong kỳ nghỉ, hoặc sau đó khi công việc tiếp tục vào năm mới...
 </BlogCard>
 
 </div>
 
 ---
 
-### All release notes {/*all-release-notes*/}
+### Tất cả ghi chú phát hành {/*all-release-notes*/}
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/facebook/react/releases) page.
+Không phải mọi bản phát hành React đều xứng đáng có bài blog riêng, nhưng bạn có thể tìm thấy nhật ký thay đổi chi tiết cho mỗi bản phát hành trong file [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) trong kho React, cũng như trên trang [Releases](https://github.com/facebook/react/releases).
 
 ---
 
-### Older posts {/*older-posts*/}
+### Các bài viết cũ hơn {/*older-posts*/}
 
-See the [older posts.](https://reactjs.org/blog/all.html)
+Xem [các bài viết cũ hơn.](https://reactjs.org/blog/all.html)
 
 <div className="h-12"></div>

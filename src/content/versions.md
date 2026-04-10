@@ -1,22 +1,22 @@
 ---
-title: React Versions
+title: Các phiên bản React
 ---
 
 <Intro>
 
-The React docs at [react.dev](https://react.dev) provide documentation for the latest version of React.
+Tài liệu React tại [react.dev](https://react.dev) cung cấp tài liệu cho phiên bản mới nhất của React.
 
 </Intro>
 
-We aim to keep the docs updated within major versions, and do not publish versions for each minor or patch version. When a new major is released, we archive the docs for the previous version as `x.react.dev`. See our [versioning policy](/community/versioning-policy) for more info.
+Chúng tôi cố gắng cập nhật tài liệu trong các phiên bản chính (major), và không xuất bản tài liệu cho từng phiên bản phụ (minor) hoặc bản vá (patch). Khi một phiên bản chính mới được phát hành, chúng tôi lưu trữ tài liệu của phiên bản trước dưới dạng `x.react.dev`. Xem [chính sách phiên bản](/community/versioning-policy) của chúng tôi để biết thêm thông tin.
 
-You can find an archive of previous major versions below.
+Bạn có thể tìm thấy bản lưu trữ của các phiên bản chính trước đây bên dưới.
 
-## Latest version: 19.2 {/*latest-version*/}
+## Phiên bản mới nhất: 19.2 {/*latest-version*/}
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 
-## Previous versions {/*previous-versions*/}
+## Các phiên bản trước {/*previous-versions*/}
 
 - [18.react.dev](https://18.react.dev) {/*docs-18*/}
 - [17.react.dev](https://17.react.dev) {/*docs-17*/}
@@ -25,26 +25,26 @@ You can find an archive of previous major versions below.
 
 <Note>
 
-#### Legacy Docs {/*legacy-docs*/}
+#### Tài liệu cũ {/*legacy-docs*/}
 
-In 2023, we [launched our new docs](/blog/2023/03/16/introducing-react-dev) for React 18 as [react.dev](https://react.dev). The legacy React 18 docs are available at [legacy.reactjs.org](https://legacy.reactjs.org). Versions 17 and below are hosted on legacy sites.
+Vào năm 2023, chúng tôi đã [ra mắt tài liệu mới](/blog/2023/03/16/introducing-react-dev) cho React 18 tại [react.dev](https://react.dev). Tài liệu React 18 cũ có sẵn tại [legacy.reactjs.org](https://legacy.reactjs.org). Phiên bản 17 trở xuống được lưu trữ trên các trang cũ.
 
-For versions older than React 15, see [15.react.dev](https://15.react.dev).
+Đối với các phiên bản cũ hơn React 15, xem [15.react.dev](https://15.react.dev).
 
 </Note>
 
-## Changelog {/*changelog*/}
+## Nhật ký thay đổi {/*changelog*/}
 
 ### React 19 {/*react-19*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v19](/blog/2024/12/05/react-19)
 - [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
 - [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
 - [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
 - [React 19.2](/blog/2025/10/01/react-19-2)
 
-**Talks**
+**Bài nói chuyện**
 - [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
 - [A Roadmap to React 19](https://www.youtube.com/watch?v=R0B2HsSM78s)
 - [What's new in React 19](https://www.youtube.com/watch?v=AJOGzVygGcY)
@@ -53,7 +53,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React Compiler Case Studies](https://www.youtube.com/watch?v=lvhPq5chokM)
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
-**Releases**
+**Phát hành**
 - [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1922-dec-11-2025)
 - [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
 - [v19.2.0 (October, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
@@ -67,12 +67,12 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 ### React 18 {/*react-18*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v18.0](/blog/2022/03/29/react-v18)
 - [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide)
 - [The Plan for React 18](/blog/2021/06/08/the-plan-for-react-18)
 
-**Talks**
+**Bài nói chuyện**
 - [React 18 Keynote](https://www.youtube.com/watch?v=FZ0cG47msEk)
 - [React 18 for app developers](https://www.youtube.com/watch?v=ytudH8je5ko)
 - [Streaming Server Rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc)
@@ -82,7 +82,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [The first React Working Group](https://www.youtube.com/watch?v=qn7gRClrC9U)
 - [React 18 for External Store Libraries](https://www.youtube.com/watch?v=oPfSC5bQPR8)
 
-**Releases**
+**Phát hành**
 - [v18.3.1 (April, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1831-april-26-2024)
 - [v18.3.0 (April, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024)
 - [v18.2.0 (June, 2022)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1820-june-14-2022)
@@ -91,19 +91,19 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 ### React 17 {/*react-17*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v17.0](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html)
 - [Introducing the New JSX Transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
 - [React v17.0 Release Candidate: No New Features](https://legacy.reactjs.org/blog/2020/08/10/react-v17-rc.html)
 
-**Releases**
+**Phát hành**
 - [v17.0.2 (March 2021)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1702-march-22-2021)
 - [v17.0.1 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1701-october-22-2020)
 - [v17.0.0 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1700-october-20-2020)
 
 ### React 16 {/*react-16*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v16.0](https://legacy.reactjs.org/blog/2017/09/26/react-v16.0.html)
 - [DOM Attributes in React 16](https://legacy.reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html)
 - [Error Handling in React 16](https://legacy.reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
@@ -116,7 +116,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v16.9.0 and the Roadmap Update](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html)
 - [React v16.13.0](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html)
 
-**Releases**
+**Phát hành**
 - [v16.14.0 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16140-october-14-2020)
 - [v16.13.1 (March 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16131-march-19-2020)
 - [v16.13.0 (February 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16130-february-26-2020)
@@ -158,7 +158,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 ### React 15 {/*react-15*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v15.0](https://legacy.reactjs.org/blog/2016/04/07/react-v15.html)
 - [React v15.0 Release Candidate 2](https://legacy.reactjs.org/blog/2016/03/16/react-v15-rc2.html)
 - [React v15.0 Release Candidate](https://legacy.reactjs.org/blog/2016/03/07/react-v15-rc1.html)
@@ -171,7 +171,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v15.6.0](https://legacy.reactjs.org/blog/2017/06/13/react-v15.6.0.html)
 - [React v15.6.2](https://legacy.reactjs.org/blog/2017/09/25/react-v15.6.2.html)
 
-**Releases**
+**Phát hành**
 - [v15.7.0 (October 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1570-october-14-2020)
 - [v15.6.2 (September 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1562-september-25-2017)
 - [v15.6.1 (June 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1561-june-14-2017)
@@ -196,7 +196,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 ### React 0.14 {/*react-14*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v0.14](https://legacy.reactjs.org/blog/2015/10/07/react-v0.14.html)
 - [React v0.14 Release Candidate](https://legacy.reactjs.org/blog/2015/09/10/react-v0.14-rc1.html)
 - [React v0.14 Beta 1](https://legacy.reactjs.org/blog/2015/07/03/react-v0.14-beta-1.html)
@@ -208,7 +208,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.14.4](https://legacy.reactjs.org/blog/2015/12/29/react-v0.14.4.html)
 - [React v0.14.8](https://legacy.reactjs.org/blog/2016/03/29/react-v0.14.8.html)
 
-**Releases**
+**Phát hành**
 - [v0.14.10 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#01410-october-14-2020)
 - [v0.14.8 (March 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0148-march-29-2016)
 - [v0.14.7 (January 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0147-january-28-2016)
@@ -222,7 +222,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 ### React 0.13 {/*react-13*/}
 
-**Blog Posts**
+**Bài viết**
 - [React Native v0.4](https://legacy.reactjs.org/blog/2015/04/17/react-native-v0.4.html)
 - [React v0.13](https://legacy.reactjs.org/blog/2015/03/10/react-v0.13.html)
 - [React v0.13 RC2](https://legacy.reactjs.org/blog/2015/03/03/react-v0.13-rc2.html)
@@ -235,7 +235,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.13.2](https://legacy.reactjs.org/blog/2015/04/18/react-v0.13.2.html)
 - [React v0.13.3](https://legacy.reactjs.org/blog/2015/05/08/react-v0.13.3.html)
 
-**Releases**
+**Phát hành**
 - [v0.13.3 (May 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0133-may-8-2015)
 - [v0.13.2 (April 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0132-april-18-2015)
 - [v0.13.1 (March 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0131-march-16-2015)
@@ -243,20 +243,20 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 ### React 0.12 {/*react-12*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v0.12](https://legacy.reactjs.org/blog/2014/10/28/react-v0.12.html)
 - [React v0.12 RC](https://legacy.reactjs.org/blog/2014/10/16/react-v0.12-rc1.html)
 - [Introducing React Elements](https://legacy.reactjs.org/blog/2014/10/14/introducing-react-elements.html)
 - [React v0.12.2](https://legacy.reactjs.org/blog/2014/12/18/react-v0.12.2.html)
 
-**Releases**
+**Phát hành**
 - [v0.12.2 (December 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0122-december-18-2014)
 - [v0.12.1 (November 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0121-november-18-2014)
 - [v0.12.0 (October 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0120-october-28-2014)
 
 ### React 0.11 {/*react-11*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v0.11](https://legacy.reactjs.org/blog/2014/07/17/react-v0.11.html)
 - [React v0.11 RC](https://legacy.reactjs.org/blog/2014/07/13/react-v0.11-rc1.html)
 - [One Year of Open-Source React](https://legacy.reactjs.org/blog/2014/05/29/one-year-of-open-source-react.html)
@@ -265,14 +265,14 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.11.2](https://legacy.reactjs.org/blog/2014/09/16/react-v0.11.2.html)
 - [Introducing the JSX Specificaion](https://legacy.reactjs.org/blog/2014/09/03/introducing-the-jsx-specification.html)
 
-**Releases**
+**Phát hành**
 - [v0.11.2 (September 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0112-september-16-2014)
 - [v0.11.1 (July 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0111-july-24-2014)
 - [v0.11.0 (July 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0110-july-17-2014)
 
-### React 0.10 and below {/*react-10-and-below*/}
+### React 0.10 và trước đó {/*react-10-and-below*/}
 
-**Blog Posts**
+**Bài viết**
 - [React v0.10](https://legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
 - [React v0.10 RC](https://legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
 - [React v0.9](https://legacy.reactjs.org/blog/2014/02/20/react-v0.9.html)
@@ -288,7 +288,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [New in React v0.4: Autobind by Default](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
 - [React v0.3.3](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
 
-**Releases**
+**Phát hành**
 - [v0.10.0 (March 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0100-march-21-2014)
 - [v0.9.0 (February 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#090-february-20-2014)
 - [v0.8.0 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#080-december-19-2013)
@@ -302,12 +302,12 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.3.1 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 - [v0.3.0 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 
-### Initial Commit {/*initial-commit*/}
+### Commit đầu tiên {/*initial-commit*/}
 
-React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
+React được mã nguồn mở vào ngày 29 tháng 5 năm 2013. Commit đầu tiên là: [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
-See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
+Xem bài viết blog đầu tiên: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
 
-React was open sourced at Facebook Seattle in 2013:
+React được mã nguồn mở tại Facebook Seattle vào năm 2013:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XxVg_s8xAms?si=466vSJrnXTn05j9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

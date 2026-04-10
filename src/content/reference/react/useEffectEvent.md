@@ -4,7 +4,7 @@ title: useEffectEvent
 
 <Intro>
 
-`useEffectEvent` is a React Hook that lets you separate events from Effects.
+`useEffectEvent` là một React Hook cho phép bạn tách các sự kiện ra khỏi các Effect.
 
 ```js
 const onEvent = useEffectEvent(callback)
@@ -16,11 +16,11 @@ const onEvent = useEffectEvent(callback)
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `useEffectEvent(callback)` {/*useeffectevent*/}
 
-Call `useEffectEvent` at the top level of your component to create an Effect Event.
+Gọi `useEffectEvent` ở cấp cao nhất của component để tạo một Effect Event.
 
 ```js {4,6}
 import { useEffectEvent, useEffect } from 'react';
@@ -32,56 +32,56 @@ function ChatRoom({ roomId, theme }) {
 }
 ```
 
-Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and state) without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) to learn more.
+Effect Event là một phần logic của Effect, nhưng chúng hoạt động giống như một event handler hơn. Chúng luôn "nhìn thấy" các giá trị mới nhất từ lần render (như props và state) mà không cần đồng bộ hóa lại Effect của bạn, vì vậy chúng được loại trừ khỏi các dependency của Effect. Xem [Tách sự kiện khỏi các Effect](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) để tìm hiểu thêm.
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `callback`: A function containing the logic for your Effect Event. The function can accept any number of arguments and return any value. When you call the returned Effect Event function, the `callback` always accesses the latest committed values from render at the time of the call.
+* `callback`: Một hàm chứa logic cho Effect Event của bạn. Hàm có thể nhận bất kỳ số lượng đối số nào và trả về bất kỳ giá trị nào. Khi bạn gọi hàm Effect Event được trả về, `callback` luôn truy cập các giá trị đã được commit mới nhất từ lần render tại thời điểm gọi.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`useEffectEvent` returns an Effect Event function with the same type signature as your `callback`.
+`useEffectEvent` trả về một hàm Effect Event có cùng chữ ký kiểu với `callback` của bạn.
 
-You can call this function inside `useEffect`, `useLayoutEffect`, `useInsertionEffect`, or from within other Effect Events in the same component.
+Bạn có thể gọi hàm này bên trong `useEffect`, `useLayoutEffect`, `useInsertionEffect`, hoặc từ bên trong các Effect Event khác trong cùng component.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* `useEffectEvent` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the Effect Event into it.
-* Effect Events can only be called from inside Effects or other Effect Events. Do not call them during rendering or pass them to other components or Hooks. The [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) linter enforces this restriction.
-* Do not use `useEffectEvent` to avoid specifying dependencies in your Effect's dependency array. This hides bugs and makes your code harder to understand. Only use it for logic that is genuinely an event fired from Effects.
-* Effect Event functions do not have a stable identity. Their identity intentionally changes on every render.
+* `useEffectEvent` là một Hook, vì vậy bạn chỉ có thể gọi nó **ở cấp cao nhất của component** hoặc các Hook của riêng bạn. Bạn không thể gọi nó bên trong các vòng lặp hoặc điều kiện. Nếu bạn cần làm điều đó, hãy trích xuất một component mới và chuyển Effect Event vào đó.
+* Effect Event chỉ có thể được gọi từ bên trong các Effect hoặc các Effect Event khác. Đừng gọi chúng trong quá trình render hoặc truyền chúng cho các component hoặc Hook khác. Bộ kiểm tra lint [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) thực thi hạn chế này.
+* Đừng sử dụng `useEffectEvent` để tránh chỉ định các dependency trong mảng dependency của Effect. Điều này che giấu các lỗi và làm cho code của bạn khó hiểu hơn. Chỉ sử dụng nó cho logic thực sự là một sự kiện được kích hoạt từ Effect.
+* Các hàm Effect Event không có danh tính ổn định. Danh tính của chúng cố ý thay đổi trên mỗi lần render.
 
 <DeepDive>
 
-#### Why are Effect Events not stable? {/*why-are-effect-events-not-stable*/}
+#### Tại sao Effect Event không ổn định? {/*why-are-effect-events-not-stable*/}
 
-Unlike `set` functions from `useState` or refs, Effect Event functions do not have a stable identity. Their identity intentionally changes on every render:
+Không giống như các hàm `set` từ `useState` hoặc refs, các hàm Effect Event không có danh tính ổn định. Danh tính của chúng cố ý thay đổi trên mỗi lần render:
 
 ```js
-// 🔴 Wrong: including Effect Event in dependencies
+// 🔴 Sai: đưa Effect Event vào dependency
 useEffect(() => {
   onSomething();
-}, [onSomething]); // ESLint will warn about this
+}, [onSomething]); // ESLint sẽ cảnh báo về điều này
 ```
 
-This is a deliberate design choice. Effect Events are meant to be called only from within Effects in the same component. Since you can only call them locally and cannot pass them to other components or include them in dependency arrays, a stable identity would serve no purpose, and would actually mask bugs.
+Đây là lựa chọn thiết kế có chủ ý. Effect Event chỉ được gọi từ bên trong các Effect trong cùng component. Vì bạn chỉ có thể gọi chúng cục bộ và không thể truyền chúng cho các component khác hoặc đưa vào mảng dependency, một danh tính ổn định sẽ không có mục đích gì, và thực ra sẽ che giấu các lỗi.
 
-The non-stable identity acts as a runtime assertion: if your code incorrectly depends on the function identity, you'll see the Effect re-running on every render, making the bug obvious.
+Danh tính không ổn định hoạt động như một xác nhận runtime: nếu code của bạn phụ thuộc không chính xác vào danh tính hàm, bạn sẽ thấy Effect chạy lại trên mỗi lần render, làm lỗi trở nên rõ ràng.
 
-This design reinforces that Effect Events conceptually belong to a particular effect, and are not a general purpose API to opt-out of reactivity.
+Thiết kế này củng cố rằng Effect Event về mặt khái niệm thuộc về một effect cụ thể, và không phải là API đa mục đích để thoát khỏi tính reactive.
 
 </DeepDive>
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
 
-### Using an event in an Effect {/*using-an-event-in-an-effect*/}
+### Sử dụng một sự kiện trong Effect {/*using-an-event-in-an-effect*/}
 
-Call `useEffectEvent` at the top level of your component to create an *Effect Event*:
+Gọi `useEffectEvent` ở cấp cao nhất của component để tạo một *Effect Event*:
 
 
 ```js [[1, 1, "onConnected"]]
@@ -92,7 +92,7 @@ const onConnected = useEffectEvent(() => {
 });
 ```
 
-`useEffectEvent` accepts an `event callback` and returns an <CodeStep step={1}>Effect Event</CodeStep>. The Effect Event is a function that can be called inside of Effects without re-connecting the Effect:
+`useEffectEvent` nhận một `event callback` và trả về một <CodeStep step={1}>Effect Event</CodeStep>. Effect Event là một hàm có thể được gọi bên trong các Effect mà không kết nối lại Effect:
 
 ```js [[1, 3, "onConnected"]]
 useEffect(() => {
@@ -105,38 +105,38 @@ useEffect(() => {
 }, [roomId]);
 ```
 
-Since `onConnected` is an <CodeStep step={1}>Effect Event</CodeStep>, `muted` and `onConnect` are not in the Effect dependencies.
+Vì `onConnected` là một <CodeStep step={1}>Effect Event</CodeStep>, `muted` và `onConnect` không nằm trong các dependency của Effect.
 
 <Pitfall>
 
-##### Don't use Effect Events to skip dependencies {/*pitfall-skip-dependencies*/}
+##### Đừng sử dụng Effect Event để bỏ qua dependency {/*pitfall-skip-dependencies*/}
 
-It might be tempting to use `useEffectEvent` to avoid listing dependencies that you think are "unnecessary." However, this hides bugs and makes your code harder to understand:
+Có thể bạn sẽ bị cám dỗ sử dụng `useEffectEvent` để tránh liệt kê các dependency mà bạn cho là "không cần thiết." Tuy nhiên, điều này che giấu các lỗi và làm cho code của bạn khó hiểu hơn:
 
 ```js
-// 🔴 Wrong: Using Effect Events to hide dependencies
+// 🔴 Sai: Sử dụng Effect Event để che giấu dependency
 const logVisit = useEffectEvent(() => {
   log(pageUrl);
 });
 
 useEffect(() => {
   logVisit()
-}, []); // Missing pageUrl means you miss logs
+}, []); // Thiếu pageUrl nghĩa là bạn bỏ lỡ các log
 ```
 
-If a value should cause your Effect to re-run, keep it as a dependency. Only use Effect Events for logic that genuinely should not re-trigger your Effect.
+Nếu một giá trị nên làm cho Effect của bạn chạy lại, hãy giữ nó như một dependency. Chỉ sử dụng Effect Event cho logic thực sự không nên kích hoạt lại Effect của bạn.
 
-See [Separating Events from Effects](/learn/separating-events-from-effects) to learn more.
+Xem [Tách sự kiện khỏi các Effect](/learn/separating-events-from-effects) để tìm hiểu thêm.
 
 </Pitfall>
 
 ---
 
-### Using a timer with latest values {/*using-a-timer-with-latest-values*/}
+### Sử dụng timer với các giá trị mới nhất {/*using-a-timer-with-latest-values*/}
 
-When you use `setInterval` or `setTimeout` in an Effect, you often want to read the latest values from render without restarting the timer whenever those values change.
+Khi bạn sử dụng `setInterval` hoặc `setTimeout` trong một Effect, bạn thường muốn đọc các giá trị mới nhất từ lần render mà không khởi động lại timer mỗi khi các giá trị đó thay đổi.
 
-This counter increments `count` by the current `increment` value every second. The `onTick` Effect Event reads the latest `count` and `increment` without causing the interval to restart:
+Counter này tăng `count` theo giá trị `increment` hiện tại mỗi giây. Effect Event `onTick` đọc `count` và `increment` mới nhất mà không làm cho interval khởi động lại:
 
 <Sandpack>
 
@@ -188,15 +188,15 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Try changing the increment value while the timer is running. The counter immediately uses the new increment value, but the timer keeps ticking smoothly without restarting.
+Hãy thử thay đổi giá trị increment trong khi timer đang chạy. Counter ngay lập tức sử dụng giá trị increment mới, nhưng timer vẫn chạy trơn tru mà không khởi động lại.
 
 ---
 
-### Using an event listener with latest values {/*using-an-event-listener-with-latest-values*/}
+### Sử dụng event listener với các giá trị mới nhất {/*using-an-event-listener-with-latest-values*/}
 
-When you set up an event listener in an Effect, you often need to read the latest values from render in the callback. Without `useEffectEvent`, you would need to include the values in your dependencies, causing the listener to be removed and re-added on every change.
+Khi bạn thiết lập một event listener trong Effect, bạn thường cần đọc các giá trị mới nhất từ lần render trong callback. Không có `useEffectEvent`, bạn sẽ cần đưa các giá trị vào dependency, khiến listener bị xóa và thêm lại mỗi khi thay đổi.
 
-This example shows a dot that follows the cursor, but only when "Can move" is checked. The `onMove` Effect Event always reads the latest `canMove` value without re-running the Effect:
+Ví dụ này hiển thị một dấu chấm theo con trỏ, nhưng chỉ khi "Can move" được chọn. Effect Event `onMove` luôn đọc giá trị `canMove` mới nhất mà không chạy lại Effect:
 
 <Sandpack>
 
@@ -254,15 +254,15 @@ body {
 
 </Sandpack>
 
-Toggle the checkbox and move your cursor. The dot responds immediately to the checkbox state, but the event listener is only set up once when the component mounts.
+Bật/tắt checkbox và di chuyển con trỏ. Dấu chấm phản hồi ngay lập tức với trạng thái checkbox, nhưng event listener chỉ được thiết lập một lần khi component được mount.
 
 ---
 
-### Avoid reconnecting to external systems {/*showing-a-notification-without-reconnecting*/}
+### Tránh kết nối lại các hệ thống bên ngoài {/*showing-a-notification-without-reconnecting*/}
 
-A common use case for `useEffectEvent` is when you want to do something in response to an Effect, but that "something" depends on a value you don't want to react to.
+Một trường hợp sử dụng phổ biến cho `useEffectEvent` là khi bạn muốn làm gì đó để phản hồi một Effect, nhưng "điều gì đó" đó phụ thuộc vào một giá trị bạn không muốn reactive.
 
-In this example, a chat component connects to a room and shows a notification when connected. The user can mute notifications with a checkbox. However, you don't want to reconnect to the chat room every time the user changes the settings:
+Trong ví dụ này, một component chat kết nối đến một phòng và hiển thị thông báo khi được kết nối. Người dùng có thể tắt thông báo bằng checkbox. Tuy nhiên, bạn không muốn kết nối lại phòng chat mỗi khi người dùng thay đổi cài đặt:
 
 <Sandpack>
 
@@ -401,13 +401,13 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Try switching rooms. The chat reconnects and shows a notification. Now mute the notifications. Since `muted` is read inside the Effect Event rather than the Effect, the chat stays connected.
+Hãy thử chuyển đổi phòng. Chat kết nối lại và hiển thị thông báo. Bây giờ hãy tắt thông báo. Vì `muted` được đọc bên trong Effect Event thay vì Effect, chat vẫn được kết nối.
 
 ---
 
-### Using Effect Events in custom Hooks {/*using-effect-events-in-custom-hooks*/}
+### Sử dụng Effect Event trong custom Hook {/*using-effect-events-in-custom-hooks*/}
 
-You can use `useEffectEvent` inside your own custom Hooks. This lets you create reusable Hooks that encapsulate Effects while keeping some values non-reactive:
+Bạn có thể sử dụng `useEffectEvent` bên trong các custom Hook của riêng bạn. Điều này cho phép bạn tạo các Hook có thể tái sử dụng đóng gói các Effect trong khi giữ một số giá trị không reactive:
 
 <Sandpack>
 
@@ -472,15 +472,15 @@ label { display: block; margin-bottom: 8px; }
 
 </Sandpack>
 
-In this example, `useInterval` is a custom Hook that sets up an interval. The `callback` passed to it is wrapped in an Effect Event, so the interval does not reset even if a new `callback` is passed in every render.
+Trong ví dụ này, `useInterval` là một custom Hook thiết lập một interval. `callback` được truyền cho nó được bọc trong một Effect Event, vì vậy interval không reset ngay cả khi một `callback` mới được truyền vào mỗi lần render.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I'm getting an error: "A function wrapped in useEffectEvent can't be called during rendering" {/*cant-call-during-rendering*/}
+### Tôi nhận được lỗi: "A function wrapped in useEffectEvent can't be called during rendering" {/*cant-call-during-rendering*/}
 
-This error means you're calling an Effect Event function during the render phase of your component. Effect Events can only be called from inside Effects or other Effect Events.
+Lỗi này có nghĩa là bạn đang gọi một hàm Effect Event trong quá trình render phase của component. Effect Event chỉ có thể được gọi từ bên trong các Effect hoặc các Effect Event khác.
 
 ```js
 function MyComponent({ data }) {
@@ -488,10 +488,10 @@ function MyComponent({ data }) {
     console.log(data);
   });
 
-  // 🔴 Wrong: calling during render
+  // 🔴 Sai: gọi trong quá trình render
   onLog();
 
-  // ✅ Correct: call from an Effect
+  // ✅ Đúng: gọi từ một Effect
   useEffect(() => {
     onLog();
   }, []);
@@ -500,55 +500,55 @@ function MyComponent({ data }) {
 }
 ```
 
-If you need to run logic during render, don't wrap it in `useEffectEvent`. Call the logic directly or move it into an Effect.
+Nếu bạn cần chạy logic trong quá trình render, đừng bọc nó trong `useEffectEvent`. Gọi logic trực tiếp hoặc chuyển nó vào trong một Effect.
 
 ---
 
-### I'm getting a lint error: "Functions returned from useEffectEvent must not be included in the dependency array" {/*effect-event-in-deps*/}
+### Tôi nhận được lỗi lint: "Functions returned from useEffectEvent must not be included in the dependency array" {/*effect-event-in-deps*/}
 
-If you see a warning like "Functions returned from `useEffectEvent` must not be included in the dependency array", remove the Effect Event from your dependencies:
+Nếu bạn thấy cảnh báo như "Functions returned from `useEffectEvent` must not be included in the dependency array", hãy xóa Effect Event khỏi dependency của bạn:
 
 ```js
 const onSomething = useEffectEvent(() => {
   // ...
 });
 
-// 🔴 Wrong: Effect Event in dependencies
+// 🔴 Sai: Effect Event trong dependency
 useEffect(() => {
   onSomething();
 }, [onSomething]);
 
-// ✅ Correct: no Effect Event in dependencies
+// ✅ Đúng: không có Effect Event trong dependency
 useEffect(() => {
   onSomething();
 }, []);
 ```
 
-Effect Events are designed to be called from Effects without being listed as dependencies. The linter enforces this because the function identity is [intentionally not stable](#why-are-effect-events-not-stable). Including it would cause your Effect to re-run on every render.
+Effect Event được thiết kế để được gọi từ các Effect mà không cần liệt kê như dependency. Bộ kiểm tra lint thực thi điều này vì danh tính hàm [cố ý không ổn định](#why-are-effect-events-not-stable). Đưa nó vào sẽ làm cho Effect của bạn chạy lại trên mỗi lần render.
 
 ---
 
-### I'm getting a lint error: "... is a function created with useEffectEvent, and can only be called from Effects" {/*effect-event-called-outside-effect*/}
+### Tôi nhận được lỗi lint: "... is a function created with useEffectEvent, and can only be called from Effects" {/*effect-event-called-outside-effect*/}
 
-If you see a warning like "... is a function created with React Hook `useEffectEvent`, and can only be called from Effects and Effect Events", you're calling the function from the wrong place:
+Nếu bạn thấy cảnh báo như "... is a function created with React Hook `useEffectEvent`, and can only be called from Effects and Effect Events", bạn đang gọi hàm từ sai vị trí:
 
 ```js
 const onSomething = useEffectEvent(() => {
   console.log(value);
 });
 
-// 🔴 Wrong: calling from event handler
+// 🔴 Sai: gọi từ event handler
 function handleClick() {
   onSomething();
 }
 
-// 🔴 Wrong: passing to child component
+// 🔴 Sai: truyền cho component con
 return <Child onSomething={onSomething} />;
 
-// ✅ Correct: calling from Effect
+// ✅ Đúng: gọi từ Effect
 useEffect(() => {
   onSomething();
 }, []);
 ```
 
-Effect Events are specifically designed to be used in Effects local to the component they're defined in. If you need a callback for event handlers or to pass to children, use a regular function or `useCallback` instead.
+Effect Event được thiết kế đặc biệt để được sử dụng trong các Effect cục bộ với component mà chúng được định nghĩa. Nếu bạn cần một callback cho event handler hoặc để truyền cho con, hãy sử dụng hàm thông thường hoặc `useCallback` thay thế.

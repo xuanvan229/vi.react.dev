@@ -1,5 +1,5 @@
 ---
-title: "Common components (e.g. <div>)"
+title: "Các component chung (ví dụ: <div>)"
 ---
 
 <Intro>
@@ -12,19 +12,19 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
-### Common components (e.g. `<div>`) {/*common*/}
+### Các component chung (ví dụ: `<div>`) {/*common*/}
 
 ```js
 <div className="wrapper">Some content</div>
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
 #### Props {/*common-props*/}
 
-These special React props are supported for all built-in components:
+Các props đặc biệt của React được hỗ trợ cho tất cả các component có sẵn:
 
 * `children`: A React node (an element, a string, a number, [a portal,](/reference/react-dom/createPortal) an empty node like `null`, `undefined` and booleans, or an array of other React nodes). Specifies the content inside the component. When you use JSX, you will usually specify the `children` prop implicitly by nesting tags like `<div><span /></div>`.
 
@@ -38,7 +38,7 @@ These special React props are supported for all built-in components:
 
 * `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
 
-These standard DOM props are also supported for all built-in components:
+Các props DOM chuẩn này cũng được hỗ trợ cho tất cả các component có sẵn:
 
 * [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): A string. Specifies a keyboard shortcut for the element. [Not generally recommended.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
 * [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA attributes let you specify the accessibility tree information for this element. See [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) for a complete reference. In React, all ARIA attribute names are exactly the same as in HTML.
@@ -155,35 +155,35 @@ These standard DOM props are also supported for all built-in components:
 * [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): A string. Specifies the tooltip text for the element.
 * [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Either `'yes'` or `'no'`. Passing `'no'` excludes the element content from being translated.
 
-You can also pass custom attributes as props, for example `mycustomprop="someValue"`. This can be useful when integrating with third-party libraries. The custom attribute name must be lowercase and must not start with `on`. The value will be converted to a string. If you pass `null` or `undefined`, the custom attribute will be removed.
+Bạn cũng có thể truyền các thuộc tính tùy chỉnh dưới dạng props, ví dụ `mycustomprop="someValue"`. Điều này có thể hữu ích khi tích hợp với các thư viện bên thứ ba. Tên thuộc tính tùy chỉnh phải là chữ thường và không được bắt đầu bằng `on`. Giá trị sẽ được chuyển đổi thành chuỗi. Nếu bạn truyền `null` hoặc `undefined`, thuộc tính tùy chỉnh sẽ bị xóa.
 
-These events fire only for the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements:
+Các sự kiện này chỉ kích hoạt cho các phần tử [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form):
 
 * [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): An [`Event` handler](#event-handler) function. Fires when a form gets reset.
 * `onResetCapture`: A version of `onReset` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): An [`Event` handler](#event-handler) function. Fires when a form gets submitted.
 * `onSubmitCapture`: A version of `onSubmit` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 
-These events fire only for the [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) elements. Unlike browser events, they bubble in React:
+Các sự kiện này chỉ kích hoạt cho các phần tử [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog). Không giống như sự kiện trình duyệt, chúng bubble trong React:
 
 * [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event): An [`Event` handler](#event-handler) function. Fires when the user tries to dismiss the dialog.
 * `onCancelCapture`: A version of `onCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): An [`Event` handler](#event-handler) function. Fires when a dialog has been closed.
 * `onCloseCapture`: A version of `onClose` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 
-These events fire only for the [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) elements. Unlike browser events, they bubble in React:
+Các sự kiện này chỉ kích hoạt cho các phần tử [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details). Không giống như sự kiện trình duyệt, chúng bubble trong React:
 
 * [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): An [`Event` handler](#event-handler) function. Fires when the user toggles the details.
 * `onToggleCapture`: A version of `onToggle` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 
-These events fire for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), and [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag) elements. Unlike browser events, they bubble in React:
+Các sự kiện này kích hoạt cho các phần tử [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), và [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag). Không giống như sự kiện trình duyệt, chúng bubble trong React:
 
 * `onLoad`: An [`Event` handler](#event-handler) function. Fires when the resource has loaded.
 * `onLoadCapture`: A version of `onLoad` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
 * `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 
-These events fire for resources like [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video). Unlike browser events, they bubble in React:
+Các sự kiện này kích hoạt cho các tài nguyên như [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) và [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video). Không giống như sự kiện trình duyệt, chúng bubble trong React:
 
 * [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): An [`Event` handler](#event-handler) function. Fires when the resource has not fully loaded, but not due to an error.
 * `onAbortCapture`: A version of `onAbort` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
@@ -198,52 +198,52 @@ These events fire for resources like [`<audio>`](https://developer.mozilla.org/e
 * [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): An [`Event` handler](#event-handler) function. Fires when the browser encounters encrypted media.
 * `onEncryptedCapture`: A version of `onEncrypted` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): An [`Event` handler](#event-handler) function. Fires when the playback stops because there's nothing left to play.
-* `onEndedCapture`: A version of `onEnded` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
-* `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): An [`Event` handler](#event-handler) function. Fires when the current playback frame has loaded.
-* `onLoadedDataCapture`: A version of `onLoadedData` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): An [`Event` handler](#event-handler) function. Fires when metadata has loaded.
-* `onLoadedMetadataCapture`: A version of `onLoadedMetadata` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): An [`Event` handler](#event-handler) function. Fires when the browser started loading the resource.
-* `onLoadStartCapture`: A version of `onLoadStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): An [`Event` handler](#event-handler) function. Fires when the media was paused.
-* `onPauseCapture`: A version of `onPause` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): An [`Event` handler](#event-handler) function. Fires when the media is no longer paused.
-* `onPlayCapture`: A version of `onPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): An [`Event` handler](#event-handler) function. Fires when the media starts or restarts playing.
-* `onPlayingCapture`: A version of `onPlaying` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): An [`Event` handler](#event-handler) function. Fires periodically while the resource is loading.
-* `onProgressCapture`: A version of `onProgress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): An [`Event` handler](#event-handler) function. Fires when playback rate changes.
-* `onRateChangeCapture`: A version of `onRateChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onResize`: An [`Event` handler](#event-handler) function. Fires when video changes size.
-* `onResizeCapture`: A version of `onResize` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): An [`Event` handler](#event-handler) function. Fires when a seek operation completes.
-* `onSeekedCapture`: A version of `onSeeked` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): An [`Event` handler](#event-handler) function. Fires when a seek operation starts.
-* `onSeekingCapture`: A version of `onSeeking` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): An [`Event` handler](#event-handler) function. Fires when the browser is waiting for data but it keeps not loading.
-* `onStalledCapture`: A version of `onStalled` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): An [`Event` handler](#event-handler) function. Fires when loading the resource was suspended.
-* `onSuspendCapture`: A version of `onSuspend` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): An [`Event` handler](#event-handler) function. Fires when the current playback time updates.
-* `onTimeUpdateCapture`: A version of `onTimeUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): An [`Event` handler](#event-handler) function. Fires when the volume has changed.
-* `onVolumeChangeCapture`: A version of `onVolumeChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): An [`Event` handler](#event-handler) function. Fires when the playback stopped due to temporary lack of data.
-* `onWaitingCapture`: A version of `onWaiting` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onEndedCapture`: Một phiên bản của `onEnded` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi tài nguyên không thể được tải.
+* `onErrorCapture`: Một phiên bản của `onError` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi khung phát lại hiện tại đã tải.
+* `onLoadedDataCapture`: Một phiên bản của `onLoadedData` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi metadata đã tải.
+* `onLoadedMetadataCapture`: Một phiên bản của `onLoadedMetadata` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi trình duyệt bắt đầu tải tài nguyên.
+* `onLoadStartCapture`: Một phiên bản của `onLoadStart` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi media bị tạm dừng.
+* `onPauseCapture`: Một phiên bản của `onPause` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi media không còn bị tạm dừng.
+* `onPlayCapture`: Một phiên bản của `onPlay` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi media bắt đầu hoặc khởi động lại phát.
+* `onPlayingCapture`: Một phiên bản của `onPlaying` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt định kỳ trong khi tài nguyên đang tải.
+* `onProgressCapture`: Một phiên bản của `onProgress` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi tốc độ phát thay đổi.
+* `onRateChangeCapture`: Một phiên bản của `onRateChange` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onResize`: Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi video thay đổi kích thước.
+* `onResizeCapture`: Một phiên bản của `onResize` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi một thao tác tua hoàn thành.
+* `onSeekedCapture`: Một phiên bản của `onSeeked` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi một thao tác tua bắt đầu.
+* `onSeekingCapture`: Một phiên bản của `onSeeking` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi trình duyệt đang chờ dữ liệu nhưng nó tiếp tục không tải.
+* `onStalledCapture`: Một phiên bản của `onStalled` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi việc tải tài nguyên bị tạm dừng.
+* `onSuspendCapture`: Một phiên bản của `onSuspend` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi thời gian phát hiện tại được cập nhật.
+* `onTimeUpdateCapture`: Một phiên bản của `onTimeUpdate` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi âm lượng thay đổi.
+* `onVolumeChangeCapture`: Một phiên bản của `onVolumeChange` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): Một hàm xử lý [`Event`](#event-handler). Kích hoạt khi việc phát dừng lại do thiếu dữ liệu tạm thời.
+* `onWaitingCapture`: Một phiên bản của `onWaiting` kích hoạt trong [capture phase.](/learn/responding-to-events#capture-phase-events)
 
-#### Caveats {/*common-caveats*/}
+#### Lưu ý {/*common-caveats*/}
 
-- You cannot pass both `children` and `dangerouslySetInnerHTML` at the same time.
-- Some events (like `onAbort` and `onLoad`) don't bubble in the browser, but bubble in React.
+- Bạn không thể truyền cả `children` và `dangerouslySetInnerHTML` cùng một lúc.
+- Một số sự kiện (như `onAbort` và `onLoad`) không bubble trong trình duyệt, nhưng bubble trong React.
 
 ---
 
-### `ref` callback function {/*ref-callback*/}
+### Hàm callback `ref` {/*ref-callback*/}
 
-Instead of a ref object (like the one returned by [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), you may pass a function to the `ref` attribute.
+Thay vì một ref object (như cái được trả về bởi [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), bạn có thể truyền một hàm cho thuộc tính `ref`.
 
 ```js
 <div ref={(node) => {
@@ -255,38 +255,38 @@ Instead of a ref object (like the one returned by [`useRef`](/reference/react/us
 }}>
 ```
 
-[See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+[Xem ví dụ về việc sử dụng callback `ref`.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
-When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your the cleanup function returned from the callback.
+Khi DOM node `<div>` được thêm vào màn hình, React sẽ gọi callback `ref` của bạn với DOM `node` là đối số. Khi DOM node `<div>` đó bị xóa, React sẽ gọi hàm cleanup được trả về từ callback.
 
-React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
+React cũng sẽ gọi callback `ref` của bạn bất cứ khi nào bạn truyền một callback `ref` *khác*. Trong ví dụ trên, `(node) => { ... }` là một hàm khác nhau trên mỗi lần render. Khi component của bạn re-render, hàm *trước đó* sẽ được gọi với `null` làm đối số, và hàm *tiếp theo* sẽ được gọi với DOM node.
 
-#### Parameters {/*ref-callback-parameters*/}
+#### Tham số {/*ref-callback-parameters*/}
 
-* `node`: A DOM node. React will pass you the DOM node when the ref gets attached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily cleanup and re-create during every re-render of the component.
+* `node`: Một DOM node. React sẽ truyền cho bạn DOM node khi ref được gắn. Trừ khi bạn truyền cùng một tham chiếu hàm cho callback `ref` trên mỗi lần render, callback sẽ được tạm thời dọn dẹp và tạo lại trong mỗi lần re-render của component.
 
 <Note>
 
-#### React 19 added cleanup functions for `ref` callbacks. {/*react-19-added-cleanup-functions-for-ref-callbacks*/}
+#### React 19 đã thêm hàm cleanup cho callback `ref`. {/*react-19-added-cleanup-functions-for-ref-callbacks*/}
 
-To support backwards compatibility, if a cleanup function is not returned from the `ref` callback, `node` will be called with `null` when the `ref` is detached. This behavior will be removed in a future version.
+Để hỗ trợ tương thích ngược, nếu hàm cleanup không được trả về từ callback `ref`, `node` sẽ được gọi với `null` khi `ref` bị tháo gỡ. Hành vi này sẽ bị xóa trong phiên bản tương lai.
 
 </Note>
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-* **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached. This behavior will be removed in a future version.
+* **tùy chọn** `cleanup function`: Khi `ref` bị tháo gỡ, React sẽ gọi hàm cleanup. Nếu một hàm không được trả về bởi callback `ref`, React sẽ gọi callback lại với `null` làm đối số khi `ref` bị tháo gỡ. Hành vi này sẽ bị xóa trong phiên bản tương lai.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
-* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If no cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
+* Khi Strict Mode được bật, React sẽ **chạy thêm một chu kỳ setup+cleanup chỉ dành cho development** trước khi setup thực sự đầu tiên. Đây là một bài kiểm tra áp lực đảm bảo rằng logic cleanup của bạn "phản chiếu" logic setup và nó dừng hoặc hoàn tác bất cứ điều gì setup đang làm. Nếu điều này gây ra vấn đề, hãy triển khai hàm cleanup.
+* Khi bạn truyền callback `ref` *khác*, React sẽ gọi hàm cleanup của callback *trước đó* nếu được cung cấp. Nếu không có hàm cleanup được định nghĩa, callback `ref` sẽ được gọi với `null` làm đối số. Hàm *tiếp theo* sẽ được gọi với DOM node.
 
 ---
 
-### React event object {/*react-event-object*/}
+### Object sự kiện React {/*react-event-object*/}
 
-Your event handlers will receive a *React event object.* It is also sometimes known as a "synthetic event".
+Các event handler của bạn sẽ nhận được một *object sự kiện React.* Nó đôi khi còn được gọi là "synthetic event".
 
 ```js
 <button onClick={e => {
@@ -294,13 +294,13 @@ Your event handlers will receive a *React event object.* It is also sometimes kn
 }} />
 ```
 
-It conforms to the same standard as the underlying DOM events, but fixes some browser inconsistencies.
+Nó tuân thủ cùng một tiêu chuẩn với các sự kiện DOM cơ bản, nhưng sửa một số không nhất quán của trình duyệt.
 
-Some React events do not map directly to the browser's native events. For example in `onMouseLeave`, `e.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change in the future. If you need the underlying browser event for some reason, read it from `e.nativeEvent`.
+Một số sự kiện React không ánh xạ trực tiếp đến các sự kiện gốc của trình duyệt. Ví dụ, trong `onMouseLeave`, `e.nativeEvent` sẽ trỏ đến sự kiện `mouseout`. Ánh xạ cụ thể không phải là một phần của API công khai và có thể thay đổi trong tương lai. Nếu bạn cần sự kiện trình duyệt cơ bản vì lý do nào đó, hãy đọc nó từ `e.nativeEvent`.
 
-#### Properties {/*react-event-object-properties*/}
+#### Thuộc tính {/*react-event-object-properties*/}
 
-React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) properties:
+Các object sự kiện React triển khai một số thuộc tính [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) chuẩn:
 
 * [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): A boolean. Returns whether the event bubbles through the DOM.
 * [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): A boolean. Returns whether the event can be canceled.
@@ -311,33 +311,33 @@ React event objects implement some of the standard [`Event`](https://developer.m
 * [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): A DOM node. Returns the node on which the event has occurred (which could be a distant child).
 * [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): A number. Returns the time when the event occurred.
 
-Additionally, React event objects provide these properties:
+Ngoài ra, các object sự kiện React cung cấp các thuộc tính này:
 
-* `nativeEvent`: A DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). The original browser event object.
+* `nativeEvent`: Một DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). Object sự kiện trình duyệt gốc.
 
-#### Methods {/*react-event-object-methods*/}
+#### Phương thức {/*react-event-object-methods*/}
 
-React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) methods:
+Các object sự kiện React triển khai một số phương thức [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) chuẩn:
 
 * [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): Prevents the default browser action for the event.
 * [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): Stops the event propagation through the React tree.
 
-Additionally, React event objects provide these methods:
+Ngoài ra, các object sự kiện React cung cấp các phương thức này:
 
-* `isDefaultPrevented()`: Returns a boolean value indicating whether `preventDefault` was called.
-* `isPropagationStopped()`: Returns a boolean value indicating whether `stopPropagation` was called.
-* `persist()`: Not used with React DOM. With React Native, call this to read event's properties after the event.
-* `isPersistent()`: Not used with React DOM. With React Native, returns whether `persist` has been called.
+* `isDefaultPrevented()`: Trả về một giá trị boolean cho biết `preventDefault` có được gọi hay không.
+* `isPropagationStopped()`: Trả về một giá trị boolean cho biết `stopPropagation` có được gọi hay không.
+* `persist()`: Không được sử dụng với React DOM. Với React Native, gọi cái này để đọc các thuộc tính của sự kiện sau sự kiện.
+* `isPersistent()`: Không được sử dụng với React DOM. Với React Native, trả về xem `persist` có được gọi hay không.
 
-#### Caveats {/*react-event-object-caveats*/}
+#### Lưu ý {/*react-event-object-caveats*/}
 
-* The values of `currentTarget`, `eventPhase`, `target`, and `type` reflect the values your React code expects. Under the hood, React attaches event handlers at the root, but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (underlying type).
+* Các giá trị của `currentTarget`, `eventPhase`, `target`, và `type` phản ánh các giá trị mà code React của bạn mong đợi. Dưới lớp bên dưới, React gắn các event handler tại root, nhưng điều này không được phản ánh trong các object sự kiện React. Ví dụ, `e.currentTarget` có thể không giống với `e.nativeEvent.currentTarget` cơ bản. Đối với các sự kiện được polyfill, `e.type` (loại sự kiện React) có thể khác với `e.nativeEvent.type` (loại cơ bản).
 
 ---
 
-### `AnimationEvent` handler function {/*animationevent-handler*/}
+### Hàm xử lý `AnimationEvent` {/*animationevent-handler*/}
 
-An event handler type for the [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) events.
+Loại event handler cho các sự kiện [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
 
 ```js
 <div
@@ -347,18 +347,18 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*animationevent-handler-parameters*/}
+#### Tham số {/*animationevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) bổ sung sau:
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/pseudoElement)
 
 ---
 
-### `ClipboardEvent` handler function {/*clipboadevent-handler*/}
+### Hàm xử lý `ClipboardEvent` {/*clipboadevent-handler*/}
 
-An event handler type for the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) events.
+Loại event handler cho các sự kiện [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).
 
 ```js
 <input
@@ -368,17 +368,17 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*clipboadevent-handler-parameters*/}
+#### Tham số {/*clipboadevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) bổ sung sau:
 
   * [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
 
 ---
 
-### `CompositionEvent` handler function {/*compositionevent-handler*/}
+### Hàm xử lý `CompositionEvent` {/*compositionevent-handler*/}
 
-An event handler type for the [input method editor (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) events.
+Loại event handler cho các sự kiện [trình chỉnh sửa phương thức nhập (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor).
 
 ```js
 <input
@@ -388,16 +388,16 @@ An event handler type for the [input method editor (IME)](https://developer.mozi
 />
 ```
 
-#### Parameters {/*compositionevent-handler-parameters*/}
+#### Tham số {/*compositionevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) bổ sung sau:
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent/data)
 
 ---
 
-### `DragEvent` handler function {/*dragevent-handler*/}
+### Hàm xử lý `DragEvent` {/*dragevent-handler*/}
 
-An event handler type for the [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) events.
+Loại event handler cho các sự kiện [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
 
 ```js
 <>
@@ -420,12 +420,12 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
 </>
 ```
 
-#### Parameters {/*dragevent-handler-parameters*/}
+#### Tham số {/*dragevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) bổ sung sau:
   * [`dataTransfer`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/dataTransfer)
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) kế thừa:
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -444,16 +444,16 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `FocusEvent` handler function {/*focusevent-handler*/}
+### Hàm xử lý `FocusEvent` {/*focusevent-handler*/}
 
-An event handler type for the focus events.
+Loại event handler cho các sự kiện focus.
 
 ```js
 <input
@@ -462,48 +462,48 @@ An event handler type for the focus events.
 />
 ```
 
-[See an example.](#handling-focus-events)
+[Xem ví dụ.](#handling-focus-events)
 
-#### Parameters {/*focusevent-handler-parameters*/}
+#### Tham số {/*focusevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) bổ sung sau:
   * [`relatedTarget`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `Event` handler function {/*event-handler*/}
+### Hàm xử lý `Event` {/*event-handler*/}
 
-An event handler type for generic events.
+Loại event handler cho các sự kiện generic.
 
-#### Parameters {/*event-handler-parameters*/}
+#### Tham số {/*event-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with no additional properties.
+* `e`: Một [object sự kiện React](#react-event-object) không có thuộc tính bổ sung.
 
 ---
 
-### `InputEvent` handler function {/*inputevent-handler*/}
+### Hàm xử lý `InputEvent` {/*inputevent-handler*/}
 
-An event handler type for the `onBeforeInput` event.
+Loại event handler cho sự kiện `onBeforeInput`.
 
 ```js
 <input onBeforeInput={e => console.log('onBeforeInput')} />
 ```
 
-#### Parameters {/*inputevent-handler-parameters*/}
+#### Tham số {/*inputevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) bổ sung sau:
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/data)
 
 ---
 
-### `KeyboardEvent` handler function {/*keyboardevent-handler*/}
+### Hàm xử lý `KeyboardEvent` {/*keyboardevent-handler*/}
 
-An event handler type for keyboard events.
+Loại event handler cho các sự kiện bàn phím.
 
 ```js
 <input
@@ -512,11 +512,11 @@ An event handler type for keyboard events.
 />
 ```
 
-[See an example.](#handling-keyboard-events)
+[Xem ví dụ.](#handling-keyboard-events)
 
-#### Parameters {/*keyboardevent-handler-parameters*/}
+#### Tham số {/*keyboardevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) bổ sung sau:
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode)
   * [`code`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
@@ -531,16 +531,16 @@ An event handler type for keyboard events.
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/shiftKey)
   * [`which`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `MouseEvent` handler function {/*mouseevent-handler*/}
+### Hàm xử lý `MouseEvent` {/*mouseevent-handler*/}
 
-An event handler type for mouse events.
+Loại event handler cho các sự kiện chuột.
 
 ```js
 <div
@@ -553,11 +553,11 @@ An event handler type for mouse events.
 />
 ```
 
-[See an example.](#handling-mouse-events)
+[Xem ví dụ.](#handling-mouse-events)
 
-#### Parameters {/*mouseevent-handler-parameters*/}
+#### Tham số {/*mouseevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) bổ sung sau:
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
   * [`buttons`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
@@ -575,16 +575,16 @@ An event handler type for mouse events.
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `PointerEvent` handler function {/*pointerevent-handler*/}
+### Hàm xử lý `PointerEvent` {/*pointerevent-handler*/}
 
-An event handler type for [pointer events.](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
+Loại event handler cho [các sự kiện con trỏ.](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
 
 ```js
 <div
@@ -596,11 +596,11 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
 />
 ```
 
-[See an example.](#handling-pointer-events)
+[Xem ví dụ.](#handling-pointer-events)
 
-#### Parameters {/*pointerevent-handler-parameters*/}
+#### Tham số {/*pointerevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) bổ sung sau:
   * [`height`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/height)
   * [`isPrimary`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/isPrimary)
   * [`pointerId`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pointerId)
@@ -612,7 +612,7 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`twist`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/twist)
   * [`width`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/width)
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) kế thừa:
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -631,16 +631,16 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TouchEvent` handler function {/*touchevent-handler*/}
+### Hàm xử lý `TouchEvent` {/*touchevent-handler*/}
 
-An event handler type for [touch events.](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
+Loại event handler cho [các sự kiện chạm.](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
 
 ```js
 <div
@@ -651,9 +651,9 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
 />
 ```
 
-#### Parameters {/*touchevent-handler-parameters*/}
+#### Tham số {/*touchevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) bổ sung sau:
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/altKey)
   * [`ctrlKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/ctrlKey)
   * [`changedTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/changedTouches)
@@ -663,16 +663,16 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
   * [`touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches)
   * [`targetTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TransitionEvent` handler function {/*transitionevent-handler*/}
+### Hàm xử lý `TransitionEvent` {/*transitionevent-handler*/}
 
-An event handler type for the CSS transition events.
+Loại event handler cho các sự kiện CSS transition.
 
 ```js
 <div
@@ -680,18 +680,18 @@ An event handler type for the CSS transition events.
 />
 ```
 
-#### Parameters {/*transitionevent-handler-parameters*/}
+#### Tham số {/*transitionevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) bổ sung sau:
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/elapsedTime)
   * [`propertyName`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/propertyName)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/pseudoElement)
 
 ---
 
-### `UIEvent` handler function {/*uievent-handler*/}
+### Hàm xử lý `UIEvent` {/*uievent-handler*/}
 
-An event handler type for generic UI events.
+Loại event handler cho các sự kiện UI generic.
 
 ```js
 <div
@@ -699,17 +699,17 @@ An event handler type for generic UI events.
 />
 ```
 
-#### Parameters {/*uievent-handler-parameters*/}
+#### Tham số {/*uievent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) bổ sung sau:
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `WheelEvent` handler function {/*wheelevent-handler*/}
+### Hàm xử lý `WheelEvent` {/*wheelevent-handler*/}
 
-An event handler type for the `onWheel` event.
+Loại event handler cho sự kiện `onWheel`.
 
 ```js
 <div
@@ -717,16 +717,16 @@ An event handler type for the `onWheel` event.
 />
 ```
 
-#### Parameters {/*wheelevent-handler-parameters*/}
+#### Tham số {/*wheelevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) properties:
+* `e`: Một [object sự kiện React](#react-event-object) với các thuộc tính [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) bổ sung sau:
   * [`deltaMode`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaX)
   * [`deltaY`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaY)
   * [`deltaZ`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaZ)
 
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) kế thừa:
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -745,24 +745,24 @@ An event handler type for the `onWheel` event.
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  Nó cũng bao gồm các thuộc tính [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) kế thừa:
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Applying CSS styles {/*applying-css-styles*/}
+### Áp dụng CSS styles {/*applying-css-styles*/}
 
-In React, you specify a CSS class with [`className`.](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) It works like the `class` attribute in HTML:
+Trong React, bạn chỉ định một class CSS với [`className`.](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) Nó hoạt động như thuộc tính `class` trong HTML:
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Sau đó bạn viết các quy tắc CSS cho nó trong một file CSS riêng biệt:
 
 ```css
 /* In your CSS */
@@ -771,9 +771,9 @@ Then you write the CSS rules for it in a separate CSS file:
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React không quy định cách bạn thêm file CSS. Trong trường hợp đơn giản nhất, bạn sẽ thêm thẻ [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) vào HTML. Nếu bạn sử dụng build tool hoặc framework, hãy tham khảo tài liệu của nó để tìm hiểu cách thêm file CSS vào dự án.
 
-Sometimes, the style values depend on data. Use the `style` attribute to pass some styles dynamically:
+Đôi khi, giá trị style phụ thuộc vào dữ liệu. Sử dụng thuộc tính `style` để truyền một số styles động:
 
 ```js {3-6}
 <img
@@ -786,7 +786,7 @@ Sometimes, the style values depend on data. Use the `style` attribute to pass so
 ```
 
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` [JSX curly braces.](/learn/javascript-in-jsx-with-curly-braces) We recommend only using the `style` attribute when your styles depend on JavaScript variables.
+Trong ví dụ trên, `style={{}}` không phải là cú pháp đặc biệt, mà là một object `{}` thông thường bên trong `style={ }` [dấu ngoặc nhọn JSX.](/learn/javascript-in-jsx-with-curly-braces) Chúng tôi khuyến nghị chỉ sử dụng thuộc tính `style` khi styles của bạn phụ thuộc vào các biến JavaScript.
 
 <Sandpack>
 
@@ -830,13 +830,13 @@ export default function Avatar({ user }) {
 
 <DeepDive>
 
-#### How to apply multiple CSS classes conditionally? {/*how-to-apply-multiple-css-classes-conditionally*/}
+#### Làm thế nào để áp dụng nhiều class CSS một cách có điều kiện? {/*how-to-apply-multiple-css-classes-conditionally*/}
 
-To apply CSS classes conditionally, you need to produce the `className` string yourself using JavaScript.
+Để áp dụng các class CSS một cách có điều kiện, bạn cần tự tạo chuỗi `className` bằng JavaScript.
 
 For example, `className={'row ' + (isSelected ? 'selected': '')}` will produce either `className="row"` or `className="row selected"` depending on whether `isSelected` is `true`.
 
-To make this more readable, you can use a tiny helper library like [`classnames`:](https://github.com/JedWatson/classnames)
+Để làm cho điều này dễ đọc hơn, bạn có thể sử dụng một thư viện helper nhỏ như [`classnames`:](https://github.com/JedWatson/classnames)
 
 ```js
 import cn from 'classnames';
@@ -850,7 +850,7 @@ function Row({ isSelected }) {
 }
 ```
 
-It is especially convenient if you have multiple conditional classes:
+Đặc biệt tiện lợi nếu bạn có nhiều class có điều kiện:
 
 ```js
 import cn from 'classnames';
@@ -872,11 +872,11 @@ function Row({ isSelected, size }) {
 
 ---
 
-### Manipulating a DOM node with a ref {/*manipulating-a-dom-node-with-a-ref*/}
+### Thao tác DOM node với ref {/*manipulating-a-dom-node-with-a-ref*/}
 
-Sometimes, you'll need to get the browser DOM node associated with a tag in JSX. For example, if you want to focus an `<input>` when a button is clicked, you need to call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on the browser `<input>` DOM node.
+Đôi khi, bạn sẽ cần lấy DOM node trình duyệt liên kết với một thẻ trong JSX. Ví dụ, nếu bạn muốn focus vào `<input>` khi một nút được nhấp, bạn cần gọi [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) trên DOM node `<input>` của trình duyệt.
 
-To obtain the browser DOM node for a tag, [declare a ref](/reference/react/useRef) and pass it as the `ref` attribute to that tag:
+Để lấy DOM node trình duyệt cho một thẻ, [khai báo một ref](/reference/react/useRef) và truyền nó làm thuộc tính `ref` cho thẻ đó:
 
 ```js {7}
 import { useRef } from 'react';
@@ -889,7 +889,7 @@ export default function Form() {
     // ...
 ```
 
-React will put the DOM node into `inputRef.current` after it's been rendered to the screen.
+React sẽ đặt DOM node vào `inputRef.current` sau khi nó được render lên màn hình.
 
 <Sandpack>
 
@@ -916,15 +916,15 @@ export default function Form() {
 
 </Sandpack>
 
-Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#usage)
+Đọc thêm về [thao tác DOM với refs](/learn/manipulating-the-dom-with-refs) và [xem thêm ví dụ.](/reference/react/useRef#usage)
 
-For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
+Đối với các trường hợp sử dụng nâng cao hơn, thuộc tính `ref` cũng chấp nhận [hàm callback.](#ref-callback)
 
 ---
 
-### Dangerously setting the inner HTML {/*dangerously-setting-the-inner-html*/}
+### Thiết lập inner HTML một cách nguy hiểm {/*dangerously-setting-the-inner-html*/}
 
-You can pass a raw HTML string to an element like so:
+Bạn có thể truyền một chuỗi HTML thô cho một phần tử như sau:
 
 ```js
 const markup = { __html: '<p>some raw html</p>' };
@@ -1001,9 +1001,9 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-The `{__html}` object should be created as close to where the HTML is generated as possible, like the above example does in the `renderMarkdownToHTML` function. This ensures that all raw HTML being used in your code is explicitly marked as such, and that only variables that you expect to contain HTML are passed to `dangerouslySetInnerHTML`. It is not recommended to create the object inline like `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+Object `{__html}` nên được tạo càng gần nơi tạo HTML càng tốt, như ví dụ trên làm trong hàm `renderMarkdownToHTML`. Điều này đảm bảo rằng tất cả HTML thô được sử dụng trong code của bạn được đánh dấu rõ ràng như vậy, và chỉ các biến mà bạn muốn chứa HTML mới được truyền cho `dangerouslySetInnerHTML`. Không nên tạo object nội tuyến như `<div dangerouslySetInnerHTML={{__html: markup}} />`.
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
+Để xem tại sao việc render HTML tùy ý lại nguy hiểm, thay thế code trên bằng:
 
 ```js {1-4,7,8}
 const post = {
@@ -1018,13 +1018,13 @@ export default function MarkdownPreview() {
 }
 ```
 
-The code embedded in the HTML will run. A hacker could use this security hole to steal user information or to perform actions on their behalf. **Only use `dangerouslySetInnerHTML` with trusted and sanitized data.**
+Code được nhúng trong HTML sẽ chạy. Một hacker có thể sử dụng lỗ hổng bảo mật này để đánh cắp thông tin người dùng hoặc thực hiện các hành động thay mặt họ. **Chỉ sử dụng `dangerouslySetInnerHTML` với dữ liệu đáng tin cậy và đã được làm sạch.**
 
 ---
 
-### Handling mouse events {/*handling-mouse-events*/}
+### Xử lý sự kiện chuột {/*handling-mouse-events*/}
 
-This example shows some common [mouse events](#mouseevent-handler) and when they fire.
+Ví dụ này hiển thị một số [sự kiện chuột](#mouseevent-handler) phổ biến và khi nào chúng kích hoạt.
 
 <Sandpack>
 
@@ -1069,9 +1069,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling pointer events {/*handling-pointer-events*/}
+### Xử lý sự kiện con trỏ {/*handling-pointer-events*/}
 
-This example shows some common [pointer events](#pointerevent-handler) and when they fire.
+Ví dụ này hiển thị một số [sự kiện con trỏ](#pointerevent-handler) phổ biến và khi nào chúng kích hoạt.
 
 <Sandpack>
 
@@ -1117,9 +1117,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling focus events {/*handling-focus-events*/}
+### Xử lý sự kiện focus {/*handling-focus-events*/}
 
-In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from outside of the parent element. The example shows how to detect focusing a child, focusing the parent element, and how to detect focus entering or leaving the whole subtree.
+Trong React, [sự kiện focus](#focusevent-handler) bubble. Bạn có thể sử dụng `currentTarget` và `relatedTarget` để phân biệt xem các sự kiện focusing hoặc blurring có xuất phát từ bên ngoài phần tử cha hay không. Ví dụ cho thấy cách phát hiện focus vào con, focus vào phần tử cha, và cách phát hiện focus vào hoặc ra khỏi cả subtree.
 
 <Sandpack>
 
@@ -1173,9 +1173,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling keyboard events {/*handling-keyboard-events*/}
+### Xử lý sự kiện bàn phím {/*handling-keyboard-events*/}
 
-This example shows some common [keyboard events](#keyboardevent-handler) and when they fire.
+Ví dụ này hiển thị một số [sự kiện bàn phím](#keyboardevent-handler) phổ biến và khi nào chúng kích hoạt.
 
 <Sandpack>
 

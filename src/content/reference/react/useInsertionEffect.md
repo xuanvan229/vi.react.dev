@@ -4,13 +4,13 @@ title: useInsertionEffect
 
 <Pitfall>
 
-`useInsertionEffect` is for CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
+`useInsertionEffect` dành cho các tác giả thư viện CSS-in-JS. Trừ khi bạn đang làm việc trên một thư viện CSS-in-JS và cần nơi để chèn các styles, bạn có thể muốn dùng [`useEffect`](/reference/react/useEffect) hoặc [`useLayoutEffect`](/reference/react/useLayoutEffect) thay thế.
 
 </Pitfall>
 
 <Intro>
 
-`useInsertionEffect` allows inserting elements into the DOM before any layout Effects fire.
+`useInsertionEffect` cho phép chèn các phần tử vào DOM trước khi bất kỳ layout Effect nào kích hoạt.
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -22,81 +22,81 @@ useInsertionEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useInsertionEffect` to insert styles before any Effects fire that may need to read layout:
+Gọi `useInsertionEffect` để chèn styles trước khi bất kỳ Effect nào kích hoạt có thể cần đọc layout:
 
 ```js
 import { useInsertionEffect } from 'react';
 
-// Inside your CSS-in-JS library
+// Bên trong thư viện CSS-in-JS của bạn
 function useCSS(rule) {
   useInsertionEffect(() => {
-    // ... inject <style> tags here ...
+    // ... chèn các thẻ <style> ở đây ...
   });
   return rule;
 }
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout Effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
+* `setup`: Hàm chứa logic của Effect của bạn. Hàm setup của bạn cũng có thể tùy chọn trả về một hàm *cleanup*. Khi component của bạn được thêm vào DOM, nhưng trước khi bất kỳ layout Effect nào kích hoạt, React sẽ chạy hàm setup của bạn. Sau mỗi lần re-render với các dependency đã thay đổi, React sẽ trước tiên chạy hàm cleanup (nếu bạn đã cung cấp) với các giá trị cũ, và sau đó chạy hàm setup của bạn với các giá trị mới. Khi component của bạn bị xóa khỏi DOM, React sẽ chạy hàm cleanup của bạn.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+* **tùy chọn** `dependencies`: Danh sách tất cả các giá trị reactive được tham chiếu bên trong code `setup`. Các giá trị reactive bao gồm props, state, và tất cả các biến và hàm được khai báo trực tiếp bên trong thân component của bạn. Nếu bộ linter của bạn được [cấu hình cho React](/learn/editor-setup#linting), nó sẽ xác minh rằng mọi giá trị reactive được chỉ định chính xác như một dependency. Danh sách dependency phải có số lượng mục cố định và được viết inline như `[dep1, dep2, dep3]`. React sẽ so sánh mỗi dependency với giá trị trước đó của nó bằng thuật toán so sánh [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Nếu bạn không chỉ định các dependency, Effect của bạn sẽ chạy lại sau mỗi lần re-render của component.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`useInsertionEffect` returns `undefined`.
+`useInsertionEffect` trả về `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* Effects only run on the client. They don't run during server rendering.
-* You can't update state from inside `useInsertionEffect`.
-* By the time `useInsertionEffect` runs, refs are not attached yet.
-* `useInsertionEffect` may run either before or after the DOM has been updated. You shouldn't rely on the DOM being updated at any particular time.
-* Unlike other types of Effects, which fire cleanup for every Effect and then setup for every Effect, `useInsertionEffect` will fire both cleanup and setup one component at a time. This results in an "interleaving" of the cleanup and setup functions.
+* Các Effect chỉ chạy trên client. Chúng không chạy trong quá trình server rendering.
+* Bạn không thể cập nhật state từ bên trong `useInsertionEffect`.
+* Tại thời điểm `useInsertionEffect` chạy, các ref chưa được gắn.
+* `useInsertionEffect` có thể chạy trước hoặc sau khi DOM đã được cập nhật. Bạn không nên dựa vào việc DOM được cập nhật tại bất kỳ thời điểm cụ thể nào.
+* Không giống như các loại Effect khác, kích hoạt cleanup cho mọi Effect và sau đó setup cho mọi Effect, `useInsertionEffect` sẽ kích hoạt cả cleanup và setup từng component một. Điều này dẫn đến "xen kẽ" của các hàm cleanup và setup.
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Injecting dynamic styles from CSS-in-JS libraries {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
+### Chèn dynamic styles từ các thư viện CSS-in-JS {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
 
-Traditionally, you would style React components using plain CSS.
+Theo truyền thống, bạn sẽ style các React component bằng CSS thuần túy.
 
 ```js
-// In your JS file:
+// Trong file JS của bạn:
 <button className="success" />
 
-// In your CSS file:
+// Trong file CSS của bạn:
 .success { color: green; }
 ```
 
-Some teams prefer to author styles directly in JavaScript code instead of writing CSS files. This usually requires using a CSS-in-JS library or a tool. There are three common approaches to CSS-in-JS:
+Một số team thích viết styles trực tiếp trong code JavaScript thay vì viết các file CSS. Điều này thường yêu cầu sử dụng thư viện CSS-in-JS hoặc một công cụ. Có ba cách tiếp cận phổ biến cho CSS-in-JS:
 
-1. Static extraction to CSS files with a compiler
-2. Inline styles, e.g. `<div style={{ opacity: 1 }}>`
-3. Runtime injection of `<style>` tags
+1. Trích xuất tĩnh sang file CSS bằng compiler
+2. Inline styles, ví dụ: `<div style={{ opacity: 1 }}>`
+3. Chèn runtime của các thẻ `<style>`
 
-If you use CSS-in-JS, we recommend a combination of the first two approaches (CSS files for static styles, inline styles for dynamic styles). **We don't recommend runtime `<style>` tag injection for two reasons:**
+Nếu bạn sử dụng CSS-in-JS, chúng tôi khuyến nghị kết hợp hai cách tiếp cận đầu (file CSS cho static styles, inline styles cho dynamic styles). **Chúng tôi không khuyến nghị chèn runtime thẻ `<style>` vì hai lý do:**
 
-1. Runtime injection forces the browser to recalculate the styles a lot more often.
-2. Runtime injection can be very slow if it happens at the wrong time in the React lifecycle.
+1. Chèn runtime buộc trình duyệt phải tính toán lại styles thường xuyên hơn nhiều.
+2. Chèn runtime có thể rất chậm nếu nó xảy ra vào thời điểm sai trong vòng đời React.
 
-The first problem is not solvable, but `useInsertionEffect` helps you solve the second problem.
+Vấn đề đầu tiên không thể giải quyết được, nhưng `useInsertionEffect` giúp bạn giải quyết vấn đề thứ hai.
 
-Call `useInsertionEffect` to insert the styles before any layout Effects fire:
+Gọi `useInsertionEffect` để chèn styles trước khi bất kỳ layout Effect nào kích hoạt:
 
 ```js {4-11}
-// Inside your CSS-in-JS library
+// Bên trong thư viện CSS-in-JS của bạn
 let isInserted = new Set();
 function useCSS(rule) {
   useInsertionEffect(() => {
-    // As explained earlier, we don't recommend runtime injection of <style> tags.
-    // But if you have to do it, then it's important to do in useInsertionEffect.
+    // Như đã giải thích trước đó, chúng tôi không khuyến nghị chèn runtime của các thẻ <style>.
+    // Nhưng nếu bạn phải làm vậy, thì điều quan trọng là phải làm trong useInsertionEffect.
     if (!isInserted.has(rule)) {
       isInserted.add(rule);
       document.head.appendChild(getStyleForRule(rule));
@@ -111,7 +111,7 @@ function Button() {
 }
 ```
 
-Similarly to `useEffect`, `useInsertionEffect` does not run on the server. If you need to collect which CSS rules have been used on the server, you can do it during rendering:
+Tương tự như `useEffect`, `useInsertionEffect` không chạy trên server. Nếu bạn cần thu thập các quy tắc CSS nào đã được sử dụng trên server, bạn có thể làm điều đó trong quá trình rendering:
 
 ```js {1,4-6}
 let collectedRulesSet = new Set();
@@ -127,14 +127,14 @@ function useCSS(rule) {
 }
 ```
 
-[Read more about upgrading CSS-in-JS libraries with runtime injection to `useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
+[Đọc thêm về nâng cấp các thư viện CSS-in-JS với runtime injection sang `useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
 
 <DeepDive>
 
-#### How is this better than injecting styles during rendering or useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
+#### Tại sao điều này tốt hơn so với chèn styles trong quá trình rendering hoặc useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
-If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+Nếu bạn chèn styles trong quá trình rendering và React đang xử lý một [cập nhật không chặn,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) trình duyệt sẽ tính toán lại styles trên mỗi frame trong khi render một cây component, điều này có thể **cực kỳ chậm.**
 
-`useInsertionEffect` is better than inserting styles during [`useLayoutEffect`](/reference/react/useLayoutEffect) or [`useEffect`](/reference/react/useEffect) because it ensures that by the time other Effects run in your components, the `<style>` tags have already been inserted. Otherwise, layout calculations in regular Effects would be wrong due to outdated styles.
+`useInsertionEffect` tốt hơn so với chèn styles trong [`useLayoutEffect`](/reference/react/useLayoutEffect) hoặc [`useEffect`](/reference/react/useEffect) vì nó đảm bảo rằng khi các Effect khác chạy trong các component của bạn, các thẻ `<style>` đã được chèn. Nếu không, các tính toán layout trong các Effect thông thường sẽ sai do styles lỗi thời.
 
 </DeepDive>

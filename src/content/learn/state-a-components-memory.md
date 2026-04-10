@@ -1,25 +1,25 @@
 ---
-title: "State: A Component's Memory"
+title: "State: Bộ Nhớ Của Component"
 ---
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+Các component thường cần thay đổi những gì hiển thị trên màn hình do kết quả của một tương tác. Nhập vào form nên cập nhật trường input, nhấp "next" trên bộ ảnh carousel nên thay đổi ảnh nào được hiển thị, nhấp "buy" nên đặt sản phẩm vào giỏ hàng. Các component cần "nhớ" những thứ: giá trị input hiện tại, ảnh hiện tại, giỏ hàng. Trong React, loại bộ nhớ dành riêng cho component này được gọi là *state*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
-* What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* Cách thêm một state variable với Hook [`useState`](/reference/react/useState)
+* Cặp giá trị nào Hook `useState` trả về
+* Cách thêm nhiều hơn một state variable
+* Tại sao state được gọi là local
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## Khi một biến thông thường không đủ {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+Đây là một component render hình ảnh tác phẩm điêu khắc. Nhấp vào nút "Next" sẽ hiển thị tác phẩm điêu khắc tiếp theo bằng cách thay đổi `index` thành `1`, sau đó `2`, và cứ thế tiếp tục. Tuy nhiên, điều này **sẽ không hoạt động** (bạn có thể thử!):
 
 <Sandpack>
 
@@ -151,46 +151,46 @@ button {
 
 </Sandpack>
 
-The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+Event handler `handleClick` đang cập nhật một biến cục bộ, `index`. Nhưng có hai điều ngăn thay đổi đó hiển thị:
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **Các biến cục bộ không tồn tại giữa các lần render.** Khi React render component này lần thứ hai, nó render từ đầu—nó không xem xét bất kỳ thay đổi nào đối với các biến cục bộ.
+2. **Các thay đổi đối với biến cục bộ sẽ không trigger render.** React không nhận ra rằng nó cần render lại component với dữ liệu mới.
 
-To update a component with new data, two things need to happen:
+Để cập nhật một component với dữ liệu mới, hai điều cần xảy ra:
 
-1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+1. **Giữ lại** dữ liệu giữa các lần render.
+2. **Trigger** React render lại component với dữ liệu mới (re-rendering).
 
-The [`useState`](/reference/react/useState) Hook provides those two things:
+Hook [`useState`](/reference/react/useState) cung cấp hai điều đó:
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. Một **state variable** để giữ lại dữ liệu giữa các lần render.
+2. Một **state setter function** để cập nhật biến và trigger React render lại component.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Thêm một state variable {/*adding-a-state-variable*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+Để thêm một state variable, import `useState` từ React ở đầu file:
 
 ```js
 import { useState } from 'react';
 ```
 
-Then, replace this line:
+Sau đó, thay thế dòng này:
 
 ```js
 let index = 0;
 ```
 
-with
+bằng
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` là một state variable và `setIndex` là hàm setter.
 
-> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> Cú pháp `[` và `]` ở đây được gọi là [array destructuring](https://javascript.info/destructuring-assignment) và nó cho phép bạn đọc các giá trị từ một mảng. Mảng được trả về bởi `useState` luôn có đúng hai phần tử.
 
-This is how they work together in `handleClick`:
+Đây là cách chúng hoạt động cùng nhau trong `handleClick`:
 
 ```js
 function handleClick() {
@@ -198,7 +198,7 @@ function handleClick() {
 }
 ```
 
-Now clicking the "Next" button switches the current sculpture:
+Bây giờ nhấp vào nút "Next" sẽ chuyển tác phẩm điêu khắc hiện tại:
 
 <Sandpack>
 

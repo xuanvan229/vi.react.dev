@@ -4,7 +4,7 @@ title: "<select>"
 
 <Intro>
 
-The [built-in browser `<select>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) lets you render a select box with options.
+Component [`<select>` có sẵn trong trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) cho phép bạn render một hộp chọn với các tùy chọn.
 
 ```js
 <select>
@@ -19,11 +19,11 @@ The [built-in browser `<select>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `<select>` {/*select*/}
 
-To display a select box, render the [built-in browser `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) component.
+Để hiển thị một hộp chọn, render component [`<select>` có sẵn trong trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select).
 
 ```js
 <select>
@@ -32,23 +32,23 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 </select>
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
 #### Props {/*props*/}
 
-`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<select>` hỗ trợ tất cả [common element props.](/reference/react-dom/components/common#common-props)
 
-You can [make a select box controlled](#controlling-a-select-box-with-a-state-variable) by passing a `value` prop:
+Bạn có thể [làm cho hộp chọn được kiểm soát](#controlling-a-select-box-with-a-state-variable) bằng cách truyền prop `value`:
 
 * `value`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Controls which option is selected. Every value string match the `value` of some `<option>` nested inside the `<select>`.
 
-When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
+Khi bạn truyền `value`, bạn cũng phải truyền một handler `onChange` cập nhật giá trị được truyền.
 
-If your `<select>` is uncontrolled, you may pass the `defaultValue` prop instead:
+Nếu `<select>` của bạn là uncontrolled, bạn có thể truyền prop `defaultValue` thay thế:
 
 * `defaultValue`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Specifies [the initially selected option.](#providing-an-initially-selected-option)
 
-These `<select>` props are relevant both for uncontrolled and controlled select boxes:
+Các props `<select>` này liên quan đến cả hộp chọn không được kiểm soát và được kiểm soát:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autofocus): A boolean. If `true`, React will focus the element on mount.
@@ -66,21 +66,21 @@ These `<select>` props are relevant both for uncontrolled and controlled select 
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#required): A boolean. If `true`, the value must be provided for the form to submit.
 * [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#size): A number. For `multiple={true}` selects, specifies the preferred number of initially visible items.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- Unlike in HTML, passing a `selected` attribute to `<option>` is not supported. Instead, use [`<select defaultValue>`](#providing-an-initially-selected-option) for uncontrolled select boxes and [`<select value>`](#controlling-a-select-box-with-a-state-variable) for controlled select boxes.
-- If a select box receives a `value` prop, it will be [treated as controlled.](#controlling-a-select-box-with-a-state-variable)
-- A select box can't be both controlled and uncontrolled at the same time.
-- A select box cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled select box needs an `onChange` event handler that synchronously updates its backing value.
+- Khác với HTML, việc truyền thuộc tính `selected` cho `<option>` không được hỗ trợ. Thay vào đó, hãy sử dụng [`<select defaultValue>`](#providing-an-initially-selected-option) cho hộp chọn uncontrolled và [`<select value>`](#controlling-a-select-box-with-a-state-variable) cho hộp chọn controlled.
+- Nếu hộp chọn nhận prop `value`, nó sẽ được [coi là controlled.](#controlling-a-select-box-with-a-state-variable)
+- Một hộp chọn không thể vừa controlled vừa uncontrolled cùng một lúc.
+- Một hộp chọn không thể chuyển đổi giữa controlled và uncontrolled trong suốt vòng đời của nó.
+- Mỗi controlled hộp chọn cần một event handler `onChange` đồng bộ cập nhật giá trị backing của nó.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### Hiển thị hộp chọn với các tùy chọn {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+Render một `<select>` với danh sách các component `<option>` bên trong để hiển thị hộp chọn. Đặt cho mỗi `<option>` một `value` đại diện cho dữ liệu sẽ được gửi cùng form.
 
 <Sandpack>
 
@@ -107,11 +107,11 @@ select { margin: 5px; }
 
 ---
 
-### Providing a label for a select box {/*providing-a-label-for-a-select-box*/}
+### Cung cấp nhãn cho hộp chọn {/*providing-a-label-for-a-select-box*/}
 
-Typically, you will place every `<select>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that select box. When the user clicks the label, the browser will automatically focus the select box. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the select box.
+Thông thường, bạn sẽ đặt mỗi `<select>` bên trong một thẻ [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Điều này cho trình duyệt biết nhãn này được liên kết với hộp chọn đó. Khi người dùng nhấp vào nhãn, trình duyệt sẽ tự động focus vào hộp chọn. Điều này cũng rất quan trọng cho khả năng trợ năng: trình đọc màn hình sẽ thông báo chú thích nhãn khi người dùng focus vào hộp chọn.
 
-If you can't nest `<select>` into a `<label>`, associate them by passing the same ID to `<select id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Nếu bạn không thể lồng `<select>` vào một `<label>`, hãy liên kết chúng bằng cách truyền cùng ID cho `<select id>` và [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Để tránh xung đột giữa nhiều instance của một component, hãy tạo ID đó với [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -153,9 +153,9 @@ select { margin: 5px; }
 
 ---
 
-### Providing an initially selected option {/*providing-an-initially-selected-option*/}
+### Cung cấp tùy chọn được chọn ban đầu {/*providing-an-initially-selected-option*/}
 
-By default, the browser will select the first `<option>` in the list. To select a different option by default, pass that `<option>`'s `value` as the `defaultValue` to the `<select>` element.
+Theo mặc định, trình duyệt sẽ chọn `<option>` đầu tiên trong danh sách. Để chọn một tùy chọn khác theo mặc định, hãy truyền `value` của `<option>` đó như `defaultValue` cho phần tử `<select>`.
 
 <Sandpack>
 
@@ -182,15 +182,15 @@ select { margin: 5px; }
 
 <Pitfall>
 
-Unlike in HTML, passing a `selected` attribute to an individual `<option>` is not supported.
+Khác với HTML, việc truyền thuộc tính `selected` cho một `<option>` riêng lẻ không được hỗ trợ.
 
 </Pitfall>
 
 ---
 
-### Enabling multiple selection {/*enabling-multiple-selection*/}
+### Bật chọn nhiều {/*enabling-multiple-selection*/}
 
-Pass `multiple={true}` to the `<select>` to let the user select multiple options. In that case, if you also specify `defaultValue` to choose the initially selected options, it must be an array.
+Truyền `multiple={true}` vào `<select>` để cho phép người dùng chọn nhiều tùy chọn. Trong trường hợp đó, nếu bạn cũng chỉ định `defaultValue` để chọn các tùy chọn được chọn ban đầu, nó phải là một mảng.
 
 <Sandpack>
 
@@ -221,9 +221,9 @@ select { display: block; margin-top: 10px; width: 200px; }
 
 ---
 
-### Reading the select box value when submitting a form {/*reading-the-select-box-value-when-submitting-a-form*/}
+### Đọc giá trị hộp chọn khi gửi form {/*reading-the-select-box-value-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your select box with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Thêm một [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) xung quanh hộp chọn của bạn với một [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) bên trong. Nó sẽ gọi event handler `<form onSubmit>` của bạn. Theo mặc định, trình duyệt sẽ gửi dữ liệu form đến URL hiện tại và tải lại trang. Bạn có thể ghi đè hành vi đó bằng cách gọi `e.preventDefault()`. Đọc dữ liệu form với [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
@@ -284,25 +284,25 @@ label { margin-bottom: 20px; }
 
 <Note>
 
-Give a `name` to your `<select>`, for example `<select name="selectedFruit" />`. The `name` you specified will be used as a key in the form data, for example `{ selectedFruit: "orange" }`.
+Đặt `name` cho `<select>` của bạn, ví dụ `<select name="selectedFruit" />`. `name` bạn chỉ định sẽ được sử dụng như một key trong dữ liệu form, ví dụ `{ selectedFruit: "orange" }`.
 
-If you use `<select multiple={true}>`, the [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) you'll read from the form will include each selected value as a separate name-value pair. Look closely at the console logs in the example above.
+Nếu bạn sử dụng `<select multiple={true}>`, [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) bạn đọc từ form sẽ bao gồm mỗi giá trị được chọn như một cặp tên-giá trị riêng biệt. Hãy xem kỹ các log console trong ví dụ trên.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Theo mặc định, *bất kỳ* `<button>` nào bên trong `<form>` sẽ gửi nó. Điều này có thể gây bất ngờ! Nếu bạn có component React `Button` tùy chỉnh của riêng mình, hãy xem xét trả về [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) thay vì `<button>`. Sau đó, để rõ ràng, hãy sử dụng `<button type="submit">` cho các nút *được* dự định gửi form.
 
 </Pitfall>
 
 ---
 
-### Controlling a select box with a state variable {/*controlling-a-select-box-with-a-state-variable*/}
+### Kiểm soát hộp chọn với biến state {/*controlling-a-select-box-with-a-state-variable*/}
 
-A select box like `<select />` is *uncontrolled.* Even if you [pass an initially selected value](#providing-an-initially-selected-option) like `<select defaultValue="orange" />`, your JSX only specifies the initial value, not the value right now.
+Một hộp chọn như `<select />` là *uncontrolled.* Ngay cả khi bạn [truyền giá trị được chọn ban đầu](#providing-an-initially-selected-option) như `<select defaultValue="orange" />`, JSX của bạn chỉ chỉ định giá trị ban đầu, không phải giá trị ngay bây giờ.
 
-**To render a _controlled_ select box, pass the `value` prop to it.** React will force the select box to always have the `value` you passed. Typically, you will control a select box by declaring a [state variable:](/reference/react/useState)
+**Để render một hộp chọn *controlled*, hãy truyền prop `value` cho nó.** React sẽ buộc hộp chọn luôn có `value` bạn đã truyền. Thường thì bạn sẽ kiểm soát hộp chọn bằng cách khai báo một [biến state:](/reference/react/useState)
 
 ```js {2,6,7}
 function FruitPicker() {
@@ -321,7 +321,7 @@ function FruitPicker() {
 }
 ```
 
-This is useful if you want to re-render some part of the UI in response to every selection.
+Điều này hữu ích nếu bạn muốn re-render một phần của UI để phản hồi mỗi lần chọn.
 
 <Sandpack>
 
@@ -379,6 +379,6 @@ select { margin-bottom: 10px; display: block; }
 
 **If you pass `value` without `onChange`, it will be impossible to select an option.** When you control a select box by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the select box after every keystroke back to the `value` that you specified.
 
-Unlike in HTML, passing a `selected` attribute to an individual `<option>` is not supported.
+Khác với HTML, việc truyền thuộc tính `selected` cho một `<option>` riêng lẻ không được hỗ trợ.
 
 </Pitfall>

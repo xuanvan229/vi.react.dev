@@ -1,11 +1,11 @@
 <Intro>
 
-In the minified production build of React, we avoid sending down full error messages in order to reduce the number of bytes sent over the wire.
+Trong bản build production đã được rút gọn của React, chúng tôi tránh gửi toàn bộ thông báo lỗi để giảm số byte truyền qua mạng.
 
 </Intro>
 
-We highly recommend using the development build locally when debugging your app since it tracks additional debug info and provides helpful warnings about potential problems in your apps, but if you encounter an exception while using the production build, this page will reassemble the original error message.
+Chúng tôi khuyến nghị sử dụng bản build development khi gỡ lỗi ứng dụng của bạn vì nó theo dõi thêm thông tin debug và cung cấp các cảnh báo hữu ích về các vấn đề tiềm ẩn trong ứng dụng, nhưng nếu bạn gặp lỗi ngoại lệ khi sử dụng bản build production, trang này sẽ khôi phục lại thông báo lỗi gốc.
 
-The full text of the error you just encountered is:
+Nội dung đầy đủ của lỗi bạn vừa gặp là:
 
 <ErrorDecoder />

@@ -1,30 +1,30 @@
 ---
-title: Compiling Libraries
+title: Compile thư viện
 ---
 
 <Intro>
-This guide helps library authors understand how to use React Compiler to ship optimized library code to their users.
+Hướng dẫn này giúp các tác giả thư viện hiểu cách sử dụng React Compiler để phân phối mã thư viện đã được tối ưu hóa đến người dùng.
 </Intro>
 
 <InlineToc />
 
-## Why Ship Compiled Code? {/*why-ship-compiled-code*/}
+## Tại sao nên phân phối mã đã compile? {/*why-ship-compiled-code*/}
 
-As a library author, you can compile your library code before publishing to npm. This provides several benefits:
+Là một tác giả thư viện, bạn có thể compile mã thư viện trước khi phát hành lên npm. Điều này mang lại nhiều lợi ích:
 
-- **Performance improvements for all users** - Your library users get optimized code even if they aren't using React Compiler yet
-- **No configuration required by users** - The optimizations work out of the box
-- **Consistent behavior** - All users get the same optimized version regardless of their build setup
+- **Cải thiện hiệu suất cho tất cả người dùng** - Người dùng thư viện của bạn nhận được mã đã tối ưu hóa ngay cả khi họ chưa sử dụng React Compiler
+- **Người dùng không cần cấu hình** - Các tối ưu hóa hoạt động ngay lập tức
+- **Hành vi nhất quán** - Tất cả người dùng nhận được cùng phiên bản đã tối ưu hóa bất kể cấu hình build của họ
 
-## Setting Up Compilation {/*setting-up-compilation*/}
+## Thiết lập compile {/*setting-up-compilation*/}
 
-Add React Compiler to your library's build process:
+Thêm React Compiler vào quy trình build của thư viện:
 
 <TerminalBlock>
 npm install -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
-Configure your build tool to compile your library. For example, with Babel:
+Cấu hình công cụ build của bạn để compile thư viện. Ví dụ, với Babel:
 
 ```js
 // babel.config.js
@@ -32,17 +32,17 @@ module.exports = {
   plugins: [
     'babel-plugin-react-compiler',
   ],
-  // ... other config
+  // ... cấu hình khác
 };
 ```
 
-## Backwards Compatibility {/*backwards-compatibility*/}
+## Tương thích ngược {/*backwards-compatibility*/}
 
-If your library supports React versions below 19, you'll need additional configuration:
+Nếu thư viện của bạn hỗ trợ các phiên bản React dưới 19, bạn sẽ cần cấu hình bổ sung:
 
-### 1. Install the runtime package {/*install-runtime-package*/}
+### 1. Cài đặt gói runtime {/*install-runtime-package*/}
 
-We recommend installing react-compiler-runtime as a direct dependency:
+Chúng tôi khuyến nghị cài đặt react-compiler-runtime như một dependency trực tiếp:
 
 <TerminalBlock>
 npm install react-compiler-runtime@latest
@@ -59,48 +59,48 @@ npm install react-compiler-runtime@latest
 }
 ```
 
-### 2. Configure the target version {/*configure-target-version*/}
+### 2. Cấu hình phiên bản target {/*configure-target-version*/}
 
-Set the minimum React version your library supports:
+Đặt phiên bản React tối thiểu mà thư viện của bạn hỗ trợ:
 
 ```js
 {
-  target: '17', // Minimum supported React version
+  target: '17', // Phiên bản React tối thiểu được hỗ trợ
 }
 ```
 
-## Testing Strategy {/*testing-strategy*/}
+## Chiến lược kiểm thử {/*testing-strategy*/}
 
-Test your library both with and without compilation to ensure compatibility. Run your existing test suite against the compiled code, and also create a separate test configuration that bypasses the compiler. This helps catch any issues that might arise from the compilation process and ensures your library works correctly in all scenarios.
+Kiểm thử thư viện của bạn cả có và không có compile để đảm bảo tính tương thích. Chạy bộ kiểm thử hiện có với mã đã compile, và cũng tạo một cấu hình kiểm thử riêng bỏ qua compiler. Điều này giúp phát hiện bất kỳ vấn đề nào có thể phát sinh từ quá trình compile và đảm bảo thư viện hoạt động chính xác trong mọi tình huống.
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### Library doesn't work with older React versions {/*library-doesnt-work-with-older-react-versions*/}
+### Thư viện không hoạt động với các phiên bản React cũ hơn {/*library-doesnt-work-with-older-react-versions*/}
 
-If your compiled library throws errors in React 17 or 18:
+Nếu thư viện đã compile của bạn gặp lỗi trên React 17 hoặc 18:
 
-1. Verify you've installed `react-compiler-runtime` as a dependency
-2. Check that your `target` configuration matches your minimum supported React version
-3. Ensure the runtime package is included in your published bundle
+1. Xác nhận bạn đã cài đặt `react-compiler-runtime` như một dependency
+2. Kiểm tra cấu hình `target` khớp với phiên bản React tối thiểu được hỗ trợ
+3. Đảm bảo gói runtime được bao gồm trong bundle đã phát hành
 
-### Compilation conflicts with other Babel plugins {/*compilation-conflicts-with-other-babel-plugins*/}
+### Xung đột compile với các plugin Babel khác {/*compilation-conflicts-with-other-babel-plugins*/}
 
-Some Babel plugins may conflict with React Compiler:
+Một số plugin Babel có thể xung đột với React Compiler:
 
-1. Place `babel-plugin-react-compiler` early in your plugin list
-2. Disable conflicting optimizations in other plugins
-3. Test your build output thoroughly
+1. Đặt `babel-plugin-react-compiler` ở đầu danh sách plugin
+2. Tắt các tối ưu hóa xung đột trong các plugin khác
+3. Kiểm thử kỹ đầu ra build
 
-### Runtime module not found {/*runtime-module-not-found*/}
+### Không tìm thấy module runtime {/*runtime-module-not-found*/}
 
-If users see "Cannot find module 'react-compiler-runtime'":
+Nếu người dùng thấy lỗi "Cannot find module 'react-compiler-runtime'":
 
-1. Ensure the runtime is listed in `dependencies`, not `devDependencies`
-2. Check that your bundler includes the runtime in the output
-3. Verify the package is published to npm with your library
+1. Đảm bảo runtime được liệt kê trong `dependencies`, không phải `devDependencies`
+2. Kiểm tra bundler của bạn bao gồm runtime trong đầu ra
+3. Xác nhận gói được phát hành lên npm cùng với thư viện
 
-## Next Steps {/*next-steps*/}
+## Bước tiếp theo {/*next-steps*/}
 
-- Learn about [debugging techniques](/learn/react-compiler/debugging) for compiled code
-- Check the [configuration options](/reference/react-compiler/configuration) for all compiler options
-- Explore [compilation modes](/reference/react-compiler/compilationMode) for selective optimization
+- Tìm hiểu về [kỹ thuật gỡ lỗi](/learn/react-compiler/debugging) cho mã đã compile
+- Xem [các tùy chọn cấu hình](/reference/react-compiler/configuration) cho tất cả tùy chọn compiler
+- Khám phá [chế độ compile](/reference/react-compiler/compilationMode) cho tối ưu hóa có chọn lọc

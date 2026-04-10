@@ -1,24 +1,24 @@
 ---
-title: Rendering Lists
+title: Render danh sách
 ---
 
 <Intro>
 
-You will often want to display multiple similar components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of components.
+Bạn thường sẽ muốn hiển thị nhiều component tương tự từ một tập hợp dữ liệu. Bạn có thể sử dụng [các phương thức mảng JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) để thao tác với một mảng dữ liệu. Trên trang này, bạn sẽ sử dụng [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) và [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) với React để lọc và chuyển đổi mảng dữ liệu của bạn thành một mảng các component.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to render components from an array using JavaScript's `map()`
-* How to render only specific components using JavaScript's `filter()`
-* When and why to use React keys
+* Cách render các component từ một mảng bằng cách sử dụng `map()` của JavaScript
+* Cách chỉ render các component cụ thể bằng cách sử dụng `filter()` của JavaScript
+* Khi nào và tại sao sử dụng React key
 
 </YouWillLearn>
 
-## Rendering data from arrays {/*rendering-data-from-arrays*/}
+## Render dữ liệu từ mảng {/*rendering-data-from-arrays*/}
 
-Say that you have a list of content.
+Giả sử bạn có một danh sách nội dung.
 
 ```js
 <ul>
@@ -30,11 +30,11 @@ Say that you have a list of content.
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+Sự khác biệt duy nhất giữa các mục trong danh sách đó là nội dung, dữ liệu của chúng. Bạn thường cần hiển thị nhiều instance của cùng một component bằng cách sử dụng dữ liệu khác nhau khi xây dựng giao diện: từ danh sách bình luận đến thư viện ảnh hồ sơ. Trong các tình huống này, bạn có thể lưu trữ dữ liệu đó trong các object và mảng JavaScript và sử dụng các phương thức như [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) và [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) để render danh sách các component từ chúng.
 
-Here’s a short example of how to generate a list of items from an array:
+Đây là một ví dụ ngắn về cách tạo danh sách các mục từ một mảng:
 
-1. **Move** the data into an array:
+1. **Chuyển** dữ liệu vào một mảng:
 
 ```js
 const people = [
@@ -46,19 +46,19 @@ const people = [
 ];
 ```
 
-2. **Map** the `people` members into a new array of JSX nodes, `listItems`:
+2. **Map** các thành viên `people` thành một mảng mới các node JSX, `listItems`:
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. **Trả về** `listItems` từ component của bạn được bọc trong `<ul>`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-Here is the result:
+Đây là kết quả:
 
 <Sandpack>
 
@@ -85,7 +85,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notice the sandbox above displays a console error:
+Lưu ý sandbox trên hiển thị lỗi trong console:
 
 <ConsoleBlock level="error">
 
@@ -93,11 +93,11 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+Bạn sẽ học cách sửa lỗi này ở phần sau trong trang này. Trước khi đến đó, hãy thêm một số cấu trúc cho dữ liệu của bạn.
 
-## Filtering arrays of items {/*filtering-arrays-of-items*/}
+## Lọc mảng các mục {/*filtering-arrays-of-items*/}
 
-This data can be structured even more.
+Dữ liệu này có thể được cấu trúc hơn nữa.
 
 ```js
 const people = [{
@@ -123,11 +123,11 @@ const people = [{
 }];
 ```
 
-Let's say you want a way to only show people whose profession is `'chemist'`. You can use JavaScript's `filter()` method to return just those people. This method takes an array of items, passes them through a “test” (a function that returns `true` or `false`), and returns a new array of only those items that passed the test (returned `true`).
+Giả sử bạn muốn một cách để chỉ hiển thị những người có nghề nghiệp là `'chemist'`. Bạn có thể sử dụng phương thức `filter()` của JavaScript để chỉ trả về những người đó. Phương thức này nhận một mảng các mục, truyền chúng qua một "bài kiểm tra" (một hàm trả về `true` hoặc `false`), và trả về một mảng mới chỉ gồm những mục đã qua bài kiểm tra (trả về `true`).
 
-You only want the items where `profession` is `'chemist'`. The "test" function for this looks like `(person) => person.profession === 'chemist'`. Here's how to put it together:
+Bạn chỉ muốn các mục có `profession` là `'chemist'`. Hàm "kiểm tra" cho điều này trông như `(person) => person.profession === 'chemist'`. Đây là cách ghép lại:
 
-1. **Create** a new array of just “chemist” people, `chemists`, by calling `filter()` on the `people` filtering by `person.profession === 'chemist'`:
+1. **Tạo** một mảng mới chỉ gồm những người "chemist", `chemists`, bằng cách gọi `filter()` trên `people` lọc theo `person.profession === 'chemist'`:
 
 ```js
 const chemists = people.filter(person =>
@@ -135,7 +135,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-2. Now **map** over `chemists`:
+2. Bây giờ **map** qua `chemists`:
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -153,7 +153,7 @@ const listItems = chemists.map(person =>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. Cuối cùng, **trả về** `listItems` từ component của bạn:
 
 ```js
 return <ul>{listItems}</ul>;
@@ -246,29 +246,29 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+Arrow function ngầm trả về biểu thức ngay sau `=>`, vì vậy bạn không cần câu lệnh `return`:
 
 ```js
 const listItems = chemists.map(person =>
-  <li>...</li> // Implicit return!
+  <li>...</li> // Ngầm trả về!
 );
 ```
 
-However, **you must write `return` explicitly if your `=>` is followed by a `{` curly brace!**
+Tuy nhiên, **bạn phải viết `return` rõ ràng nếu `=>` của bạn được theo sau bởi `{` dấu ngoặc nhọn!**
 
 ```js
-const listItems = chemists.map(person => { // Curly brace
+const listItems = chemists.map(person => { // Dấu ngoặc nhọn
   return <li>...</li>;
 });
 ```
 
-Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
+Arrow function chứa `=> {` được gọi là có ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) Chúng cho phép bạn viết nhiều hơn một dòng code, nhưng bạn *phải* tự viết câu lệnh `return`. Nếu bạn quên nó, sẽ không có gì được trả về!
 
 </Pitfall>
 
-## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
+## Giữ các mục danh sách theo thứ tự với `key` {/*keeping-list-items-in-order-with-key*/}
 
-Notice that all the sandboxes above show an error in the console:
+Lưu ý rằng tất cả các sandbox trên hiển thị lỗi trong console:
 
 <ConsoleBlock level="error">
 
@@ -276,7 +276,7 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You need to give each array item a `key` -- a string or a number that uniquely identifies it among other items in that array:
+Bạn cần cung cấp cho mỗi mục mảng một `key` -- một chuỗi hoặc số nhận dạng duy nhất nó giữa các mục khác trong mảng đó:
 
 ```js
 <li key={person.id}>...</li>
@@ -284,13 +284,13 @@ You need to give each array item a `key` -- a string or a number that uniquely i
 
 <Note>
 
-JSX elements directly inside a `map()` call always need keys!
+Các element JSX trực tiếp bên trong lời gọi `map()` luôn cần key!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+Key nói với React mục mảng nào tương ứng với mỗi component, để nó có thể khớp chúng lại sau này. Điều này trở nên quan trọng nếu các mục mảng của bạn có thể di chuyển (ví dụ: do sắp xếp), được chèn vào hoặc bị xóa. Một `key` được chọn tốt giúp React suy ra chính xác điều gì đã xảy ra và thực hiện các cập nhật đúng cho cây DOM.
 
-Rather than generating keys on the fly, you should include them in your data:
+Thay vì tạo key trực tiếp, bạn nên đưa chúng vào trong dữ liệu của mình:
 
 <Sandpack>
 
@@ -376,11 +376,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <DeepDive>
 
-#### Displaying several DOM nodes for each list item {/*displaying-several-dom-nodes-for-each-list-item*/}
+#### Hiển thị nhiều node DOM cho mỗi mục danh sách {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-What do you do when each item needs to render not one, but several DOM nodes?
+Bạn làm gì khi mỗi mục cần render không phải một, mà là nhiều node DOM?
 
-The short [`<>...</>` Fragment](/reference/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/reference/react/Fragment#rendering-a-list-of-fragments)
+Cú pháp [`<>...</>` Fragment](/reference/react/Fragment) ngắn gọn sẽ không cho phép bạn truyền key, vì vậy bạn cần nhóm chúng vào một `<div>` duy nhất, hoặc sử dụng cú pháp [`<Fragment>` dài hơn và rõ ràng hơn:](/reference/react/Fragment#rendering-a-list-of-fragments)
 
 ```js
 import { Fragment } from 'react';
@@ -395,46 +395,46 @@ const listItems = people.map(person =>
 );
 ```
 
-Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<p>`, `<h1>`, `<p>`, and so on.
+Fragment biến mất khỏi DOM, vì vậy điều này sẽ tạo ra một danh sách phẳng gồm `<h1>`, `<p>`, `<h1>`, `<p>`, v.v.
 
 </DeepDive>
 
-### Where to get your `key` {/*where-to-get-your-key*/}
+### Lấy `key` ở đâu {/*where-to-get-your-key*/}
 
-Different sources of data provide different sources of keys:
+Các nguồn dữ liệu khác nhau cung cấp các nguồn key khác nhau:
 
-* **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **Dữ liệu từ cơ sở dữ liệu:** Nếu dữ liệu của bạn đến từ cơ sở dữ liệu, bạn có thể sử dụng các key/ID cơ sở dữ liệu, vốn là duy nhất theo bản chất.
+* **Dữ liệu được tạo cục bộ:** Nếu dữ liệu của bạn được tạo và lưu trữ cục bộ (ví dụ: ghi chú trong ứng dụng ghi chú), hãy sử dụng bộ đếm tăng dần, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) hoặc một gói như [`uuid`](https://www.npmjs.com/package/uuid) khi tạo các mục.
 
-### Rules of keys {/*rules-of-keys*/}
+### Quy tắc của key {/*rules-of-keys*/}
 
-* **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
-* **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
+* **Key phải là duy nhất giữa các anh chị em.** Tuy nhiên, bạn có thể sử dụng cùng key cho các node JSX trong các mảng _khác nhau_.
+* **Key không được thay đổi** vì điều đó sẽ làm mất tác dụng của chúng! Đừng tạo chúng trong khi render.
 
-### Why does React need keys? {/*why-does-react-need-keys*/}
+### Tại sao React cần key? {/*why-does-react-need-keys*/}
 
-Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+Hãy tưởng tượng các file trên màn hình của bạn không có tên. Thay vào đó, bạn sẽ tham chiếu chúng theo thứ tự -- file đầu tiên, file thứ hai, v.v. Bạn có thể quen với điều đó, nhưng một khi bạn xóa một file, nó sẽ trở nên khó hiểu. File thứ hai sẽ trở thành file đầu tiên, file thứ ba sẽ trở thành file thứ hai, v.v.
 
-File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
+Tên file trong thư mục và key JSX trong mảng phục vụ mục đích tương tự. Chúng cho phép chúng ta nhận dạng duy nhất một mục giữa các anh chị em của nó. Một key được chọn tốt cung cấp thêm thông tin hơn vị trí trong mảng. Ngay cả khi _vị trí_ thay đổi do sắp xếp lại, `key` cho phép React nhận dạng mục đó trong suốt vòng đời của nó.
 
 <Pitfall>
 
-You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
+Bạn có thể bị cám dỗ sử dụng index của một mục trong mảng làm key của nó. Thực ra, đó là những gì React sẽ sử dụng nếu bạn không chỉ định `key` nào cả. Nhưng thứ tự mà bạn render các mục sẽ thay đổi theo thời gian nếu một mục được chèn vào, bị xóa, hoặc nếu mảng được sắp xếp lại. Index làm key thường dẫn đến các bug tinh tế và khó hiểu.
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+Tương tự, đừng tạo key ngay lập tức, ví dụ với `key={Math.random()}`. Điều này sẽ khiến key không bao giờ khớp giữa các lần render, dẫn đến tất cả các component và DOM được tạo lại mỗi lần. Không chỉ chậm, mà còn mất bất kỳ input của người dùng bên trong các mục danh sách. Thay vào đó, hãy sử dụng ID ổn định dựa trên dữ liệu.
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+Lưu ý rằng các component của bạn sẽ không nhận `key` như một prop. Nó chỉ được React sử dụng như một gợi ý. Nếu component của bạn cần ID, bạn phải truyền nó như một prop riêng biệt: `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 
 <Recap>
 
-On this page you learned:
+Trên trang này bạn đã học:
 
-* How to move data out of components and into data structures like arrays and objects.
-* How to generate sets of similar components with JavaScript's `map()`.
-* How to create arrays of filtered items with JavaScript's `filter()`.
-* Why and how to set `key` on each component in a collection so React can keep track of each of them even if their position or data changes.
+* Cách chuyển dữ liệu ra khỏi các component và vào các cấu trúc dữ liệu như mảng và object.
+* Cách tạo tập hợp các component tương tự với `map()` của JavaScript.
+* Cách tạo mảng các mục đã lọc với `filter()` của JavaScript.
+* Tại sao và cách đặt `key` trên mỗi component trong một tập hợp để React có thể theo dõi từng cái ngay cả khi vị trí hoặc dữ liệu của chúng thay đổi.
 
 </Recap>
 
@@ -442,11 +442,11 @@ On this page you learned:
 
 <Challenges>
 
-#### Splitting a list in two {/*splitting-a-list-in-two*/}
+#### Chia danh sách thành hai {/*splitting-a-list-in-two*/}
 
-This example shows a list of all people.
+Ví dụ này hiển thị danh sách tất cả mọi người.
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+Thay đổi nó để hiển thị hai danh sách riêng biệt lần lượt: **Chemists** và **Everyone Else.** Như trước đây, bạn có thể xác định một người có phải là chemist hay không bằng cách kiểm tra `person.profession === 'chemist'`.
 
 <Sandpack>
 
@@ -537,7 +537,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Solution>
 
-You could use `filter()` twice, creating two separate arrays, and then `map` over both of them:
+Bạn có thể sử dụng `filter()` hai lần, tạo hai mảng riêng biệt, và sau đó `map` qua cả hai:
 
 <Sandpack>
 
@@ -650,9 +650,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
+Trong giải pháp này, các lời gọi `map` được đặt trực tiếp nội tuyến vào các phần tử `<ul>` cha, nhưng bạn có thể giới thiệu các biến cho chúng nếu bạn thấy điều đó dễ đọc hơn.
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+Vẫn còn một chút trùng lặp giữa các danh sách được render. Bạn có thể đi xa hơn và trích xuất các phần lặp lại vào một component `<ListSection>`:
 
 <Sandpack>
 
@@ -764,9 +764,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
+Một người đọc rất chú ý có thể nhận thấy rằng với hai lần gọi `filter`, chúng ta kiểm tra nghề nghiệp của mỗi người hai lần. Kiểm tra một thuộc tính rất nhanh, vì vậy trong ví dụ này vẫn ổn. Nếu logic của bạn tốn kém hơn thế, bạn có thể thay thế các lời gọi `filter` bằng một vòng lặp thủ công xây dựng các mảng và kiểm tra mỗi người một lần.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+Thực ra, nếu `people` không bao giờ thay đổi, bạn có thể chuyển code này ra khỏi component của mình. Từ góc nhìn của React, tất cả những gì quan trọng là bạn cung cấp cho nó một mảng các node JSX ở cuối. Nó không quan tâm bạn tạo ra mảng đó như thế nào:
 
 <Sandpack>
 
@@ -884,13 +884,13 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Nested lists in one component {/*nested-lists-in-one-component*/}
+#### Danh sách lồng nhau trong một component {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
+Tạo danh sách công thức từ mảng này! Đối với mỗi công thức trong mảng, hiển thị tên của nó như `<h2>` và liệt kê nguyên liệu trong `<ul>`.
 
 <Hint>
 
-This will require nesting two different `map` calls.
+Điều này sẽ yêu cầu lồng hai lời gọi `map` khác nhau.
 
 </Hint>
 
@@ -928,7 +928,7 @@ export const recipes = [{
 
 <Solution>
 
-Here is one way you could go about it:
+Đây là một cách bạn có thể thực hiện:
 
 <Sandpack>
 
@@ -974,13 +974,13 @@ export const recipes = [{
 
 </Sandpack>
 
-Each of the `recipes` already includes an `id` field, so that's what the outer loop uses for its `key`. There is no ID you could use to loop over ingredients. However, it's reasonable to assume that the same ingredient won't be listed twice within the same recipe, so its name can serve as a `key`. Alternatively, you could change the data structure to add IDs, or use index as a `key` (with the caveat that you can't safely reorder ingredients).
+Mỗi `recipes` đã bao gồm trường `id`, vì vậy đó là những gì vòng lặp ngoài sử dụng làm `key`. Không có ID nào bạn có thể sử dụng để duyệt qua nguyên liệu. Tuy nhiên, có thể giả định rằng cùng một nguyên liệu sẽ không được liệt kê hai lần trong cùng một công thức, vì vậy tên của nó có thể đóng vai trò là `key`. Ngoài ra, bạn có thể thay đổi cấu trúc dữ liệu để thêm ID, hoặc sử dụng index làm `key` (với lưu ý rằng bạn không thể sắp xếp lại các nguyên liệu một cách an toàn).
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### Trích xuất một component mục danh sách {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+Component `RecipeList` này chứa hai lời gọi `map` lồng nhau. Để đơn giản hóa nó, hãy trích xuất component `Recipe` từ nó sẽ nhận các prop `id`, `name`, và `ingredients`. Bạn đặt `key` bên ngoài ở đâu và tại sao?
 
 <Sandpack>
 
@@ -1028,7 +1028,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+Bạn có thể copy-paste JSX từ `map` bên ngoài vào component `Recipe` mới và trả về JSX đó. Sau đó bạn có thể thay đổi `recipe.name` thành `name`, `recipe.id` thành `id`, v.v., và truyền chúng như props cho `Recipe`:
 
 <Sandpack>
 
@@ -1080,15 +1080,15 @@ export const recipes = [{
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+Ở đây, `<Recipe {...recipe} key={recipe.id} />` là cú pháp tắt có nghĩa là "truyền tất cả thuộc tính của object `recipe` như props cho component `Recipe`". Bạn cũng có thể viết từng prop rõ ràng: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**Lưu ý rằng `key` được chỉ định trên chính `<Recipe>` thay vì trên `<div>` gốc được trả về từ `Recipe`.** Điều này là vì `key` này cần thiết trực tiếp trong ngữ cảnh của mảng xung quanh. Trước đây, bạn có một mảng `<div>` vì vậy mỗi cái cần một `key`, nhưng bây giờ bạn có một mảng `<Recipe>`. Nói cách khác, khi bạn trích xuất một component, đừng quên để `key` bên ngoài JSX bạn copy và paste.
 
 </Solution>
 
-#### List with a separator {/*list-with-a-separator*/}
+#### Danh sách với dấu phân cách {/*list-with-a-separator*/}
 
-This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+Ví dụ này render một bài haiku nổi tiếng của Tachibana Hokushi, với mỗi dòng được bọc trong thẻ `<p>`. Công việc của bạn là chèn dấu phân cách `<hr />` giữa mỗi đoạn văn. Cấu trúc kết quả của bạn sẽ trông như thế này:
 
 ```js
 <article>
@@ -1100,7 +1100,7 @@ This example renders a famous haiku by Tachibana Hokushi, with each line wrapped
 </article>
 ```
 
-A haiku only contains three lines, but your solution should work with any number of lines. Note that `<hr />` elements only appear *between* the `<p>` elements, not in the beginning or the end!
+Một bài haiku chỉ chứa ba dòng, nhưng giải pháp của bạn nên hoạt động với bất kỳ số dòng nào. Lưu ý rằng các phần tử `<hr />` chỉ xuất hiện *giữa* các phần tử `<p>`, không phải ở đầu hoặc cuối!
 
 <Sandpack>
 
@@ -1143,17 +1143,17 @@ hr {
 
 </Sandpack>
 
-(This is a rare case where index as a key is acceptable because a poem's lines will never reorder.)
+(Đây là trường hợp hiếm khi index làm key là chấp nhận được vì các dòng thơ sẽ không bao giờ được sắp xếp lại.)
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a Fragment.
+Bạn sẽ cần chuyển `map` thành vòng lặp thủ công, hoặc sử dụng Fragment.
 
 </Hint>
 
 <Solution>
 
-You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
+Bạn có thể viết vòng lặp thủ công, chèn `<hr />` và `<p>...</p>` vào mảng đầu ra khi bạn đi:
 
 <Sandpack>
 
@@ -1208,9 +1208,9 @@ hr {
 
 </Sandpack>
 
-Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
+Sử dụng index dòng gốc làm `key` không còn hoạt động nữa vì mỗi dấu phân cách và đoạn văn bây giờ ở trong cùng một mảng. Tuy nhiên, bạn có thể cung cấp cho mỗi cái một key khác biệt bằng cách sử dụng hậu tố, ví dụ `key={i + '-text'}`.
 
-Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+Ngoài ra, bạn có thể render một tập hợp Fragment chứa `<hr />` và `<p>...</p>`. Tuy nhiên, cú pháp tắt `<>...</>` không hỗ trợ truyền key, vì vậy bạn phải viết `<Fragment>` rõ ràng:
 
 <Sandpack>
 
@@ -1256,7 +1256,7 @@ hr {
 
 </Sandpack>
 
-Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+Hãy nhớ, Fragment (thường được viết là `<> </>`) cho phép bạn nhóm các node JSX mà không thêm `<div>` thêm vào!
 
 </Solution>
 

@@ -1,41 +1,41 @@
 ---
-title: Understanding Your UI as a Tree
+title: Hiểu UI của bạn như một cây
 ---
 
 <Intro>
 
-Your React app is taking shape with many components being nested within each other. How does React keep track of your app's component structure?
+Ứng dụng React của bạn đang hình thành với nhiều component được lồng vào nhau. React theo dõi cấu trúc component của ứng dụng như thế nào?
 
-React, and many other UI libraries, model UI as a tree. Thinking of your app as a tree is useful for understanding the relationship between components. This understanding will help you debug future concepts like performance and state management.
+React, và nhiều thư viện UI khác, mô hình hóa UI như một cây. Nghĩ về ứng dụng của bạn như một cây rất hữu ích để hiểu mối quan hệ giữa các component. Sự hiểu biết này sẽ giúp bạn gỡ lỗi các khái niệm trong tương lai như hiệu suất và quản lý state.
 
 </Intro>
 
 <YouWillLearn>
 
-* How React "sees" component structures
-* What a render tree is and what it is useful for
-* What a module dependency tree is and what it is useful for
+* Cách React "nhìn thấy" cấu trúc component
+* Render tree là gì và nó có ích gì
+* Module dependency tree là gì và nó có ích gì
 
 </YouWillLearn>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## UI của bạn như một cây {/*your-ui-as-a-tree*/}
 
-Trees are a relationship model between items. The UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
+Cây là mô hình quan hệ giữa các mục. UI thường được biểu diễn bằng cấu trúc cây. Ví dụ, các trình duyệt sử dụng cấu trúc cây để mô hình hóa HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) và CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Các nền tảng di động cũng sử dụng cây để biểu diễn phân cấp view của chúng.
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React DOM'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
 
-React creates a UI tree from your components. In this example, the UI tree is then used to render to the DOM.
+React tạo cây UI từ các component của bạn. Trong ví dụ này, cây UI sau đó được sử dụng để render vào DOM.
 </Diagram>
 
-Like browsers and mobile platforms, React also uses tree structures to manage and model the relationship between components in a React app. These trees are useful tools to understand how data flows through a React app and how to optimize rendering and app size.
+Giống như trình duyệt và nền tảng di động, React cũng sử dụng cấu trúc cây để quản lý và mô hình hóa mối quan hệ giữa các component trong ứng dụng React. Những cây này là công cụ hữu ích để hiểu cách dữ liệu chảy qua một ứng dụng React và cách tối ưu hóa render và kích thước ứng dụng.
 
-## The Render Tree {/*the-render-tree*/}
+## Render Tree {/*the-render-tree*/}
 
-A major feature of components is the ability to compose components of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
+Một tính năng chính của các component là khả năng kết hợp các component với các component khác. Khi chúng ta [lồng các component](/learn/your-first-component#nesting-and-organizing-components), chúng ta có khái niệm về component cha và con, trong đó mỗi component cha có thể là con của một component khác.
 
-When we render a React app, we can model this relationship in a tree, known as the render tree.
+Khi chúng ta render một ứng dụng React, chúng ta có thể mô hình hóa mối quan hệ này trong một cây, được gọi là render tree.
 
-Here is a React app that renders inspirational quotes.
+Đây là một ứng dụng React render các câu trích dẫn truyền cảm hứng.
 
 <Sandpack>
 
@@ -94,7 +94,7 @@ export default function Copyright({year}) {
 
 ```js src/quotes.js
 export default [
-  "Don’t let yesterday take up too much of today.” — Will Rogers",
+  "Don't let yesterday take up too much of today." — Will Rogers",
   "Ambition is putting a ladder against the sky.",
   "A joy that's shared is a joy made double.",
   ];
@@ -120,32 +120,32 @@ export default [
 
 <Diagram name="render_tree" height={250} width={500} alt="Tree graph with five nodes. Each node represents a component. The root of the tree is App, with two arrows extending from it to 'InspirationGenerator' and 'FancyText'. The arrows are labelled with the word 'renders'. 'InspirationGenerator' node also has two arrows pointing to nodes 'FancyText' and 'Copyright'.">
 
-React creates a *render tree*, a UI tree, composed of the rendered components.
+React tạo *render tree*, một cây UI, bao gồm các component được render.
 
 
 </Diagram>
 
-From the example app, we can construct the above render tree.
+Từ ứng dụng ví dụ, chúng ta có thể xây dựng render tree ở trên.
 
-The tree is composed of nodes, each of which represents a component. `App`, `FancyText`, `Copyright`, to name a few, are all nodes in our tree.
+Cây được cấu thành từ các node, mỗi node đại diện cho một component. `App`, `FancyText`, `Copyright`, để kể vài cái, đều là các node trong cây của chúng ta.
 
-The root node in a React render tree is the [root component](/learn/importing-and-exporting-components#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
+Node gốc trong một render tree của React là [component gốc](/learn/importing-and-exporting-components#the-root-component-file) của ứng dụng. Trong trường hợp này, component gốc là `App` và nó là component đầu tiên React render. Mỗi mũi tên trong cây chỉ từ component cha đến component con.
 
 <DeepDive>
 
-#### Where are the HTML tags in the render tree? {/*where-are-the-html-elements-in-the-render-tree*/}
+#### Các thẻ HTML ở đâu trong render tree? {/*where-are-the-html-elements-in-the-render-tree*/}
 
-You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](learn/your-first-component#components-ui-building-blocks).
+Bạn sẽ nhận thấy trong render tree ở trên, không có đề cập đến các thẻ HTML mà mỗi component render. Điều này là vì render tree chỉ được cấu thành từ các [component](learn/your-first-component#components-ui-building-blocks) React.
 
-React, as a UI framework, is platform agnostic. On react.dev, we showcase examples that render to the web, which uses HTML markup as its UI primitives. But a React app could just as likely render to a mobile or desktop platform, which may use different UI primitives like [UIView](https://developer.apple.com/documentation/uikit/uiview) or [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
+React, như một UI framework, là platform agnostic. Trên react.dev, chúng tôi trình bày các ví dụ render ra web, sử dụng HTML markup như các UI primitive. Nhưng một ứng dụng React có thể render tương tự cho nền tảng di động hoặc desktop, có thể sử dụng các UI primitive khác như [UIView](https://developer.apple.com/documentation/uikit/uiview) hoặc [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 
-These platform UI primitives are not a part of React. React render trees can provide insight to our React app regardless of what platform your app renders to.
+Các UI primitive của platform này không phải là một phần của React. Render tree của React có thể cung cấp thông tin chi tiết về ứng dụng React của chúng ta bất kể ứng dụng của bạn render cho platform nào.
 
 </DeepDive>
 
-A render tree represents a single render pass of a React application. With [conditional rendering](/learn/conditional-rendering), a parent component may render different children depending on the data passed.
+Một render tree đại diện cho một lần render duy nhất của một ứng dụng React. Với [render có điều kiện](/learn/conditional-rendering), một component cha có thể render các con khác nhau tùy thuộc vào dữ liệu được truyền.
 
-We can update the app to conditionally render either an inspirational quote or color.
+Chúng ta có thể cập nhật ứng dụng để render có điều kiện câu trích dẫn truyền cảm hứng hoặc màu sắc.
 
 <Sandpack>
 
@@ -214,7 +214,7 @@ export default function Copyright({year}) {
 
 ```js src/inspirations.js
 export default [
-  {type: 'quote', value: "Don’t let yesterday take up too much of today.” — Will Rogers"},
+  {type: 'quote', value: "Don't let yesterday take up too much of today." — Will Rogers"},
   {type: 'color', value: "#B73636"},
   {type: 'quote', value: "Ambition is putting a ladder against the sky."},
   {type: 'color', value: "#256266"},
@@ -247,53 +247,53 @@ export default [
 
 <Diagram name="conditional_render_tree" height={250} width={561} alt="Tree graph with six nodes. The top node of the tree is labelled 'App' with two arrows extending to nodes labelled 'InspirationGenerator' and 'FancyText'. The arrows are solid lines and are labelled with the word 'renders'. 'InspirationGenerator' node also has three arrows. The arrows to nodes 'FancyText' and 'Color' are dashed and labelled with 'renders?'. The last arrow points to the node labelled 'Copyright' and is solid and labelled with 'renders'.">
 
-With conditional rendering, across different renders, the render tree may render different components.
+Với render có điều kiện, qua các lần render khác nhau, render tree có thể render các component khác nhau.
 
 </Diagram>
 
-In this example, depending on what `inspiration.type` is, we may render `<FancyText>` or `<Color>`. The render tree may be different for each render pass.
+Trong ví dụ này, tùy thuộc vào `inspiration.type` là gì, chúng ta có thể render `<FancyText>` hoặc `<Color>`. Render tree có thể khác nhau cho mỗi lần render.
 
-Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
+Mặc dù render tree có thể khác nhau qua các lần render, những cây này thường hữu ích để xác định các component *cấp cao nhất* và *component lá* trong ứng dụng React. Các component cấp cao nhất là các component gần nhất với component gốc và ảnh hưởng đến hiệu suất render của tất cả các component bên dưới chúng và thường chứa độ phức tạp nhất. Các component lá gần dưới cùng của cây và không có component con và thường được re-render thường xuyên.
 
-Identifying these categories of components are useful for understanding data flow and performance of your app.
+Xác định các danh mục component này hữu ích để hiểu luồng dữ liệu và hiệu suất của ứng dụng.
 
-## The Module Dependency Tree {/*the-module-dependency-tree*/}
+## Module Dependency Tree {/*the-module-dependency-tree*/}
 
-Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](/learn/importing-and-exporting-components#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
+Một mối quan hệ khác trong ứng dụng React có thể được mô hình hóa bằng cây là các module dependency của ứng dụng. Khi chúng ta [chia nhỏ các component](/learn/importing-and-exporting-components#exporting-and-importing-a-component) và logic vào các file riêng biệt, chúng ta tạo [JS module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) nơi chúng ta có thể export component, hàm, hoặc hằng số.
 
-Each node in a module dependency tree is a module and each branch represents an `import` statement in that module.
+Mỗi node trong một module dependency tree là một module và mỗi nhánh đại diện cho câu lệnh `import` trong module đó.
 
-If we take the previous Inspirations app, we can build a module dependency tree, or dependency tree for short.
+Nếu chúng ta lấy ứng dụng Inspirations trước, chúng ta có thể xây dựng module dependency tree, hoặc dependency tree ngắn gọn.
 
 <Diagram name="module_dependency_tree" height={250} width={658} alt="A tree graph with seven nodes. Each node is labelled with a module name. The top level node of the tree is labelled 'App.js'. There are three arrows pointing to the modules 'InspirationGenerator.js', 'FancyText.js' and 'Copyright.js' and the arrows are labelled with 'imports'. From the 'InspirationGenerator.js' node, there are three arrows that extend to three modules: 'FancyText.js', 'Color.js', and 'inspirations.js'. The arrows are labelled with 'imports'.">
 
-The module dependency tree for the Inspirations app.
+Module dependency tree cho ứng dụng Inspirations.
 
 </Diagram>
 
-The root node of the tree is the root module, also known as the entrypoint file. It often is the module that contains the root component.
+Node gốc của cây là module gốc, còn được gọi là file entrypoint. Nó thường là module chứa component gốc.
 
-Comparing to the render tree of the same app, there are similar structures but some notable differences:
+So sánh với render tree của cùng ứng dụng, có cấu trúc tương tự nhưng một số khác biệt đáng chú ý:
 
-* The nodes that make-up the tree represent modules, not components.
-* Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
-* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
+* Các node tạo nên cây đại diện cho các module, không phải component.
+* Các module không phải component, như `inspirations.js`, cũng được biểu diễn trong cây này. Render tree chỉ đóng gói các component.
+* `Copyright.js` xuất hiện dưới `App.js` nhưng trong render tree, `Copyright`, component, xuất hiện như là con của `InspirationGenerator`. Điều này là vì `InspirationGenerator` chấp nhận JSX như [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), vì vậy nó render `Copyright` như là component con nhưng không import module.
 
-Dependency trees are useful to determine what modules are necessary to run your React app. When building a React app for production, there is typically a build step that will bundle all the necessary JavaScript to ship to the client. The tool responsible for this is called a [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), and bundlers will use the dependency tree to determine what modules should be included.
+Dependency tree hữu ích để xác định những module nào cần thiết để chạy ứng dụng React của bạn. Khi xây dựng ứng dụng React cho production, thường có một bước build sẽ bundle tất cả JavaScript cần thiết để gửi đến client. Công cụ chịu trách nhiệm cho điều này được gọi là [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), và bundler sẽ sử dụng dependency tree để xác định những module nào nên được bao gồm.
 
-As your app grows, often the bundle size does too. Large bundle sizes are expensive for a client to download and run. Large bundle sizes can delay the time for your UI to get drawn. Getting a sense of your app's dependency tree may help with debugging these issues.
+Khi ứng dụng của bạn phát triển, thường kích thước bundle cũng tăng. Kích thước bundle lớn tốn kém cho client để tải xuống và chạy. Kích thước bundle lớn có thể làm chậm thời gian UI của bạn được vẽ. Hiểu dependency tree của ứng dụng có thể giúp gỡ lỗi những vấn đề này.
 
 [comment]: <> (perhaps we should also deep dive on conditional imports)
 
 <Recap>
 
-* Trees are a common way to represent the relationship between entities. They are often used to model UI.
-* Render trees represent the nested relationship between React components across a single render.
-* With conditional rendering, the render tree may change across different renders. With different prop values, components may render different children components.
-* Render trees help identify what the top-level and leaf components are. Top-level components affect the rendering performance of all components beneath them and leaf components are often re-rendered frequently. Identifying them is useful for understanding and debugging rendering performance.
-* Dependency trees represent the module dependencies in a React app.
-* Dependency trees are used by build tools to bundle the necessary code to ship an app.
-* Dependency trees are useful for debugging large bundle sizes that slow time to paint and expose opportunities for optimizing what code is bundled.
+* Cây là cách phổ biến để biểu diễn mối quan hệ giữa các thực thể. Chúng thường được sử dụng để mô hình hóa UI.
+* Render tree đại diện cho mối quan hệ lồng nhau giữa các component React qua một lần render duy nhất.
+* Với render có điều kiện, render tree có thể thay đổi qua các lần render khác nhau. Với các giá trị prop khác nhau, các component có thể render các component con khác nhau.
+* Render tree giúp xác định các component cấp cao nhất và lá. Các component cấp cao nhất ảnh hưởng đến hiệu suất render của tất cả các component bên dưới chúng và các component lá thường được re-render thường xuyên. Xác định chúng hữu ích để hiểu và gỡ lỗi hiệu suất render.
+* Dependency tree đại diện cho các module dependency trong ứng dụng React.
+* Dependency tree được các công cụ build sử dụng để bundle code cần thiết để triển khai ứng dụng.
+* Dependency tree hữu ích để gỡ lỗi kích thước bundle lớn làm chậm thời gian vẽ và phát hiện cơ hội tối ưu hóa code được bundle.
 
 </Recap>
 

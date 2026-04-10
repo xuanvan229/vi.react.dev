@@ -2,7 +2,7 @@
 title: "Sunsetting Create React App"
 author: Matt Carroll and Ricky Hanlon
 date: 2025/02/14
-description: Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch.
+description: Hôm nay, chúng tôi đang deprecated Create React App cho các ứng dụng mới và khuyến khích các ứng dụng hiện có chuyển sang một framework, hoặc chuyển sang một build tool như Vite, Parcel, hoặc RSBuild. Chúng tôi cũng cung cấp tài liệu cho khi một framework không phù hợp với dự án của bạn, bạn muốn xây dựng framework riêng, hoặc bạn chỉ muốn học cách React hoạt động bằng cách xây dựng ứng dụng React từ đầu.
 ---
 
 February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ricky Hanlon](https://bsky.app/profile/ricky.fm)
@@ -11,29 +11,29 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](#how-to-migrate-to-a-framework), or to [migrate to a build tool](#how-to-migrate-to-a-build-tool) like Vite, Parcel, or RSBuild.
+Hôm nay, chúng tôi đang deprecated [Create React App](https://create-react-app.dev/) cho các ứng dụng mới, và khuyến khích các ứng dụng hiện có chuyển sang một [framework](#how-to-migrate-to-a-framework), hoặc [chuyển sang một build tool](#how-to-migrate-to-a-build-tool) như Vite, Parcel, hoặc RSBuild.
 
-We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by [building a React app from scratch](/learn/build-a-react-app-from-scratch).
+Chúng tôi cũng cung cấp tài liệu cho khi một framework không phù hợp với dự án của bạn, bạn muốn xây dựng framework riêng, hoặc bạn chỉ muốn học cách React hoạt động bằng cách [xây dựng ứng dụng React từ đầu](/learn/build-a-react-app-from-scratch).
 
 </Intro>
 
 -----
 
-When we released Create React App in 2016, there was no clear way to build a new React app.
+Khi chúng tôi phát hành Create React App vào năm 2016, không có cách rõ ràng nào để xây dựng một ứng dụng React mới.
 
-To create a React app, you had to install a bunch of tools and wire them up together yourself to support basic features like JSX, linting, and hot reloading. This was very tricky to do correctly, so the [community](https://github.com/react-boilerplate/react-boilerplate) [created](https://github.com/kriasoft/react-starter-kit) [boilerplates](https://github.com/petehunt/react-boilerplate) for [common](https://github.com/gaearon/react-hot-boilerplate) [setups](https://github.com/erikras/react-redux-universal-hot-example). However, boilerplates were difficult to update and fragmentation made it difficult for React to release new features.
+Để tạo một ứng dụng React, bạn phải cài đặt nhiều công cụ và kết nối chúng lại với nhau để hỗ trợ các tính năng cơ bản như JSX, linting, và hot reloading. Điều này rất khó để làm đúng, vì vậy [cộng đồng](https://github.com/react-boilerplate/react-boilerplate) [đã](https://github.com/kriasoft/react-starter-kit) [tạo](https://github.com/petehunt/react-boilerplate) [boilerplates](https://github.com/gaearon/react-hot-boilerplate) cho [các](https://github.com/erikras/react-redux-universal-hot-example) thiết lập phổ biến. Tuy nhiên, boilerplates khó cập nhật và sự phân mảnh làm cho React khó phát hành các tính năng mới.
 
-Create React App solved these problems by combining several tools into a single recommended configuration. This allowed apps a simple way to upgrade to new tooling features, and allowed the React team to deploy non-trivial tooling changes (Fast Refresh support, React Hooks lint rules) to the broadest possible audience.
+Create React App đã giải quyết các vấn đề này bằng cách kết hợp nhiều công cụ vào một cấu hình được khuyến nghị duy nhất. Điều này cho phép các ứng dụng có cách đơn giản để nâng cấp lên các tính năng công cụ mới, và cho phép nhóm React triển khai các thay đổi công cụ phức tạp (hỗ trợ Fast Refresh, quy tắc lint React Hooks) đến đông đảo khán giả nhất có thể.
 
-This model became so popular that there's an entire category of tools working this way today.
+Mô hình này đã trở nên phổ biến đến mức ngày nay có cả một danh mục công cụ hoạt động theo cách này.
 
-## Deprecating Create React App {/*deprecating-create-react-app*/}
+## Deprecated Create React App {/*deprecating-create-react-app*/}
 
-Although Create React App makes it easy to get started, [there are several limitations](#limitations-of-build-tools) that make it difficult to build high performant production apps. In principle, we could solve these problems by essentially evolving it into a [framework](#why-we-recommend-frameworks).
+Mặc dù Create React App giúp bắt đầu dễ dàng, [có một số hạn chế](#limitations-of-build-tools) làm cho việc xây dựng các ứng dụng production hiệu suất cao trở nên khó khăn. Về nguyên tắc, chúng tôi có thể giải quyết các vấn đề này bằng cách cơ bản phát triển nó thành một [framework](#why-we-recommend-frameworks).
 
-However, since Create React App currently has no active maintainers, and there are many existing frameworks that solve these problems already, we’ve decided to deprecate Create React App.
+Tuy nhiên, vì Create React App hiện không có người bảo trì tích cực, và đã có nhiều framework hiện có giải quyết các vấn đề này rồi, chúng tôi đã quyết định deprecated Create React App.
 
-Starting today, if you install a new app, you will see a deprecation warning:
+Bắt đầu từ hôm nay, nếu bạn cài đặt một ứng dụng mới, bạn sẽ thấy cảnh báo deprecated:
 
 <ConsoleBlockMulti>
 <ConsoleLogLine level="error">
@@ -48,48 +48,48 @@ This error message will only be shown once per install.
 </ConsoleLogLine>
 </ConsoleBlockMulti>
 
-We've also added a deprecation notice to the Create React App [website](https://create-react-app.dev/) and GitHub [repo](https://github.com/facebook/create-react-app). Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
+Chúng tôi cũng đã thêm thông báo deprecated vào [website](https://create-react-app.dev/) và GitHub [repo](https://github.com/facebook/create-react-app) của Create React App. Create React App sẽ tiếp tục hoạt động trong chế độ maintenance, và chúng tôi đã xuất bản phiên bản mới của Create React App để hoạt động với React 19.
 
-## How to Migrate to a Framework {/*how-to-migrate-to-a-framework*/}
-We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)) and single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and can be deployed to a CDN or static hosting service without a server.
+## Cách chuyển sang Framework {/*how-to-migrate-to-a-framework*/}
+Chúng tôi khuyến nghị [tạo các ứng dụng React mới](/learn/creating-a-react-app) với một framework. Tất cả các framework chúng tôi khuyến nghị đều hỗ trợ client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)) và single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), và có thể được triển khai lên CDN hoặc dịch vụ lưu trữ tĩnh mà không cần server.
 
-For existing apps, these guides will help you migrate to a client-only SPA:
+Đối với các ứng dụng hiện có, các hướng dẫn này sẽ giúp bạn chuyển sang SPA chỉ client:
 
-* [Next.js’ Create React App migration guide](https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app)
-* [React Router’s framework adoption guide](https://reactrouter.com/upgrading/component-routes).
-* [Expo webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
+* [Hướng dẫn migration Create React App của Next.js](https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app)
+* [Hướng dẫn áp dụng framework của React Router](https://reactrouter.com/upgrading/component-routes).
+* [Hướng dẫn migration từ Expo webpack sang Expo Router](https://docs.expo.dev/router/migrate/from-expo-webpack/)
 
-## How to Migrate to a Build Tool {/*how-to-migrate-to-a-build-tool*/}
+## Cách chuyển sang Build Tool {/*how-to-migrate-to-a-build-tool*/}
 
-If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite, Parcel or Rsbuild.
+Nếu ứng dụng của bạn có các ràng buộc bất thường, hoặc bạn muốn giải quyết các vấn đề này bằng cách xây dựng framework riêng, hoặc bạn chỉ muốn học cách React hoạt động từ đầu, bạn có thể tạo thiết lập tùy chỉnh riêng với React sử dụng Vite, Parcel hoặc Rsbuild.
 
-For existing apps, these guides will help you migrate to a build tool:
+Đối với các ứng dụng hiện có, các hướng dẫn này sẽ giúp bạn chuyển sang build tool:
 
-* [Vite Create React App migration guide](https://www.robinwieruch.de/vite-create-react-app/)
-* [Parcel Create React App migration guide](https://parceljs.org/migration/cra/)
-* [Rsbuild Create React App migration guide](https://rsbuild.dev/guide/migration/cra)
+* [Hướng dẫn migration Vite Create React App](https://www.robinwieruch.de/vite-create-react-app/)
+* [Hướng dẫn migration Parcel Create React App](https://parceljs.org/migration/cra/)
+* [Hướng dẫn migration Rsbuild Create React App](https://rsbuild.dev/guide/migration/cra)
 
-To help get started with Vite, Parcel or Rsbuild, we've added new docs for [Building a React App from Scratch](/learn/build-a-react-app-from-scratch).
+Để giúp bắt đầu với Vite, Parcel hoặc Rsbuild, chúng tôi đã thêm tài liệu mới cho [Xây dựng ứng dụng React từ đầu](/learn/build-a-react-app-from-scratch).
 
 <DeepDive>
 
-#### Do I need a framework? {/*do-i-need-a-framework*/}
+#### Tôi có cần framework không? {/*do-i-need-a-framework*/}
 
-Most apps would benefit from a framework, but there are valid cases to build a React app from scratch. A good rule of thumb is if your app needs routing, you would probably benefit from a framework.
+Hầu hết các ứng dụng sẽ được hưởng lợi từ framework, nhưng có những trường hợp hợp lệ để xây dựng ứng dụng React từ đầu. Một quy tắc tốt là nếu ứng dụng của bạn cần routing, bạn có thể sẽ được hưởng lợi từ framework.
 
-Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, [React recommends using a framework](#why-we-recommend-frameworks) that fully integrates routing into features like data-fetching and code-splitting out of the box. This avoids the pain of needing to write your own complex configurations and essentially build a framework yourself.
+Giống như Svelte có Sveltekit, Vue có Nuxt, và Solid có SolidStart, [React khuyến nghị sử dụng framework](#why-we-recommend-frameworks) tích hợp đầy đủ routing vào các tính năng như data-fetching và code-splitting ngay từ đầu. Điều này tránh được sự đau đớn khi cần viết các cấu hình phức tạp của riêng bạn và về cơ bản tự xây dựng một framework.
 
-However, you can always [build a React app from scratch](/learn/build-a-react-app-from-scratch) using a build tool like Vite, Parcel, or Rsbuild.
+Tuy nhiên, bạn luôn có thể [xây dựng ứng dụng React từ đầu](/learn/build-a-react-app-from-scratch) sử dụng build tool như Vite, Parcel, hoặc Rsbuild.
 
 </DeepDive>
 
-Continue reading to learn more about the [limitations of build tools](#limitations-of-build-tools) and [why we recommend frameworks](#why-we-recommend-frameworks).
+Tiếp tục đọc để tìm hiểu thêm về [hạn chế của build tools](#limitations-of-build-tools) và [lý do chúng tôi khuyến nghị frameworks](#why-we-recommend-frameworks).
 
-## Limitations of Build Tools {/*limitations-of-build-tools*/}
+## Hạn chế của Build Tools {/*limitations-of-build-tools*/}
 
-Create React App and build tools like it make it easy to get started building a React app. After running `npx create-react-app my-app`, you get a fully configured React app with a development server, linting, and a production build.
+Create React App và các build tools tương tự giúp bắt đầu xây dựng ứng dụng React dễ dàng. Sau khi chạy `npx create-react-app my-app`, bạn có được một ứng dụng React được cấu hình đầy đủ với server phát triển, linting, và production build.
 
-For example, if you're building an internal admin tool, you can start with a landing page:
+Ví dụ, nếu bạn đang xây dựng một công cụ quản trị nội bộ, bạn có thể bắt đầu với landing page:
 
 ```js
 export default function App() {
@@ -101,13 +101,13 @@ export default function App() {
 }
 ```
 
-This allows you to immediately start coding in React with features like JSX, default linting rules, and a bundler to run in both development and production. However, this setup is missing the tools you need to build a real production app.
+Điều này cho phép bạn ngay lập tức bắt đầu code trong React với các tính năng như JSX, các quy tắc linting mặc định, và một bundler để chạy cả trong phát triển và production. Tuy nhiên, thiết lập này thiếu các công cụ bạn cần để xây dựng một ứng dụng production thực sự.
 
-Most production apps need solutions to problems like routing, data fetching, and code splitting.
+Hầu hết các ứng dụng production cần các giải pháp cho các vấn đề như routing, data fetching, và code splitting.
 
 ### Routing {/*routing*/}
 
-Create React App does not include a specific routing solution. If you're just getting started, one option is to use `useState` to switch between routes. But doing this means that you can't share links to your app - every link would go to the same page - and structuring your app becomes difficult over time:
+Create React App không bao gồm một giải pháp routing cụ thể. Nếu bạn mới bắt đầu, một tùy chọn là sử dụng `useState` để chuyển đổi giữa các route. Nhưng làm điều này có nghĩa là bạn không thể chia sẻ liên kết đến ứng dụng của mình - mọi liên kết đều sẽ đi đến cùng một trang - và cấu trúc ứng dụng của bạn trở nên khó khăn theo thời gian:
 
 ```js
 import {useState} from 'react';
@@ -127,7 +127,7 @@ export default function App() {
 }
 ```
 
-This is why most apps that use Create React App solve add routing with a routing library like [React Router](https://reactrouter.com/) or [Tanstack Router](https://tanstack.com/router/latest). With a routing library, you can add additional routes to the app, which provides opinions on the structure of your app, and allows you to start sharing links to routes. For example, with React Router you can define routes:
+Đây là lý do tại sao hầu hết các ứng dụng sử dụng Create React App giải quyết bằng cách thêm routing với một thư viện routing như [React Router](https://reactrouter.com/) hoặc [Tanstack Router](https://tanstack.com/router/latest). Với thư viện routing, bạn có thể thêm các route bổ sung vào ứng dụng, cung cấp ý kiến về cấu trúc ứng dụng của bạn, và cho phép bạn bắt đầu chia sẻ liên kết đến các route. Ví dụ, với React Router bạn có thể định nghĩa các route:
 
 ```js
 import {RouterProvider, createBrowserRouter} from 'react-router';
@@ -148,15 +148,15 @@ export default function App() {
 }
 ```
 
-With this change, you can share a link to `/dashboard` and the app will navigate to the dashboard page . Once you have a routing library, you can add additional features like nested routes, route guards, and route transitions, which are difficult to implement without a routing library.
+Với thay đổi này, bạn có thể chia sẻ liên kết đến `/dashboard` và ứng dụng sẽ điều hướng đến trang dashboard. Một khi bạn có thư viện routing, bạn có thể thêm các tính năng bổ sung như nested routes, route guards, và route transitions, vốn khó thực hiện mà không có thư viện routing.
 
-There's a tradeoff being made here: the routing library adds complexity to the app, but it also adds features that are difficult to implement without it.
+Có một sự đánh đổi được thực hiện ở đây: thư viện routing thêm độ phức tạp cho ứng dụng, nhưng nó cũng thêm các tính năng khó thực hiện nếu không có nó.
 
 ### Data Fetching {/*data-fetching*/}
 
-Another common problem in Create React App is data fetching. Create React App does not include a specific data fetching solution. If you're just getting started, a common option is to use `fetch` in an effect to load data.
+Một vấn đề phổ biến khác trong Create React App là data fetching. Create React App không bao gồm một giải pháp data fetching cụ thể. Nếu bạn mới bắt đầu, một tùy chọn phổ biến là sử dụng `fetch` trong một effect để tải dữ liệu.
 
-But doing this means that the data is fetched after the component renders, which can cause network waterfalls. Network waterfalls are caused by fetching data when your app renders instead of in parallel while the code is downloading:
+Nhưng làm điều này có nghĩa là dữ liệu được fetch sau khi component render, có thể gây ra network waterfalls. Network waterfalls được gây ra bởi việc fetch dữ liệu khi ứng dụng của bạn render thay vì song song trong khi code đang tải xuống:
 
 ```js
 export default function Dashboard() {
@@ -177,9 +177,9 @@ export default function Dashboard() {
 }
 ```
 
-Fetching in an effect means the user has to wait longer to see the content, even though the data could have been fetched earlier. To solve this, you can use a data fetching library like [TanStack Query](https://tanstack.com/query/), [SWR](https://swr.vercel.app/), [Apollo](https://www.apollographql.com/docs/react), or [Relay](https://relay.dev/) which provide options to prefetch data so the request is started before the component renders.
+Fetching trong effect có nghĩa là người dùng phải chờ lâu hơn để thấy nội dung, mặc dù dữ liệu có thể đã được fetch sớm hơn. Để giải quyết điều này, bạn có thể sử dụng thư viện data fetching như [TanStack Query](https://tanstack.com/query/), [SWR](https://swr.vercel.app/), [Apollo](https://www.apollographql.com/docs/react), hoặc [Relay](https://relay.dev/) cung cấp các tùy chọn để prefetch dữ liệu để yêu cầu được bắt đầu trước khi component render.
 
-These libraries work best when integrated with your routing "loader" pattern to specify data dependencies at the route level, which allows the router to optimize your data fetches:
+Các thư viện này hoạt động tốt nhất khi được tích hợp với mẫu "loader" routing của bạn để chỉ định các phụ thuộc dữ liệu ở cấp route, cho phép router tối ưu hóa các lần fetch dữ liệu của bạn:
 
 ```js
 export async function loader() {
@@ -198,21 +198,21 @@ export default function Dashboard({loaderData}) {
 }
 ```
 
-On initial load, the router can fetch the data immediately before the route is rendered. As the user navigates around the app, the router is able to fetch both the data and the route at the same time, parallelizing the fetches. This reduces the time it takes to see the content on the screen, and can improve the user experience.
+Tại lần tải ban đầu, router có thể fetch dữ liệu ngay trước khi route được render. Khi người dùng điều hướng xung quanh ứng dụng, router có thể fetch cả dữ liệu và route cùng lúc, song song hóa các lần fetch. Điều này giảm thời gian cần để thấy nội dung trên màn hình và có thể cải thiện trải nghiệm người dùng.
 
-However, this requires correctly configuring the loaders in your app and trades off complexity for performance.
+Tuy nhiên, điều này yêu cầu cấu hình đúng các loader trong ứng dụng của bạn và đánh đổi sự phức tạp lấy hiệu suất.
 
 ### Code Splitting {/*code-splitting*/}
 
-Another common problem in Create React App is [code splitting](https://www.patterns.dev/vanilla/bundle-splitting). Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all.
+Một vấn đề phổ biến khác trong Create React App là [code splitting](https://www.patterns.dev/vanilla/bundle-splitting). Create React App không bao gồm một giải pháp code splitting cụ thể. Nếu bạn mới bắt đầu, bạn có thể hoàn toàn không xem xét code splitting.
 
-This means your app is shipped as a single bundle:
+Điều này có nghĩa là ứng dụng của bạn được giao như một bundle duy nhất:
 
 ```txt
 - bundle.js    75kb
 ```
 
-But for ideal performance, you should "split" your code into separate bundles so the user only needs to download what they need. This decreases the time the user needs to wait to load your app, by only downloading the code they need to see the page they are on.
+Nhưng để có hiệu suất lý tưởng, bạn nên "tách" code của mình thành các bundle riêng biệt để người dùng chỉ cần tải xuống những gì họ cần. Điều này giảm thời gian người dùng cần đợi để tải ứng dụng của bạn, bằng cách chỉ tải xuống code họ cần để xem trang họ đang ở.
 
 ```txt
 - core.js      25kb
@@ -220,7 +220,7 @@ But for ideal performance, you should "split" your code into separate bundles so
 - dashboard.js 25kb
 ```
 
-One way to do code-splitting is with `React.lazy`. However, this means that the code is not fetched until the component renders, which can cause network waterfalls. A more optimal solution is to use a router feature that fetches the code in parallel while the code is downloading. For example, React Router provides a `lazy` option to specify that a route should be code split and optimize when it is loaded:
+Một cách để thực hiện code-splitting là với `React.lazy`. Tuy nhiên, điều này có nghĩa là code không được fetch cho đến khi component render, điều này có thể gây ra network waterfalls. Một giải pháp tối ưu hơn là sử dụng tính năng router fetch code song song trong khi code đang tải xuống. Ví dụ, React Router cung cấp tùy chọn `lazy` để chỉ định rằng một route nên được code split và tối ưu hóa khi nó được tải:
 
 ```js
 import Home from './Home';
@@ -233,13 +233,13 @@ const router = createBrowserRouter([
 ]);
 ```
 
-Optimized code-splitting is tricky to get right, and it's easy to make mistakes that can cause the user to download more code than they need. It works best when integrated with your router and data loading solutions to maximize caching, parallelize fetches, and support ["import on interaction"](https://www.patterns.dev/vanilla/import-on-interaction) patterns.
+Code-splitting được tối ưu hóa rất khó để làm đúng, và dễ mắc lỗi có thể khiến người dùng tải xuống nhiều code hơn mức cần thiết. Nó hoạt động tốt nhất khi được tích hợp với các giải pháp router và tải dữ liệu của bạn để tối đa hóa caching, song song hóa các lần fetch, và hỗ trợ các mẫu ["import on interaction"](https://www.patterns.dev/vanilla/import-on-interaction).
 
-### And more... {/*and-more*/}
+### Và nhiều hơn nữa... {/*and-more*/}
 
-These are just a few examples of the limitations of Create React App.
+Đây chỉ là một vài ví dụ về hạn chế của Create React App.
 
-Once you've integrated routing, data-fetching, and code splitting, you now also need to consider pending states, navigation interruptions, error messages to the user, and revalidation of the data. There are entire categories of problems that users need to solve like:
+Một khi bạn đã tích hợp routing, data-fetching, và code splitting, bạn cũng cần xem xét các trạng thái pending, ngắt navigation, thông báo lỗi cho người dùng, và revalidation dữ liệu. Có những danh mục vấn đề hoàn chỉnh mà người dùng cần giải quyết như:
 
 <div style={{display: 'flex', width: '100%', justifyContent: 'space-around'}}>
   <ul>
@@ -262,59 +262,59 @@ Once you've integrated routing, data-fetching, and code splitting, you now also 
   </ul>
 </div>
 
-All of these work together to create the most optimal [loading sequence](https://www.patterns.dev/vanilla/loading-sequence).
+Tất cả những điều này hoạt động cùng nhau để tạo ra [loading sequence](https://www.patterns.dev/vanilla/loading-sequence) tối ưu nhất.
 
-Solving each of these problems individually in Create React App can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas users may not be familiar with. In order to solve these problems, users end up building their own bespoke solutions on top of Create React App, which was the problem Create React App originally tried to solve.
+Việc giải quyết từng vấn đề này riêng lẻ trong Create React App có thể khó khăn vì mỗi vấn đề liên kết với nhau và có thể yêu cầu chuyên môn sâu trong các lĩnh vực mà người dùng có thể không quen thuộc. Để giải quyết các vấn đề này, người dùng cuối cùng xây dựng các giải pháp riêng của họ trên Create React App, đây chính là vấn đề mà Create React App ban đầu cố gắng giải quyết.
 
-## Why we Recommend Frameworks {/*why-we-recommend-frameworks*/}
+## Tại sao chúng tôi khuyến nghị Frameworks {/*why-we-recommend-frameworks*/}
 
-Although you could solve all these pieces yourself in a build tool like Create React App, Vite, or Parcel, it is hard to do well. Just like when Create React App itself integrated several build tools together, you need a tool to integrate all of these features together to provide the best experience to users.
+Mặc dù bạn có thể tự giải quyết tất cả các phần này trong một build tool như Create React App, Vite, hoặc Parcel, nhưng rất khó để làm tốt. Giống như khi Create React App tự tích hợp nhiều build tool lại với nhau, bạn cần một công cụ để tích hợp tất cả các tính năng này lại với nhau để cung cấp trải nghiệm tốt nhất cho người dùng.
 
-This category of tools that integrates build tools, rendering, routing, data fetching, and code splitting are known as "frameworks" -- or if you prefer to call React itself a framework, you might call them "metaframeworks".
+Danh mục công cụ này tích hợp build tools, rendering, routing, data fetching, và code splitting được gọi là "frameworks" -- hoặc nếu bạn muốn gọi React là một framework, bạn có thể gọi chúng là "metaframeworks".
 
-Frameworks impose some opinions about structuring your app in order to provide a much better user experience, in the same way build tools impose some opinions to make tooling easier. This is why we started recommending frameworks like [Next.js](https://nextjs.org/), [React Router](https://reactrouter.com/), and [Expo](https://expo.dev/) for new projects.
+Frameworks áp đặt một số ý kiến về cách cấu trúc ứng dụng của bạn để cung cấp trải nghiệm người dùng tốt hơn nhiều, giống như cách build tools áp đặt một số ý kiến để làm cho tooling dễ dàng hơn. Đây là lý do tại sao chúng tôi bắt đầu khuyến nghị các framework như [Next.js](https://nextjs.org/), [React Router](https://reactrouter.com/), và [Expo](https://expo.dev/) cho các dự án mới.
 
-Frameworks provide the same getting started experience as Create React App, but also provide solutions to problems users need to solve anyway in real production apps.
+Frameworks cung cấp trải nghiệm bắt đầu tương tự như Create React App, nhưng cũng cung cấp các giải pháp cho các vấn đề mà người dùng cần giải quyết trong các ứng dụng production thực sự.
 
 <DeepDive>
 
-#### Server rendering is optional {/*server-rendering-is-optional*/}
+#### Server rendering là tùy chọn {/*server-rendering-is-optional*/}
 
-The frameworks we recommend all provide the option to create a [client-side rendered (CSR)](https://developer.mozilla.org/en-US/docs/Glossary/CSR) app.
+Tất cả các framework chúng tôi khuyến nghị đều cung cấp tùy chọn để tạo ứng dụng [client-side rendered (CSR)](https://developer.mozilla.org/en-US/docs/Glossary/CSR).
 
-In some cases, CSR is the right choice for a page, but many times it's not. Even if most of your app is client-side, there are often individual pages that could benefit from server rendering features like [static-site generation (SSG)](https://developer.mozilla.org/en-US/docs/Glossary/SSG) or [server-side rendering (SSR)](https://developer.mozilla.org/en-US/docs/Glossary/SSR), for example a Terms of Service page, or documentation.
+Trong một số trường hợp, CSR là lựa chọn đúng cho một trang, nhưng nhiều khi không phải vậy. Ngay cả khi hầu hết ứng dụng của bạn là phía client, thường có các trang riêng lẻ có thể được hưởng lợi từ các tính năng server rendering như [static-site generation (SSG)](https://developer.mozilla.org/en-US/docs/Glossary/SSG) hoặc [server-side rendering (SSR)](https://developer.mozilla.org/en-US/docs/Glossary/SSR), ví dụ trang Điều khoản dịch vụ, hoặc tài liệu.
 
-Server rendering generally sends less JavaScript to the client, and a full HTML document which produces a faster [First Contentful Paint (FCP)](https://web.dev/articles/fcp) by reducing [Total Blocking Time (TBD)](https://web.dev/articles/tbt), which can also lower [Interaction to Next Paint (INP)](https://web.dev/articles/inp). This is why the [Chrome team has encouraged](https://web.dev/articles/rendering-on-the-web) developers to consider static or server-side render over a full client-side approach to achieve the best possible performance.
+Server rendering thường gửi ít JavaScript hơn đến client, và một tài liệu HTML đầy đủ tạo ra [First Contentful Paint (FCP)](https://web.dev/articles/fcp) nhanh hơn bằng cách giảm [Total Blocking Time (TBD)](https://web.dev/articles/tbt), cũng có thể giảm [Interaction to Next Paint (INP)](https://web.dev/articles/inp). Đây là lý do tại sao [nhóm Chrome đã khuyến khích](https://web.dev/articles/rendering-on-the-web) các nhà phát triển xem xét render tĩnh hoặc phía server hơn là tiếp cận hoàn toàn phía client để đạt hiệu suất tốt nhất có thể.
 
-There are tradeoffs to using a server, and it is not always the best option for every page. Generating pages on the server incurs additional cost and takes time to generate which can increase [Time to First Byte (TTFB)](https://web.dev/articles/ttfb). The best performing apps are able to pick the right rendering strategy on a per-page basis, based on the tradeoffs of each strategy.
+Có những đánh đổi khi sử dụng server, và không phải lúc nào cũng là lựa chọn tốt nhất cho mọi trang. Tạo các trang trên server phát sinh chi phí bổ sung và mất thời gian để tạo có thể tăng [Time to First Byte (TTFB)](https://web.dev/articles/ttfb). Các ứng dụng có hiệu suất tốt nhất có thể chọn chiến lược rendering phù hợp trên cơ sở từng trang, dựa trên sự đánh đổi của mỗi chiến lược.
 
-Frameworks provide the option to use a server on any page if you want to, but do not force you to use a server. This allows you to pick the right rendering strategy for each page in your app.
+Frameworks cung cấp tùy chọn sử dụng server trên bất kỳ trang nào nếu bạn muốn, nhưng không ép buộc bạn sử dụng server. Điều này cho phép bạn chọn chiến lược rendering phù hợp cho mỗi trang trong ứng dụng của bạn.
 
-#### What About Server Components {/*server-components*/}
+#### Còn Server Components thì sao {/*server-components*/}
 
-The frameworks we recommend also include support for React Server Components.
+Các framework chúng tôi khuyến nghị cũng bao gồm hỗ trợ cho React Server Components.
 
-Server Components help solve these problems by moving routing and data fetching to the server, and allowing code splitting to be done for client components based on the data you render, instead of just the route rendered, and reducing the amount of JavaScript shipped for the best possible [loading sequence](https://www.patterns.dev/vanilla/loading-sequence).
+Server Components giúp giải quyết các vấn đề này bằng cách chuyển routing và data fetching lên server, và cho phép code splitting được thực hiện cho các client component dựa trên dữ liệu bạn render, thay vì chỉ route được render, và giảm lượng JavaScript được giao cho [loading sequence](https://www.patterns.dev/vanilla/loading-sequence) tốt nhất có thể.
 
-Server Components do not require a server. They can be run at build time on your CI server to create a static-site generated app (SSG) app, at runtime on a web server for a server-side rendered (SSR) app.
+Server Components không yêu cầu server. Chúng có thể chạy tại build time trên CI server của bạn để tạo ứng dụng static-site generated (SSG), tại runtime trên web server cho ứng dụng server-side rendered (SSR).
 
-See [Introducing zero-bundle size React Server Components](/blog/2020/12/21/data-fetching-with-react-server-components) and [the docs](/reference/rsc/server-components) for more info.
+Xem [Giới thiệu React Server Components có kích thước bundle bằng không](/blog/2020/12/21/data-fetching-with-react-server-components) và [tài liệu](/reference/rsc/server-components) để biết thêm thông tin.
 
 </DeepDive>
 
 <Note>
 
-#### Server Rendering is not just for SEO {/*server-rendering-is-not-just-for-seo*/}
+#### Server Rendering không chỉ dành cho SEO {/*server-rendering-is-not-just-for-seo*/}
 
-A common misunderstanding is that server rendering is only for [SEO](https://developer.mozilla.org/en-US/docs/Glossary/SEO).
+Một hiểu lầm phổ biến là server rendering chỉ dành cho [SEO](https://developer.mozilla.org/en-US/docs/Glossary/SEO).
 
-While server rendering can improve SEO, it also improves performance by reducing the amount of JavaScript the user needs to download and parse before they can see the content on the screen.
+Trong khi server rendering có thể cải thiện SEO, nó cũng cải thiện hiệu suất bằng cách giảm lượng JavaScript người dùng cần tải xuống và phân tích trước khi họ có thể thấy nội dung trên màn hình.
 
-This is why the Chrome team [has encouraged](https://web.dev/articles/rendering-on-the-web) developers to consider static or server-side render over a full client-side approach to achieve the best possible performance.
+Đây là lý do tại sao nhóm Chrome [đã khuyến khích](https://web.dev/articles/rendering-on-the-web) các nhà phát triển xem xét render tĩnh hoặc phía server hơn là tiếp cận hoàn toàn phía client để đạt hiệu suất tốt nhất có thể.
 
 </Note>
 
 ---
 
-_Thank you to [Dan Abramov](https://bsky.app/profile/danabra.mov) for creating Create React App, and [Joe Haddad](https://github.com/Timer), [Ian Schmitz](https://github.com/ianschmitz), [Brody McKee](https://github.com/mrmckeb), and [many others](https://github.com/facebook/create-react-app/graphs/contributors) for maintaining Create React App over the years. Thank you to [Brooks Lybrand](https://bsky.app/profile/brookslybrand.bsky.social), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Devon Govett](https://bsky.app/profile/devongovett.bsky.social), [Eli White](https://x.com/Eli_White), [Jack Herrington](https://bsky.app/profile/jherr.dev), [Joe Savona](https://x.com/en_JS), [Lauren Tan](https://bsky.app/profile/no.lol), [Lee Robinson](https://x.com/leeerob), [Mark Erikson](https://bsky.app/profile/acemarke.dev), [Ryan Florence](https://x.com/ryanflorence), [Sophie Alpert](https://bsky.app/profile/sophiebits.com), [Tanner Linsley](https://bsky.app/profile/tannerlinsley.com), and [Theo Browne](https://x.com/theo) for reviewing and providing feedback on this post._
+_Cảm ơn [Dan Abramov](https://bsky.app/profile/danabra.mov) đã tạo ra Create React App, và [Joe Haddad](https://github.com/Timer), [Ian Schmitz](https://github.com/ianschmitz), [Brody McKee](https://github.com/mrmckeb), và [nhiều người khác](https://github.com/facebook/create-react-app/graphs/contributors) đã duy trì Create React App trong nhiều năm. Cảm ơn [Brooks Lybrand](https://bsky.app/profile/brookslybrand.bsky.social), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Devon Govett](https://bsky.app/profile/devongovett.bsky.social), [Eli White](https://x.com/Eli_White), [Jack Herrington](https://bsky.app/profile/jherr.dev), [Joe Savona](https://x.com/en_JS), [Lauren Tan](https://bsky.app/profile/no.lol), [Lee Robinson](https://x.com/leeerob), [Mark Erikson](https://bsky.app/profile/acemarke.dev), [Ryan Florence](https://x.com/ryanflorence), [Sophie Alpert](https://bsky.app/profile/sophiebits.com), [Tanner Linsley](https://bsky.app/profile/tannerlinsley.com), và [Theo Browne](https://x.com/theo) đã review và cung cấp phản hồi cho bài viết này._
 

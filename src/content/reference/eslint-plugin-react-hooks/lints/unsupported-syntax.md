@@ -4,92 +4,92 @@ title: unsupported-syntax
 
 <Intro>
 
-Validates against syntax that React Compiler does not support. If you need to, you can still use this syntax outside of React, such as in a standalone utility function.
+Kiểm tra cú pháp mà React Compiler không hỗ trợ. Nếu cần, bạn vẫn có thể sử dụng cú pháp này bên ngoài React, chẳng hạn trong một hàm tiện ích độc lập.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-React Compiler needs to statically analyze your code to apply optimizations. Features like `eval` and `with` make it impossible to statically understand what the code does at compile time, so the compiler can't optimize components that use them.
+React Compiler cần phân tích tĩnh code của bạn để áp dụng các tối ưu hóa. Các tính năng như `eval` và `with` khiến việc hiểu tĩnh code làm gì tại thời điểm compile trở nên bất khả thi, vì vậy compiler không thể tối ưu hóa các component sử dụng chúng.
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js
-// ❌ Using eval in component
+// ❌ Sử dụng eval trong component
 function Component({ code }) {
-  const result = eval(code); // Can't be analyzed
+  const result = eval(code); // Không thể phân tích
   return <div>{result}</div>;
 }
 
-// ❌ Using with statement
+// ❌ Sử dụng câu lệnh with
 function Component() {
-  with (Math) { // Changes scope dynamically
+  with (Math) { // Thay đổi scope động
     return <div>{sin(PI / 2)}</div>;
   }
 }
 
-// ❌ Dynamic property access with eval
+// ❌ Truy cập thuộc tính động bằng eval
 function Component({propName}) {
   const value = eval(`props.${propName}`);
   return <div>{value}</div>;
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ Use normal property access
+// ✅ Sử dụng truy cập thuộc tính thông thường
 function Component({propName, props}) {
-  const value = props[propName]; // Analyzable
+  const value = props[propName]; // Có thể phân tích
   return <div>{value}</div>;
 }
 
-// ✅ Use standard Math methods
+// ✅ Sử dụng các phương thức Math tiêu chuẩn
 function Component() {
   return <div>{Math.sin(Math.PI / 2)}</div>;
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I need to evaluate dynamic code {/*evaluate-dynamic-code*/}
+### Tôi cần đánh giá code động {/*evaluate-dynamic-code*/}
 
-You might need to evaluate user-provided code:
+Bạn có thể cần đánh giá code do người dùng cung cấp:
 
 ```js {expectedErrors: {'react-compiler': [3]}}
-// ❌ Wrong: eval in component
+// ❌ Sai: eval trong component
 function Calculator({expression}) {
-  const result = eval(expression); // Unsafe and unoptimizable
-  return <div>Result: {result}</div>;
+  const result = eval(expression); // Không an toàn và không thể tối ưu hóa
+  return <div>Kết quả: {result}</div>;
 }
 ```
 
-Use a safe expression parser instead:
+Thay vào đó, sử dụng một trình phân tích biểu thức an toàn:
 
 ```js
-// ✅ Better: Use a safe parser
-import {evaluate} from 'mathjs'; // or similar library
+// ✅ Tốt hơn: Sử dụng trình phân tích an toàn
+import {evaluate} from 'mathjs'; // hoặc thư viện tương tự
 
 function Calculator({expression}) {
   const [result, setResult] = useState(null);
 
   const calculate = () => {
     try {
-      // Safe mathematical expression evaluation
+      // Đánh giá biểu thức toán học an toàn
       setResult(evaluate(expression));
     } catch (error) {
-      setResult('Invalid expression');
+      setResult('Biểu thức không hợp lệ');
     }
   };
 
   return (
     <div>
-      <button onClick={calculate}>Calculate</button>
-      {result && <div>Result: {result}</div>}
+      <button onClick={calculate}>Tính toán</button>
+      {result && <div>Kết quả: {result}</div>}
     </div>
   );
 }
@@ -97,6 +97,6 @@ function Calculator({expression}) {
 
 <Note>
 
-Never use `eval` with user input - it's a security risk. Use dedicated parsing libraries for specific use cases like mathematical expressions, JSON parsing, or template evaluation.
+Không bao giờ sử dụng `eval` với đầu vào người dùng - đó là rủi ro bảo mật. Sử dụng các thư viện phân tích chuyên dụng cho các trường hợp sử dụng cụ thể như biểu thức toán học, phân tích JSON, hoặc đánh giá template.
 
 </Note>

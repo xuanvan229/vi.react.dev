@@ -5,15 +5,15 @@ version: canary
 
 <Canary>
 
-**The `addTransitionType` API is currently only available in React’s Canary and Experimental channels.**
+**API `addTransitionType` hiện chỉ có sẵn trong các kênh Canary và Experimental của React.**
 
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+[Tìm hiểu thêm về các kênh phát hành của React tại đây.](/community/versioning-policy#all-release-channels)
 
 </Canary>
 
 <Intro>
 
-`addTransitionType` lets you specify the cause of a transition.
+`addTransitionType` cho phép bạn chỉ định nguyên nhân của một transition.
 
 
 ```js
@@ -29,30 +29,30 @@ startTransition(() => {
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `addTransitionType` {/*addtransitiontype*/}
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-- `type`: The type of transition to add. This can be any string.
+- `type`: Loại transition cần thêm. Đây có thể là bất kỳ chuỗi nào.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`addTransitionType` does not return anything.
+`addTransitionType` không trả về gì.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- If multiple transitions are combined, all Transition Types are collected. You can also add more than one type to a Transition.
-- Transition Types are reset after each commit. This means a `<Suspense>` fallback will associate the types after a `startTransition`, but revealing the content does not.
+- Nếu nhiều transition được kết hợp lại, tất cả các Loại Transition đều được thu thập. Bạn cũng có thể thêm nhiều hơn một loại vào một Transition.
+- Các Loại Transition được đặt lại sau mỗi lần commit. Điều này có nghĩa là một fallback `<Suspense>` sẽ liên kết các loại sau một `startTransition`, nhưng việc hiển thị nội dung thì không.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Adding the cause of a transition {/*adding-the-cause-of-a-transition*/}
+### Thêm nguyên nhân của một transition {/*adding-the-cause-of-a-transition*/}
 
-Call `addTransitionType` inside of `startTransition` to indicate the cause of a transition:
+Gọi `addTransitionType` bên trong `startTransition` để chỉ định nguyên nhân của một transition:
 
 ``` [[1, 6, "addTransitionType"], [2, 5, "startTransition", [3, 6, "'submit-click'"]]
 import { startTransition, addTransitionType } from 'react';
@@ -70,22 +70,22 @@ function Submit({action) {
 
 ```
 
-When you call <CodeStep step={1}>addTransitionType</CodeStep> inside the scope of <CodeStep step={2}>startTransition</CodeStep>, React will associate <CodeStep step={3}>submit-click</CodeStep> as one of the causes for the Transition.
+Khi bạn gọi <CodeStep step={1}>addTransitionType</CodeStep> bên trong phạm vi của <CodeStep step={2}>startTransition</CodeStep>, React sẽ liên kết <CodeStep step={3}>submit-click</CodeStep> như một trong những nguyên nhân của Transition.
 
-Currently, Transition Types can be used to customize different animations based on what caused the Transition. You have three different ways to choose from for how to use them:
+Hiện tại, các Loại Transition có thể được sử dụng để tùy chỉnh các hoạt ảnh khác nhau dựa trên nguyên nhân gây ra Transition. Bạn có ba cách khác nhau để lựa chọn:
 
-- [Customize animations using browser view transition types](#customize-animations-using-browser-view-transition-types)
-- [Customize animations using `View Transition` Class](#customize-animations-using-view-transition-class)
-- [Customize animations using `ViewTransition` events](#customize-animations-using-viewtransition-events)
+- [Tùy chỉnh hoạt ảnh sử dụng các loại view transition của trình duyệt](#customize-animations-using-browser-view-transition-types)
+- [Tùy chỉnh hoạt ảnh sử dụng `View Transition` Class](#customize-animations-using-view-transition-class)
+- [Tùy chỉnh hoạt ảnh sử dụng các sự kiện `ViewTransition`](#customize-animations-using-viewtransition-events)
 
-In the future, we plan to support more use cases for using the cause of a transition.
+Trong tương lai, chúng tôi dự định hỗ trợ thêm nhiều trường hợp sử dụng cho việc dùng nguyên nhân của một transition.
 
 ---
-### Customize animations using browser view transition types {/*customize-animations-using-browser-view-transition-types*/}
+### Tùy chỉnh hoạt ảnh sử dụng các loại view transition của trình duyệt {/*customize-animations-using-browser-view-transition-types*/}
 
-When a [`ViewTransition`](/reference/react/ViewTransition) activates from a transition, React adds all the Transition Types as browser [view transition types](https://www.w3.org/TR/css-view-transitions-2/#active-view-transition-pseudo-examples) to the element.
+Khi một [`ViewTransition`](/reference/react/ViewTransition) được kích hoạt từ một transition, React thêm tất cả các Loại Transition như [các loại view transition](https://www.w3.org/TR/css-view-transitions-2/#active-view-transition-pseudo-examples) của trình duyệt vào element.
 
-This allows you to customize different animations based on CSS scopes:
+Điều này cho phép bạn tùy chỉnh các hoạt ảnh khác nhau dựa trên các phạm vi CSS:
 
 ```js [11]
 function Component() {
@@ -112,9 +112,9 @@ startTransition(() => {
 
 ---
 
-### Customize animations using `View Transition` Class {/*customize-animations-using-view-transition-class*/}
+### Tùy chỉnh hoạt ảnh sử dụng `View Transition` Class {/*customize-animations-using-view-transition-class*/}
 
-You can customize animations for an activated `ViewTransition` based on type by passing an object to the View Transition Class:
+Bạn có thể tùy chỉnh hoạt ảnh cho một `ViewTransition` được kích hoạt dựa trên loại bằng cách truyền một object vào View Transition Class:
 
 ```js
 function Component() {
@@ -134,9 +134,9 @@ startTransition(() => {
 });
 ```
 
-If multiple types match, then they're joined together. If no types match then the special "default" entry is used instead. If any type has the value "none" then that wins and the ViewTransition is disabled (not assigned a name).
+Nếu nhiều loại khớp, chúng được nối lại với nhau. Nếu không có loại nào khớp thì mục "default" đặc biệt được sử dụng thay thế. Nếu bất kỳ loại nào có giá trị "none" thì loại đó thắng và ViewTransition bị vô hiệu hóa (không được gán tên).
 
-These can be combined with enter/exit/update/layout/share props to match based on kind of trigger and Transition Type.
+Chúng có thể được kết hợp với các prop enter/exit/update/layout/share để khớp dựa trên loại kích hoạt và Loại Transition.
 
 ```js
 <ViewTransition enter={{
@@ -151,9 +151,9 @@ exit={{
 
 ---
 
-### Customize animations using `ViewTransition` events {/*customize-animations-using-viewtransition-events*/}
+### Tùy chỉnh hoạt ảnh sử dụng các sự kiện `ViewTransition` {/*customize-animations-using-viewtransition-events*/}
 
-You can imperatively customize animations for an activated `ViewTransition` based on type using View Transition events:
+Bạn có thể tùy chỉnh hoạt ảnh theo cách mệnh lệnh cho một `ViewTransition` được kích hoạt dựa trên loại bằng cách sử dụng các sự kiện View Transition:
 
 ```
 <ViewTransition onUpdate={(inst, types) => {
@@ -167,4 +167,4 @@ You can imperatively customize animations for an activated `ViewTransition` base
 }}>
 ```
 
-This allows you to pick different imperative Animations based on the cause.
+Điều này cho phép bạn chọn các hoạt ảnh mệnh lệnh khác nhau dựa trên nguyên nhân.

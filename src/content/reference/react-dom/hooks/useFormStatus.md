@@ -4,7 +4,7 @@ title: useFormStatus
 
 <Intro>
 
-`useFormStatus` is a Hook that gives you status information of the last form submission.
+`useFormStatus` là một Hook cung cấp cho bạn thông tin trạng thái của lần gửi form gần nhất.
 
 ```js
 const { pending, data, method, action } = useFormStatus();
@@ -16,11 +16,11 @@ const { pending, data, method, action } = useFormStatus();
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `useFormStatus()` {/*use-form-status*/}
 
-The `useFormStatus` Hook provides status information of the last form submission.
+Hook `useFormStatus` cung cấp thông tin trạng thái của lần gửi form gần nhất.
 
 ```js {5},[[1, 6, "status.pending"]]
 import { useFormStatus } from "react-dom";
@@ -40,42 +40,42 @@ export default function App() {
 }
 ```
 
-To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting.
+Để lấy thông tin trạng thái, component `Submit` phải được render bên trong một `<form>`. Hook trả về thông tin như thuộc tính <CodeStep step={1}>`pending`</CodeStep> cho bạn biết form có đang gửi hay không.
 
-In the above example, `Submit` uses this information to disable `<button>` presses while the form is submitting.
+Trong ví dụ trên, `Submit` sử dụng thông tin này để vô hiệu hóa nút `<button>` khi form đang gửi.
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-`useFormStatus` does not take any parameters.
+`useFormStatus` không nhận bất kỳ tham số nào.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-A `status` object with the following properties:
+Một object `status` với các thuộc tính sau:
 
-* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`.
+* `pending`: Một boolean. Nếu `true`, điều này có nghĩa là `<form>` cha đang chờ gửi. Nếu không, `false`.
 
-* `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
+* `data`: Một object triển khai [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) chứa dữ liệu mà `<form>` cha đang gửi. Nếu không có lần gửi nào đang hoạt động hoặc không có `<form>` cha, nó sẽ là `null`.
 
-* `method`: A string value of either `'get'` or `'post'`. This represents whether the parent `<form>` is submitting with either a `GET` or `POST` [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). By default, a `<form>` will use the `GET` method and can be specified by the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) property.
+* `method`: Một giá trị chuỗi `'get'` hoặc `'post'`. Đại diện cho việc `<form>` cha đang gửi bằng [phương thức HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) `GET` hay `POST`. Theo mặc định, `<form>` sẽ sử dụng phương thức `GET` và có thể được chỉ định bởi thuộc tính [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method).
 
 [//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
-* `action`: A reference to the function passed to the `action` prop on the parent `<form>`. If there is no parent `<form>`, the property is `null`. If there is a URI value provided to the `action` prop, or no `action` prop specified, `status.action` will be `null`.
+* `action`: Một tham chiếu đến hàm được truyền cho prop `action` trên `<form>` cha. Nếu không có `<form>` cha, thuộc tính này là `null`. Nếu có giá trị URI được cung cấp cho prop `action`, hoặc không có prop `action` được chỉ định, `status.action` sẽ là `null`.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`.
-* `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
+* Hook `useFormStatus` phải được gọi từ một component được render bên trong một `<form>`.
+* `useFormStatus` sẽ chỉ trả về thông tin trạng thái cho `<form>` cha. Nó sẽ không trả về thông tin trạng thái cho bất kỳ `<form>` nào được render trong cùng component hoặc các component con.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+### Hiển thị trạng thái đang chờ khi gửi form {/*display-a-pending-state-during-form-submission*/}
+Để hiển thị trạng thái đang chờ khi form đang gửi, bạn có thể gọi Hook `useFormStatus` trong một component được render bên trong `<form>` và đọc thuộc tính `pending` được trả về.
 
-Here, we use the `pending` property to indicate the form is submitting.
+Ở đây, chúng ta sử dụng thuộc tính `pending` để chỉ ra rằng form đang gửi.
 
 <Sandpack>
 
@@ -114,9 +114,9 @@ export async function submitForm(query) {
 
 <Pitfall>
 
-##### `useFormStatus` will not return status information for a `<form>` rendered in the same component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
+##### `useFormStatus` sẽ không trả về thông tin trạng thái cho `<form>` được render trong cùng component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
 
-The `useFormStatus` Hook only returns status information for a parent `<form>` and not for any `<form>` rendered in the same component calling the Hook, or child components.
+Hook `useFormStatus` chỉ trả về thông tin trạng thái cho `<form>` cha và không trả về cho bất kỳ `<form>` nào được render trong cùng component gọi Hook, hoặc các component con.
 
 ```js
 function Form() {
@@ -127,7 +127,7 @@ function Form() {
 }
 ```
 
-Instead call `useFormStatus` from inside a component that is located inside `<form>`.
+Thay vào đó, hãy gọi `useFormStatus` từ bên trong một component nằm bên trong `<form>`.
 
 ```js
 function Submit() {
@@ -148,11 +148,11 @@ function Form() {
 
 </Pitfall>
 
-### Read the form data being submitted {/*read-form-data-being-submitted*/}
+### Đọc dữ liệu form đang được gửi {/*read-form-data-being-submitted*/}
 
-You can use the `data` property of the status information returned from `useFormStatus` to display what data is being submitted by the user.
+Bạn có thể sử dụng thuộc tính `data` của thông tin trạng thái được trả về từ `useFormStatus` để hiển thị dữ liệu nào đang được gửi bởi người dùng.
 
-Here, we have a form where users can request a username. We can use `useFormStatus` to display a temporary status message confirming what username they have requested.
+Ở đây, chúng ta có một form nơi người dùng có thể yêu cầu tên người dùng. Chúng ta có thể sử dụng `useFormStatus` để hiển thị một thông báo trạng thái tạm thời xác nhận tên người dùng họ đã yêu cầu.
 
 <Sandpack>
 
@@ -219,12 +219,12 @@ button {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### `status.pending` is never `true` {/*pending-is-never-true*/}
+### `status.pending` không bao giờ là `true` {/*pending-is-never-true*/}
 
-`useFormStatus` will only return status information for a parent `<form>`.
+`useFormStatus` sẽ chỉ trả về thông tin trạng thái cho `<form>` cha.
 
-If the component that calls `useFormStatus` is not nested in a `<form>`, `status.pending` will always return `false`. Verify `useFormStatus` is called in a component that is a child of a `<form>` element.
+Nếu component gọi `useFormStatus` không được lồng trong một `<form>`, `status.pending` sẽ luôn trả về `false`. Hãy xác minh rằng `useFormStatus` được gọi trong một component là con của phần tử `<form>`.
 
-`useFormStatus` will not track the status of a `<form>` rendered in the same component. See [Pitfall](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) for more details.
+`useFormStatus` sẽ không theo dõi trạng thái của `<form>` được render trong cùng component. Xem [Lưu ý](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) để biết thêm chi tiết.

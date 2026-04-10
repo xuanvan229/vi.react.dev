@@ -4,7 +4,7 @@ title: logger
 
 <Intro>
 
-The `logger` option provides custom logging for React Compiler events during compilation.
+Tùy chọn `logger` cung cấp ghi log tùy chỉnh cho các sự kiện React Compiler trong quá trình compile.
 
 </Intro>
 
@@ -22,13 +22,13 @@ The `logger` option provides custom logging for React Compiler events during com
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `logger` {/*logger*/}
 
-Configures custom logging to track compiler behavior and debug issues.
+Cấu hình ghi log tùy chỉnh để theo dõi hành vi compiler và gỡ lỗi.
 
-#### Type {/*type*/}
+#### Kiểu {/*type*/}
 
 ```
 {
@@ -36,35 +36,35 @@ Configures custom logging to track compiler behavior and debug issues.
 } | null
 ```
 
-#### Default value {/*default-value*/}
+#### Giá trị mặc định {/*default-value*/}
 
 `null`
 
-#### Methods {/*methods*/}
+#### Phương thức {/*methods*/}
 
-- **`logEvent`**: Called for each compiler event with the filename and event details
+- **`logEvent`**: Được gọi cho mỗi sự kiện compiler với tên file và chi tiết sự kiện
 
-#### Event types {/*event-types*/}
+#### Các loại sự kiện {/*event-types*/}
 
-- **`CompileSuccess`**: Function successfully compiled
-- **`CompileError`**: Function skipped due to errors
-- **`CompileDiagnostic`**: Non-fatal diagnostic information
-- **`CompileSkip`**: Function skipped for other reasons
-- **`PipelineError`**: Unexpected compilation error
-- **`Timing`**: Performance timing information
+- **`CompileSuccess`**: Hàm được compile thành công
+- **`CompileError`**: Hàm bị bỏ qua do lỗi
+- **`CompileDiagnostic`**: Thông tin chẩn đoán không nghiêm trọng
+- **`CompileSkip`**: Hàm bị bỏ qua vì lý do khác
+- **`PipelineError`**: Lỗi compile không mong đợi
+- **`Timing`**: Thông tin thời gian hiệu suất
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- Event structure may change between versions
-- Large codebases generate many log entries
+- Cấu trúc sự kiện có thể thay đổi giữa các phiên bản
+- Các codebase lớn tạo ra nhiều bản ghi log
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Basic logging {/*basic-logging*/}
+### Ghi log cơ bản {/*basic-logging*/}
 
-Track compilation success and failures:
+Theo dõi compile thành công và thất bại:
 
 ```js
 {
@@ -72,11 +72,11 @@ Track compilation success and failures:
     logEvent(filename, event) {
       switch (event.kind) {
         case 'CompileSuccess': {
-          console.log(`✅ Compiled: ${filename}`);
+          console.log(`✅ Đã compile: ${filename}`);
           break;
         }
         case 'CompileError': {
-          console.log(`❌ Skipped: ${filename}`);
+          console.log(`❌ Đã bỏ qua: ${filename}`);
           break;
         }
         default: {}
@@ -86,33 +86,32 @@ Track compilation success and failures:
 }
 ```
 
-### Detailed error logging {/*detailed-error-logging*/}
+### Ghi log lỗi chi tiết {/*detailed-error-logging*/}
 
-Get specific information about compilation failures:
+Lấy thông tin cụ thể về các lỗi compile:
 
 ```js
 {
   logger: {
     logEvent(filename, event) {
       if (event.kind === 'CompileError') {
-        console.error(`\nCompilation failed: ${filename}`);
-        console.error(`Reason: ${event.detail.reason}`);
+        console.error(`\nCompile thất bại: ${filename}`);
+        console.error(`Lý do: ${event.detail.reason}`);
 
         if (event.detail.description) {
-          console.error(`Details: ${event.detail.description}`);
+          console.error(`Chi tiết: ${event.detail.description}`);
         }
 
         if (event.detail.loc) {
           const { line, column } = event.detail.loc.start;
-          console.error(`Location: Line ${line}, Column ${column}`);
+          console.error(`Vị trí: Dòng ${line}, Cột ${column}`);
         }
 
         if (event.detail.suggestions) {
-          console.error('Suggestions:', event.detail.suggestions);
+          console.error('Gợi ý:', event.detail.suggestions);
         }
       }
     }
   }
 }
 ```
-

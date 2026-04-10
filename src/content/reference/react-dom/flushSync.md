@@ -4,13 +4,13 @@ title: flushSync
 
 <Pitfall>
 
-Using `flushSync` is uncommon and can hurt the performance of your app.
+Sử dụng `flushSync` là không phổ biến và có thể ảnh hưởng đến hiệu suất của ứng dụng.
 
 </Pitfall>
 
 <Intro>
 
-`flushSync` lets you force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately.
+`flushSync` cho phép bạn buộc React flush bất kỳ cập nhật nào bên trong callback được cung cấp một cách đồng bộ. Điều này đảm bảo rằng DOM được cập nhật ngay lập tức.
 
 ```js
 flushSync(callback)
@@ -22,11 +22,11 @@ flushSync(callback)
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `flushSync(callback)` {/*flushsync*/}
 
-Call `flushSync` to force React to flush any pending work and update the DOM synchronously.
+Gọi `flushSync` để buộc React flush bất kỳ công việc đang chờ nào và cập nhật DOM một cách đồng bộ.
 
 ```js
 import { flushSync } from 'react-dom';
@@ -36,33 +36,33 @@ flushSync(() => {
 });
 ```
 
-Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
+Hầu hết thời gian, `flushSync` có thể được tránh. Sử dụng `flushSync` như giải pháp cuối cùng.
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
 
-* `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
+* `callback`: Một hàm. React sẽ gọi callback này ngay lập tức và flush bất kỳ cập nhật nào nó chứa một cách đồng bộ. Nó cũng có thể flush bất kỳ cập nhật đang chờ nào, hoặc Effect, hoặc các cập nhật bên trong Effect. Nếu một cập nhật bị suspend do lệnh gọi `flushSync` này, các fallback có thể được hiển thị lại.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`flushSync` returns `undefined`.
+`flushSync` trả về `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* `flushSync` can significantly hurt performance. Use sparingly.
-* `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-* `flushSync` may run pending Effects and synchronously apply any updates they contain before returning.
-* `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+* `flushSync` có thể ảnh hưởng đáng kể đến hiệu suất. Sử dụng một cách tiết kiệm.
+* `flushSync` có thể buộc các Suspense boundary đang chờ hiển thị state `fallback` của chúng.
+* `flushSync` có thể chạy các Effect đang chờ và đồng bộ áp dụng bất kỳ cập nhật nào chúng chứa trước khi trả về.
+* `flushSync` có thể flush các cập nhật bên ngoài callback khi cần thiết để flush các cập nhật bên trong callback. Ví dụ, nếu có các cập nhật đang chờ từ một lần click, React có thể flush chúng trước khi flush các cập nhật bên trong callback.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Flushing updates for third-party integrations {/*flushing-updates-for-third-party-integrations*/}
+### Flush các cập nhật cho tích hợp bên thứ ba {/*flushing-updates-for-third-party-integrations*/}
 
-When integrating with third-party code such as browser APIs or UI libraries, it may be necessary to force React to flush updates. Use `flushSync` to force React to flush any <CodeStep step={1}>state updates</CodeStep> inside the callback synchronously:
+Khi tích hợp với code bên thứ ba như API trình duyệt hoặc thư viện UI, có thể cần buộc React flush các cập nhật. Sử dụng `flushSync` để buộc React flush bất kỳ <CodeStep step={1}>cập nhật state</CodeStep> nào bên trong callback một cách đồng bộ:
 
 ```js [[1, 2, "setSomething(123)"]]
 flushSync(() => {
@@ -71,15 +71,15 @@ flushSync(() => {
 // By this line, the DOM is updated.
 ```
 
-This ensures that, by the time the next line of code runs, React has already updated the DOM.
+Điều này đảm bảo rằng, khi dòng code tiếp theo chạy, React đã cập nhật DOM.
 
-**Using `flushSync` is uncommon, and using it often can significantly hurt the performance of your app.** If your app only uses React APIs, and does not integrate with third-party libraries, `flushSync` should be unnecessary.
+**Sử dụng `flushSync` là không phổ biến, và sử dụng nó thường xuyên có thể ảnh hưởng đáng kể đến hiệu suất ứng dụng.** Nếu ứng dụng của bạn chỉ sử dụng các API React và không tích hợp với thư viện bên thứ ba, `flushSync` không cần thiết.
 
-However, it can be helpful for integrating with third-party code like browser APIs.
+Tuy nhiên, nó có thể hữu ích cho việc tích hợp với code bên thứ ba như API trình duyệt.
 
-Some browser APIs expect results inside of callbacks to be written to the DOM synchronously, by the end of the callback, so the browser can do something with the rendered DOM. In most cases, React handles this for you automatically. But in some cases it may be necessary to force a synchronous update.
+Một số API trình duyệt mong đợi kết quả bên trong callback được ghi vào DOM một cách đồng bộ, trước khi callback kết thúc, để trình duyệt có thể làm điều gì đó với DOM đã render. Trong hầu hết các trường hợp, React xử lý điều này cho bạn tự động. Nhưng trong một số trường hợp, có thể cần buộc cập nhật đồng bộ.
 
-For example, the browser `onbeforeprint` API allows you to change the page immediately before the print dialog opens. This is useful for applying custom print styles that allow the document to display better for printing. In the example below, you use `flushSync` inside of the `onbeforeprint` callback to immediately "flush" the React state to the DOM. Then, by the time the print dialog opens, `isPrinting` displays "yes":
+Ví dụ, API `onbeforeprint` của trình duyệt cho phép bạn thay đổi trang ngay trước khi hộp thoại in mở ra. Điều này hữu ích để áp dụng các style in tùy chỉnh cho phép tài liệu hiển thị tốt hơn khi in. Trong ví dụ dưới đây, bạn sử dụng `flushSync` bên trong callback `onbeforeprint` để ngay lập tức "flush" state React vào DOM. Sau đó, khi hộp thoại in mở ra, `isPrinting` hiển thị "yes":
 
 <Sandpack>
 
@@ -122,24 +122,24 @@ export default function PrintApp() {
 
 </Sandpack>
 
-Without `flushSync`, the print dialog will display `isPrinting` as "no". This is because React batches the updates asynchronously and the print dialog is displayed before the state is updated.
+Nếu không có `flushSync`, hộp thoại in sẽ hiển thị `isPrinting` là "no". Điều này là do React gom các cập nhật một cách bất đồng bộ và hộp thoại in được hiển thị trước khi state được cập nhật.
 
 <Pitfall>
 
-`flushSync` can significantly hurt performance, and may unexpectedly force pending Suspense boundaries to show their fallback state.
+`flushSync` có thể ảnh hưởng đáng kể đến hiệu suất, và có thể bất ngờ buộc các Suspense boundary đang chờ hiển thị state fallback của chúng.
 
-Most of the time, `flushSync` can be avoided, so use `flushSync` as a last resort.
+Hầu hết thời gian, `flushSync` có thể được tránh, vì vậy hãy sử dụng `flushSync` như giải pháp cuối cùng.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
+### Tôi gặp lỗi: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
 
 
-React cannot `flushSync` in the middle of a render. If you do, it will noop and warn:
+React không thể `flushSync` trong khi đang render. Nếu bạn làm vậy, nó sẽ không có tác dụng và cảnh báo:
 
 <ConsoleBlock level="error">
 
@@ -147,13 +147,13 @@ Warning: flushSync was called from inside a lifecycle method. React cannot flush
 
 </ConsoleBlock>
 
-This includes calling `flushSync` inside:
+Điều này bao gồm việc gọi `flushSync` bên trong:
 
-- rendering a component.
-- `useLayoutEffect` or `useEffect` hooks.
-- Class component lifecycle methods.
+- render một component.
+- Hook `useLayoutEffect` hoặc `useEffect`.
+- Các phương thức lifecycle của class component.
 
-For example, calling `flushSync` in an Effect will noop and warn:
+Ví dụ, gọi `flushSync` trong một Effect sẽ không có tác dụng và cảnh báo:
 
 ```js
 import { useEffect } from 'react';
@@ -171,7 +171,7 @@ function MyComponent() {
 }
 ```
 
-To fix this, you usually want to move the `flushSync` call to an event:
+Để sửa lỗi này, bạn thường muốn di chuyển lệnh gọi `flushSync` đến một event:
 
 ```js
 function handleClick() {
@@ -183,7 +183,7 @@ function handleClick() {
 ```
 
 
-If it's difficult to move to an event, you can defer `flushSync` in a microtask:
+Nếu khó di chuyển sang event, bạn có thể trì hoãn `flushSync` trong một microtask:
 
 ```js {3,7}
 useEffect(() => {
@@ -196,10 +196,10 @@ useEffect(() => {
 }, []);
 ```
 
-This will allow the current render to finish and schedule another syncronous render to flush the updates.
+Điều này sẽ cho phép render hiện tại hoàn thành và lên lịch một render đồng bộ khác để flush các cập nhật.
 
 <Pitfall>
 
-`flushSync` can significantly hurt performance, but this particular pattern is even worse for performance. Exhaust all other options before calling `flushSync` in a microtask as an escape hatch.
+`flushSync` có thể ảnh hưởng đáng kể đến hiệu suất, nhưng pattern cụ thể này còn tệ hơn cho hiệu suất. Hãy sử dụng hết tất cả các tùy chọn khác trước khi gọi `flushSync` trong một microtask như một giải pháp thoát hiểm.
 
 </Pitfall>

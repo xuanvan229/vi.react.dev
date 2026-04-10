@@ -4,37 +4,37 @@ title: set-state-in-render
 
 <Intro>
 
-Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.
+Kiểm tra việc set state không điều kiện trong quá trình render, điều có thể kích hoạt thêm render và có thể gây vòng lặp render vô hạn.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-Calling `setState` during render unconditionally triggers another render before the current one finishes. This creates an infinite loop that crashes your app.
+Gọi `setState` trong quá trình render không điều kiện sẽ kích hoạt một lần render khác trước khi lần hiện tại hoàn thành. Điều này tạo ra vòng lặp vô hạn làm crash ứng dụng.
 
-## Common Violations {/*common-violations*/}
+## Các vi phạm phổ biến {/*common-violations*/}
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
 ```js {expectedErrors: {'react-compiler': [4]}}
-// ❌ Unconditional setState directly in render
+// ❌ setState không điều kiện trực tiếp trong render
 function Component({value}) {
   const [count, setCount] = useState(0);
-  setCount(value); // Infinite loop!
+  setCount(value); // Vòng lặp vô hạn!
   return <div>{count}</div>;
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
 ```js
-// ✅ Derive during render
+// ✅ Tính toán trong render
 function Component({items}) {
-  const sorted = [...items].sort(); // Just calculate it in render
+  const sorted = [...items].sort(); // Chỉ cần tính trong render
   return <ul>{sorted.map(/*...*/)}</ul>;
 }
 
-// ✅ Set state in event handler
+// ✅ Set state trong event handler
 function Component() {
   const [count, setCount] = useState(0);
   return (
@@ -44,20 +44,20 @@ function Component() {
   );
 }
 
-// ✅ Derive from props instead of setting state
+// ✅ Tính từ props thay vì set state
 function Component({user}) {
   const name = user?.name || '';
   const email = user?.email || '';
   return <div>{name}</div>;
 }
 
-// ✅ Conditionally derive state from props and state from previous renders
+// ✅ Suy ra state có điều kiện từ props và state từ các lần render trước
 function Component({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
 
   const [prevItems, setPrevItems] = useState(items);
-  if (items !== prevItems) { // This condition makes it valid
+  if (items !== prevItems) { // Điều kiện này làm nó hợp lệ
     setPrevItems(items);
     setSelection(null);
   }
@@ -65,14 +65,14 @@ function Component({ items }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I want to sync state to a prop {/*clamp-state-to-prop*/}
+### Tôi muốn đồng bộ state với prop {/*clamp-state-to-prop*/}
 
-A common problem is trying to "fix" state after it renders. Suppose you want to keep a counter from exceeding a `max` prop:
+Một vấn đề phổ biến là cố "sửa" state sau khi render. Giả sử bạn muốn giữ bộ đếm không vượt quá prop `max`:
 
 ```js
-// ❌ Wrong: clamps during render
+// ❌ Sai: giới hạn trong render
 function Counter({max}) {
   const [count, setCount] = useState(0);
 
@@ -88,12 +88,12 @@ function Counter({max}) {
 }
 ```
 
-As soon as `count` exceeds `max`, an infinite loop is triggered.
+Ngay khi `count` vượt quá `max`, vòng lặp vô hạn được kích hoạt.
 
-Instead, it's often better to move this logic to the event (the place where the state is first set). For example, you can enforce the maximum at the moment you update state:
+Thay vào đó, thường tốt hơn là chuyển logic này vào event (nơi state được set lần đầu). Ví dụ, bạn có thể áp dụng giá trị tối đa tại thời điểm cập nhật state:
 
 ```js
-// ✅ Clamp when updating
+// ✅ Giới hạn khi cập nhật
 function Counter({max}) {
   const [count, setCount] = useState(0);
 
@@ -105,6 +105,6 @@ function Counter({max}) {
 }
 ```
 
-Now the setter only runs in response to the click, React finishes the render normally, and `count` never crosses `max`.
+Bây giờ setter chỉ chạy để phản hồi click, React hoàn thành render bình thường, và `count` không bao giờ vượt quá `max`.
 
-In rare cases, you may need to adjust state based on information from previous renders. For those, follow [this pattern](https://react.dev/reference/react/useState#storing-information-from-previous-renders) of setting state conditionally.
+Trong những trường hợp hiếm, bạn có thể cần điều chỉnh state dựa trên thông tin từ các lần render trước. Đối với những trường hợp đó, hãy theo [pattern này](https://react.dev/reference/react/useState#storing-information-from-previous-renders) để set state có điều kiện.

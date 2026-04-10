@@ -2,7 +2,7 @@
 title: "React v19"
 author: The React Team
 date: 2024/12/05
-description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+description: React 19 hiện đã có trên npm! Trong bài viết này, chúng tôi sẽ cung cấp tổng quan về các tính năng mới trong React 19 và cách bạn có thể áp dụng chúng.
 ---
 
 December 05, 2024 by [The React Team](/community/team)
@@ -10,38 +10,38 @@ December 05, 2024 by [The React Team](/community/team)
 ---
 <Note>
 
-### React 19 is now stable! {/*react-19-is-now-stable*/}
+### React 19 hiện đã ổn định! {/*react-19-is-now-stable*/}
 
-Additions since this post was originally shared with the React 19 RC in April:
+Các bổ sung kể từ bài viết này được chia sẻ ban đầu với React 19 RC vào tháng 4:
 
-- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
-- **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
+- **Pre-warming cho suspended trees**: xem [Cải thiện cho Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **React DOM static APIs**: xem [React DOM Static APIs mới](#new-react-dom-static-apis).
 
-_The date for this post has been updated to reflect the stable release date._
+_Ngày của bài viết này đã được cập nhật để phản ánh ngày phát hành ổn định._
 
 </Note>
 
 <Intro>
 
-React v19 is now available on npm!
+React v19 hiện đã có trên npm!
 
 </Intro>
 
-In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+Trong [Hướng dẫn nâng cấp React 19](/blog/2024/04/25/react-19-upgrade-guide), chúng tôi đã chia sẻ các hướng dẫn từng bước để nâng cấp ứng dụng của bạn lên React 19. Trong bài viết này, chúng tôi sẽ cung cấp tổng quan về các tính năng mới trong React 19 và cách bạn có thể áp dụng chúng.
 
-- [What's new in React 19](#whats-new-in-react-19)
-- [Improvements in React 19](#improvements-in-react-19)
-- [How to upgrade](#how-to-upgrade)
+- [Có gì mới trong React 19](#whats-new-in-react-19)
+- [Cải thiện trong React 19](#improvements-in-react-19)
+- [Cách nâng cấp](#how-to-upgrade)
 
-For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide).
+Để xem danh sách các thay đổi phá vỡ, hãy xem [Hướng dẫn nâng cấp](/blog/2024/04/25/react-19-upgrade-guide).
 
 ---
 
-## What's new in React 19 {/*whats-new-in-react-19*/}
+## Có gì mới trong React 19 {/*whats-new-in-react-19*/}
 
 ### Actions {/*actions*/}
 
-A common use case in React apps is to perform a data mutation and then update state in response. For example, when a user submits a form to change their name, you will make an API request, and then handle the response. In the past, you would need to handle pending states, errors, optimistic updates, and sequential requests manually.
+Một trường hợp sử dụng phổ biến trong các ứng dụng React là thực hiện mutation dữ liệu và sau đó cập nhật state để phản hồi. Ví dụ, khi người dùng gửi form để thay đổi tên của họ, bạn sẽ thực hiện yêu cầu API, và sau đó xử lý phản hồi. Trong quá khứ, bạn sẽ cần xử lý các trạng thái pending, lỗi, optimistic updates, và các yêu cầu tuần tự thủ công.
 
 For example, you could handle the pending and error state in `useState`:
 
@@ -75,9 +75,9 @@ function UpdateName({}) {
 }
 ```
 
-In React 19, we're adding support for using async functions in transitions to handle pending states, errors, forms, and optimistic updates automatically.
+Trong React 19, chúng tôi đang thêm hỗ trợ cho việc sử dụng các hàm async trong transitions để tự động xử lý các trạng thái pending, lỗi, form, và optimistic updates.
 
-For example, you can use `useTransition` to handle the pending state for you:
+Ví dụ, bạn có thể dùng `useTransition` để xử lý trạng thái pending cho bạn:
 
 ```js
 // Using pending state from Actions
@@ -109,24 +109,24 @@ function UpdateName({}) {
 }
 ```
 
-The async transition will immediately set the `isPending` state to true, make the async request(s), and switch `isPending` to false after any transitions. This allows you to keep the current UI responsive and interactive while the data is changing.
+Async transition sẽ ngay lập tức đặt trạng thái `isPending` thành true, thực hiện các yêu cầu async, và chuyển `isPending` thành false sau khi bất kỳ transitions nào. Điều này cho phép bạn giữ cho UI hiện tại phản hồi và tương tác trong khi dữ liệu đang thay đổi.
 
 <Note>
 
-#### By convention, functions that use async transitions are called "Actions". {/*by-convention-functions-that-use-async-transitions-are-called-actions*/}
+#### Theo quy ước, các hàm sử dụng async transitions được gọi là "Actions". {/*by-convention-functions-that-use-async-transitions-are-called-actions*/}
 
-Actions automatically manage submitting data for you:
+Actions tự động quản lý việc gửi dữ liệu cho bạn:
 
-- **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
-- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
-- **Error handling**: Actions provide error handling so you can display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
-- **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
+- **Trạng thái pending**: Actions cung cấp trạng thái pending bắt đầu ở đầu yêu cầu và tự động reset khi cập nhật trạng thái cuối cùng được commit.
+- **Optimistic updates**: Actions hỗ trợ hook [`useOptimistic`](#new-hook-optimistic-updates) mới để bạn có thể hiển thị phản hồi tức thì cho người dùng trong khi các yêu cầu đang được gửi.
+- **Xử lý lỗi**: Actions cung cấp xử lý lỗi để bạn có thể hiển thị Error Boundaries khi yêu cầu thất bại, và tự động hoàn nguyên optimistic updates về giá trị gốc của chúng.
+- **Forms**: Các phần tử `<form>` hiện hỗ trợ truyền hàm vào props `action` và `formAction`. Truyền hàm vào props `action` sử dụng Actions theo mặc định và reset form tự động sau khi gửi.
 
 </Note>
 
-Building on top of Actions, React 19 introduces [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and a new hook [`React.useActionState`](#new-hook-useactionstate) to handle common cases for Actions. In `react-dom` we're adding [`<form>` Actions](#form-actions) to manage forms automatically and [`useFormStatus`](#new-hook-useformstatus) to support the common cases for Actions in forms.
+Xây dựng trên Actions, React 19 giới thiệu [`useOptimistic`](#new-hook-optimistic-updates) để quản lý optimistic updates, và một hook mới [`React.useActionState`](#new-hook-useactionstate) để xử lý các trường hợp phổ biến cho Actions. Trong `react-dom` chúng tôi đang thêm [`<form>` Actions](#form-actions) để tự động quản lý form và [`useFormStatus`](#new-hook-useformstatus) để hỗ trợ các trường hợp phổ biến cho Actions trong form.
 
-In React 19, the above example can be simplified to:
+Trong React 19, ví dụ trên có thể được đơn giản hóa thành:
 
 ```js
 // Using <form> Actions and useActionState
@@ -153,11 +153,11 @@ function ChangeName({ name, setName }) {
 }
 ```
 
-In the next section, we'll break down each of the new Action features in React 19.
+Trong phần tiếp theo, chúng tôi sẽ phân tích từng tính năng Action mới trong React 19.
 
-### New hook: `useActionState` {/*new-hook-useactionstate*/}
+### Hook mới: `useActionState` {/*new-hook-useactionstate*/}
 
-To make the common cases easier for Actions, we've added a new hook called `useActionState`:
+Để làm cho các trường hợp phổ biến dễ dàng hơn cho Actions, chúng tôi đã thêm một hook mới gọi là `useActionState`:
 
 ```js
 const [error, submitAction, isPending] = useActionState(
@@ -176,33 +176,33 @@ const [error, submitAction, isPending] = useActionState(
 );
 ```
 
-`useActionState` accepts a function (the "Action"), and returns a wrapped Action to call. This works because Actions compose. When the wrapped Action is called, `useActionState` will return the last result of the Action as `data`, and the pending state of the Action as `pending`.
+`useActionState` chấp nhận một hàm (là "Action"), và trả về một Action được bọc để gọi. Điều này hoạt động vì Actions có thể compose. Khi Action được bọc được gọi, `useActionState` sẽ trả về kết quả cuối cùng của Action dưới dạng `data`, và trạng thái pending của Action dưới dạng `pending`.
 
 <Note>
 
-`React.useActionState` was previously called `ReactDOM.useFormState` in the Canary releases, but we've renamed it and deprecated `useFormState`.
+`React.useActionState` trước đây được gọi là `ReactDOM.useFormState` trong các bản phát hành Canary, nhưng chúng tôi đã đổi tên nó và deprecated `useFormState`.
 
-See [#28491](https://github.com/facebook/react/pull/28491) for more info.
+Xem [#28491](https://github.com/facebook/react/pull/28491) để biết thêm thông tin.
 
 </Note>
 
-For more information, see the docs for [`useActionState`](/reference/react/useActionState).
+Để biết thêm thông tin, hãy xem tài liệu cho [`useActionState`](/reference/react/useActionState).
 
 ### React DOM: `<form>` Actions {/*form-actions*/}
 
-Actions are also integrated with React 19's new `<form>` features for `react-dom`. We've added support for passing functions as the `action` and `formAction` props of `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
+Actions cũng được tích hợp với các tính năng `<form>` mới của React 19 cho `react-dom`. Chúng tôi đã thêm hỗ trợ truyền hàm như props `action` và `formAction` của các phần tử `<form>`, `<input>`, và `<button>` để tự động gửi form với Actions:
 
 ```js [[1,1,"actionFunction"]]
 <form action={actionFunction}>
 ```
 
-When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new `requestFormReset` React DOM API.
+Khi `<form>` Action thành công, React sẽ tự động reset form cho các uncontrolled component. Nếu bạn cần reset `<form>` thủ công, bạn có thể gọi React DOM API `requestFormReset` mới.
 
-For more information, see the `react-dom` docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and `<button>`.
+Để biết thêm thông tin, hãy xem tài liệu `react-dom` cho [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), và `<button>`.
 
-### React DOM: New hook: `useFormStatus` {/*new-hook-useformstatus*/}
+### React DOM: Hook mới: `useFormStatus` {/*new-hook-useformstatus*/}
 
-In design systems, it's common to write design components that need access to information about the `<form>` they're in, without drilling props down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
+Trong các hệ thống thiết kế, việc viết các component thiết kế cần truy cập thông tin về `<form>` mà chúng ở trong, mà không cần truyền props xuống component là phổ biến. Điều này có thể được thực hiện qua Context, nhưng để làm cho trường hợp phổ biến dễ dàng hơn, chúng tôi đã thêm hook mới `useFormStatus`:
 
 ```js [[1, 4, "pending"], [1, 5, "pending"]]
 import {useFormStatus} from 'react-dom';
@@ -213,13 +213,13 @@ function DesignButton() {
 }
 ```
 
-`useFormStatus` reads the status of the parent `<form>` as if the form was a Context provider.
+`useFormStatus` đọc trạng thái của `<form>` cha như thể form là một Context provider.
 
-For more information, see the `react-dom` docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
+Để biết thêm thông tin, hãy xem tài liệu `react-dom` cho [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
-### New hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
+### Hook mới: `useOptimistic` {/*new-hook-optimistic-updates*/}
 
-Another common UI pattern when performing a data mutation is to show the final state optimistically while the async request is underway. In React 19, we're adding a new hook called `useOptimistic` to make this easier:
+Một mẫu UI phổ biến khác khi thực hiện mutation dữ liệu là hiển thị trạng thái cuối cùng một cách lạc quan trong khi yêu cầu async đang diễn ra. Trong React 19, chúng tôi đang thêm một hook mới gọi là `useOptimistic` để làm điều này dễ dàng hơn:
 
 ```js {2,6,13,19}
 function ChangeName({currentName, onUpdateName}) {
@@ -248,15 +248,15 @@ function ChangeName({currentName, onUpdateName}) {
 }
 ```
 
-The `useOptimistic` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes or errors, React will automatically switch back to the `currentName` value.
+Hook `useOptimistic` sẽ ngay lập tức render `optimisticName` trong khi yêu cầu `updateName` đang diễn ra. Khi cập nhật hoàn tất hoặc có lỗi, React sẽ tự động chuyển lại về giá trị `currentName`.
 
-For more information, see the docs for [`useOptimistic`](/reference/react/useOptimistic).
+Để biết thêm thông tin, hãy xem tài liệu cho [`useOptimistic`](/reference/react/useOptimistic).
 
-### New API: `use` {/*new-feature-use*/}
+### API mới: `use` {/*new-feature-use*/}
 
-In React 19 we're introducing a new API to read resources in render: `use`.
+Trong React 19 chúng tôi đang giới thiệu một API mới để đọc tài nguyên trong render: `use`.
 
-For example, you can read a promise with `use`, and React will Suspend until the promise resolves:
+Ví dụ, bạn có thể đọc một promise với `use`, và React sẽ Suspend cho đến khi promise resolve:
 
 ```js {1,5}
 import {use} from 'react';
@@ -280,9 +280,9 @@ function Page({commentsPromise}) {
 
 <Note>
 
-#### `use` does not support promises created in render. {/*use-does-not-support-promises-created-in-render*/}
+#### `use` không hỗ trợ các promise được tạo trong render. {/*use-does-not-support-promises-created-in-render*/}
 
-If you try to pass a promise created in render to `use`, React will warn:
+Nếu bạn cố gắng truyền một promise được tạo trong render cho `use`, React sẽ cảnh báo:
 
 <ConsoleBlockMulti>
 
@@ -294,11 +294,11 @@ A component was suspended by an uncached promise. Creating promises inside a Cli
 
 </ConsoleBlockMulti>
 
-To fix, you need to pass a promise from a Suspense powered library or framework that supports caching for promises. In the future we plan to ship features to make it easier to cache promises in render.
+Để sửa, bạn cần truyền một promise từ thư viện hoặc framework hỗ trợ Suspense có cache cho promise. Trong tương lai chúng tôi có kế hoạch cung cấp các tính năng để cache promise trong render dễ dàng hơn.
 
 </Note>
 
-You can also read context with `use`, allowing you to read Context conditionally such as after early returns:
+Bạn cũng có thể đọc context với `use`, cho phép bạn đọc Context có điều kiện như sau early return:
 
 ```js {1,11}
 import {use} from 'react';
@@ -320,17 +320,17 @@ function Heading({children}) {
 }
 ```
 
-The `use` API can only be called in render, similar to hooks. Unlike hooks, `use` can be called conditionally. In the future we plan to support more ways to consume resources in render with `use`.
+API `use` chỉ có thể được gọi trong render, tương tự như hooks. Khác với hooks, `use` có thể được gọi có điều kiện. Trong tương lai chúng tôi có kế hoạch hỗ trợ nhiều cách hơn để sử dụng tài nguyên trong render với `use`.
 
-For more information, see the docs for [`use`](/reference/react/use).
+Để biết thêm thông tin, hãy xem tài liệu cho [`use`](/reference/react/use).
 
-## New React DOM Static APIs {/*new-react-dom-static-apis*/}
+## React DOM Static APIs mới {/*new-react-dom-static-apis*/}
 
-We've added two new APIs to `react-dom/static` for static site generation:
+Chúng tôi đã thêm hai API mới vào `react-dom/static` để tạo static site:
 - [`prerender`](/reference/react-dom/static/prerender)
 - [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
 
-These new APIs improve on `renderToString` by waiting for data to load for static HTML generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. For example, in a Web Stream environment, you can prerender a React tree to static HTML with `prerender`:
+Các API mới này cải thiện so với `renderToString` bằng cách chờ dữ liệu tải để tạo HTML tĩnh. Chúng được thiết kế để hoạt động với môi trường streaming như Node.js Streams và Web Streams. Ví dụ, trong môi trường Web Stream, bạn có thể prerender một React tree thành HTML tĩnh với `prerender`:
 
 ```js
 import { prerender } from 'react-dom/static';
@@ -345,57 +345,57 @@ async function handler(request) {
 }
 ```
 
-Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](/reference/react-dom/server).
+Prerender APIs sẽ chờ tất cả dữ liệu tải trước khi trả về HTML stream tĩnh. Các stream có thể được chuyển đổi thành chuỗi, hoặc được gửi với phản hồi streaming. Chúng không hỗ trợ streaming nội dung khi nó tải, được hỗ trợ bởi các [React DOM server rendering APIs](/reference/react-dom/server) hiện có.
 
-For more information, see [React DOM Static APIs](/reference/react-dom/static).
+Để biết thêm thông tin, hãy xem [React DOM Static APIs](/reference/react-dom/static).
 
 ## React Server Components {/*react-server-components*/}
 
 ### Server Components {/*server-components*/}
 
-Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your client application or SSR server. This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
+Server Components là một tùy chọn mới cho phép render component trước, trước khi bundling, trong một môi trường tách biệt khỏi ứng dụng client hoặc máy chủ SSR của bạn. Môi trường riêng biệt này là "server" trong React Server Components. Server Components có thể chạy một lần tại build time trên CI server của bạn, hoặc chúng có thể chạy cho mỗi yêu cầu sử dụng một web server.
 
-React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision).
+React 19 bao gồm tất cả các tính năng React Server Components từ kênh Canary. Điều này có nghĩa là các thư viện được giao kèm với Server Components giờ đây có thể nhắm mục tiêu React 19 như một peer dependency với `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) để sử dụng trong các framework hỗ trợ [Full-stack React Architecture](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision).
 
 
 <Note>
 
-#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
+#### Làm thế nào để xây dựng hỗ trợ cho Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
+Trong khi React Server Components trong React 19 ổn định và sẽ không phá vỡ giữa các phiên bản minor, các API cơ bản được sử dụng để triển khai một bundler hoặc framework React Server Components không tuân theo semver và có thể phá vỡ giữa các phiên bản minor trong React 19.x.
 
-To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
+Để hỗ trợ React Server Components như một bundler hoặc framework, chúng tôi khuyến nghị gắn với một phiên bản React cụ thể, hoặc sử dụng bản phát hành Canary. Chúng tôi sẽ tiếp tục làm việc với các bundler và framework để ổn định các API được sử dụng để triển khai React Server Components trong tương lai.
 
 </Note>
 
 
-For more, see the docs for [React Server Components](/reference/rsc/server-components).
+Để biết thêm, hãy xem tài liệu cho [React Server Components](/reference/rsc/server-components).
 
 ### Server Actions {/*server-actions*/}
 
-Server Actions allow Client Components to call async functions executed on the server.
+Server Actions cho phép Client Components gọi các hàm async được thực thi trên server.
 
-When a Server Action is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
+Khi một Server Action được định nghĩa với directive `"use server"`, framework của bạn sẽ tự động tạo một tham chiếu đến server function và truyền tham chiếu đó cho Client Component. Khi hàm đó được gọi trên client, React sẽ gửi yêu cầu đến server để thực thi hàm, và trả về kết quả.
 
 <Note>
 
-#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
+#### Không có directive cho Server Components. {/*there-is-no-directive-for-server-components*/}
 
-A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
+Một hiểu lầm phổ biến là Server Components được ký hiệu bằng `"use server"`, nhưng không có directive cho Server Components. Directive `"use server"` được sử dụng cho Server Actions.
 
-For more info, see the docs for [Directives](/reference/rsc/directives).
+Để biết thêm thông tin, hãy xem tài liệu cho [Directives](/reference/rsc/directives).
 
 </Note>
 
-Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
+Server Actions có thể được tạo trong Server Components và được truyền như props cho Client Components, hoặc chúng có thể được import và sử dụng trong Client Components.
 
-For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
+Để biết thêm, hãy xem tài liệu cho [React Server Actions](/reference/rsc/server-actions).
 
-## Improvements in React 19 {/*improvements-in-react-19*/}
+## Cải thiện trong React 19 {/*improvements-in-react-19*/}
 
-### `ref` as a prop {/*ref-as-a-prop*/}
+### `ref` như một prop {/*ref-as-a-prop*/}
 
-Starting in React 19, you can now access `ref` as a prop for function components:
+Bắt đầu từ React 19, bạn có thể truy cập `ref` như một prop cho function component:
 
 ```js [[1, 1, "ref"], [1, 2, "ref", 45], [1, 6, "ref", 14]]
 function MyInput({placeholder, ref}) {
@@ -406,17 +406,17 @@ function MyInput({placeholder, ref}) {
 <MyInput ref={ref} />
 ```
 
-New function components will no longer need `forwardRef`, and we will be publishing a codemod to automatically update your components to use the new `ref` prop. In future versions we will deprecate and remove `forwardRef`.
+Các function component mới sẽ không còn cần `forwardRef`, và chúng tôi sẽ xuất bản một codemod để tự động cập nhật các component của bạn để sử dụng prop `ref` mới. Trong các phiên bản tương lai chúng tôi sẽ deprecated và xóa `forwardRef`.
 
 <Note>
 
-`ref`s passed to classes are not passed as props since they reference the component instance.
+`ref` được truyền cho các class không được truyền như props vì chúng tham chiếu đến instance của component.
 
 </Note>
 
-### Diffs for hydration errors {/*diffs-for-hydration-errors*/}
+### Diffs cho lỗi hydration {/*diffs-for-hydration-errors*/}
 
-We also improved error reporting for hydration errors in `react-dom`. For example, instead of logging multiple errors in DEV without any information about the mismatch:
+Chúng tôi cũng đã cải thiện báo cáo lỗi cho lỗi hydration trong `react-dom`. Ví dụ, thay vì ghi nhiều lỗi trong DEV mà không có thông tin về mismatch:
 
 <ConsoleBlockMulti>
 
@@ -458,7 +458,7 @@ Uncaught Error: Text content does not match server-rendered HTML.
 
 </ConsoleBlockMulti>
 
-We now log a single message with a diff of the mismatch:
+Bây giờ chúng tôi ghi lại một thông điệp duy nhất với diff của mismatch:
 
 
 <ConsoleBlockMulti>
@@ -484,9 +484,9 @@ https://react.dev/link/hydration-mismatch {'\n'}
 
 </ConsoleBlockMulti>
 
-### `<Context>` as a provider {/*context-as-a-provider*/}
+### `<Context>` như một provider {/*context-as-a-provider*/}
 
-In React 19, you can render `<Context>` as a provider instead of `<Context.Provider>`:
+Trong React 19, bạn có thể render `<Context>` như một provider thay vì `<Context.Provider>`:
 
 
 ```js {5,7}
@@ -501,11 +501,11 @@ function App({children}) {
 }
 ```
 
-New Context providers can use `<Context>` and we will be publishing a codemod to convert existing providers. In future versions we will deprecate `<Context.Provider>`.
+Các Context provider mới có thể sử dụng `<Context>` và chúng tôi sẽ xuất bản một codemod để chuyển đổi các provider hiện có. Trong các phiên bản tương lai chúng tôi sẽ deprecated `<Context.Provider>`.
 
-### Cleanup functions for refs {/*cleanup-functions-for-refs*/}
+### Hàm cleanup cho refs {/*cleanup-functions-for-refs*/}
 
-We now support returning a cleanup function from `ref` callbacks:
+Chúng tôi hiện hỗ trợ trả về hàm cleanup từ các `ref` callback:
 
 ```js {7-9}
 <input
@@ -521,30 +521,30 @@ We now support returning a cleanup function from `ref` callbacks:
 />
 ```
 
-When the component unmounts, React will call the cleanup function returned from the `ref` callback. This works for DOM refs, refs to class components, and `useImperativeHandle`.
+Khi component unmount, React sẽ gọi hàm cleanup được trả về từ `ref` callback. Điều này hoạt động cho DOM refs, refs đến class component, và `useImperativeHandle`.
 
 <Note>
 
-Previously, React would call `ref` functions with `null` when unmounting the component. If your `ref` returns a cleanup function, React will now skip this step.
+Trước đây, React sẽ gọi các hàm `ref` với `null` khi unmount component. Nếu `ref` của bạn trả về một hàm cleanup, React sẽ bỏ qua bước này.
 
-In future versions, we will deprecate calling refs with `null` when unmounting components.
+Trong các phiên bản tương lai, chúng tôi sẽ deprecated việc gọi refs với `null` khi unmount component.
 
 </Note>
 
-Due to the introduction of ref cleanup functions, returning anything else from a `ref` callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns, for example:
+Do việc giới thiệu các hàm cleanup cho ref, việc trả về bất cứ thứ gì khác từ `ref` callback giờ đây sẽ bị TypeScript từ chối. Cách sửa thường là ngừng sử dụng implicit returns, ví dụ:
 
 ```diff [[1, 1, "("], [1, 1, ")"], [2, 2, "{", 15], [2, 2, "}", 1]]
 - <div ref={current => (instance = current)} />
 + <div ref={current => {instance = current}} />
 ```
 
-The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was _supposed_ to be a cleanup function or if you didn't want to return a cleanup function.
+Code gốc đã trả về instance của `HTMLDivElement` và TypeScript sẽ không biết liệu đây có _được cho là_ một hàm cleanup hay bạn không muốn trả về hàm cleanup.
 
-You can codemod this pattern with [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
+Bạn có thể codemod mẫu này với [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
 
-### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
+### Giá trị khởi tạo `useDeferredValue` {/*use-deferred-value-initial-value*/}
 
-We've added an `initialValue` option to `useDeferredValue`:
+Chúng tôi đã thêm tùy chọn `initialValue` vào `useDeferredValue`:
 
 ```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "''"]]
 function Search({deferredValue}) {
@@ -558,15 +558,15 @@ function Search({deferredValue}) {
 }
 ````
 
-When <CodeStep step={2}>initialValue</CodeStep> is provided, `useDeferredValue` will return it as `value` for the initial render of the component, and schedules a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
+Khi <CodeStep step={2}>initialValue</CodeStep> được cung cấp, `useDeferredValue` sẽ trả về nó như `value` cho lần render đầu tiên của component, và lên lịch re-render trong nền với <CodeStep step={1}>deferredValue</CodeStep> được trả về.
 
-For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
+Để biết thêm, hãy xem [`useDeferredValue`](/reference/react/useDeferredValue).
 
-### Support for Document Metadata {/*support-for-metadata-tags*/}
+### Hỗ trợ Document Metadata {/*support-for-metadata-tags*/}
 
-In HTML, document metadata tags like `<title>`, `<link>`, and `<meta>` are reserved for placement in the `<head>` section of the document. In React, the component that decides what metadata is appropriate for the app may be very far from the place where you render the `<head>` or React does not render the `<head>` at all. In the past, these elements would need to be inserted manually in an effect, or by libraries like [`react-helmet`](https://github.com/nfl/react-helmet), and required careful handling when server rendering a React application.
+Trong HTML, các thẻ document metadata như `<title>`, `<link>`, và `<meta>` được dành riêng để đặt trong phần `<head>` của tài liệu. Trong React, component quyết định metadata nào phù hợp cho ứng dụng có thể rất xa nơi bạn render `<head>` hoặc React không render `<head>` chút nào. Trong quá khứ, các phần tử này cần được chèn thủ công trong một effect, hoặc bởi các thư viện như [`react-helmet`](https://github.com/nfl/react-helmet), và yêu cầu xử lý cẩn thận khi server rendering một ứng dụng React.
 
-In React 19, we're adding support for rendering document metadata tags in components natively:
+Trong React 19, chúng tôi đang thêm hỗ trợ để render các thẻ document metadata trong component một cách tự nhiên:
 
 ```js {5-8}
 function BlogPost({post}) {
@@ -585,23 +585,23 @@ function BlogPost({post}) {
 }
 ```
 
-When React renders this component, it will see the `<title>` `<link>` and `<meta>` tags, and automatically hoist them to the `<head>` section of document. By supporting these metadata tags natively, we're able to ensure they work with client-only apps, streaming SSR, and Server Components.
+Khi React render component này, nó sẽ thấy các thẻ `<title>`, `<link>` và `<meta>`, và tự động đẩy chúng lên phần `<head>` của tài liệu. Bằng cách hỗ trợ các thẻ metadata này một cách tự nhiên, chúng tôi có thể đảm bảo chúng hoạt động với các ứng dụng chỉ client, streaming SSR, và Server Components.
 
 <Note>
 
-#### You may still want a Metadata library {/*you-may-still-want-a-metadata-library*/}
+#### Bạn vẫn có thể muốn một thư viện Metadata {/*you-may-still-want-a-metadata-library*/}
 
-For simple use cases, rendering Document Metadata as tags may be suitable, but libraries can offer more powerful features like overriding generic metadata with specific metadata based on the current route. These features make it easier for frameworks and libraries like [`react-helmet`](https://github.com/nfl/react-helmet) to support metadata tags, rather than replace them.
+Đối với các trường hợp sử dụng đơn giản, việc render Document Metadata như các thẻ có thể phù hợp, nhưng các thư viện có thể cung cấp các tính năng mạnh mẽ hơn như ghi đè metadata chung bằng metadata cụ thể dựa trên route hiện tại. Các tính năng này giúp các framework và thư viện như [`react-helmet`](https://github.com/nfl/react-helmet) hỗ trợ các thẻ metadata dễ dàng hơn, thay vì thay thế chúng.
 
 </Note>
 
-For more info, see the docs for [`<title>`](/reference/react-dom/components/title), [`<link>`](/reference/react-dom/components/link), and [`<meta>`](/reference/react-dom/components/meta).
+Để biết thêm thông tin, hãy xem tài liệu cho [`<title>`](/reference/react-dom/components/title), [`<link>`](/reference/react-dom/components/link), và [`<meta>`](/reference/react-dom/components/meta).
 
-### Support for stylesheets {/*support-for-stylesheets*/}
+### Hỗ trợ stylesheets {/*support-for-stylesheets*/}
 
-Stylesheets, both externally linked (`<link rel="stylesheet" href="...">`) and inline (`<style>...</style>`), require careful positioning in the DOM due to style precedence rules. Building a stylesheet capability that allows for composability within components is hard, so users often end up either loading all of their styles far from the components that may depend on them, or they use a style library which encapsulates this complexity.
+Stylesheets, cả liên kết ngoài (`<link rel="stylesheet" href="...">`) và inline (`<style>...</style>`), yêu cầu định vị cẩn thận trong DOM do các quy tắc ưu tiên style. Xây dựng khả năng stylesheet cho phép composability trong các component là khó, vì vậy người dùng thường kết thúc bằng cách tải tất cả các style của họ xa các component có thể phụ thuộc vào chúng, hoặc họ sử dụng một thư viện style đóng gói sự phức tạp này.
 
-In React 19, we're addressing this complexity and providing even deeper integration into Concurrent Rendering on the Client and Streaming Rendering on the Server with built in support for stylesheets. If you tell React the `precedence` of your stylesheet it will manage the insertion order of the stylesheet in the DOM and ensure that the stylesheet (if external) is loaded before revealing content that depends on those style rules.
+Trong React 19, chúng tôi đang giải quyết sự phức tạp này và cung cấp tích hợp sâu hơn vào Concurrent Rendering trên Client và Streaming Rendering trên Server với hỗ trợ tích hợp cho stylesheets. Nếu bạn cho React biết `precedence` của stylesheet, nó sẽ quản lý thứ tự chèn của stylesheet trong DOM và đảm bảo rằng stylesheet (nếu ngoài) được tải trước khi tiết lộ nội dung phụ thuộc vào các quy tắc style đó.
 
 ```js {4,5,17}
 function ComponentOne() {
@@ -626,9 +626,9 @@ function ComponentTwo() {
 }
 ```
 
-During Server Side Rendering React will include the stylesheet in the `<head>`, which ensures that the browser will not paint until it has loaded. If the stylesheet is discovered late after we've already started streaming, React will ensure that the stylesheet is inserted into the `<head>` on the client before revealing the content of a Suspense boundary that depends on that stylesheet.
+Trong quá trình Server Side Rendering, React sẽ bao gồm stylesheet trong `<head>`, đảm bảo rằng trình duyệt sẽ không vẽ cho đến khi nó được tải. Nếu stylesheet được phát hiện muộn sau khi chúng tôi đã bắt đầu streaming, React sẽ đảm bảo rằng stylesheet được chèn vào `<head>` trên client trước khi tiết lộ nội dung của Suspense boundary phụ thuộc vào stylesheet đó.
 
-During Client Side Rendering React will wait for newly rendered stylesheets to load before committing the render. If you render this component from multiple places within your application React will only include the stylesheet once in the document:
+Trong quá trình Client Side Rendering, React sẽ đợi các stylesheet mới được render tải trước khi commit render. Nếu bạn render component này từ nhiều nơi trong ứng dụng của bạn, React sẽ chỉ bao gồm stylesheet một lần trong tài liệu:
 
 ```js {5}
 function App() {
@@ -640,17 +640,17 @@ function App() {
 }
 ```
 
-For users accustomed to loading stylesheets manually this is an opportunity to locate those stylesheets alongside the components that depend on them allowing for better local reasoning and an easier time ensuring you only load the stylesheets that you actually depend on.
+Đối với người dùng quen với việc tải stylesheet thủ công, đây là cơ hội để đặt các stylesheet đó cạnh các component phụ thuộc vào chúng, cho phép suy luận cục bộ tốt hơn và dễ dàng hơn để đảm bảo bạn chỉ tải các stylesheet mà bạn thực sự phụ thuộc.
 
-Style libraries and style integrations with bundlers can also adopt this new capability so even if you don't directly render your own stylesheets, you can still benefit as your tools are upgraded to use this feature.
+Các thư viện style và tích hợp style với bundlers cũng có thể áp dụng khả năng mới này, vì vậy ngay cả khi bạn không trực tiếp render các stylesheet của mình, bạn vẫn có thể được hưởng lợi khi các công cụ của bạn được nâng cấp để sử dụng tính năng này.
 
-For more details, read the docs for [`<link>`](/reference/react-dom/components/link) and [`<style>`](/reference/react-dom/components/style).
+Để biết thêm chi tiết, hãy đọc tài liệu cho [`<link>`](/reference/react-dom/components/link) và [`<style>`](/reference/react-dom/components/style).
 
-### Support for async scripts {/*support-for-async-scripts*/}
+### Hỗ trợ async scripts {/*support-for-async-scripts*/}
 
-In HTML normal scripts (`<script src="...">`) and deferred scripts (`<script defer="" src="...">`) load in document order which makes rendering these kinds of scripts deep within your component tree challenging. Async scripts (`<script async="" src="...">`) however will load in arbitrary order.
+Trong HTML, các script thông thường (`<script src="...">`) và deferred script (`<script defer="" src="...">`) tải theo thứ tự tài liệu, làm cho việc render các loại script này sâu trong cây component trở nên khó khăn. Async scripts (`<script async="" src="...">`) tuy nhiên sẽ tải theo thứ tự tùy ý.
 
-In React 19 we've included better support for async scripts by allowing you to render them anywhere in your component tree, inside the components that actually depend on the script, without having to manage relocating and deduplicating script instances.
+Trong React 19 chúng tôi đã bao gồm hỗ trợ tốt hơn cho async scripts bằng cách cho phép bạn render chúng ở bất kỳ đâu trong cây component của bạn, bên trong các component thực sự phụ thuộc vào script, mà không cần phải quản lý việc di chuyển và loại bỏ trùng lặp các instance script.
 
 ```js {4,15}
 function MyComponent() {
@@ -673,17 +673,17 @@ function App() {
 }
 ```
 
-In all rendering environments, async scripts will be deduplicated so that React will only load and execute the script once even if it is rendered by multiple different components.
+Trong tất cả môi trường rendering, async scripts sẽ được deduplication để React sẽ chỉ tải và thực thi script một lần ngay cả khi nó được render bởi nhiều component khác nhau.
 
-In Server Side Rendering, async scripts will be included in the `<head>` and prioritized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
+Trong Server Side Rendering, async scripts sẽ được bao gồm trong `<head>` và được ưu tiên sau các tài nguyên quan trọng hơn chặn việc vẽ như stylesheets, fonts, và image preloads.
 
-For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
+Để biết thêm chi tiết, hãy đọc tài liệu cho [`<script>`](/reference/react-dom/components/script).
 
-### Support for preloading resources {/*support-for-preloading-resources*/}
+### Hỗ trợ preloading tài nguyên {/*support-for-preloading-resources*/}
 
-During initial document load and on client side updates, telling the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on page performance.
+Trong quá trình tải tài liệu ban đầu và cập nhật phía client, việc cho Trình duyệt biết về các tài nguyên mà nó có thể cần tải sớm nhất có thể có thể có tác động đáng kể đến hiệu suất trang.
 
-React 19 includes a number of new APIs for loading and preloading Browser resources to make it as easy as possible to build great experiences that aren't held back by inefficient resource loading.
+React 19 bao gồm một số API mới để tải và preload tài nguyên Trình duyệt để làm cho việc xây dựng trải nghiệm tuyệt vời không bị cản trở bởi việc tải tài nguyên không hiệu quả trở nên dễ dàng nhất có thể.
 
 ```js
 import { prefetchDNS, preconnect, preload, preinit } from 'react-dom'
@@ -712,23 +712,23 @@ function MyComponent() {
 </html>
 ```
 
-These APIs can be used to optimize initial page loads by moving discovery of additional resources like fonts out of stylesheet loading. They can also make client updates faster by prefetching a list of resources used by an anticipated navigation and then eagerly preloading those resources on click or even on hover.
+Các API này có thể được dùng để tối ưu hóa tải trang ban đầu bằng cách chuyển việc phát hiện các tài nguyên bổ sung như fonts ra khỏi việc tải stylesheet. Chúng cũng có thể làm cho các cập nhật client nhanh hơn bằng cách prefetch một danh sách các tài nguyên được sử dụng bởi một navigation dự kiến và sau đó eagerly preload các tài nguyên đó khi nhấp chuột hoặc ngay cả khi di chuột.
 
-For more details see [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
+Để biết thêm chi tiết, hãy xem [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
 
-### Compatibility with third-party scripts and extensions {/*compatibility-with-third-party-scripts-and-extensions*/}
+### Tương thích với script và extension bên thứ ba {/*compatibility-with-third-party-scripts-and-extensions*/}
 
-We've improved hydration to account for third-party scripts and browser extensions.
+Chúng tôi đã cải thiện hydration để tính đến các script bên thứ ba và extension trình duyệt.
 
-When hydrating, if an element that renders on the client doesn't match the element found in the HTML from the server, React will force a client re-render to fix up the content. Previously, if an element was inserted by third-party scripts or browser extensions, it would trigger a mismatch error and client render.
+Khi hydrating, nếu một phần tử render trên client không khớp với phần tử được tìm thấy trong HTML từ server, React sẽ ép client re-render để sửa nội dung. Trước đây, nếu một phần tử được chèn bởi các script bên thứ ba hoặc extension trình duyệt, nó sẽ kích hoạt lỗi mismatch và client render.
 
-In React 19, unexpected tags in the `<head>` and `<body>` will be skipped over, avoiding the mismatch errors. If React needs to re-render the entire document due to an unrelated hydration mismatch, it will leave in place stylesheets inserted by third-party scripts and browser extensions.
+Trong React 19, các thẻ không mong đợi trong `<head>` và `<body>` sẽ được bỏ qua, tránh các lỗi mismatch. Nếu React cần re-render toàn bộ tài liệu do mismatch hydration không liên quan, nó sẽ giữ nguyên vị trí các stylesheet được chèn bởi các script bên thứ ba và extension trình duyệt.
 
-### Better error reporting {/*error-handling*/}
+### Báo cáo lỗi tốt hơn {/*error-handling*/}
 
-We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an Error Boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred.
+Chúng tôi đã cải thiện xử lý lỗi trong React 19 để loại bỏ sự trùng lặp và cung cấp các tùy chọn để xử lý các lỗi được bắt và không được bắt. Ví dụ, khi có lỗi trong render được bắt bởi một Error Boundary, trước đây React sẽ throw lỗi hai lần (một lần cho lỗi gốc, sau đó một lần nữa sau khi thất bại trong việc tự động phục hồi), và sau đó gọi `console.error` với thông tin về nơi lỗi xảy ra.
 
-This resulted in three errors for every caught error:
+Điều này dẫn đến ba lỗi cho mỗi lỗi được bắt:
 
 <ConsoleBlockMulti>
 
@@ -762,7 +762,7 @@ React will try to recreate this component tree from scratch using the error boun
 
 </ConsoleBlockMulti>
 
-In React 19, we log a single error with all the error information included:
+Trong React 19, chúng tôi ghi lại một lỗi duy nhất với tất cả thông tin lỗi được bao gồm:
 
 <ConsoleBlockMulti>
 
@@ -784,27 +784,27 @@ React will try to recreate this component tree from scratch using the error boun
 
 </ConsoleBlockMulti>
 
-Additionally, we've added two new root options to complement `onRecoverableError`:
+Ngoài ra, chúng tôi đã thêm hai tùy chọn root mới để bổ sung cho `onRecoverableError`:
 
-- `onCaughtError`: called when React catches an error in an Error Boundary.
-- `onUncaughtError`: called when an error is thrown and not caught by an Error Boundary.
-- `onRecoverableError`: called when an error is thrown and automatically recovered.
+- `onCaughtError`: được gọi khi React bắt một lỗi trong Error Boundary.
+- `onUncaughtError`: được gọi khi một lỗi được throw và không được bắt bởi Error Boundary.
+- `onRecoverableError`: được gọi khi một lỗi được throw và tự động phục hồi.
 
-For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
+Để biết thêm thông tin và ví dụ, hãy xem tài liệu cho [`createRoot`](/reference/react-dom/client/createRoot) và [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
 
-### Support for Custom Elements {/*support-for-custom-elements*/}
+### Hỗ trợ Custom Elements {/*support-for-custom-elements*/}
 
-React 19 adds full support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
+React 19 thêm hỗ trợ đầy đủ cho custom elements và vượt qua tất cả các bài kiểm tra trên [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 
-In past versions, using Custom Elements in React has been difficult because React treated unrecognized props as attributes rather than properties. In React 19, we've added support for properties that works on the client and during SSR with the following strategy:
+Trong các phiên bản trước, việc sử dụng Custom Elements trong React đã khó khăn vì React xử lý các props không được nhận dạng như attributes thay vì properties. Trong React 19, chúng tôi đã thêm hỗ trợ cho properties hoạt động trên client và trong SSR với chiến lược sau:
 
-- **Server Side Rendering**: props passed to a custom element will render as attributes if their type is a primitive value like `string`, `number`, or the value is `true`. Props with non-primitive types like `object`, `symbol`, `function`, or value `false` will be omitted.
-- **Client Side Rendering**: props that match a property on the Custom Element instance will be assigned as properties, otherwise they will be assigned as attributes.
+- **Server Side Rendering**: props được truyền cho custom element sẽ render như attributes nếu kiểu của chúng là giá trị primitive như `string`, `number`, hoặc giá trị là `true`. Props với kiểu không phải primitive như `object`, `symbol`, `function`, hoặc giá trị `false` sẽ bị bỏ qua.
+- **Client Side Rendering**: props khớp với property trên instance Custom Element sẽ được gán như properties, nếu không thì chúng sẽ được gán như attributes.
 
-Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design and implementation of Custom Element support in React.
+Cảm ơn [Joey Arhar](https://github.com/josepharhar) vì đã thúc đẩy thiết kế và triển khai hỗ trợ Custom Element trong React.
 
 
-#### How to upgrade {/*how-to-upgrade*/}
-See the [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
+#### Cách nâng cấp {/*how-to-upgrade*/}
+Xem [Hướng dẫn nâng cấp React 19](/blog/2024/04/25/react-19-upgrade-guide) để có hướng dẫn từng bước và danh sách đầy đủ các thay đổi phá vỡ và đáng chú ý.
 
-_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._
+_Lưu ý: bài viết này được xuất bản ban đầu vào 04/25/2024 và đã được cập nhật vào 12/05/2024 với bản phát hành ổn định._

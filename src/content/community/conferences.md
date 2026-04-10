@@ -1,399 +1,399 @@
 ---
-title: React Conferences
+title: Hội Nghị React
 ---
 
 <Intro>
 
-Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
+Bạn biết về một hội nghị React.js tại địa phương? Hãy thêm vào đây! (Vui lòng giữ danh sách theo thứ tự thời gian)
 
 </Intro>
 
-## Upcoming Conferences {/*upcoming-conferences*/}
+## Hội Nghị Sắp Tới {/*upcoming-conferences*/}
 
 ### React Paris 2026 {/*react-paris-2026*/}
-March 26 - 27, 2026. In-person in Paris, France (hybrid event)
+26 - 27 tháng 3, 2026. Trực tiếp tại Paris, Pháp (sự kiện hybrid)
 
 [Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
 
 ### CityJS London 2026 {/*cityjs-london-2026*/}
-April 14-17,  2026. In-person in London
+14-17 tháng 4, 2026. Trực tiếp tại London
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### ZurichJS Conf 2026 {/*zurichjs-conf-2026*/}
-September 10-11,  2026. In-person in Zurich, Switzerland
+10-11 tháng 9, 2026. Trực tiếp tại Zurich, Thụy Sĩ
 
 [Website](https://conf.zurichjs.com?utm_campaign=ZurichJS_Conf&utm_source=referral&utm_content=reactjs_community_conferences) - [Twitter](https://x.com/zurichjs) - [LinkedIn](https://www.linkedin.com/company/zurichjs/)
 
-## Past Conferences {/*past-conferences*/}
+## Hội Nghị Đã Qua {/*past-conferences*/}
 
 ### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}
-February 12-13,  2026. In-person in New Delhi, India
+12-13 tháng 2, 2026. Trực tiếp tại New Delhi, Ấn Độ
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### CityJS Singapore 2026 {/*cityjs-singapore-2026*/}
-February 4-6,  2026. In-person in Singapore
+4-6 tháng 2, 2026. Trực tiếp tại Singapore
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### React Advanced London 2025 {/*react-advanced-london-2025*/}
-November 28 & December 1, 2025. In-person in London, UK + online (hybrid event)
+28 tháng 11 & 1 tháng 12, 2025. Trực tiếp tại London, Anh + trực tuyến (sự kiện hybrid)
 
 [Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced)
 
 ### React Summit US 2025 {/*react-summit-us-2025*/}
-November 18 - 21, 2025. In-person in New York, USA + remote (hybrid event)
+18 - 21 tháng 11, 2025. Trực tiếp tại New York, Mỹ + từ xa (sự kiện hybrid)
 
 [Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit)
 
 ### React India 2025 {/*react-india-2025*/}
-October 31 - November 01, 2025. In-person in Goa, India (hybrid event) + Oct 15 2025 - remote day
+31 tháng 10 - 1 tháng 11, 2025. Trực tiếp tại Goa, Ấn Độ (sự kiện hybrid) + 15 tháng 10, 2025 - ngày từ xa
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ### React Conf 2025 {/*react-conf-2025*/}
-October 7-8, 2025. Henderson, Nevada, USA and free livestream
+7-8 tháng 10, 2025. Henderson, Nevada, Mỹ và livestream miễn phí
 
 [Website](https://conf.react.dev/) - [Twitter](https://x.com/reactjs) - [Bluesky](https://bsky.app/profile/react.dev)
 
 ### RenderCon Kenya 2025 {/*rendercon-kenya-2025*/}
-October 04, 2025. Nairobi, Kenya
+4 tháng 10, 2025. Nairobi, Kenya
 
 [Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
 
 ### React Alicante 2025 {/*react-alicante-2025*/}
-October 2-4, 2025. Alicante, Spain.
+2-4 tháng 10, 2025. Alicante, Tây Ban Nha.
 
 [Website](https://reactalicante.es/) - [Twitter](https://x.com/ReactAlicante) - [Bluesky](https://bsky.app/profile/reactalicante.es) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
 ### React Universe Conf 2025 {/*react-universe-conf-2025*/}
-September 2-4, 2025. Wrocław, Poland.
+2-4 tháng 9, 2025. Wrocław, Ba Lan.
 
 [Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
 
 ### React Nexus 2025 {/*react-nexus-2025*/}
-July 03 - 05, 2025. In-person in Bangalore, India
+3 - 5 tháng 7, 2025. Trực tiếp tại Bangalore, Ấn Độ
 
 [Website](https://reactnexus.com/) - [Twitter](https://x.com/ReactNexus) - [Bluesky](https://bsky.app/profile/reactnexus.com) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### React Summit 2025 {/*react-summit-2025*/}
-June 13 - 17, 2025. In-person in Amsterdam, Netherlands + remote (hybrid event)
+13 - 17 tháng 6, 2025. Trực tiếp tại Amsterdam, Hà Lan + từ xa (sự kiện hybrid)
 
 [Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit)
 
 ### React Norway 2025 {/*react-norway-2025*/}
-June 13, 2025. In-person in Oslo, Norway + remote (virtual event)
+13 tháng 6, 2025. Trực tiếp tại Oslo, Na Uy + từ xa (sự kiện ảo)
 
 [Website](https://reactnorway.com/) - [Twitter](https://x.com/ReactNorway)
 
 ### CityJS Athens 2025 {/*cityjs-athens*/}
-May 27 - 31, 2025. In-person in Athens, Greece
+27 - 31 tháng 5, 2025. Trực tiếp tại Athens, Hy Lạp
 
 [Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### App.js Conf 2025 {/*appjs-conf-2025*/}
-May 28 - 30, 2025. In-person in Kraków, Poland + remote
+28 - 30 tháng 5, 2025. Trực tiếp tại Kraków, Ba Lan + từ xa
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### CityJS London 2025 {/*cityjs-london*/}
-April 23 - 25, 2025. In-person in London, UK
+23 - 25 tháng 4, 2025. Trực tiếp tại London, Anh
 
 [Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) -  [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### React Paris 2025 {/*react-paris-2025*/}
-March 20 - 21, 2025. In-person in Paris, France (hybrid event)
+20 - 21 tháng 3, 2025. Trực tiếp tại Paris, Pháp (sự kiện hybrid)
 
 [Website](https://react.paris/) - [Twitter](https://x.com/BeJS_) - [YouTube](https://www.youtube.com/playlist?list=PL53Z0yyYnpWitP8Zv01TSEQmKLvuRh_Dj)
 
 ### React Native Connection 2025 {/*react-native-connection-2025*/}
-April 3 (Reanimated Training) + April 4 (Conference), 2025. Paris, France.
+3 tháng 4 (Đào tạo Reanimated) + 4 tháng 4 (Hội nghị), 2025. Paris, Pháp.
 
 [Website](https://reactnativeconnection.io/) - [X](https://x.com/reactnativeconn) - [Bluesky](https://bsky.app/profile/reactnativeconnect.bsky.social)
 
 ### React Day Berlin 2024 {/*react-day-berlin-2024*/}
-December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
+13 & 16 tháng 12, 2024. Trực tiếp tại Berlin, Đức + từ xa (sự kiện hybrid)
 
 [Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
 
 ### React Africa 2024 {/*react-africa-2024*/}
-November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
+29 tháng 11, 2024. Trực tiếp tại Casablanca, Maroc (sự kiện hybrid)
 
 [Website](https://react-africa.com/) - [Twitter](https://x.com/BeJS_)
 
 ### React Summit US 2024 {/*react-summit-us-2024*/}
-November 19 & 22, 2024. In-person in New York, USA + online (hybrid event)
+19 & 22 tháng 11, 2024. Trực tiếp tại New York, Mỹ + trực tuyến (sự kiện hybrid)
 
 [Website](https://reactsummit.us/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
 
 ### React Native London Conf 2024 {/*react-native-london-2024*/}
-November 14 & 15, 2024. In-person in London, UK
+14 & 15 tháng 11, 2024. Trực tiếp tại London, Anh
 
 [Website](https://reactnativelondon.co.uk/) - [Twitter](https://x.com/RNLConf)
 
 ### React Advanced London 2024 {/*react-advanced-london-2024*/}
-October 25 & 28, 2024. In-person in London, UK + online (hybrid event)
+25 & 28 tháng 10, 2024. Trực tiếp tại London, Anh + trực tuyến (sự kiện hybrid)
 
 [Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced)
 
 ### reactjsday 2024 {/*reactjsday-2024*/}
-October 25, 2024. In-person in Verona, Italy + online (hybrid event)
+25 tháng 10, 2024. Trực tiếp tại Verona, Ý + trực tuyến (sự kiện hybrid)
 
 [Website](https://2024.reactjsday.it/) - [Twitter](https://x.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
 
 ### React Brussels 2024 {/*react-brussels-2024*/}
-October 18, 2024. In-person in Brussels, Belgium (hybrid event)
+18 tháng 10, 2024. Trực tiếp tại Brussels, Bỉ (sự kiện hybrid)
 
 [Website](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact) - [YouTube](https://www.youtube.com/playlist?list=PL53Z0yyYnpWimQ0U75woee2zNUIFsiDC3)
 
 ### React India 2024 {/*react-india-2024*/}
-October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
+17 - 19 tháng 10, 2024. Trực tiếp tại Goa, Ấn Độ (sự kiện hybrid) + 15 tháng 10, 2024 - ngày từ xa
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ### RenderCon Kenya 2024 {/*rendercon-kenya-2024*/}
-October 04 - 05, 2024. Nairobi, Kenya
+4 - 5 tháng 10, 2024. Nairobi, Kenya
 
 [Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
 
 ### React Alicante 2024 {/*react-alicante-2024*/}
-September 19-21, 2024. Alicante, Spain.
+19-21 tháng 9, 2024. Alicante, Tây Ban Nha.
 
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
-September 5-6, 2024. Wrocław, Poland.
+5-6 tháng 9, 2024. Wrocław, Ba Lan.
 
 [Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
 
 
 ### React Rally 2024 🐙 {/*react-rally-2024*/}
-August 12-13, 2024. Park City, UT, USA
+12-13 tháng 8, 2024. Park City, UT, Mỹ
 
 [Website](https://reactrally.com) - [Twitter](https://twitter.com/ReactRally) - [YouTube](https://www.youtube.com/channel/UCXBhQ05nu3L1abBUGeQ0ahw)
 
 ### The Geek Conf 2024 {/*the-geek-conf-2024*/}
-July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+25 tháng 7, 2024. Trực tiếp tại Berlin, Đức + từ xa (sự kiện hybrid)
 
 [Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
 
 ### Chain React 2024 {/*chain-react-2024*/}
-July 17-19, 2024. In-person in Portland, OR, USA
+17-19 tháng 7, 2024. Trực tiếp tại Portland, OR, Mỹ
 
 [Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
 
 ### React Nexus 2024 {/*react-nexus-2024*/}
-July 04 & 05, 2024. Bangalore, India (In-person event)
+4 & 5 tháng 7, 2024. Bangalore, Ấn Độ (sự kiện trực tiếp)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### React Summit 2024 {/*react-summit-2024*/}
-June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
+14 & 18 tháng 6, 2024. Trực tiếp tại Amsterdam, Hà Lan + từ xa (sự kiện hybrid)
 
 [Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
 
 ### React Norway 2024 {/*react-norway-2024*/}
-June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+14 tháng 6, 2024. Trực tiếp tại khách sạn Farris Bad ở Larvik, Na Uy và trực tuyến (sự kiện hybrid).
 
 [Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
 
 ### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
-June 12 - June 14, 2024. Atlanta, GA, USA
+12 - 14 tháng 6, 2024. Atlanta, GA, Mỹ
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### Frontend Nation 2024 {/*frontend-nation-2024*/}
-June 4 - 7, 2024. Online
+4 - 7 tháng 6, 2024. Trực tuyến
 
 [Website](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
 
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
-May 22 - 24, 2024. In-person in Kraków, Poland + remote
+22 - 24 tháng 5, 2024. Trực tiếp tại Kraków, Ba Lan + từ xa
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### React Conf 2024 {/*react-conf-2024*/}
-May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
+15 - 16 tháng 5, 2024. Trực tiếp tại Henderson, NV, Mỹ + từ xa
 
 [Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
 
 ### React Native Connection 2024 {/*react-native-connection-2024*/}
-April 23, 2024. In-person in Paris, France
+23 tháng 4, 2024. Trực tiếp tại Paris, Pháp
 
 [Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
 
 ### React Miami 2024 {/*react-miami-2024*/}
-April 19 - 20, 2024. In-person in Miami, FL, USA
+19 - 20 tháng 4, 2024. Trực tiếp tại Miami, FL, Mỹ
 
 [Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
 ### Epic Web Conf 2024 {/*epic-web-2024*/}
-April 10 - 11, 2024. In-person in Park City, UT, USA
+10 - 11 tháng 4, 2024. Trực tiếp tại Park City, UT, Mỹ
 
 [Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
 
 ### React Paris 2024 {/*react-paris-2024*/}
-March 22, 2024. In-person in Paris, France + Remote (hybrid)
+22 tháng 3, 2024. Trực tiếp tại Paris, Pháp + Từ xa (hybrid)
 
 [Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWhUzgvr2Nys3kZBBLcY0TA7)
 
 ### React Day Berlin 2023 {/*react-day-berlin-2023*/}
-December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)
+8 & 12 tháng 12, 2023. Trực tiếp tại Berlin, Đức + tương tác từ xa đầu tiên (sự kiện hybrid)
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
 
 ### React Summit US 2023 {/*react-summit-us-2023*/}
-November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
+13 & 15 tháng 11, 2023. Trực tiếp tại New York, Mỹ + tương tác từ xa đầu tiên (sự kiện hybrid)
 
 [Website](https://reactsummit.us) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-us-2023)
 
 ### reactjsday 2023 {/*reactjsday-2023*/}
-October 27th 2023. In-person in Verona, Italy and online (hybrid event)
+27 tháng 10, 2023. Trực tiếp tại Verona, Ý và trực tuyến (sự kiện hybrid)
 
 [Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
 
 ### React Advanced 2023 {/*react-advanced-2023*/}
-October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
+20 & 23 tháng 10, 2023. Trực tiếp tại London, Anh + tương tác từ xa đầu tiên (sự kiện hybrid)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2023)
 
 ### React Brussels 2023 {/*react-brussels-2023*/}
-October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
+13 tháng 10, 2023. Trực tiếp tại Brussels, Bỉ + Từ xa (hybrid)
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC)
 
 ### React India 2023 {/*react-india-2023*/}
-October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
+5 - 7 tháng 10, 2023. Trực tiếp tại Goa, Ấn Độ (sự kiện hybrid) + 3 tháng 10, 2023 - ngày từ xa
 
 [Website](https://www.reactindia.io) - [Twitter](https://x.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ### RenderCon Kenya 2023 {/*rendercon-kenya-2023*/}
-September 29 - 30, 2023. Nairobi, Kenya
+29 - 30 tháng 9, 2023. Nairobi, Kenya
 
 [Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
 
 ### React Live 2023 {/*react-live-2023*/}
-September 29, 2023. Amsterdam, Netherlands
+29 tháng 9, 2023. Amsterdam, Hà Lan
 
 [Website](https://reactlive.nl/)
 
 ### React Alicante 2023 {/*react-alicante-2023*/}
-September 28 - 30, 2023. Alicante, Spain
+28 - 30 tháng 9, 2023. Alicante, Tây Ban Nha
 
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
 
 ### RedwoodJS Conference 2023 {/*redwoodjs-conference-2023*/}
-September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event)
+26 - 29 tháng 9, 2023. Grants Pass, Oregon + từ xa (sự kiện hybrid)
 
 [Website](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
 
 ### React Native EU 2023 {/*react-native-eu-2023*/}
-September 7 & 8, 2023. Wrocław, Poland
+7 & 8 tháng 9, 2023. Wrocław, Ba Lan
 
 [Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
 ### React Rally 2023 🐙 {/*react-rally-2023*/}
-August 17 & 18, 2023. Salt Lake City, UT, USA
+17 & 18 tháng 8, 2023. Salt Lake City, UT, Mỹ
 
 [Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
 ### React Nexus 2023 {/*react-nexus-2023*/}
-July 07 & 08, 2023. Bangalore, India (In-person event)
+7 & 8 tháng 7, 2023. Bangalore, Ấn Độ (sự kiện trực tiếp)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### ReactNext 2023 {/*reactnext-2023*/}
-June 27th, 2023. Tel Aviv, Israel
+27 tháng 6, 2023. Tel Aviv, Israel
 
 [Website](https://www.react-next.com/) - [Facebook](https://www.facebook.com/ReactNextConf) - [Youtube](https://www.youtube.com/@ReactNext)
 
 ### React Norway 2023 {/*react-norway-2023*/}
-June 16th, 2023. Larvik, Norway
+16 tháng 6, 2023. Larvik, Na Uy
 
 [Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway/) - [Facebook](https://www.facebook.com/reactdaynorway/)
 
 ### React Summit 2023 {/*react-summit-2023*/}
-June 2 & 6, 2023. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
+2 & 6 tháng 6, 2023. Trực tiếp tại Amsterdam, Hà Lan + tương tác từ xa đầu tiên (sự kiện hybrid)
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-2023)
 
 ### Render(ATL) 2023 🍑 {/*renderatl-2023-*/}
-May 31 - June 2, 2023. Atlanta, GA, USA
+31 tháng 5 - 2 tháng 6, 2023. Atlanta, GA, Mỹ
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### Chain React 2023 {/*chain-react-2023*/}
-May 17 - 19, 2023. Portland, OR, USA
+17 - 19 tháng 5, 2023. Portland, OR, Mỹ
 
 [Website](https://chainreactconf.com/) - [Twitter](https://twitter.com/ChainReactConf) - [Facebook](https://www.facebook.com/ChainReactConf/) - [Youtube](https://www.youtube.com/channel/UCwpSzVt7QpLDbCnPXqR97-g/playlists)
 
 ### App.js Conf 2023 {/*appjs-conf-2023*/}
-May 10 - 12, 2023. In-person in Kraków, Poland + remote
+10 - 12 tháng 5, 2023. Trực tiếp tại Kraków, Ba Lan + từ xa
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### RemixConf 2023 {/*remixconf-2023*/}
-May, 2023. Salt Lake City, UT
+Tháng 5, 2023. Salt Lake City, UT
 
 [Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run)
 
 ### Reactathon 2023 {/*reactathon-2023*/}
-May 2 - 3, 2023. San Francisco, CA, USA
+2 - 3 tháng 5, 2023. San Francisco, CA, Mỹ
 
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) - [YouTube](https://www.youtube.com/realworldreact)
 
 ### React Miami 2023 {/*react-miami-2023*/}
-April 20 - 21, 2023. Miami, FL, USA
+20 - 21 tháng 4, 2023. Miami, FL, Mỹ
 
 [Website](https://www.reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
 ### React Day Berlin 2022 {/*react-day-berlin-2022*/}
-December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)
+2 tháng 12, 2022. Trực tiếp tại Berlin, Đức + từ xa (sự kiện hybrid)
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
 
 ### React Global Online Summit 22.2 by Geekle {/*react-global-online-summit-222-by-geekle*/}
-November 8 - 9, 2022 - Online Summit
+8 - 9 tháng 11, 2022 - Hội nghị thượng đỉnh trực tuyến
 
 [Website](https://events.geekle.us/react3/) - [LinkedIn](https://www.linkedin.com/posts/geekle-us_event-react-reactjs-activity-6964904611207864320-gpDx?utm_source=share&utm_medium=member_desktop)
 
 ### Remix Conf Europe 2022 {/*remix-conf-europe-2022*/}
-November 18, 2022, 7am PST / 10am EST / 4pm CET - remote event
+18 tháng 11, 2022, 7 giờ sáng PST / 10 giờ sáng EST / 4 giờ chiều CET - sự kiện từ xa
 
 [Website](https://remixconf.eu/) - [Twitter](https://twitter.com/remixconfeu) - [Videos](https://portal.gitnation.org/events/remix-conf-europe-2022)
 
 ### React Advanced 2022 {/*react-advanced-2022*/}
-October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
+21 & 25 tháng 10, 2022. Trực tiếp tại London, Anh + từ xa (sự kiện hybrid)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2022)
 
 ### ReactJS Day 2022 {/*reactjs-day-2022*/}
-October 21, 2022 in Verona, Italy
+21 tháng 10, 2022 tại Verona, Ý
 
 [Website](https://2022.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [Facebook](https://www.facebook.com/reactjsday/) - [Videos](https://www.youtube.com/c/grusp)
 
 ### React Brussels 2022 {/*react-brussels-2022*/}
-October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
+14 tháng 10, 2022. Trực tiếp tại Brussels, Bỉ + từ xa (sự kiện hybrid)
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
 
 ### React Alicante 2022 {/*react-alicante-2022*/}
-September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
+29 tháng 9 - 1 tháng 10, 2022. Trực tiếp tại Alicante, Tây Ban Nha + từ xa (sự kiện hybrid)
 
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 ### React India 2022 {/*react-india-2022*/}
-September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
+22 - 24 tháng 9, 2022. Trực tiếp tại Goa, Ấn Độ + từ xa (sự kiện hybrid)
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ### React Finland 2022 {/*react-finland-2022*/}
-September 12 - 16, 2022. In-person in Helsinki, Finland
+12 - 16 tháng 9, 2022. Trực tiếp tại Helsinki, Phần Lan
 
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [Schedule](https://react-finland.fi/schedule/) - [Speakers](https://react-finland.fi/speakers/)
 
 ### React Native EU 2022: Powered by callstack {/*react-native-eu-2022-powered-by-callstack*/}
-September 1-2, 2022 - Remote event
+1-2 tháng 9, 2022 - Sự kiện từ xa
 
 [Website](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -
 [Twitter](https://twitter.com/react_native_eu) -
@@ -402,387 +402,387 @@ September 1-2, 2022 - Remote event
 [Instagram](https://www.instagram.com/reactnative_eu/)
 
 ### ReactNext 2022 {/*reactnext-2022*/}
-June 28, 2022. Tel-Aviv, Israel
+28 tháng 6, 2022. Tel-Aviv, Israel
 
 [Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/c/ReactNext)
 
 ### React Norway 2022 {/*react-norway-2022*/}
-June 24, 2022. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+24 tháng 6, 2022. Trực tiếp tại khách sạn Farris Bad ở Larvik, Na Uy và trực tuyến (sự kiện hybrid).
 
 [Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
 
 ### React Summit 2022 {/*react-summit-2022*/}
-June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
+17 & 21 tháng 6, 2022. Trực tiếp tại Amsterdam, Hà Lan + tương tác từ xa đầu tiên (sự kiện hybrid)
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-2022)
 
 ### App.js Conf 2022 {/*appjs-conf-2022*/}
-June 8 - 10, 2022. In-person in Kraków, Poland + remote
+8 - 10 tháng 6, 2022. Trực tiếp tại Kraków, Ba Lan + từ xa
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### React Day Bangalore 2022 {/*react-day-bangalore-2022*/}
-June 8 - 9, 2022.  Remote
+8 - 9 tháng 6, 2022. Từ xa
 
 [Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### render(ATL) 2022 🍑 {/*renderatl-2022-*/}
-June 1 - 4, 2022. Atlanta, GA, USA
+1 - 4 tháng 6, 2022. Atlanta, GA, Mỹ
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### RemixConf 2022 {/*remixconf-2022*/}
-May 24 - 25, 2022. Salt Lake City, UT
+24 - 25 tháng 5, 2022. Salt Lake City, UT
 
 [Website](https://remix.run/conf/2022) - [Twitter](https://twitter.com/remix_run) - [YouTube](https://www.youtube.com/playlist?list=PLXoynULbYuEC36XutMMWEuTu9uuh171wx)
 
 ### Reactathon 2022 {/*reactathon-2022*/}
-May 3 - 5, 2022. Berkeley, CA
+3 - 5 tháng 5, 2022. Berkeley, CA
 
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
 
 ### React Global Online Summit 2022 by Geekle {/*react-global-online-summit-2022-by-geekle*/}
-April 20 - 21, 2022 - Online Summit
+20 - 21 tháng 4, 2022 - Hội nghị thượng đỉnh trực tuyến
 
 [Website](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/)
 
 ### React Miami 2022 🌴 {/*react-miami-2022-*/}
-April 18 - 19, 2022. Miami, Florida
+18 - 19 tháng 4, 2022. Miami, Florida
 [Website](https://www.reactmiami.com/)
 
 ### React Live 2022 {/*react-live-2022*/}
-April 1, 2022. Amsterdam, The Netherlands
+1 tháng 4, 2022. Amsterdam, Hà Lan
 
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
 
 ### AgentConf 2022 {/*agentconf-2022*/}
 
-January 27 - 30, 2022. In-person in Dornbirn and Lech Austria
+27 - 30 tháng 1, 2022. Trực tiếp tại Dornbirn và Lech, Áo
 
 [Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
 
 ### React Conf 2021 {/*react-conf-2021*/}
-December 8, 2021 - remote event (replay event on December 9)
+8 tháng 12, 2021 - sự kiện từ xa (phát lại vào ngày 9 tháng 12)
 
 [Website](https://conf.reactjs.org/)
 
 ### ReactEurope 2021 {/*reacteurope-2021*/}
-December 9-10, 2021 - remote event
+9-10 tháng 12, 2021 - sự kiện từ xa
 
 [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### ReactNext 2021 {/*reactnext-2021*/}
-December 15, 2021. Tel-Aviv, Israel
+15 tháng 12, 2021. Tel-Aviv, Israel
 
 [Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### React India 2021 {/*react-india-2021*/}
-November 12-13, 2021 - remote event
+12-13 tháng 11, 2021 - sự kiện từ xa
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
 ### React Global by Geekle {/*react-global-by-geekle*/}
-November 3-4, 2021 - remote event
+3-4 tháng 11, 2021 - sự kiện từ xa
 
 [Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) - [YouTube](https://www.youtube.com/watch?v=0HhWIvPhbu0)
 
 ### React Advanced 2021 {/*react-advanced-2021*/}
-October 22-23, 2021. In-person in London, UK + remote (hybrid event)
+22-23 tháng 10, 2021. Trực tiếp tại London, Anh + từ xa (sự kiện hybrid)
 
 [Website](https://reactadvanced.com) - [Twitter](https://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### React Conf Brasil 2021 {/*react-conf-brasil-2021*/}
-October 16, 2021 - remote event
+16 tháng 10, 2021 - sự kiện từ xa
 
 [Website](http://reactconf.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh) - [Facebook](https://facebook.com/reactconf) - [Instagram](https://instagram.com/reactconfbr) - [YouTube](https://www.youtube.com/channel/UCJL5eorStQfC0x1iiWhvqPA/videos)
 
 ### React Brussels 2021 {/*react-brussels-2021*/}
-October 15, 2021 - remote event
+15 tháng 10, 2021 - sự kiện từ xa
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/)
 
 ### render(ATL) 2021 {/*renderatl-2021*/}
-September 13-15, 2021. Atlanta, GA, USA
+13-15 tháng 9, 2021. Atlanta, GA, Mỹ
 
 [Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
 ### React Native EU 2021 {/*react-native-eu-2021*/}
-September 1-2, 2021 - remote event
+1-2 tháng 9, 2021 - sự kiện từ xa
 
 [Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [Instagram](https://www.instagram.com/reactnative_eu/)
 
 ### React Finland 2021 {/*react-finland-2021*/}
-August 30 - September 3, 2021 - remote event
+30 tháng 8 - 3 tháng 9, 2021 - sự kiện từ xa
 
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [LinkedIn](https://www.linkedin.com/company/react-finland/)
 
 ### React Case Study Festival 2021 {/*react-case-study-festival-2021*/}
-April 27-28, 2021 - remote event
+27-28 tháng 4, 2021 - sự kiện từ xa
 
 [Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203)
 
 ### React Summit - Remote Edition 2021 {/*react-summit---remote-edition-2021*/}
-April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
+14-16 tháng 4, 2021, 7 giờ sáng PST / 10 giờ sáng EST / 4 giờ chiều CEST - sự kiện từ xa
 
 [Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-remote-edition-2021)
 
 ### React fwdays’21 {/*react-fwdays21*/}
-March 27, 2021 - remote event
+27 tháng 3, 2021 - sự kiện từ xa
 
 [Website](https://fwdays.com/en/event/react-fwdays-2021) - [Twitter](https://twitter.com/fwdays) - [Facebook](https://www.facebook.com/events/1133828147054286) - [LinkedIn](https://www.linkedin.com/events/reactfwdays-21onlineconference6758046347334582273) - [Meetup](https://www.meetup.com/ru-RU/Fwdays/events/275764431/)
 
 ### React Next 2020 {/*react-next-2020*/}
-December 1-2, 2020 - remote event
+1-2 tháng 12, 2020 - sự kiện từ xa
 
 [Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
 
 ### React Conf Brasil 2020 {/*react-conf-brasil-2020*/}
-November 21, 2020 - remote event
+21 tháng 11, 2020 - sự kiện từ xa
 
 [Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh/)
 
 ### React Summit 2020 {/*react-summit-2020*/}
-October 15-16, 2020, 7am PST / 10am EST / 4pm CEST - remote event
+15-16 tháng 10, 2020, 7 giờ sáng PST / 10 giờ sáng EST / 4 giờ chiều CEST - sự kiện từ xa
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### React Native EU 2020 {/*react-native-eu-2020*/}
-September 3-4, 2020 - remote event
+3-4 tháng 9, 2020 - sự kiện từ xa
 
 [Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/)
 
 ### ReactEurope 2020 {/*reacteurope-2020*/}
-May 14-15, 2020 in Paris, France
+14-15 tháng 5, 2020 tại Paris, Pháp
 
 [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### Byteconf React 2020 {/*byteconf-react-2020*/}
-May 1, 2020. Streamed online on YouTube.
+1 tháng 5, 2020. Phát trực tuyến trên YouTube.
 
 [Website](https://www.bytesized.xyz) - [Twitter](https://twitter.com/bytesizedcode) - [YouTube](https://www.youtube.com/channel/UC046lFvJZhiwSRWsoH8SFjg)
 
 ### React Summit - Remote Edition 2020 {/*react-summit---remote-edition-2020*/}
-3pm CEST time, April 17, 2020 - remote event
+3 giờ chiều CEST, ngày 17 tháng 4, 2020 - sự kiện từ xa
 
 [Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### Reactathon 2020 {/*reactathon-2020*/}
-March 30 - 31, 2020 in San Francisco, CA
+30 - 31 tháng 3, 2020 tại San Francisco, CA
 
 [Website](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
 
 ### ReactConf AU 2020 {/*reactconf-au-2020*/}
-February 27 & 28, 2020 in Sydney, Australia
+27 & 28 tháng 2, 2020 tại Sydney, Úc
 
 [Website](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
 
 ### React Barcamp Cologne 2020 {/*react-barcamp-cologne-2020*/}
-February 1-2, 2020 in Cologne, Germany
+1-2 tháng 2, 2020 tại Cologne, Đức
 
 [Website](https://react-barcamp.de/) - [Twitter](https://twitter.com/ReactBarcamp) - [Facebook](https://www.facebook.com/reactbarcamp)
 
 ### React Day Berlin 2019 {/*react-day-berlin-2019*/}
-December 6, 2019 in Berlin, Germany
+6 tháng 12, 2019 tại Berlin, Đức
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
 
 ### React Summit 2019 {/*react-summit-2019*/}
-November 30, 2019 in Lagos, Nigeria
+30 tháng 11, 2019 tại Lagos, Nigeria
 
 [Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
 
 ### React Conf Brasil 2019 {/*react-conf-brasil-2019*/}
-October 19, 2019 in São Paulo, BR
+19 tháng 10, 2019 tại São Paulo, BR
 
 [Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 
 ### React Advanced 2019 {/*react-advanced-2019*/}
-October 25, 2019 in London, UK
+25 tháng 10, 2019 tại London, Anh
 
 [Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### React Conf 2019 {/*react-conf-2019*/}
-October 24-25, 2019 in Henderson, Nevada USA
+24-25 tháng 10, 2019 tại Henderson, Nevada, Mỹ
 
 [Website](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
 
 ### React Alicante 2019 {/*react-alicante-2019*/}
-September 26-28, 2019 in Alicante, Spain
+26-28 tháng 9, 2019 tại Alicante, Tây Ban Nha
 
 [Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
 
 ### React India 2019 {/*react-india-2019*/}
-September 26-28, 2019 in Goa, India
+26-28 tháng 9, 2019 tại Goa, Ấn Độ
 
 [Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
 
 ### React Boston 2019 {/*react-boston-2019*/}
-September 21-22, 2019 in Boston, Massachusetts USA
+21-22 tháng 9, 2019 tại Boston, Massachusetts, Mỹ
 
 [Website](https://www.reactboston.com/) - [Twitter](https://twitter.com/reactboston)
 
 ### React Live 2019 {/*react-live-2019*/}
-September 13th, 2019. Amsterdam, The Netherlands
+13 tháng 9, 2019. Amsterdam, Hà Lan
 
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
 
 ### React New York 2019 {/*react-new-york-2019*/}
-September 13th, 2019. New York, USA
+13 tháng 9, 2019. New York, Mỹ
 
 [Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
 
 ### ComponentsConf 2019 {/*componentsconf-2019*/}
-September 6, 2019 in Melbourne, Australia
+6 tháng 9, 2019 tại Melbourne, Úc
 
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React Native EU 2019 {/*react-native-eu-2019*/}
-September 5-6 in Wrocław, Poland
+5-6 tháng 9 tại Wrocław, Ba Lan
 
 [Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
 ### React Conf Iran 2019 {/*react-conf-iran-2019*/}
-August 29, 2019. Tehran, Iran.
+29 tháng 8, 2019. Tehran, Iran.
 
 [Website](https://reactconf.ir/) - [Videos](https://www.youtube.com/playlist?list=PL-VNqZFI5Nf-Nsj0rD3CWXGPkH-DI_0VY) - [Highlights](https://github.com/ReactConf/react-conf-highlights)
 
 ### React Rally 2019 {/*react-rally-2019*/}
-August 22-23, 2019. Salt Lake City, USA.
+22-23 tháng 8, 2019. Salt Lake City, Mỹ.
 
 [Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
 ### Chain React 2019 {/*chain-react-2019*/}
-July 11-12, 2019. Portland, OR, USA.
+11-12 tháng 7, 2019. Portland, OR, Mỹ.
 
 [Website](https://infinite.red/ChainReactConf)
 
 ### React Loop 2019 {/*react-loop-2019*/}
-June 21, 2019 Chicago, Illinois USA
+21 tháng 6, 2019. Chicago, Illinois, Mỹ
 
 [Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
 ### React Norway 2019 {/*react-norway-2019*/}
-June 12, 2019. Larvik, Norway
+12 tháng 6, 2019. Larvik, Na Uy
 
 [Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
 ### ReactNext 2019 {/*reactnext-2019*/}
-June 11, 2019. Tel Aviv, Israel
+11 tháng 6, 2019. Tel Aviv, Israel
 
 [Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### React Conf Armenia 2019 {/*react-conf-armenia-2019*/}
-May 25, 2019 in Yerevan, Armenia
+25 tháng 5, 2019 tại Yerevan, Armenia
 
 [Website](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
 ### ReactEurope 2019 {/*reacteurope-2019*/}
-May 23-24, 2019 in Paris, France
+23-24 tháng 5, 2019 tại Paris, Pháp
 
 [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React.NotAConf 2019 {/*reactnotaconf-2019*/}
-May 11 in Sofia, Bulgaria
+11 tháng 5 tại Sofia, Bulgaria
 
 [Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
 
 ### ReactJS Girls Conference {/*reactjs-girls-conference*/}
-May 3, 2019 in London, UK
+3 tháng 5, 2019 tại London, Anh
 
 [Website](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
 
 ### React Finland 2019 {/*react-finland-2019*/}
-April 24-26 in Helsinki, Finland
+24-26 tháng 4 tại Helsinki, Phần Lan
 
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
 ### React Amsterdam 2019 {/*react-amsterdam-2019*/}
-April 12, 2019 in Amsterdam, The Netherlands
+12 tháng 4, 2019 tại Amsterdam, Hà Lan
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### App.js Conf 2019 {/*appjs-conf-2019*/}
-April 4-5, 2019 in Kraków, Poland
+4-5 tháng 4, 2019 tại Kraków, Ba Lan
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### Reactathon 2019 {/*reactathon-2019*/}
-March 30-31, 2019 in San Francisco, USA
+30-31 tháng 3, 2019 tại San Francisco, Mỹ
 
 [Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
 
 ### React Iran 2019 {/*react-iran-2019*/}
-January 31, 2019 in Tehran, Iran
+31 tháng 1, 2019 tại Tehran, Iran
 
 [Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
 
 ### React Day Berlin 2018 {/*react-day-berlin-2018*/}
-November 30, Berlin, Germany
+30 tháng 11, Berlin, Đức
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
 
 ### ReactNext 2018 {/*reactnext-2018*/}
-November 4 in Tel Aviv, Israel
+4 tháng 11 tại Tel Aviv, Israel
 
 [Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
 ### React Conf 2018 {/*react-conf-2018*/}
-October 25-26 in Henderson, Nevada USA
+25-26 tháng 10 tại Henderson, Nevada, Mỹ
 
 [Website](https://conf.reactjs.org/)
 
 ### React Conf Brasil 2018 {/*react-conf-brasil-2018*/}
-October 20 in Sao Paulo, Brazil
+20 tháng 10 tại Sao Paulo, Brazil
 
 [Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
 
 ### ReactJS Day 2018 {/*reactjs-day-2018*/}
-October 5 in Verona, Italy
+5 tháng 10 tại Verona, Ý
 
 [Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
 ### React Boston 2018 {/*react-boston-2018*/}
-September 29-30 in Boston, Massachusetts USA
+29-30 tháng 9 tại Boston, Massachusetts, Mỹ
 
 [Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
 
 ### React Alicante 2018 {/*react-alicante-2018*/}
-September 13-15 in Alicante, Spain
+13-15 tháng 9 tại Alicante, Tây Ban Nha
 
 [Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
 
 ### React Native EU 2018 {/*react-native-eu-2018*/}
-September 5-6 in Wrocław, Poland
+5-6 tháng 9 tại Wrocław, Ba Lan
 
 [Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
 ### Byteconf React 2018 {/*byteconf-react-2018*/}
-August 31 streamed online, via Twitch
+31 tháng 8, phát trực tuyến qua Twitch
 
 [Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
 
 ### ReactFoo Delhi {/*reactfoo-delhi*/}
-August 18 in Delhi, India
+18 tháng 8 tại Delhi, Ấn Độ
 
 [Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
 ### React DEV Conf China {/*react-dev-conf-china*/}
-August 18 in Guangzhou, China
+18 tháng 8 tại Guangzhou, Trung Quốc
 
 [Website](https://react.w3ctech.com)
 
 ### React Rally 2018 {/*react-rally-2018*/}
-August 16-17 in Salt Lake City, Utah USA
+16-17 tháng 8 tại Salt Lake City, Utah, Mỹ
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
 
 ### Chain React 2018 {/*chain-react-2018*/}
-July 11-13 in Portland, Oregon USA
+11-13 tháng 7 tại Portland, Oregon, Mỹ
 
 [Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
 
 ### ReactFoo Mumbai {/*reactfoo-mumbai*/}
-May 26 in Mumbai, India
+26 tháng 5 tại Mumbai, Ấn Độ
 
 [Website](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 

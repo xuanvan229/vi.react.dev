@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: Truyền Props cho một Component
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+Các React component sử dụng *props* để giao tiếp với nhau. Mỗi component cha có thể truyền một số thông tin cho các component con bằng cách cung cấp cho chúng props. Props có thể nhắc bạn đến các thuộc tính HTML, nhưng bạn có thể truyền bất kỳ giá trị JavaScript nào qua chúng, bao gồm đối tượng, mảng, và hàm.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* Cách truyền props cho một component
+* Cách đọc props từ một component
+* Cách chỉ định giá trị mặc định cho props
+* Cách truyền JSX cho một component
+* Props thay đổi theo thời gian như thế nào
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## Props quen thuộc {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+Props là thông tin bạn truyền cho thẻ JSX. Ví dụ, `className`, `src`, `alt`, `width`, và `height` là một số props bạn có thể truyền cho `<img>`:
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+Các props bạn có thể truyền cho thẻ `<img>` được định nghĩa sẵn (ReactDOM tuân theo [tiêu chuẩn HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Nhưng bạn có thể truyền bất kỳ props nào cho *các component của riêng bạn*, như `<Avatar>`, để tùy chỉnh chúng. Đây là cách làm!
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Truyền props cho một component {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+Trong code này, component `Profile` không truyền bất kỳ props nào cho component con của nó, `Avatar`:
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+Bạn có thể cung cấp cho `Avatar` một số props trong hai bước.
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### Bước 1: Truyền props cho component con {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+Đầu tiên, truyền một số props cho `Avatar`. Ví dụ, hãy truyền hai props: `person` (một đối tượng), và `size` (một số):
 
 ```js
 export default function Profile() {
@@ -84,25 +84,25 @@ export default function Profile() {
 
 <Note>
 
-If double curly braces after `person=` confuse you, recall [they're merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+Nếu dấu ngoặc nhọn kép sau `person=` gây nhầm lẫn cho bạn, hãy nhớ lại [chúng chỉ là một đối tượng](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) bên trong dấu ngoặc nhọn JSX.
 
 </Note>
 
-Now you can read these props inside the `Avatar` component.
+Bây giờ bạn có thể đọc các props này bên trong component `Avatar`.
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### Bước 2: Đọc props bên trong component con {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+Bạn có thể đọc các props này bằng cách liệt kê tên của chúng `person, size` được phân cách bởi dấu phẩy bên trong `({` và `})` ngay sau `function Avatar`. Điều này cho phép bạn sử dụng chúng bên trong code `Avatar`, giống như bạn sử dụng biến.
 
 ```js
 function Avatar({ person, size }) {
-  // person and size are available here
+  // person và size có sẵn ở đây
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+Thêm một số logic vào `Avatar` sử dụng props `person` và `size` để render, và bạn đã xong.
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+Bây giờ bạn có thể cấu hình `Avatar` để render theo nhiều cách khác nhau với các props khác nhau. Hãy thử điều chỉnh các giá trị!
 
 <Sandpack>
 

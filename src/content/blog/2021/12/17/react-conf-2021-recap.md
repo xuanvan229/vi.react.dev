@@ -1,8 +1,8 @@
 ---
-title: "React Conf 2021 Recap"
+title: "Tổng Kết React Conf 2021"
 author: Jesslyn Tannady and Rick Hanlon
 date: 2021/12/17
-description: Last week we hosted our 6th React Conf. In previous years, we've used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features.
+description: Tuần trước chúng tôi đã tổ chức React Conf lần thứ 6. Trong những năm trước, chúng tôi đã sử dụng sân khấu React Conf để đưa ra các thông báo thay đổi ngành như React Native và React Hooks. Năm nay, chúng tôi chia sẻ tầm nhìn đa nền tảng cho React, bắt đầu với việc phát hành React 18 và áp dụng dần dần các tính năng concurrent.
 ---
 
 December 17, 2021 by [Jesslyn Tannady](https://twitter.com/jtannady) and [Rick Hanlon](https://twitter.com/rickhanlonii)
@@ -11,113 +11,113 @@ December 17, 2021 by [Jesslyn Tannady](https://twitter.com/jtannady) and [Rick H
 
 <Intro>
 
-Last week we hosted our 6th React Conf. In previous years, we've used the React Conf stage to deliver industry changing announcements such as [_React Native_](https://engineering.fb.com/2015/03/26/android/react-native-bringing-modern-web-techniques-to-mobile/) and [_React Hooks_](https://reactjs.org/docs/hooks-intro.html). This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features.
+Tuần trước chúng tôi đã tổ chức React Conf lần thứ 6. Trong những năm trước, chúng tôi đã sử dụng sân khấu React Conf để đưa ra các thông báo thay đổi ngành như [_React Native_](https://engineering.fb.com/2015/03/26/android/react-native-bringing-modern-web-techniques-to-mobile/) và [_React Hooks_](https://reactjs.org/docs/hooks-intro.html). Năm nay, chúng tôi chia sẻ tầm nhìn đa nền tảng cho React, bắt đầu với việc phát hành React 18 và áp dụng dần dần các tính năng concurrent.
 
 </Intro>
 
 ---
 
-This was the first time React Conf was hosted online, and it was streamed for free, translated to 8 different languages. Participants from all over the world joined our conference Discord and the replay event for accessibility in all timezones. Over 50,000 people registered, with over 60,000 views of 19 talks, and 5,000 participants in Discord across both events.
+Đây là lần đầu tiên React Conf được tổ chức trực tuyến, và được phát trực tiếp miễn phí, được dịch sang 8 ngôn ngữ khác nhau. Người tham gia từ khắp nơi trên thế giới đã tham gia Discord hội nghị và sự kiện phát lại của chúng tôi để dễ tiếp cận ở tất cả múi giờ. Hơn 50.000 người đã đăng ký, với hơn 60.000 lượt xem 19 bài nói, và 5.000 người tham gia Discord trong cả hai sự kiện.
 
-All the talks are [available to stream online](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa).
+Tất cả các bài nói đều [có sẵn để xem trực tuyến](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa).
 
-Here’s a summary of what was shared on stage:
+Dưới đây là tóm tắt những gì đã được chia sẻ trên sân khấu:
 
-## React 18 and concurrent features {/*react-18-and-concurrent-features*/}
+## React 18 và các tính năng concurrent {/*react-18-and-concurrent-features*/}
 
-In the keynote, we shared our vision for the future of React starting with React 18.
+Trong bài keynote, chúng tôi đã chia sẻ tầm nhìn về tương lai của React bắt đầu với React 18.
 
-React 18 adds the long-awaited concurrent renderer and updates to Suspense without any major breaking changes. Apps can upgrade to React 18 and begin gradually adopting concurrent features with the amount of effort on par with any other major release.
+React 18 thêm concurrent renderer được chờ đợi từ lâu và cập nhật cho Suspense mà không có bất kỳ thay đổi phá vỡ lớn nào. Các ứng dụng có thể nâng cấp lên React 18 và bắt đầu dần dần áp dụng các tính năng concurrent với lượng nỗ lực tương đương với bất kỳ bản phát hành chính nào khác.
 
-**This means there is no concurrent mode, only concurrent features.**
+**Điều này có nghĩa là không có concurrent mode, chỉ có các tính năng concurrent.**
 
-In the keynote, we also shared our vision for Suspense, Server Components, new React working groups, and our long-term many-platform vision for React Native.
+Trong bài keynote, chúng tôi cũng chia sẻ tầm nhìn về Suspense, Server Components, các working group React mới, và tầm nhìn dài hạn nhiều nền tảng cho React Native.
 
-Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii) here:
+Xem bài keynote đầy đủ từ [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), và [Rick Hanlon](https://twitter.com/rickhanlonii) tại đây:
 
 <YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" />
 
-## React 18 for Application Developers {/*react-18-for-application-developers*/}
+## React 18 cho Nhà Phát Triển Ứng Dụng {/*react-18-for-application-developers*/}
 
-In the keynote, we also announced that the React 18 RC is available to try now. Pending further feedback, this is the exact version of React that we will publish to stable early next year.
+Trong bài keynote, chúng tôi cũng thông báo rằng React 18 RC đã có sẵn để thử ngay bây giờ. Chờ thêm phản hồi, đây là phiên bản React chính xác mà chúng tôi sẽ công bố ổn định vào đầu năm sau.
 
-To try the React 18 RC, upgrade your dependencies:
+Để thử React 18 RC, hãy nâng cấp các dependency của bạn:
 
 ```bash
 npm install react@rc react-dom@rc
 ```
 
-and switch to the new `createRoot` API:
+và chuyển sang API `createRoot` mới:
 
 ```js
 // before
-const container = document.getElementById('root');
+const container = document.getElementById(‘root’);
 ReactDOM.render(<App />, container);
 
 // after
-const container = document.getElementById('root');
+const container = document.getElementById(‘root’);
 const root = ReactDOM.createRoot(container);
 root.render(<App/>);
 ```
 
-For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shrutikapoor08)’s talk here:
+Để xem demo về việc nâng cấp lên React 18, hãy xem bài nói của [Shruti Kapoor](https://twitter.com/shrutikapoor08) tại đây:
 
 <YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" />
 
-## Streaming Server Rendering with Suspense {/*streaming-server-rendering-with-suspense*/}
+## Streaming Server Rendering với Suspense {/*streaming-server-rendering-with-suspense*/}
 
-React 18 also includes improvements to server-side rendering performance using Suspense.
+React 18 cũng bao gồm các cải tiến về hiệu suất server-side rendering sử dụng Suspense.
 
-Streaming server rendering lets you generate HTML from React components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
+Streaming server rendering cho phép bạn tạo HTML từ các React component trên server, và stream HTML đó đến người dùng. Trong React 18, bạn có thể sử dụng `Suspense` để chia nhỏ ứng dụng của mình thành các đơn vị độc lập nhỏ hơn có thể được stream độc lập với nhau mà không chặn phần còn lại của ứng dụng. Điều này có nghĩa là người dùng sẽ thấy nội dung của bạn sớm hơn và có thể bắt đầu tương tác với nó nhanh hơn nhiều.
 
-For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
+Để tìm hiểu sâu hơn, hãy xem bài nói của [Shaundai Person](https://twitter.com/shaundai) tại đây:
 
 <YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" />
 
-## The first React working group {/*the-first-react-working-group*/}
+## Working group React đầu tiên {/*the-first-react-working-group*/}
 
-For React 18, we created our first Working Group to collaborate with a panel of experts, developers, library maintainers, and educators. Together we worked to create our gradual adoption strategy and refine new APIs such as `useId`, `useSyncExternalStore`, and `useInsertionEffect`.
+Cho React 18, chúng tôi đã tạo Working Group đầu tiên để cộng tác với một ban chuyên gia, nhà phát triển, người bảo trì thư viện, và nhà giáo dục. Cùng nhau chúng tôi đã làm việc để tạo chiến lược áp dụng dần dần và tinh chỉnh các API mới như `useId`, `useSyncExternalStore`, và `useInsertionEffect`.
 
-For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha1216)'s talk:
+Để có tổng quan về công việc này, hãy xem bài nói của [Aakansha’ Doshi](https://twitter.com/aakansha1216):
 
 <YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" />
 
 ## React Developer Tooling {/*react-developer-tooling*/}
 
-To support the new features in this release, we also announced the newly formed React DevTools team and a new Timeline Profiler to help developers debug their React apps.
+Để hỗ trợ các tính năng mới trong bản phát hành này, chúng tôi cũng thông báo về đội ngũ React DevTools mới được thành lập và một Timeline Profiler mới để giúp các nhà phát triển debug ứng dụng React của họ.
 
-For more information and a demo of new DevTools features, see [Brian Vaughn](https://twitter.com/brian_d_vaughn)’s talk:
+Để biết thêm thông tin và demo về các tính năng DevTools mới, hãy xem bài nói của [Brian Vaughn](https://twitter.com/brian_d_vaughn):
 
 <YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" />
 
-## React without memo {/*react-without-memo*/}
+## React không cần memo {/*react-without-memo*/}
 
-Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
+Nhìn xa hơn vào tương lai, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) đã chia sẻ một cập nhật từ nghiên cứu React Labs của chúng tôi về compiler tự động memoization. Hãy xem bài nói này để biết thêm thông tin và demo về prototype compiler:
 
 <YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" />
 
-## React docs keynote {/*react-docs-keynote*/}
+## Bài keynote tài liệu React {/*react-docs-keynote*/}
 
-[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
+[Rachel Nabors](https://twitter.com/rachelnabors) đã mở đầu một phần các bài nói về học và thiết kế với React bằng một bài keynote về sự đầu tư của chúng tôi vào tài liệu mới của React ([hiện đã ra mắt là react.dev](/blog/2023/03/16/introducing-react-dev)):
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" />
 
-## And more... {/*and-more*/}
+## Và nhiều hơn nữa... {/*and-more*/}
 
-**We also heard talks on learning and designing with React:**
+**Chúng tôi cũng đã nghe các bài nói về học và thiết kế với React:**
 
-* Debbie O'Brien: [Things I learnt from the new React docs](https://youtu.be/-7odLW_hG7s).
+* Debbie O’Brien: [Things I learnt from the new React docs](https://youtu.be/-7odLW_hG7s).
 * Sarah Rainsberger: [Learning in the Browser](https://youtu.be/5X-WEQflCL0).
 * Linton Ye: [The ROI of Designing with React](https://youtu.be/7cPWmID5XAk).
 * Delba de Oliveira: [Interactive playgrounds with React](https://youtu.be/zL8cz2W0z34).
 
-**Talks from the Relay, React Native, and PyTorch teams:**
+**Các bài nói từ đội ngũ Relay, React Native, và PyTorch:**
 
 * Robert Balicki: [Re-introducing Relay](https://youtu.be/lhVGdErZuN4).
 * Eric Rozell and Steven Moyes: [React Native Desktop](https://youtu.be/9L4FFrvwJwY).
 * Roman Rädle: [On-device Machine Learning for React Native](https://youtu.be/NLj73vrc2I8)
 
-**And talks from the community on accessibility, tooling, and Server Components:**
+**Và các bài nói từ cộng đồng về accessibility, tooling, và Server Components:**
 
 * Daishi Kato: [React 18 for External Store Libraries](https://youtu.be/oPfSC5bQPR8).
 * Diego Haz: [Building Accessible Components in React 18](https://youtu.be/dcm8fjBfro8).
@@ -125,36 +125,36 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 * Lyle Troxell: [UI tools for artists](https://youtu.be/b3l4WxipFsE).
 * Helen Lin: [Hydrogen + React 18](https://youtu.be/HS6vIYkSNks).
 
-## Thank you {/*thank-you*/}
+## Lời cảm ơn {/*thank-you*/}
 
-This was our first year planning a conference ourselves, and we have a lot of people to thank.
+Đây là năm đầu tiên chúng tôi tự lên kế hoạch tổ chức hội nghị, và chúng tôi có rất nhiều người cần cảm ơn.
 
-First, thanks to all of our speakers [Aakansha Doshi](https://twitter.com/aakansha1216), [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://twitter.com/brian_d_vaughn), [Daishi Kato](https://twitter.com/dai_shi), [Debbie O'Brien](https://twitter.com/debs_obrien), [Delba de Oliveira](https://twitter.com/delba_oliveira), [Diego Haz](https://twitter.com/diegohaz), [Eric Rozell](https://twitter.com/EricRozell), [Helen Lin](https://twitter.com/wizardlyhel), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), [Linton Ye](https://twitter.com/lintonye), [Lyle Troxell](https://twitter.com/lyle), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Balicki](https://twitter.com/StatisticsFTW), [Roman Rädle](https://twitter.com/raedle), [Sarah Rainsberger](https://twitter.com/sarah11918), [Shaundai Person](https://twitter.com/shaundai), [Shruti Kapoor](https://twitter.com/shrutikapoor08), [Steven Moyes](https://twitter.com/moyessa), [Tafu Nakazaki](https://twitter.com/hawaiiman0), and  [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+Trước tiên, cảm ơn tất cả các diễn giả của chúng tôi [Aakansha Doshi](https://twitter.com/aakansha1216), [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://twitter.com/brian_d_vaughn), [Daishi Kato](https://twitter.com/dai_shi), [Debbie O’Brien](https://twitter.com/debs_obrien), [Delba de Oliveira](https://twitter.com/delba_oliveira), [Diego Haz](https://twitter.com/diegohaz), [Eric Rozell](https://twitter.com/EricRozell), [Helen Lin](https://twitter.com/wizardlyhel), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), [Linton Ye](https://twitter.com/lintonye), [Lyle Troxell](https://twitter.com/lyle), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Balicki](https://twitter.com/StatisticsFTW), [Roman Rädle](https://twitter.com/raedle), [Sarah Rainsberger](https://twitter.com/sarah11918), [Shaundai Person](https://twitter.com/shaundai), [Shruti Kapoor](https://twitter.com/shrutikapoor08), [Steven Moyes](https://twitter.com/moyessa), [Tafu Nakazaki](https://twitter.com/hawaiiman0), và [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
 
-Thanks to everyone who helped provide feedback on talks including [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Dave McCabe](https://twitter.com/mcc_abe), [Eli White](https://twitter.com/Eli_White), [Joe Savona](https://twitter.com/en_JS),  [Lauren Tan](https://twitter.com/potetotes), [Rachel Nabors](https://twitter.com/rachelnabors), and [Tim Yung](https://twitter.com/yungsters).
+Cảm ơn tất cả mọi người đã giúp cung cấp phản hồi về các bài nói bao gồm [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Dave McCabe](https://twitter.com/mcc_abe), [Eli White](https://twitter.com/Eli_White), [Joe Savona](https://twitter.com/en_JS), [Lauren Tan](https://twitter.com/potetotes), [Rachel Nabors](https://twitter.com/rachelnabors), và [Tim Yung](https://twitter.com/yungsters).
 
-Thanks to [Lauren Tan](https://twitter.com/potetotes) for setting up the conference Discord and serving as our Discord admin.
+Cảm ơn [Lauren Tan](https://twitter.com/potetotes) đã thiết lập Discord hội nghị và phục vụ với tư cách quản trị viên Discord của chúng tôi.
 
-Thanks to [Seth Webster](https://twitter.com/sethwebster) for feedback on overall direction and making sure we were focused on diversity and inclusion.
+Cảm ơn [Seth Webster](https://twitter.com/sethwebster) đã phản hồi về định hướng tổng thể và đảm bảo chúng tôi tập trung vào đa dạng và hòa nhập.
 
-Thanks to [Rachel Nabors](https://twitter.com/rachelnabors) for spearheading our moderation effort, and [Aisha Blake](https://twitter.com/AishaBlake) for creating our moderation guide, leading our moderation team, training the translators and moderators, and helping to moderate both events.
+Cảm ơn [Rachel Nabors](https://twitter.com/rachelnabors) đã dẫn đầu nỗ lực kiểm duyệt của chúng tôi, và [Aisha Blake](https://twitter.com/AishaBlake) đã tạo hướng dẫn kiểm duyệt, dẫn đầu đội ngũ kiểm duyệt, đào tạo các dịch giả và người kiểm duyệt, và giúp kiểm duyệt cả hai sự kiện.
 
-Thanks to our moderators [Jesslyn Tannady](https://twitter.com/jtannady), [Suzie Grange](https://twitter.com/missuze), [Becca Bailey](https://twitter.com/beccaliz), [Luna Wei](https://twitter.com/lunaleaps), [Joe Previte](https://twitter.com/jsjoeio), [Nicola Corti](https://twitter.com/Cortinico), [Gijs Weterings](https://twitter.com/gweterings), [Claudio Procida](https://twitter.com/claudiopro), Julia Neumann, Mengdi Chen, Jean Zhang, Ricky Li, and [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+Cảm ơn các người kiểm duyệt [Jesslyn Tannady](https://twitter.com/jtannady), [Suzie Grange](https://twitter.com/missuze), [Becca Bailey](https://twitter.com/beccaliz), [Luna Wei](https://twitter.com/lunaleaps), [Joe Previte](https://twitter.com/jsjoeio), [Nicola Corti](https://twitter.com/Cortinico), [Gijs Weterings](https://twitter.com/gweterings), [Claudio Procida](https://twitter.com/claudiopro), Julia Neumann, Mengdi Chen, Jean Zhang, Ricky Li, và [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
 
-Thanks to [Manjula Dube](https://twitter.com/manjula_dube), [Sahil Mhapsekar](https://twitter.com/apheri0), and Vihang Patel from [React India](https://www.reactindia.io/), and [Jasmine Xie](https://twitter.com/jasmine_xby), [QiChang Li](https://twitter.com/QCL15), and [YanLun Li](https://twitter.com/anneincoding) from [React China](https://twitter.com/ReactChina) for helping moderate our replay event and keep it engaging for the community.
+Cảm ơn [Manjula Dube](https://twitter.com/manjula_dube), [Sahil Mhapsekar](https://twitter.com/apheri0), và Vihang Patel từ [React India](https://www.reactindia.io/), và [Jasmine Xie](https://twitter.com/jasmine_xby), [QiChang Li](https://twitter.com/QCL15), và [YanLun Li](https://twitter.com/anneincoding) từ [React China](https://twitter.com/ReactChina) đã giúp kiểm duyệt sự kiện phát lại của chúng tôi và giữ cho nó hấp dẫn với cộng đồng.
 
-Thanks to Vercel for publishing their [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit), which the conference website was built on, and to [Lee Robinson](https://twitter.com/leeerob) and [Delba de Oliveira](https://twitter.com/delba_oliveira) for sharing their experience running Next.js Conf.
+Cảm ơn Vercel đã công bố [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit) của họ, trang web hội nghị được xây dựng trên đó, và [Lee Robinson](https://twitter.com/leeerob) và [Delba de Oliveira](https://twitter.com/delba_oliveira) đã chia sẻ kinh nghiệm tổ chức Next.js Conf của họ.
 
-Thanks to [Leah Silber](https://twitter.com/wifelette) for sharing her experience running conferences, learnings from running [RustConf](https://rustconf.com/), and for her book [Event Driven](https://leanpub.com/eventdriven/) and the advice it contains for running conferences.
+Cảm ơn [Leah Silber](https://twitter.com/wifelette) đã chia sẻ kinh nghiệm tổ chức hội nghị, bài học từ việc tổ chức [RustConf](https://rustconf.com/), và cuốn sách [Event Driven](https://leanpub.com/eventdriven/) của bà và lời khuyên trong đó về việc tổ chức hội nghị.
 
-Thanks to [Kevin Lewis](https://twitter.com/_phzn) and [Rachel Nabors](https://twitter.com/rachelnabors) for sharing their experience running Women of React Conf.
+Cảm ơn [Kevin Lewis](https://twitter.com/_phzn) và [Rachel Nabors](https://twitter.com/rachelnabors) đã chia sẻ kinh nghiệm tổ chức Women of React Conf.
 
-Thanks to [Aakansha Doshi](https://twitter.com/aakansha1216), [Laurie Barth](https://twitter.com/laurieontech), [Michael Chan](https://twitter.com/chantastic), and [Shaundai Person](https://twitter.com/shaundai) for their advice and ideas throughout planning.
+Cảm ơn [Aakansha Doshi](https://twitter.com/aakansha1216), [Laurie Barth](https://twitter.com/laurieontech), [Michael Chan](https://twitter.com/chantastic), và [Shaundai Person](https://twitter.com/shaundai) đã cung cấp lời khuyên và ý tưởng trong suốt quá trình lên kế hoạch.
 
-Thanks to [Dan Lebowitz](https://twitter.com/lebo) for help designing and building the conference website and tickets.
+Cảm ơn [Dan Lebowitz](https://twitter.com/lebo) đã giúp thiết kế và xây dựng trang web hội nghị và vé.
 
-Thanks to Laura Podolak Waddell, Desmond Osei-Acheampong, Mark Rossi, Josh Toberman and others on the Facebook Video Productions team for recording the videos for the Keynote and Meta employee talks.
+Cảm ơn Laura Podolak Waddell, Desmond Osei-Acheampong, Mark Rossi, Josh Toberman và những người khác trong đội ngũ Facebook Video Productions đã ghi lại các video cho Keynote và các bài nói của nhân viên Meta.
 
-Thanks to our partner HitPlay for helping to organize the conference, editing all the videos in the stream, translating all the talks, and moderating the Discord in multiple languages.
+Cảm ơn đối tác HitPlay của chúng tôi đã giúp tổ chức hội nghị, chỉnh sửa tất cả các video trong stream, dịch tất cả các bài nói, và kiểm duyệt Discord bằng nhiều ngôn ngữ.
 
-Finally, thanks to all of our participants for making this a great React Conf!
+Cuối cùng, cảm ơn tất cả người tham gia đã làm cho đây là một React Conf tuyệt vời!

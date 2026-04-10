@@ -4,9 +4,9 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
-`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.
+`<Fragment>`, thường được sử dụng qua cú pháp `<>...</>`, cho phép bạn nhóm các element mà không cần một node bao bọc.
 
-<Canary> Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements. See reference and usage below.</Canary>
+<Canary> Fragments cũng có thể nhận refs, cho phép tương tác với các node DOM bên dưới mà không cần thêm các element bao bọc. Xem tham chiếu và cách sử dụng bên dưới.</Canary>
 
 ```js
 <>
@@ -21,58 +21,58 @@ title: <Fragment> (<>...</>)
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `<Fragment>` {/*fragment*/}
 
-Wrap elements in `<Fragment>` to group them together in situations where you need a single element. Grouping elements in `Fragment` has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag `<></>` is shorthand for `<Fragment></Fragment>` in most cases.
+Bọc các element trong `<Fragment>` để nhóm chúng lại với nhau trong các tình huống bạn cần một element duy nhất. Việc nhóm các element trong `Fragment` không có tác động đến DOM kết quả; nó giống như khi các element không được nhóm. Thẻ JSX rỗng `<></>` là viết tắt của `<Fragment></Fragment>` trong hầu hết các trường hợp.
 
 #### Props {/*props*/}
 
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
-- <CanaryBadge />  **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
+- **tùy chọn** `key`: Các Fragment được khai báo với cú pháp `<Fragment>` tường minh có thể có [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- <CanaryBadge />  **tùy chọn** `ref`: Một đối tượng ref (ví dụ từ [`useRef`](/reference/react/useRef)) hoặc [hàm callback](/reference/react-dom/components/common#ref-callback). React cung cấp một `FragmentInstance` làm giá trị ref với các phương thức để tương tác với các node DOM được bọc bởi Fragment.
 
 ### <CanaryBadge /> FragmentInstance {/*fragmentinstance*/}
 
-When you pass a ref to a fragment, React provides a `FragmentInstance` object with methods for interacting with the DOM nodes wrapped by the fragment:
+Khi bạn truyền ref cho một fragment, React cung cấp một đối tượng `FragmentInstance` với các phương thức để tương tác với các node DOM được bọc bởi fragment:
 
-**Event handling methods:**
-- `addEventListener(type, listener, options?)`: Adds an event listener to all first-level DOM children of the Fragment.
-- `removeEventListener(type, listener, options?)`: Removes an event listener from all first-level DOM children of the Fragment.
-- `dispatchEvent(event)`: Dispatches an event to a virtual child of the Fragment to call any added listeners and can bubble to the DOM parent.
+**Các phương thức xử lý sự kiện:**
+- `addEventListener(type, listener, options?)`: Thêm một event listener cho tất cả các DOM con cấp một của Fragment.
+- `removeEventListener(type, listener, options?)`: Xóa một event listener khỏi tất cả các DOM con cấp một của Fragment.
+- `dispatchEvent(event)`: Gửi một event đến một con ảo của Fragment để gọi bất kỳ listener nào đã thêm và có thể bubble lên DOM cha.
 
-**Layout methods:**
-- `compareDocumentPosition(otherNode)`: Compares the document position of the Fragment with another node.
-  - If the Fragment has children, the native `compareDocumentPosition` value is returned.
-  - Empty Fragments will attempt to compare positioning within the React tree and include `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC`.
-  - Elements that have a different relationship in the React tree and DOM tree due to portaling or other insertions are `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC`.
-- `getClientRects()`: Returns a flat array of `DOMRect` objects representing the bounding rectangles of all children.
-- `getRootNode()`: Returns the root node containing the Fragment's parent DOM node.
+**Các phương thức layout:**
+- `compareDocumentPosition(otherNode)`: So sánh vị trí tài liệu của Fragment với một node khác.
+  - Nếu Fragment có con, giá trị `compareDocumentPosition` native sẽ được trả về.
+  - Fragment rỗng sẽ cố gắng so sánh vị trí trong cây React và bao gồm `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC`.
+  - Các element có mối quan hệ khác nhau trong cây React và cây DOM do portaling hoặc các insertion khác là `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC`.
+- `getClientRects()`: Trả về một mảng phẳng các đối tượng `DOMRect` đại diện cho các hình chữ nhật bao quanh của tất cả các con.
+- `getRootNode()`: Trả về node gốc chứa node DOM cha của Fragment.
 
-**Focus management methods:**
-- `focus(options?)`: Focuses the first focusable DOM node in the Fragment. Focus is attempted on nested children depth-first.
-- `focusLast(options?)`: Focuses the last focusable DOM node in the Fragment. Focus is attempted on nested children depth-first.
-- `blur()`: Removes focus if `document.activeElement` is within the Fragment.
+**Các phương thức quản lý focus:**
+- `focus(options?)`: Focus vào node DOM có thể focus đầu tiên trong Fragment. Focus được thử trên các con lồng nhau theo chiều sâu.
+- `focusLast(options?)`: Focus vào node DOM có thể focus cuối cùng trong Fragment. Focus được thử trên các con lồng nhau theo chiều sâu.
+- `blur()`: Xóa focus nếu `document.activeElement` nằm trong Fragment.
 
-**Observer methods:**
-- `observeUsing(observer)`: Starts observing the Fragment's DOM children with an IntersectionObserver or ResizeObserver.
-- `unobserveUsing(observer)`: Stops observing the Fragment's DOM children with the specified observer.
+**Các phương thức observer:**
+- `observeUsing(observer)`: Bắt đầu observe các con DOM của Fragment với một IntersectionObserver hoặc ResizeObserver.
+- `unobserveUsing(observer)`: Dừng observe các con DOM của Fragment với observer đã chỉ định.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- If you want to pass `key` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment key={yourKey}>...</Fragment>`.
+- Nếu bạn muốn truyền `key` cho một Fragment, bạn không thể sử dụng cú pháp `<>...</>`. Bạn phải import `Fragment` từ `'react'` một cách tường minh và render `<Fragment key={yourKey}>...</Fragment>`.
 
-- React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React không [reset state](/learn/preserving-and-resetting-state) khi bạn chuyển từ render `<><Child /></>` sang `[<Child />]` hoặc ngược lại, hoặc khi bạn chuyển từ render `<><Child /></>` sang `<Child />` và ngược lại. Điều này chỉ hoạt động ở một cấp sâu: ví dụ, chuyển từ `<><><Child /></></>` sang `<Child />` sẽ reset state. Xem ngữ nghĩa chính xác [tại đây.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
-- <CanaryBadge /> If you want to pass `ref` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment ref={yourRef}>...</Fragment>`.
+- <CanaryBadge /> Nếu bạn muốn truyền `ref` cho một Fragment, bạn không thể sử dụng cú pháp `<>...</>`. Bạn phải import `Fragment` từ `'react'` một cách tường minh và render `<Fragment ref={yourRef}>...</Fragment>`.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Returning multiple elements {/*returning-multiple-elements*/}
+### Trả về nhiều element {/*returning-multiple-elements*/}
 
-Use `Fragment`, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
+Sử dụng `Fragment`, hoặc cú pháp tương đương `<>...</>`, để nhóm nhiều element lại với nhau. Bạn có thể sử dụng nó để đặt nhiều element vào bất kỳ nơi nào mà một element duy nhất có thể đặt được. Ví dụ, một component chỉ có thể trả về một element, nhưng bằng cách sử dụng Fragment, bạn có thể nhóm nhiều element lại với nhau và trả về chúng như một nhóm:
 
 ```js {3,6}
 function Post() {
@@ -85,7 +85,7 @@ function Post() {
 }
 ```
 
-Fragments are useful because grouping elements with a Fragment has no effect on layout or styles, unlike if you wrapped the elements in another container like a DOM element. If you inspect this example with the browser tools, you'll see that all `<h1>` and `<article>` DOM nodes appear as siblings without wrappers around them:
+Fragments rất hữu ích vì việc nhóm các element với Fragment không ảnh hưởng đến layout hoặc style, khác với việc bạn bọc các element trong một container khác như một element DOM. Nếu bạn kiểm tra ví dụ này với công cụ trình duyệt, bạn sẽ thấy tất cả các node DOM `<h1>` và `<article>` xuất hiện như các anh em cùng cấp mà không có wrapper bao quanh:
 
 <Sandpack>
 
@@ -125,9 +125,9 @@ function PostBody({ body }) {
 
 <DeepDive>
 
-#### How to write a Fragment without the special syntax? {/*how-to-write-a-fragment-without-the-special-syntax*/}
+#### Làm thế nào để viết Fragment mà không dùng cú pháp đặc biệt? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
-The example above is equivalent to importing `Fragment` from React:
+Ví dụ trên tương đương với việc import `Fragment` từ React:
 
 ```js {1,5,8}
 import { Fragment } from 'react';
@@ -142,15 +142,15 @@ function Post() {
 }
 ```
 
-Usually you won't need this unless you need to [pass a `key` to your `Fragment`.](#rendering-a-list-of-fragments)
+Thông thường bạn sẽ không cần điều này trừ khi bạn cần [truyền `key` cho `Fragment` của bạn.](#rendering-a-list-of-fragments)
 
 </DeepDive>
 
 ---
 
-### Assigning multiple elements to a variable {/*assigning-multiple-elements-to-a-variable*/}
+### Gán nhiều element vào một biến {/*assigning-multiple-elements-to-a-variable*/}
 
-Like any other element, you can assign Fragment elements to variables, pass them as props, and so on:
+Giống như bất kỳ element nào khác, bạn có thể gán các Fragment element vào biến, truyền chúng làm props, v.v.:
 
 ```js
 function CloseDialog() {
@@ -170,9 +170,9 @@ function CloseDialog() {
 
 ---
 
-### Grouping elements with text {/*grouping-elements-with-text*/}
+### Nhóm element với văn bản {/*grouping-elements-with-text*/}
 
-You can use `Fragment` to group text together with components:
+Bạn có thể sử dụng `Fragment` để nhóm văn bản với các component:
 
 ```js
 function DateRangePicker({ start, end }) {
@@ -189,9 +189,9 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Rendering a list of Fragments {/*rendering-a-list-of-fragments*/}
+### Render một danh sách Fragments {/*rendering-a-list-of-fragments*/}
 
-Here's a situation where you need to write `Fragment` explicitly instead of using the `<></>` syntax. When you [render multiple elements in a loop](/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
+Đây là tình huống bạn cần viết `Fragment` tường minh thay vì sử dụng cú pháp `<></>`. Khi bạn [render nhiều element trong một vòng lặp](/learn/rendering-lists), bạn cần gán một `key` cho mỗi element. Nếu các element trong vòng lặp là Fragments, bạn cần sử dụng cú pháp element JSX bình thường để cung cấp thuộc tính `key`:
 
 ```js {3,6}
 function Blog() {
@@ -204,7 +204,7 @@ function Blog() {
 }
 ```
 
-You can inspect the DOM to verify that there are no wrapper elements around the Fragment children:
+Bạn có thể kiểm tra DOM để xác nhận rằng không có element bao bọc nào xung quanh các con của Fragment:
 
 <Sandpack>
 
@@ -242,9 +242,9 @@ function PostBody({ body }) {
 
 ---
 
-### <CanaryBadge /> Using Fragment refs for DOM interaction {/*using-fragment-refs-for-dom-interaction*/}
+### <CanaryBadge /> Sử dụng Fragment refs để tương tác DOM {/*using-fragment-refs-for-dom-interaction*/}
 
-Fragment refs allow you to interact with the DOM nodes wrapped by a Fragment without adding extra wrapper elements. This is useful for event handling, visibility tracking, focus management, and replacing deprecated patterns like `ReactDOM.findDOMNode()`.
+Fragment refs cho phép bạn tương tác với các node DOM được bọc bởi Fragment mà không cần thêm các element wrapper bổ sung. Điều này hữu ích cho xử lý sự kiện, theo dõi khả năng hiển thị, quản lý focus, và thay thế các pattern đã lỗi thời như `ReactDOM.findDOMNode()`.
 
 ```js
 import { Fragment } from 'react';
@@ -262,9 +262,9 @@ function ClickableFragment({ children, onClick }) {
 ```
 ---
 
-### <CanaryBadge /> Tracking visibility with Fragment refs {/*tracking-visibility-with-fragment-refs*/}
+### <CanaryBadge /> Theo dõi khả năng hiển thị với Fragment refs {/*tracking-visibility-with-fragment-refs*/}
 
-Fragment refs are useful for visibility tracking and intersection observation. This enables you to monitor when content becomes visible without requiring the child Components to expose refs:
+Fragment refs hữu ích cho việc theo dõi khả năng hiển thị và intersection observation. Điều này cho phép bạn giám sát khi nội dung trở nên hiển thị mà không yêu cầu các Component con phải expose refs:
 
 ```js {19,21,31-34}
 import { Fragment, useRef, useLayoutEffect } from 'react';
@@ -305,13 +305,13 @@ function MyComponent() {
 }
 ```
 
-This pattern is an alternative to Effect-based visibility logging, which is an anti-pattern in most cases. Relying on Effects alone does not guarantee that the rendered Component is observable by the user.
+Pattern này là một thay thế cho việc ghi log khả năng hiển thị dựa trên Effect, vốn là một anti-pattern trong hầu hết các trường hợp. Việc chỉ dựa vào Effects không đảm bảo rằng Component đã render là observable bởi người dùng.
 
 ---
 
-### <CanaryBadge /> Focus management with Fragment refs {/*focus-management-with-fragment-refs*/}
+### <CanaryBadge /> Quản lý focus với Fragment refs {/*focus-management-with-fragment-refs*/}
 
-Fragment refs provide focus management methods that work across all DOM nodes within the Fragment:
+Fragment refs cung cấp các phương thức quản lý focus hoạt động trên tất cả các node DOM trong Fragment:
 
 ```js
 import { Fragment, useRef } from 'react';
@@ -325,4 +325,4 @@ function FocusFragment({ children }) {
 }
 ```
 
-The `focus()` method focuses the first focusable element within the Fragment, while `focusLast()` focuses the last focusable element.
+Phương thức `focus()` focus vào element có thể focus đầu tiên trong Fragment, trong khi `focusLast()` focus vào element có thể focus cuối cùng.

@@ -1,8 +1,8 @@
 ---
-title: "How to Upgrade to React 18"
+title: "Cách Nâng Cấp Lên React 18"
 author: Rick Hanlon
 date: 2022/03/08
-description: As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
+description: Như chúng tôi đã chia sẻ trong bài viết phát hành, React 18 giới thiệu các tính năng được hỗ trợ bởi concurrent renderer mới, với chiến lược áp dụng dần dần cho các ứng dụng hiện tại. Trong bài viết này, chúng tôi sẽ hướng dẫn bạn các bước nâng cấp lên React 18.
 ---
 
 March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
@@ -11,60 +11,60 @@ March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
-As we shared in the [release post](/blog/2022/03/29/react-v18), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
+Như chúng tôi đã chia sẻ trong [bài viết phát hành](/blog/2022/03/29/react-v18), React 18 giới thiệu các tính năng được hỗ trợ bởi concurrent renderer mới, với chiến lược áp dụng dần dần cho các ứng dụng hiện tại. Trong bài viết này, chúng tôi sẽ hướng dẫn bạn các bước nâng cấp lên React 18.
 
-Please [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter while upgrading to React 18.
+Vui lòng [báo cáo bất kỳ vấn đề nào](https://github.com/facebook/react/issues/new/choose) bạn gặp phải trong khi nâng cấp lên React 18.
 
 </Intro>
 
 <Note>
 
-For React Native users, React 18 will ship in a future version of React Native. This is because React 18 relies on the New React Native Architecture to benefit from the new capabilities presented in this blogpost. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
+Đối với người dùng React Native, React 18 sẽ được đưa vào phiên bản tương lai của React Native. Điều này vì React 18 dựa vào Kiến Trúc React Native Mới để hưởng lợi từ các khả năng mới được trình bày trong bài blog này. Để biết thêm thông tin, hãy xem [bài keynote React Conf tại đây](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
 
 </Note>
 
 ---
 
-## Installing {/*installing*/}
+## Cài đặt {/*installing*/}
 
-To install the latest version of React:
+Để cài đặt phiên bản React mới nhất:
 
 ```bash
 npm install react react-dom
 ```
 
-Or if you’re using yarn:
+Hoặc nếu bạn đang sử dụng yarn:
 
 ```bash
 yarn add react react-dom
 ```
 
-## Updates to Client Rendering APIs {/*updates-to-client-rendering-apis*/}
+## Cập nhật Client Rendering APIs {/*updates-to-client-rendering-apis*/}
 
-When you first install React 18, you will see a warning in the console:
+Khi bạn lần đầu cài đặt React 18, bạn sẽ thấy cảnh báo trong console:
 
 <ConsoleBlock level="error">
 
-ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it’s running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
 
 </ConsoleBlock>
 
-React 18 introduces a new root API which provides better ergonomics for managing roots. The new root API also enables the new concurrent renderer, which allows you to opt-into concurrent features.
+React 18 giới thiệu một root API mới cung cấp ergonomics tốt hơn để quản lý roots. Root API mới cũng kích hoạt concurrent renderer mới, cho phép bạn chọn tham gia vào các tính năng concurrent.
 
 ```js
 // Before
-import { render } from 'react-dom';
-const container = document.getElementById('app');
+import { render } from ‘react-dom’;
+const container = document.getElementById(‘app’);
 render(<App tab="home" />, container);
 
 // After
-import { createRoot } from 'react-dom/client';
-const container = document.getElementById('app');
+import { createRoot } from ‘react-dom/client’;
+const container = document.getElementById(‘app’);
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(<App tab="home" />);
 ```
 
-We’ve also changed `unmountComponentAtNode` to `root.unmount`:
+Chúng tôi cũng đã thay đổi `unmountComponentAtNode` thành `root.unmount`:
 
 ```js
 // Before
@@ -74,84 +74,84 @@ unmountComponentAtNode(container);
 root.unmount();
 ```
 
-We've also removed the callback from render, since it usually does not have the expected result when using Suspense:
+Chúng tôi cũng đã xóa callback khỏi render, vì nó thường không có kết quả như mong đợi khi sử dụng Suspense:
 
 ```js
 // Before
-const container = document.getElementById('app');
+const container = document.getElementById(‘app’);
 render(<App tab="home" />, container, () => {
-  console.log('rendered');
+  console.log(‘rendered’);
 });
 
 // After
 function AppWithCallbackAfterRender() {
   useEffect(() => {
-    console.log('rendered');
+    console.log(‘rendered’);
   });
 
   return <App tab="home" />
 }
 
-const container = document.getElementById('app');
+const container = document.getElementById(‘app’);
 const root = createRoot(container);
 root.render(<AppWithCallbackAfterRender />);
 ```
 
 <Note>
 
-There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+Không có sự thay thế một-một cho render callback API cũ - nó phụ thuộc vào use case của bạn. Xem bài đăng working group cho [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) để biết thêm thông tin.
 
 </Note>
 
-Finally, if your app uses server-side rendering with hydration, upgrade `hydrate` to `hydrateRoot`:
+Cuối cùng, nếu ứng dụng của bạn sử dụng server-side rendering với hydration, hãy nâng cấp `hydrate` lên `hydrateRoot`:
 
 ```js
 // Before
-import { hydrate } from 'react-dom';
-const container = document.getElementById('app');
+import { hydrate } from ‘react-dom’;
+const container = document.getElementById(‘app’);
 hydrate(<App tab="home" />, container);
 
 // After
-import { hydrateRoot } from 'react-dom/client';
-const container = document.getElementById('app');
+import { hydrateRoot } from ‘react-dom/client’;
+const container = document.getElementById(‘app’);
 const root = hydrateRoot(container, <App tab="home" />);
-// Unlike with createRoot, you don't need a separate root.render() call here.
+// Unlike with createRoot, you don’t need a separate root.render() call here.
 ```
 
-For more information, see the [working group discussion here](https://github.com/reactwg/react-18/discussions/5).
+Để biết thêm thông tin, hãy xem [thảo luận working group tại đây](https://github.com/reactwg/react-18/discussions/5).
 
 <Note>
 
-**If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) after you fix the issues that it's pointing out.
+**Nếu ứng dụng của bạn không hoạt động sau khi nâng cấp, hãy kiểm tra xem nó có được bọc trong `<StrictMode>` không.** [Strict Mode đã trở nên nghiêm ngặt hơn trong React 18](#updates-to-strict-mode), và không phải tất cả các component của bạn có thể chịu đựng được các kiểm tra mới mà nó thêm vào ở chế độ development. Nếu việc xóa Strict Mode sửa ứng dụng của bạn, bạn có thể xóa nó trong quá trình nâng cấp, và sau đó thêm lại (ở đầu hoặc cho một phần cây) sau khi bạn sửa các vấn đề mà nó chỉ ra.
 
 </Note>
 
-## Updates to Server Rendering APIs {/*updates-to-server-rendering-apis*/}
+## Cập nhật Server Rendering APIs {/*updates-to-server-rendering-apis*/}
 
-In this release, we’re revamping our `react-dom/server` APIs to fully support Suspense on the server and Streaming SSR. As part of these changes, we're deprecating the old Node streaming API, which does not support incremental Suspense streaming on the server.
+Trong bản phát hành này, chúng tôi đang cải tổ các API `react-dom/server` của mình để hỗ trợ đầy đủ Suspense trên server và Streaming SSR. Là một phần của những thay đổi này, chúng tôi đang ngừng hỗ trợ Node streaming API cũ, không hỗ trợ incremental Suspense streaming trên server.
 
-Using this API will now warn:
+Sử dụng API này bây giờ sẽ cảnh báo:
 
 * `renderToNodeStream`: **Deprecated ⛔️️**
 
-Instead, for streaming in Node environments, use:
+Thay vào đó, cho streaming trong môi trường Node, hãy sử dụng:
 * `renderToPipeableStream`: **New ✨**
 
-We're also introducing a new API to support streaming SSR with Suspense for modern edge runtime environments, such as Deno and Cloudflare workers:
+Chúng tôi cũng đang giới thiệu một API mới để hỗ trợ streaming SSR với Suspense cho các môi trường edge runtime hiện đại, chẳng hạn như Deno và Cloudflare workers:
 * `renderToReadableStream`: **New ✨**
 
-The following APIs will continue working, but with limited support for Suspense:
+Các API sau sẽ tiếp tục hoạt động, nhưng với hỗ trợ Suspense hạn chế:
 * `renderToString`: **Limited** ⚠️
 * `renderToStaticMarkup`: **Limited** ⚠️
 
-Finally, this API will continue to work for rendering e-mails:
+Cuối cùng, API này sẽ tiếp tục hoạt động để render email:
 * `renderToStaticNodeStream`
 
-For more information on the changes to server rendering APIs, see the working group post on [Upgrading to React 18 on the server](https://github.com/reactwg/react-18/discussions/22), a [deep dive on the new Suspense SSR Architecture](https://github.com/reactwg/react-18/discussions/37), and [Shaundai Person’s](https://twitter.com/shaundai) talk on [Streaming Server Rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) at React Conf 2021.
+Để biết thêm thông tin về các thay đổi đối với server rendering APIs, hãy xem bài đăng working group về [Upgrading to React 18 on the server](https://github.com/reactwg/react-18/discussions/22), phân tích sâu về [kiến trúc Suspense SSR mới](https://github.com/reactwg/react-18/discussions/37), và bài nói của [Shaundai Person](https://twitter.com/shaundai) về [Streaming Server Rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) tại React Conf 2021.
 
-## Updates to TypeScript definitions {/*updates-to-typescript-definitions*/}
+## Cập nhật định nghĩa TypeScript {/*updates-to-typescript-definitions*/}
 
-If your project uses TypeScript, you will need to update your `@types/react` and `@types/react-dom` dependencies to the latest versions. The new types are safer and catch issues that used to be ignored by the type checker. The most notable change is that the `children` prop now needs to be listed explicitly when defining props, for example:
+Nếu dự án của bạn sử dụng TypeScript, bạn sẽ cần cập nhật các dependency `@types/react` và `@types/react-dom` lên phiên bản mới nhất. Các kiểu mới an toàn hơn và bắt được các vấn đề trước đây bị bỏ qua bởi type checker. Thay đổi đáng chú ý nhất là prop `children` bây giờ cần được liệt kê rõ ràng khi định nghĩa props, ví dụ:
 
 ```typescript{3}
 interface MyButtonProps {
@@ -160,13 +160,13 @@ interface MyButtonProps {
 }
 ```
 
-See the [React 18 typings pull request](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210) for a full list of type-only changes. It links to example fixes in library types so you can see how to adjust your code. You can use the [automated migration script](https://github.com/eps1lon/types-react-codemod) to help port your application code to the new and safer typings faster.
+Xem [React 18 typings pull request](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210) để có danh sách đầy đủ các thay đổi chỉ về kiểu. Nó liên kết đến các ví dụ sửa trong kiểu thư viện để bạn có thể thấy cách điều chỉnh mã của mình. Bạn có thể sử dụng [automated migration script](https://github.com/eps1lon/types-react-codemod) để giúp chuyển mã ứng dụng của bạn sang các kiểu mới và an toàn hơn nhanh hơn.
 
-If you find a bug in the typings, please [file an issue](https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/new?category=issues-with-a-types-package) in the DefinitelyTyped repo.
+Nếu bạn tìm thấy lỗi trong các kiểu, vui lòng [gửi issue](https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/new?category=issues-with-a-types-package) trong repo DefinitelyTyped.
 
 ## Automatic Batching {/*automatic-batching*/}
 
-React 18 adds out-of-the-box performance improvements by doing more batching by default. Batching is when React groups multiple state updates into a single re-render for better performance. Before React 18, we only batched updates inside React event handlers. Updates inside of promises, setTimeout, native event handlers, or any other event were not batched in React by default:
+React 18 thêm các cải tiến hiệu suất sẵn có bằng cách thực hiện nhiều batching hơn theo mặc định. Batching là khi React nhóm nhiều cập nhật state thành một lần re-render để có hiệu suất tốt hơn. Trước React 18, chúng tôi chỉ batch các cập nhật bên trong React event handlers. Các cập nhật bên trong promises, setTimeout, native event handlers, hoặc bất kỳ sự kiện nào khác không được batch trong React theo mặc định:
 
 ```js
 // Before React 18 only React events were batched
@@ -174,7 +174,7 @@ React 18 adds out-of-the-box performance improvements by doing more batching by 
 function handleClick() {
   setCount(c => c + 1);
   setFlag(f => !f);
-  // React will only re-render once at the end (that's batching!)
+  // React will only re-render once at the end (that’s batching!)
 }
 
 setTimeout(() => {
@@ -185,7 +185,7 @@ setTimeout(() => {
 ```
 
 
-Starting in React 18 with `createRoot`, all updates will be automatically batched, no matter where they originate from. This means that updates inside of timeouts, promises, native event handlers or any other event will batch the same way as updates inside of React events:
+Bắt đầu trong React 18 với `createRoot`, tất cả các cập nhật sẽ được tự động batch, bất kể chúng đến từ đâu. Điều này có nghĩa là các cập nhật bên trong timeouts, promises, native event handlers hoặc bất kỳ sự kiện nào khác sẽ batch theo cách giống như các cập nhật bên trong React events:
 
 ```js
 // After React 18 updates inside of timeouts, promises,
@@ -194,20 +194,20 @@ Starting in React 18 with `createRoot`, all updates will be automatically batche
 function handleClick() {
   setCount(c => c + 1);
   setFlag(f => !f);
-  // React will only re-render once at the end (that's batching!)
+  // React will only re-render once at the end (that’s batching!)
 }
 
 setTimeout(() => {
   setCount(c => c + 1);
   setFlag(f => !f);
-  // React will only re-render once at the end (that's batching!)
+  // React will only re-render once at the end (that’s batching!)
 }, 1000);
 ```
 
-This is a breaking change, but we expect this to result in less work rendering, and therefore better performance in your applications. To opt-out of automatic batching, you can use `flushSync`:
+Đây là một breaking change, nhưng chúng tôi kỳ vọng điều này sẽ dẫn đến ít công việc render hơn, và do đó hiệu suất tốt hơn trong ứng dụng của bạn. Để tắt automatic batching, bạn có thể sử dụng `flushSync`:
 
 ```js
-import { flushSync } from 'react-dom';
+import { flushSync } from ‘react-dom’;
 
 function handleClick() {
   flushSync(() => {
@@ -221,26 +221,26 @@ function handleClick() {
 }
 ```
 
-For more information, see the [Automatic batching deep dive](https://github.com/reactwg/react-18/discussions/21).
+Để biết thêm thông tin, hãy xem [Automatic batching deep dive](https://github.com/reactwg/react-18/discussions/21).
 
-## New APIs for Libraries {/*new-apis-for-libraries*/}
+## API Mới cho Thư Viện {/*new-apis-for-libraries*/}
 
-In the React 18 Working Group we worked with library maintainers to create new APIs needed to support concurrent rendering for use cases specific to their use case in areas like styles, and external stores. To support React 18, some libraries may need to switch to one of the following APIs:
+Trong React 18 Working Group chúng tôi đã làm việc với những người bảo trì thư viện để tạo ra các API mới cần thiết để hỗ trợ concurrent rendering cho các use case cụ thể của họ trong các lĩnh vực như styles và external stores. Để hỗ trợ React 18, một số thư viện có thể cần chuyển sang một trong các API sau:
 
-* `useSyncExternalStore` is a new Hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. This new API is recommended for any library that integrates with state external to React. For more information, see the [useSyncExternalStore overview post](https://github.com/reactwg/react-18/discussions/70) and [useSyncExternalStore API details](https://github.com/reactwg/react-18/discussions/86).
-* `useInsertionEffect` is a new Hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you've already built a CSS-in-JS library we don't expect you to ever use this. This Hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. For more information, see the [Library Upgrade Guide for `<style>`](https://github.com/reactwg/react-18/discussions/110).
+* `useSyncExternalStore` là một Hook mới cho phép các external stores hỗ trợ concurrent reads bằng cách buộc các cập nhật lên store phải đồng bộ. API mới này được khuyến nghị cho bất kỳ thư viện nào tích hợp với state bên ngoài React. Để biết thêm thông tin, hãy xem [useSyncExternalStore overview post](https://github.com/reactwg/react-18/discussions/70) và [useSyncExternalStore API details](https://github.com/reactwg/react-18/discussions/86).
+* `useInsertionEffect` là một Hook mới cho phép các thư viện CSS-in-JS giải quyết các vấn đề hiệu suất khi inject styles trong render. Trừ khi bạn đã xây dựng một thư viện CSS-in-JS, chúng tôi không mong bạn sẽ dùng đến điều này. Hook này sẽ chạy sau khi DOM được mutate, nhưng trước khi layout effects đọc layout mới. Điều này giải quyết một vấn đề đã tồn tại trong React 17 và các phiên bản trước, nhưng quan trọng hơn trong React 18 vì React nhường cho trình duyệt trong khi concurrent rendering, cho nó cơ hội tính toán lại layout. Để biết thêm thông tin, hãy xem [Library Upgrade Guide for `<style>`](https://github.com/reactwg/react-18/discussions/110).
 
-React 18 also introduces new APIs for concurrent rendering such as `startTransition`, `useDeferredValue` and `useId`, which we share more about in the [release post](/blog/2022/03/29/react-v18).
+React 18 cũng giới thiệu các API mới cho concurrent rendering như `startTransition`, `useDeferredValue` và `useId`, mà chúng tôi chia sẻ thêm trong [bài viết phát hành](/blog/2022/03/29/react-v18).
 
-## Updates to Strict Mode {/*updates-to-strict-mode*/}
+## Cập nhật Strict Mode {/*updates-to-strict-mode*/}
 
-In the future, we'd like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React would unmount and remount trees using the same component state as before.
+Trong tương lai, chúng tôi muốn thêm một tính năng cho phép React thêm và xóa các phần của UI trong khi bảo tồn state. Ví dụ, khi người dùng chuyển tab khỏi màn hình và quay lại, React nên có thể hiển thị ngay lập tức màn hình trước đó. Để làm điều này, React sẽ unmount và remount trees sử dụng cùng state component như trước.
 
-This feature will give React better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once.
+Tính năng này sẽ mang lại cho React hiệu suất tốt hơn sẵn có, nhưng đòi hỏi các component phải chịu đựng được việc effects được mount và destroy nhiều lần. Hầu hết các effects sẽ hoạt động mà không có bất kỳ thay đổi nào, nhưng một số effects giả định rằng chúng chỉ được mount hoặc destroy một lần.
 
-To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a component mounts for the first time, restoring the previous state on the second mount.
+Để giúp phát hiện các vấn đề này, React 18 giới thiệu một kiểm tra chỉ dành cho development mới cho Strict Mode. Kiểm tra mới này sẽ tự động unmount và remount mọi component, bất cứ khi nào một component mount lần đầu, khôi phục state trước đó ở lần mount thứ hai.
 
-Before this change, React would mount the component and create the effects:
+Trước thay đổi này, React sẽ mount component và tạo effects:
 
 ```
 * React mounts the component.
@@ -248,7 +248,7 @@ Before this change, React would mount the component and create the effects:
     * Effect effects are created.
 ```
 
-With Strict Mode in React 18, React will simulate unmounting and remounting the component in development mode:
+Với Strict Mode trong React 18, React sẽ giả lập unmounting và remounting component trong chế độ development:
 
 ```
 * React mounts the component.
@@ -262,11 +262,11 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
     * Effect setup code runs
 ```
 
-For more information, see the Working Group posts for [Adding Reusable State to StrictMode](https://github.com/reactwg/react-18/discussions/19) and [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18).
+Để biết thêm thông tin, hãy xem các bài đăng Working Group cho [Adding Reusable State to StrictMode](https://github.com/reactwg/react-18/discussions/19) và [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18).
 
-## Configuring Your Testing Environment {/*configuring-your-testing-environment*/}
+## Cấu hình Môi Trường Testing {/*configuring-your-testing-environment*/}
 
-When you first update your tests to use `createRoot`, you may see this warning in your test console:
+Khi bạn lần đầu cập nhật các test để sử dụng `createRoot`, bạn có thể thấy cảnh báo này trong test console:
 
 <ConsoleBlock level="error">
 
@@ -274,58 +274,58 @@ The current testing environment is not configured to support act(...)
 
 </ConsoleBlock>
 
-To fix this, set `globalThis.IS_REACT_ACT_ENVIRONMENT` to `true` before running your test:
+Để sửa điều này, hãy đặt `globalThis.IS_REACT_ACT_ENVIRONMENT` thành `true` trước khi chạy test:
 
 ```js
 // In your test setup file
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 ```
 
-The purpose of the flag is to tell React that it's running in a unit test-like environment. React will log helpful warnings if you forget to wrap an update with `act`.
+Mục đích của flag là để nói với React rằng nó đang chạy trong môi trường giống như unit test. React sẽ ghi nhật ký các cảnh báo hữu ích nếu bạn quên bọc một cập nhật với `act`.
 
-You can also set the flag to `false` to tell React that `act` isn't needed. This can be useful for end-to-end tests that simulate a full browser environment.
+Bạn cũng có thể đặt flag thành `false` để nói với React rằng `act` không cần thiết. Điều này có thể hữu ích cho các end-to-end tests mô phỏng môi trường trình duyệt đầy đủ.
 
-Eventually, we expect testing libraries will configure this for you automatically. For example, the [next version of React Testing Library has built-in support for React 18](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936) without any additional configuration.
+Cuối cùng, chúng tôi kỳ vọng các thư viện testing sẽ cấu hình điều này cho bạn tự động. Ví dụ, [phiên bản tiếp theo của React Testing Library có hỗ trợ tích hợp cho React 18](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936) mà không cần cấu hình thêm.
 
-[More background on the `act` testing API and related changes](https://github.com/reactwg/react-18/discussions/102) is available in the working group.
+[Thêm thông tin nền về `act` testing API và các thay đổi liên quan](https://github.com/reactwg/react-18/discussions/102) có sẵn trong working group.
 
-## Dropping Support for Internet Explorer {/*dropping-support-for-internet-explorer*/}
+## Ngừng Hỗ Trợ Internet Explorer {/*dropping-support-for-internet-explorer*/}
 
-In this release, React is dropping support for Internet Explorer, which is [going out of support on June 15, 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge). We’re making this change now because new features introduced in React 18 are built using modern browser features such as microtasks which cannot be adequately polyfilled in IE.
+Trong bản phát hành này, React đang ngừng hỗ trợ Internet Explorer, vốn [sẽ ngừng hỗ trợ vào ngày 15 tháng 6 năm 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge). Chúng tôi thực hiện thay đổi này bây giờ vì các tính năng mới được giới thiệu trong React 18 được xây dựng bằng các tính năng trình duyệt hiện đại như microtasks không thể được polyfill đầy đủ trong IE.
 
-If you need to support Internet Explorer we recommend you stay with React 17.
+Nếu bạn cần hỗ trợ Internet Explorer, chúng tôi khuyến nghị bạn ở lại với React 17.
 
-## Deprecations {/*deprecations*/}
+## Ngừng hỗ trợ {/*deprecations*/}
 
-* `react-dom`: `ReactDOM.render` has been deprecated. Using it will warn and run your app in React 17 mode.
-* `react-dom`: `ReactDOM.hydrate` has been deprecated. Using it will warn and run your app in React 17 mode.
-* `react-dom`: `ReactDOM.unmountComponentAtNode` has been deprecated.
-* `react-dom`: `ReactDOM.renderSubtreeIntoContainer` has been deprecated.
-* `react-dom/server`: `ReactDOMServer.renderToNodeStream` has been deprecated.
+* `react-dom`: `ReactDOM.render` đã bị ngừng hỗ trợ. Sử dụng nó sẽ cảnh báo và chạy ứng dụng của bạn ở chế độ React 17.
+* `react-dom`: `ReactDOM.hydrate` đã bị ngừng hỗ trợ. Sử dụng nó sẽ cảnh báo và chạy ứng dụng của bạn ở chế độ React 17.
+* `react-dom`: `ReactDOM.unmountComponentAtNode` đã bị ngừng hỗ trợ.
+* `react-dom`: `ReactDOM.renderSubtreeIntoContainer` đã bị ngừng hỗ trợ.
+* `react-dom/server`: `ReactDOMServer.renderToNodeStream` đã bị ngừng hỗ trợ.
 
-## Other Breaking Changes {/*other-breaking-changes*/}
+## Các Breaking Changes Khác {/*other-breaking-changes*/}
 
-* **Consistent useEffect timing**: React now always synchronously flushes effect functions if the update was triggered during a discrete user input event such as a click or a keydown event. Previously, the behavior wasn't always predictable or consistent.
-* **Stricter hydration errors**: Hydration mismatches due to missing or extra text content are now treated like errors instead of warnings. React will no longer attempt to "patch up" individual nodes by inserting or deleting a node on the client in an attempt to match the server markup, and will revert to client rendering up to the closest `<Suspense>` boundary in the tree. This ensures the hydrated tree is consistent and avoids potential privacy and security holes that can be caused by hydration mismatches.
-* **Suspense trees are always consistent:** If a component suspends before it's fully added to the tree, React will not add it to the tree in an incomplete state or fire its effects. Instead, React will throw away the new tree completely, wait for the asynchronous operation to finish, and then retry rendering again from scratch. React will render the retry attempt concurrently, and without blocking the browser.
-* **Layout Effects with Suspense**: When a tree re-suspends and reverts to a fallback, React will now clean up layout effects, and then re-create them when the content inside the boundary is shown again. This fixes an issue which prevented component libraries from correctly measuring layout when used with Suspense.
-* **New JS Environment Requirements**: React now depends on modern browsers features including `Promise`, `Symbol`, and `Object.assign`. If you support older browsers and devices such as Internet Explorer which do not provide modern browser features natively or have non-compliant implementations, consider including a global polyfill in your bundled application.
+* **Consistent useEffect timing**: React bây giờ luôn đồng bộ flush các hàm effect nếu cập nhật được kích hoạt trong một discrete user input event như click hoặc keydown event. Trước đây, hành vi không phải lúc nào cũng có thể đoán trước hoặc nhất quán.
+* **Stricter hydration errors**: Hydration mismatches do thiếu hoặc thừa nội dung text bây giờ được xử lý như lỗi thay vì cảnh báo. React sẽ không còn cố gắng "vá" các node riêng lẻ bằng cách chèn hoặc xóa một node trên client để cố khớp với markup server, và sẽ quay lại client rendering đến `<Suspense>` boundary gần nhất trong cây. Điều này đảm bảo cây được hydrate là nhất quán và tránh các lỗ hổng bảo mật và quyền riêng tư tiềm ẩn có thể được gây ra bởi hydration mismatches.
+* **Suspense trees are always consistent:** Nếu một component suspends trước khi được thêm đầy đủ vào cây, React sẽ không thêm nó vào cây ở trạng thái chưa hoàn chỉnh hoặc kích hoạt effects của nó. Thay vào đó, React sẽ loại bỏ hoàn toàn cây mới, đợi thao tác bất đồng bộ hoàn thành, và sau đó thử render lại từ đầu. React sẽ render lần thử lại đồng thời, và không chặn trình duyệt.
+* **Layout Effects with Suspense**: Khi một cây re-suspends và quay lại fallback, React bây giờ sẽ dọn sạch layout effects, và sau đó tạo lại chúng khi nội dung bên trong boundary được hiển thị lại. Điều này sửa một vấn đề ngăn các thư viện component đo lường layout đúng cách khi sử dụng với Suspense.
+* **New JS Environment Requirements**: React bây giờ phụ thuộc vào các tính năng trình duyệt hiện đại bao gồm `Promise`, `Symbol`, và `Object.assign`. Nếu bạn hỗ trợ các trình duyệt và thiết bị cũ như Internet Explorer không cung cấp các tính năng trình duyệt hiện đại natively hoặc có các triển khai không tuân thủ, hãy cân nhắc bao gồm một global polyfill trong ứng dụng bundled của bạn.
 
-## Other Notable Changes {/*other-notable-changes*/}
+## Các Thay Đổi Đáng Chú Ý Khác {/*other-notable-changes*/}
 
 ### React {/*react*/}
 
-* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a component. This makes the allowed component return values consistent with values that are allowed in the middle of a component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
-* **In tests, `act` warnings are now opt-in:** If you're running end-to-end tests, the `act` warnings are unnecessary. We've introduced an [opt-in](https://github.com/reactwg/react-18/discussions/102) mechanism so you can enable them only for unit tests where they are useful and beneficial.
-* **No warning about `setState` on unmounted components:** Previously, React warned about memory leaks when you call `setState` on an unmounted component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/facebook/react/pull/22114) this warning.
-* **No suppression of console logs:** When you use Strict Mode, React renders each component twice to help you find unexpected side effects. In React 17, we've suppressed console logs for one of the two renders to make the logs easier to read. In response to [community feedback](https://github.com/facebook/react/issues/21783) about this being confusing, we've removed the suppression. Instead, if you have React DevTools installed, the second log's renders will be displayed in grey, and there will be an option (off by default) to suppress them completely.
-* **Improved memory usage:** React now cleans up more internal fields on unmount, making the impact from unfixed memory leaks that may exist in your application code less severe.
+* **Components bây giờ có thể render `undefined`:** React không còn cảnh báo nếu bạn trả về `undefined` từ một component. Điều này làm cho các giá trị trả về component được phép nhất quán với các giá trị được phép ở giữa cây component. Chúng tôi đề nghị sử dụng linter để ngăn các lỗi như quên câu lệnh `return` trước JSX.
+* **In tests, `act` warnings are now opt-in:** Nếu bạn đang chạy end-to-end tests, các cảnh báo `act` là không cần thiết. Chúng tôi đã giới thiệu cơ chế [opt-in](https://github.com/reactwg/react-18/discussions/102) để bạn có thể kích hoạt chúng chỉ cho unit tests nơi chúng hữu ích và có lợi.
+* **No warning about `setState` on unmounted components:** Trước đây, React cảnh báo về memory leaks khi bạn gọi `setState` trên một component đã unmounted. Cảnh báo này được thêm vào cho subscriptions, nhưng mọi người chủ yếu gặp nó trong các tình huống nơi việc đặt state là ổn, và các cách giải quyết khiến mã tệ hơn. Chúng tôi đã [xóa](https://github.com/facebook/react/pull/22114) cảnh báo này.
+* **No suppression of console logs:** Khi bạn sử dụng Strict Mode, React render mỗi component hai lần để giúp bạn tìm các side effects không mong muốn. Trong React 17, chúng tôi đã suppress console logs cho một trong hai lần render để làm cho các log dễ đọc hơn. Để đáp lại [phản hồi cộng đồng](https://github.com/facebook/react/issues/21783) về điều này gây nhầm lẫn, chúng tôi đã xóa việc suppression. Thay vào đó, nếu bạn đã cài đặt React DevTools, các render của lần log thứ hai sẽ được hiển thị màu xám, và sẽ có một tùy chọn (tắt theo mặc định) để suppress chúng hoàn toàn.
+* **Improved memory usage:** React bây giờ dọn sạch nhiều trường nội bộ hơn khi unmount, làm cho tác động từ các memory leaks chưa được sửa có thể tồn tại trong mã ứng dụng của bạn ít nghiêm trọng hơn.
 
 ### React DOM Server {/*react-dom-server*/}
 
-* **`renderToString`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary and then retry rendering the same content on the client. It is still recommended that you switch to a streaming API like `renderToPipeableStream` or `renderToReadableStream` instead.
-* **`renderToStaticMarkup`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary.
+* **`renderToString`:** Sẽ không còn báo lỗi khi suspending trên server. Thay vào đó, nó sẽ emit fallback HTML cho `<Suspense>` boundary gần nhất và sau đó thử render lại cùng nội dung trên client. Vẫn được khuyến nghị rằng bạn chuyển sang streaming API như `renderToPipeableStream` hoặc `renderToReadableStream` thay thế.
+* **`renderToStaticMarkup`:** Sẽ không còn báo lỗi khi suspending trên server. Thay vào đó, nó sẽ emit fallback HTML cho `<Suspense>` boundary gần nhất.
 
 ## Changelog {/*changelog*/}
 
-You can view the [full changelog here](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+Bạn có thể xem [full changelog tại đây](https://github.com/facebook/react/blob/main/CHANGELOG.md).

@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-The [built-in browser `<textarea>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) lets you render a multiline text input.
+Component [`<textarea>` có sẵn trong trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) cho phép bạn render một text input nhiều dòng.
 
 ```js
 <textarea />
@@ -16,33 +16,33 @@ The [built-in browser `<textarea>` component](https://developer.mozilla.org/en-U
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `<textarea>` {/*textarea*/}
 
-To display a text area, render the [built-in browser `<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) component.
+Để hiển thị một text area, render component [`<textarea>` có sẵn trong trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
 ```js
 <textarea name="postContent" />
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
 #### Props {/*props*/}
 
-`<textarea>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<textarea>` hỗ trợ tất cả [common element props.](/reference/react-dom/components/common#common-props)
 
-You can [make a text area controlled](#controlling-a-text-area-with-a-state-variable) by passing a `value` prop:
+Bạn có thể [làm cho text area được kiểm soát](#controlling-a-text-area-with-a-state-variable) bằng cách truyền prop `value`:
 
 * `value`: A string. Controls the text inside the text area.
 
-When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
+Khi bạn truyền `value`, bạn cũng phải truyền một handler `onChange` cập nhật giá trị được truyền.
 
-If your `<textarea>` is uncontrolled, you may pass the `defaultValue` prop instead:
+Nếu `<textarea>` của bạn là uncontrolled, bạn có thể truyền prop `defaultValue` thay thế:
 
 * `defaultValue`: A string. Specifies [the initial value](#providing-an-initial-value-for-a-text-area) for a text area.
 
-These `<textarea>` props are relevant both for uncontrolled and controlled text areas:
+Các props `<textarea>` này liên quan đến cả text area không được kiểm soát và được kiểm soát:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#autocomplete): Either `'on'` or `'off'`. Specifies the autocomplete behavior.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#autofocus): A boolean. If `true`, React will focus the element on mount.
@@ -67,21 +67,21 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 * [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows): A number. Specifies the default height in average character heights. Defaults to `2`.
 * [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#wrap): Either `'hard'`, `'soft'`, or `'off'`. Specifies how the text should be wrapped when submitting a form.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- Passing children like `<textarea>something</textarea>` is not allowed. [Use `defaultValue` for initial content.](#providing-an-initial-value-for-a-text-area)
-- If a text area receives a string `value` prop, it will be [treated as controlled.](#controlling-a-text-area-with-a-state-variable)
-- A text area can't be both controlled and uncontrolled at the same time.
-- A text area cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled text area needs an `onChange` event handler that synchronously updates its backing value.
+- Truyền children như `<textarea>something</textarea>` không được phép. [Sử dụng `defaultValue` cho nội dung ban đầu.](#providing-an-initial-value-for-a-text-area)
+- Nếu một text area nhận một prop `value` là chuỗi, nó sẽ được [coi là controlled.](#controlling-a-text-area-with-a-state-variable)
+- Một text area không thể vừa controlled vừa uncontrolled cùng một lúc.
+- Một text area không thể chuyển đổi giữa controlled và uncontrolled trong suốt vòng đời của nó.
+- Mỗi controlled text area cần một event handler `onChange` đồng bộ cập nhật giá trị backing của nó.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Displaying a text area {/*displaying-a-text-area*/}
+### Hiển thị text area {/*displaying-a-text-area*/}
 
-Render `<textarea>` to display a text area. You can specify its default size with the [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) and [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols) attributes, but by default the user will be able to resize it. To disable resizing, you can specify `resize: none` in the CSS.
+Render `<textarea>` để hiển thị một text area. Bạn có thể chỉ định kích thước mặc định của nó với các thuộc tính [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows) và [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols), nhưng theo mặc định người dùng sẽ có thể thay đổi kích thước nó. Để tắt thay đổi kích thước, bạn có thể chỉ định `resize: none` trong CSS.
 
 <Sandpack>
 
@@ -107,11 +107,11 @@ label, textarea { display: block; }
 
 ---
 
-### Providing a label for a text area {/*providing-a-label-for-a-text-area*/}
+### Cung cấp nhãn cho text area {/*providing-a-label-for-a-text-area*/}
 
-Typically, you will place every `<textarea>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that text area. When the user clicks the label, the browser will focus the text area. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the text area.
+Thông thường, bạn sẽ đặt mỗi `<textarea>` bên trong một thẻ [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). Điều này cho trình duyệt biết nhãn này được liên kết với text area đó. Khi người dùng nhấp vào nhãn, trình duyệt sẽ focus vào text area. Điều này cũng rất quan trọng cho khả năng trợ năng: trình đọc màn hình sẽ thông báo chú thích nhãn khi người dùng focus vào text area.
 
-If you can't nest `<textarea>` into a `<label>`, associate them by passing the same ID to `<textarea id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Nếu bạn không thể lồng `<textarea>` vào một `<label>`, hãy liên kết chúng bằng cách truyền cùng ID cho `<textarea id>` và [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) Để tránh xung đột giữa các instance của một component, hãy tạo ID đó với [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -144,9 +144,9 @@ input { margin: 5px; }
 
 ---
 
-### Providing an initial value for a text area {/*providing-an-initial-value-for-a-text-area*/}
+### Cung cấp giá trị ban đầu cho text area {/*providing-an-initial-value-for-a-text-area*/}
 
-You can optionally specify the initial value for the text area. Pass it as the `defaultValue` string.
+Bạn có thể tùy chọn chỉ định giá trị ban đầu cho text area. Truyền nó như chuỗi `defaultValue`.
 
 <Sandpack>
 
@@ -177,15 +177,15 @@ label, textarea { display: block; }
 
 <Pitfall>
 
-Unlike in HTML, passing initial text like `<textarea>Some content</textarea>` is not supported.
+Khác với HTML, việc truyền văn bản ban đầu như `<textarea>Some content</textarea>` không được hỗ trợ.
 
 </Pitfall>
 
 ---
 
-### Reading the text area value when submitting a form {/*reading-the-text-area-value-when-submitting-a-form*/}
+### Đọc giá trị text area khi gửi form {/*reading-the-text-area-value-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your textarea with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Thêm một [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) xung quanh textarea của bạn với một [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) bên trong. Nó sẽ gọi event handler `<form onSubmit>` của bạn. Theo mặc định, trình duyệt sẽ gửi dữ liệu form đến URL hiện tại và tải lại trang. Bạn có thể ghi đè hành vi đó bằng cách gọi `e.preventDefault()`. Đọc dữ liệu form với [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
 
 ```js
@@ -237,23 +237,23 @@ input { margin: 5px; }
 
 <Note>
 
-Give a `name` to your `<textarea>`, for example `<textarea name="postContent" />`. The `name` you specified will be used as a key in the form data, for example `{ postContent: "Your post" }`.
+Đặt `name` cho `<textarea>` của bạn, ví dụ `<textarea name="postContent" />`. `name` bạn chỉ định sẽ được sử dụng như một key trong dữ liệu form, ví dụ `{ postContent: "Your post" }`.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Theo mặc định, *bất kỳ* `<button>` nào bên trong `<form>` sẽ gửi nó. Điều này có thể gây bất ngờ! Nếu bạn có component React `Button` tùy chỉnh của riêng mình, hãy xem xét trả về [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) thay vì `<button>`. Sau đó, để rõ ràng, hãy sử dụng `<button type="submit">` cho các nút *được* dự định gửi form.
 
 </Pitfall>
 
 ---
 
-### Controlling a text area with a state variable {/*controlling-a-text-area-with-a-state-variable*/}
+### Kiểm soát text area với biến state {/*controlling-a-text-area-with-a-state-variable*/}
 
-A text area like `<textarea />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-a-text-area) like `<textarea defaultValue="Initial text" />`, your JSX only specifies the initial value, not the value right now.
+Một text area như `<textarea />` là *uncontrolled.* Ngay cả khi bạn [truyền giá trị ban đầu](#providing-an-initial-value-for-a-text-area) như `<textarea defaultValue="Initial text" />`, JSX của bạn chỉ chỉ định giá trị ban đầu, không phải giá trị ngay bây giờ.
 
-**To render a _controlled_ text area, pass the `value` prop to it.** React will force the text area to always have the `value` you passed. Typically, you will control a text area by declaring a [state variable:](/reference/react/useState)
+**Để render một text area *controlled*, hãy truyền prop `value` cho nó.** React sẽ buộc text area luôn có `value` bạn đã truyền. Thường thì bạn sẽ kiểm soát text area bằng cách khai báo một [biến state:](/reference/react/useState)
 
 ```js {2,6,7}
 function NewPost() {
@@ -268,7 +268,7 @@ function NewPost() {
 }
 ```
 
-This is useful if you want to re-render some part of the UI in response to every keystroke.
+Điều này hữu ích nếu bạn muốn re-render một phần của UI để phản hồi mỗi lần gõ phím.
 
 <Sandpack>
 
@@ -330,17 +330,17 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to type into the text area.** When you control a text area by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the text area after every keystroke back to the `value` that you specified.
+**Nếu bạn truyền `value` mà không có `onChange`, sẽ không thể gõ vào text area.** Khi bạn kiểm soát text area bằng cách truyền một `value` cho nó, bạn *buộc* nó luôn có giá trị bạn đã truyền. Vì vậy, nếu bạn truyền một biến state như là `value` nhưng quên cập nhật biến state đó một cách đồng bộ trong event handler `onChange`, React sẽ hoàn nguyên text area sau mỗi lần gõ phím về `value` mà bạn đã chỉ định.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### My text area doesn't update when I type into it {/*my-text-area-doesnt-update-when-i-type-into-it*/}
+### Text area của tôi không cập nhật khi tôi gõ vào nó {/*my-text-area-doesnt-update-when-i-type-into-it*/}
 
-If you render a text area with `value` but no `onChange`, you will see an error in the console:
+Nếu bạn render một text area với `value` nhưng không có `onChange`, bạn sẽ thấy lỗi trong console:
 
 ```js
 // 🔴 Bug: controlled text area with no onChange handler
@@ -353,21 +353,21 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-a-text-area) pass `defaultValue` instead:
+Như thông báo lỗi gợi ý, nếu bạn chỉ muốn [chỉ định giá trị *ban đầu*,](#providing-an-initial-value-for-a-text-area) hãy truyền `defaultValue` thay thế:
 
 ```js
 // ✅ Good: uncontrolled text area with an initial value
 <textarea defaultValue={something} />
 ```
 
-If you want [to control this text area with a state variable,](#controlling-a-text-area-with-a-state-variable) specify an `onChange` handler:
+Nếu bạn muốn [kiểm soát text area này với một biến state,](#controlling-a-text-area-with-a-state-variable) hãy chỉ định một handler `onChange`:
 
 ```js
 // ✅ Good: controlled text area with onChange
 <textarea value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-If the value is intentionally read-only, add a `readOnly` prop to suppress the error:
+Nếu giá trị cố ý chỉ đọc, hãy thêm prop `readOnly` để tắt lỗi:
 
 ```js
 // ✅ Good: readonly controlled text area without on change
@@ -376,11 +376,11 @@ If the value is intentionally read-only, add a `readOnly` prop to suppress the e
 
 ---
 
-### My text area caret jumps to the beginning on every keystroke {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### Con trỏ text area của tôi nhảy về đầu trên mỗi lần gõ phím {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-If you [control a text area,](#controlling-a-text-area-with-a-state-variable) you must update its state variable to the text area's value from the DOM during `onChange`.
+Nếu bạn [kiểm soát một text area,](#controlling-a-text-area-with-a-state-variable) bạn phải cập nhật biến state của nó thành giá trị của text area từ DOM trong khi `onChange`.
 
-You can't update it to something other than `e.target.value`:
+Bạn không thể cập nhật nó sang thứ gì khác ngoài `e.target.value`:
 
 ```js
 function handleChange(e) {
@@ -400,7 +400,7 @@ function handleChange(e) {
 }
 ```
 
-To fix your code, update it synchronously to `e.target.value`:
+Để sửa code của bạn, hãy cập nhật nó đồng bộ thành `e.target.value`:
 
 ```js
 function handleChange(e) {
@@ -409,15 +409,15 @@ function handleChange(e) {
 }
 ```
 
-If this doesn't fix the problem, it's possible that the text area gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render. For example, this can happen if the text area or one of its parents always receives a different `key` attribute, or if you nest component definitions (which is not allowed in React and causes the "inner" component to remount on every render).
+Nếu điều này không sửa vấn đề, có thể text area bị xóa và thêm lại từ DOM trên mỗi lần gõ phím. Điều này có thể xảy ra nếu bạn vô tình [reset state](/learn/preserving-and-resetting-state) trên mỗi lần re-render. Ví dụ, điều này có thể xảy ra nếu text area hoặc một trong các cha của nó luôn nhận thuộc tính `key` khác, hoặc nếu bạn lồng các định nghĩa component (không được phép trong React và khiến component "bên trong" remount trên mỗi lần render).
 
 ---
 
-### I'm getting an error: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### Tôi gặp lỗi: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-If you provide a `value` to the component, it must remain a string throughout its lifetime.
+Nếu bạn cung cấp `value` cho component, nó phải luôn là một chuỗi trong suốt vòng đời của nó.
 
-You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
+Bạn không thể truyền `value={undefined}` trước và sau đó truyền `value="some string"` vì React sẽ không biết bạn muốn component là uncontrolled hay controlled. Một controlled component nên luôn nhận một chuỗi `value`, không phải `null` hoặc `undefined`.
 
-If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
+Nếu `value` của bạn đến từ API hoặc biến state, nó có thể được khởi tạo thành `null` hoặc `undefined`. Trong trường hợp đó, hãy đặt nó thành chuỗi rỗng (`''`) ban đầu, hoặc truyền `value={someValue ?? ''}` để đảm bảo `value` là một chuỗi.

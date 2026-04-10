@@ -4,13 +4,13 @@ title: cache
 
 <RSC>
 
-`cache` is only for use with [React Server Components](/reference/rsc/server-components).
+`cache` chỉ dùng với [React Server Components](/reference/rsc/server-components).
 
 </RSC>
 
 <Intro>
 
-`cache` lets you cache the result of a data fetch or computation.
+`cache` cho phép bạn lưu trữ kết quả của một lần tải dữ liệu hoặc tính toán vào bộ nhớ cache.
 
 ```js
 const cachedFn = cache(fn);
@@ -22,11 +22,11 @@ const cachedFn = cache(fn);
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `cache(fn)` {/*cache*/}
 
-Call `cache` outside of any components to create a version of the function with caching.
+Gọi `cache` bên ngoài bất kỳ component nào để tạo ra một phiên bản của hàm có tính năng cache.
 
 ```js {4,7}
 import {cache} from 'react';
@@ -40,40 +40,40 @@ function Chart({data}) {
 }
 ```
 
-When `getMetrics` is first called with `data`, `getMetrics` will call `calculateMetrics(data)` and store the result in cache. If `getMetrics` is called again with the same `data`, it will return the cached result instead of calling `calculateMetrics(data)` again.
+Khi `getMetrics` được gọi lần đầu tiên với `data`, `getMetrics` sẽ gọi `calculateMetrics(data)` và lưu kết quả vào cache. Nếu `getMetrics` được gọi lại với cùng `data`, nó sẽ trả về kết quả đã được cache thay vì gọi `calculateMetrics(data)` một lần nữa.
 
-[See more examples below.](#usage)
+[Xem thêm ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-- `fn`: The function you want to cache results for. `fn` can take any arguments and return any value.
+- `fn`: Hàm mà bạn muốn cache kết quả. `fn` có thể nhận bất kỳ tham số nào và trả về bất kỳ giá trị nào.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`cache` returns a cached version of `fn` with the same type signature. It does not call `fn` in the process.
+`cache` trả về một phiên bản đã được cache của `fn` với cùng kiểu chữ ký. Nó không gọi `fn` trong quá trình này.
 
-When calling `cachedFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result. The only time `fn` is called is when there is a cache miss.
+Khi gọi `cachedFn` với các tham số đã cho, trước tiên nó kiểm tra xem có kết quả đã được cache trong bộ nhớ không. Nếu có, nó trả về kết quả đó. Nếu không, nó gọi `fn` với các tham số, lưu kết quả vào cache và trả về kết quả. Hàm `fn` chỉ được gọi khi không có cache hit.
 
 <Note>
 
-The optimization of caching return values based on inputs is known as [_memoization_](https://en.wikipedia.org/wiki/Memoization). We refer to the function returned from `cache` as a memoized function.
+Tối ưu hóa việc lưu trữ giá trị trả về dựa trên đầu vào được gọi là [_memoization_](https://en.wikipedia.org/wiki/Memoization). Chúng ta gọi hàm được trả về từ `cache` là hàm memoized.
 
 </Note>
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- React will invalidate the cache for all memoized functions for each server request.
-- Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
-- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
-- `cache` is for use in [Server Components](/reference/rsc/server-components) only.
+- React sẽ vô hiệu hóa cache cho tất cả các hàm memoized cho mỗi yêu cầu từ server.
+- Mỗi lần gọi `cache` tạo ra một hàm mới. Điều này có nghĩa là gọi `cache` với cùng một hàm nhiều lần sẽ trả về các hàm memoized khác nhau và không chia sẻ cùng một cache.
+- `cachedFn` cũng sẽ cache các lỗi. Nếu `fn` ném ra lỗi với một số tham số nhất định, lỗi đó sẽ được cache, và cùng một lỗi sẽ được ném lại khi `cachedFn` được gọi với các tham số đó.
+- `cache` chỉ dùng trong [Server Components](/reference/rsc/server-components).
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Cache an expensive computation {/*cache-expensive-computation*/}
+### Cache một phép tính tốn nhiều tài nguyên {/*cache-expensive-computation*/}
 
-Use `cache` to skip duplicate work.
+Sử dụng `cache` để bỏ qua công việc trùng lặp.
 
 ```js [[1, 7, "getUserMetrics(user)"],[2, 13, "getUserMetrics(user)"]]
 import {cache} from 'react';
@@ -95,19 +95,19 @@ function TeamReport({users}) {
 }
 ```
 
-If the same `user` object is rendered in both `Profile` and `TeamReport`, the two components can share work and only call `calculateUserMetrics` once for that `user`.
+Nếu cùng một đối tượng `user` được render trong cả `Profile` và `TeamReport`, hai component có thể chia sẻ công việc và chỉ gọi `calculateUserMetrics` một lần cho `user` đó.
 
-Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetrics`</CodeStep>, and check if there is a cached result. Since it is the first time `getUserMetrics` is called with that `user`, there will be a cache miss. `getUserMetrics` will then call `calculateUserMetrics` with that `user` and write the result to cache.
+Giả sử `Profile` được render trước. Nó sẽ gọi <CodeStep step={1}>`getUserMetrics`</CodeStep>, và kiểm tra xem có kết quả đã được cache không. Vì đây là lần đầu tiên `getUserMetrics` được gọi với `user` đó, sẽ không có cache hit. `getUserMetrics` sau đó sẽ gọi `calculateUserMetrics` với `user` đó và ghi kết quả vào cache.
 
-When `TeamReport` renders its list of `users` and reaches the same `user` object, it will call <CodeStep step={2}>`getUserMetrics`</CodeStep> and read the result from cache.
+Khi `TeamReport` render danh sách `users` và đến cùng đối tượng `user`, nó sẽ gọi <CodeStep step={2}>`getUserMetrics`</CodeStep> và đọc kết quả từ cache.
 
-If `calculateUserMetrics` can be aborted by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), you can use [`cacheSignal()`](/reference/react/cacheSignal) to cancel the expensive computation if React has finished rendering. `calculateUserMetrics` may already handle cancellation internally by using `cacheSignal` directly.
+Nếu `calculateUserMetrics` có thể bị hủy bằng cách truyền [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), bạn có thể dùng [`cacheSignal()`](/reference/react/cacheSignal) để hủy phép tính tốn nhiều tài nguyên nếu React đã hoàn tất việc render. `calculateUserMetrics` có thể đã xử lý việc hủy nội bộ bằng cách dùng `cacheSignal` trực tiếp.
 
 <Pitfall>
 
-##### Calling different memoized functions will read from different caches. {/*pitfall-different-memoized-functions*/}
+##### Gọi các hàm memoized khác nhau sẽ đọc từ các cache khác nhau. {/*pitfall-different-memoized-functions*/}
 
-To access the same cache, components must call the same memoized function.
+Để truy cập cùng một cache, các component phải gọi cùng một hàm memoized.
 
 ```js [[1, 7, "getWeekReport"], [1, 7, "cache(calculateWeekReport)"], [1, 8, "getWeekReport"]]
 // Temperature.js
@@ -115,7 +115,7 @@ import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
 export function Temperature({cityData}) {
-  // 🚩 Wrong: Calling `cache` in component creates new `getWeekReport` for each render
+  // 🚩 Sai: Gọi `cache` trong component tạo ra `getWeekReport` mới cho mỗi lần render
   const getWeekReport = cache(calculateWeekReport);
   const report = getWeekReport(cityData);
   // ...
@@ -127,7 +127,7 @@ export function Temperature({cityData}) {
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
-// 🚩 Wrong: `getWeekReport` is only accessible for `Precipitation` component.
+// 🚩 Sai: `getWeekReport` chỉ có thể truy cập từ component `Precipitation`.
 const getWeekReport = cache(calculateWeekReport);
 
 export function Precipitation({cityData}) {
@@ -136,11 +136,11 @@ export function Precipitation({cityData}) {
 }
 ```
 
-In the above example, <CodeStep step={2}>`Precipitation`</CodeStep> and <CodeStep step={1}>`Temperature`</CodeStep> each call `cache` to create a new memoized function with their own cache look-up. If both components render for the same `cityData`, they will do duplicate work to call `calculateWeekReport`.
+Trong ví dụ trên, <CodeStep step={2}>`Precipitation`</CodeStep> và <CodeStep step={1}>`Temperature`</CodeStep> đều gọi `cache` để tạo ra hàm memoized mới với cache look-up riêng. Nếu cả hai component render cùng `cityData`, chúng sẽ làm công việc trùng lặp để gọi `calculateWeekReport`.
 
-In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</CodeStep> each time the component is rendered which doesn't allow for any cache sharing.
+Ngoài ra, `Temperature` tạo ra một <CodeStep step={1}>hàm memoized mới</CodeStep> mỗi khi component được render, điều này không cho phép chia sẻ cache.
 
-To maximize cache hits and reduce work, the two components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
+Để tối đa hóa cache hit và giảm công việc, hai component nên gọi cùng một hàm memoized để truy cập cùng một cache. Thay vào đó, hãy định nghĩa hàm memoized trong một module riêng có thể được [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) trên các component.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -169,12 +169,12 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
-Here, both components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache.
+Ở đây, cả hai component đều gọi <CodeStep step={3}>cùng một hàm memoized</CodeStep> được export từ `./getWeekReport.js` để đọc và ghi vào cùng một cache.
 </Pitfall>
 
-### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
+### Chia sẻ một bản snapshot của dữ liệu {/*take-and-share-snapshot-of-data*/}
 
-To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render.
+Để chia sẻ một bản snapshot của dữ liệu giữa các component, hãy gọi `cache` với một hàm tải dữ liệu như `fetch`. Khi nhiều component thực hiện cùng một yêu cầu tải dữ liệu, chỉ có một yêu cầu được thực hiện và dữ liệu trả về được cache và chia sẻ trên các component. Tất cả các component đều tham chiếu đến cùng một bản snapshot của dữ liệu trong suốt quá trình render trên server.
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -195,15 +195,15 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same <CodeStep step={1}>city</CodeStep>, they will receive the same snapshot of data from the <CodeStep step={2}>memoized function</CodeStep>.
+Nếu `AnimatedWeatherCard` và `MinimalWeatherCard` đều render cho cùng một <CodeStep step={1}>city</CodeStep>, chúng sẽ nhận cùng một bản snapshot dữ liệu từ <CodeStep step={2}>hàm memoized</CodeStep>.
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` supply different <CodeStep step={1}>city</CodeStep> arguments to <CodeStep step={2}>`getTemperature`</CodeStep>, then `fetchTemperature` will be called twice and each call site will receive different data.
+Nếu `AnimatedWeatherCard` và `MinimalWeatherCard` cung cấp các tham số <CodeStep step={1}>city</CodeStep> khác nhau cho <CodeStep step={2}>`getTemperature`</CodeStep>, thì `fetchTemperature` sẽ được gọi hai lần và mỗi call site sẽ nhận dữ liệu khác nhau.
 
-The <CodeStep step={1}>city</CodeStep> acts as a cache key.
+<CodeStep step={1}>city</CodeStep> đóng vai trò là cache key.
 
 <Note>
 
-<CodeStep step={3}>Asynchronous rendering</CodeStep> is only supported for Server Components.
+<CodeStep step={3}>Rendering bất đồng bộ</CodeStep> chỉ được hỗ trợ cho Server Components.
 
 ```js [[3, 1, "async"], [3, 2, "await"]]
 async function AnimatedWeatherCard({city}) {
@@ -212,13 +212,13 @@ async function AnimatedWeatherCard({city}) {
 }
 ```
 
-To render components that use asynchronous data in Client Components, see [`use()` documentation](/reference/react/use).
+Để render các component sử dụng dữ liệu bất đồng bộ trong Client Components, xem [tài liệu `use()`](/reference/react/use).
 
 </Note>
 
-### Preload data {/*preload-data*/}
+### Tải trước dữ liệu {/*preload-data*/}
 
-By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the component.
+Bằng cách cache một lần tải dữ liệu chạy lâu, bạn có thể bắt đầu công việc bất đồng bộ trước khi render component.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
@@ -236,9 +236,9 @@ async function Profile({id}) {
 }
 
 function Page({id}) {
-  // ✅ Good: start fetching the user data
+  // ✅ Tốt: bắt đầu tải dữ liệu user
   getUser(id);
-  // ... some computational work
+  // ... một số công việc tính toán
   return (
     <>
       <Profile id={id} />
@@ -247,17 +247,17 @@ function Page({id}) {
 }
 ```
 
-When rendering `Page`, the component calls <CodeStep step={1}>`getUser`</CodeStep> but note that it doesn't use the returned data. This early <CodeStep step={1}>`getUser`</CodeStep> call kicks off the asynchronous database query that occurs while `Page` is doing other computational work and rendering children.
+Khi render `Page`, component gọi <CodeStep step={1}>`getUser`</CodeStep> nhưng lưu ý rằng nó không sử dụng dữ liệu trả về. Lần gọi <CodeStep step={1}>`getUser`</CodeStep> sớm này khởi động truy vấn cơ sở dữ liệu bất đồng bộ xảy ra trong khi `Page` đang làm công việc tính toán khác và render các component con.
 
-When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. If the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data, when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. If the <CodeStep step={1}> initial data request</CodeStep> hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
+Khi render `Profile`, chúng ta gọi <CodeStep step={2}>`getUser`</CodeStep> lại. Nếu lần gọi <CodeStep step={1}>`getUser`</CodeStep> ban đầu đã trả về và cache dữ liệu user, khi `Profile` <CodeStep step={2}>yêu cầu và chờ dữ liệu này</CodeStep>, nó có thể chỉ đọc từ cache mà không cần thêm một lần gọi procedure từ xa. Nếu <CodeStep step={1}> yêu cầu dữ liệu ban đầu</CodeStep> chưa hoàn thành, việc tải trước dữ liệu theo mẫu này giúp giảm độ trễ khi tải dữ liệu.
 
 <DeepDive>
 
-#### Caching asynchronous work {/*caching-asynchronous-work*/}
+#### Cache công việc bất đồng bộ {/*caching-asynchronous-work*/}
 
-When evaluating an [asynchronous function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its eventual settled result.
+Khi đánh giá một [hàm bất đồng bộ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), bạn sẽ nhận được một [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) cho công việc đó. Promise nắm giữ trạng thái của công việc đó (_pending_, _fulfilled_, _failed_) và kết quả cuối cùng của nó.
 
-In this example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`.
+Trong ví dụ này, hàm bất đồng bộ <CodeStep step={1}>`fetchData`</CodeStep> trả về một promise đang chờ `fetch`.
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
@@ -268,24 +268,24 @@ const getData = cache(fetchData);
 
 async function MyComponent() {
   getData();
-  // ... some computational work
+  // ... một số công việc tính toán
   await getData();
   // ...
 }
 ```
 
-In calling <CodeStep step={2}>`getData`</CodeStep> the first time, the promise returned from <CodeStep step={1}>`fetchData`</CodeStep> is cached. Subsequent look-ups will then return the same promise.
+Khi gọi <CodeStep step={2}>`getData`</CodeStep> lần đầu tiên, promise được trả về từ <CodeStep step={1}>`fetchData`</CodeStep> sẽ được cache. Các lần tra cứu tiếp theo sẽ trả về cùng một promise.
 
-Notice that the first <CodeStep step={2}>`getData`</CodeStep> call does not `await` whereas the <CodeStep step={3}>second</CodeStep> does. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) is a JavaScript operator that will wait and return the settled result of the promise. The first <CodeStep step={2}>`getData`</CodeStep> call simply initiates the `fetch` to cache the promise for the second <CodeStep step={3}>`getData`</CodeStep> to look-up.
+Lưu ý rằng lần gọi <CodeStep step={2}>`getData`</CodeStep> đầu tiên không `await` trong khi lần <CodeStep step={3}>thứ hai</CodeStep> thì có. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) là một toán tử JavaScript sẽ chờ và trả về kết quả đã hoàn thành của promise. Lần gọi <CodeStep step={2}>`getData`</CodeStep> đầu tiên chỉ đơn giản khởi động `fetch` để cache promise cho lần gọi <CodeStep step={3}>`getData`</CodeStep> thứ hai tra cứu.
 
-If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time for the <CodeStep step={3}>second call</CodeStep>.
+Nếu ở lần <CodeStep step={3}>gọi thứ hai</CodeStep> promise vẫn đang _pending_, thì `await` sẽ tạm dừng để chờ kết quả. Tối ưu hóa ở đây là trong khi chúng ta chờ `fetch`, React có thể tiếp tục công việc tính toán, do đó giảm thời gian chờ cho lần <CodeStep step={3}>gọi thứ hai</CodeStep>.
 
-If the promise is already settled, either to an error or the _fulfilled_ result, `await` will return that value immediately. In both outcomes, there is a performance benefit.
+Nếu promise đã hoàn thành, dù là lỗi hay kết quả _fulfilled_, `await` sẽ trả về giá trị đó ngay lập tức. Trong cả hai kết quả, đều có lợi ích về hiệu suất.
 </DeepDive>
 
 <Pitfall>
 
-##### Calling a memoized function outside of a component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
+##### Gọi một hàm memoized bên ngoài component sẽ không sử dụng cache. {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -294,31 +294,31 @@ const getUser = cache(async (userId) => {
   return await db.user.query(userId);
 });
 
-// 🚩 Wrong: Calling memoized function outside of component will not memoize.
+// 🚩 Sai: Gọi hàm memoized bên ngoài component sẽ không memoize.
 getUser('demo-id');
 
 async function DemoProfile() {
-  // ✅ Good: `getUser` will memoize.
+  // ✅ Tốt: `getUser` sẽ memoize.
   const user = await getUser('demo-id');
   return <Profile user={user} />;
 }
 ```
 
-React only provides cache access to the memoized function in a component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component, it will still evaluate the function but not read or update the cache.
+React chỉ cung cấp quyền truy cập cache cho hàm memoized trong một component. Khi gọi <CodeStep step={1}>`getUser`</CodeStep> bên ngoài một component, nó vẫn sẽ đánh giá hàm nhưng không đọc hoặc cập nhật cache.
 
-This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component.
+Điều này là vì quyền truy cập cache được cung cấp thông qua một [context](/learn/passing-data-deeply-with-context) chỉ có thể truy cập từ một component.
 
 </Pitfall>
 
 <DeepDive>
 
-#### When should I use `cache`, [`memo`](/reference/react/memo), or [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
+#### Khi nào nên dùng `cache`, [`memo`](/reference/react/memo), hay [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
 
-All mentioned APIs offer memoization but the difference is what they're intended to memoize, who can access the cache, and when their cache is invalidated.
+Tất cả các API được đề cập đều cung cấp tính năng memoization nhưng sự khác biệt là chúng được dùng để memoize gì, ai có thể truy cập cache và khi nào cache bị vô hiệu hóa.
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
-In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+Nói chung, bạn nên sử dụng [`useMemo`](/reference/react/useMemo) để cache một phép tính tốn nhiều tài nguyên trong một Client Component qua các lần render. Ví dụ, để memoize một phép biến đổi dữ liệu trong một component.
 
 ```jsx {expectedErrors: {'react-compiler': [4]}} {4}
 'use client';
@@ -338,13 +338,13 @@ function App() {
   );
 }
 ```
-In this example, `App` renders two `WeatherReport`s with the same record. Even though both components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
+Trong ví dụ này, `App` render hai `WeatherReport` với cùng bản ghi. Mặc dù cả hai component đều làm cùng một công việc, chúng không thể chia sẻ công việc. Cache của `useMemo` chỉ là cục bộ trong component.
 
-However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies.
+Tuy nhiên, `useMemo` đảm bảo rằng nếu `App` re-render và đối tượng `record` không thay đổi, mỗi instance component sẽ bỏ qua công việc và sử dụng giá trị đã memoize của `avgTemp`. `useMemo` chỉ cache phép tính cuối cùng của `avgTemp` với các dependencies đã cho.
 
 #### `cache` {/*deep-dive-cache*/}
 
-In general, you should use `cache` in Server Components to memoize work that can be shared across components.
+Nói chung, bạn nên sử dụng `cache` trong Server Components để memoize công việc có thể được chia sẻ trên các component.
 
 ```js [[1, 12, "<WeatherReport city={city} />"], [3, 13, "<WeatherReport city={city} />"], [2, 1, "cache(fetchReport)"]]
 const cachedFetchReport = cache(fetchReport);
@@ -364,13 +364,13 @@ function App() {
   );
 }
 ```
-Re-writing the previous example to use `cache`, in this case the <CodeStep step={3}>second instance of `WeatherReport`</CodeStep> will be able to skip duplicate work and read from the same cache as the <CodeStep step={1}>first `WeatherReport`</CodeStep>. Another difference from the previous example is that `cache` is also recommended for <CodeStep step={2}>memoizing data fetches</CodeStep>, unlike `useMemo` which should only be used for computations.
+Viết lại ví dụ trước để sử dụng `cache`, trong trường hợp này <CodeStep step={3}>instance thứ hai của `WeatherReport`</CodeStep> sẽ có thể bỏ qua công việc trùng lặp và đọc từ cùng cache với <CodeStep step={1}>`WeatherReport` đầu tiên</CodeStep>. Một điểm khác biệt so với ví dụ trước là `cache` cũng được khuyến nghị để <CodeStep step={2}>memoize các lần tải dữ liệu</CodeStep>, không giống `useMemo` chỉ nên được sử dụng cho các phép tính.
 
-At this time, `cache` should only be used in Server Components and the cache will be invalidated across server requests.
+Hiện tại, `cache` chỉ nên được sử dụng trong Server Components và cache sẽ bị vô hiệu hóa qua các yêu cầu từ server.
 
 #### `memo` {/*deep-dive-memo*/}
 
-You should use [`memo`](reference/react/memo) to prevent a component re-rendering if its props are unchanged.
+Bạn nên sử dụng [`memo`](reference/react/memo) để ngăn một component re-render nếu props của nó không thay đổi.
 
 ```js
 'use client';
@@ -393,27 +393,27 @@ function App() {
 }
 ```
 
-In this example, both `MemoWeatherReport` components will call `calculateAvg` when first rendered. However, if `App` re-renders, with no changes to `record`, none of the props have changed and `MemoWeatherReport` will not re-render.
+Trong ví dụ này, cả hai component `MemoWeatherReport` đều sẽ gọi `calculateAvg` khi được render lần đầu tiên. Tuy nhiên, nếu `App` re-render mà không có thay đổi nào đối với `record`, không có props nào thay đổi và `MemoWeatherReport` sẽ không re-render.
 
-Compared to `useMemo`, `memo` memoizes the component render based on props vs. specific computations. Similar to `useMemo`, the memoized component only caches the last render with the last prop values. Once the props change, the cache invalidates and the component re-renders.
+So với `useMemo`, `memo` memoize việc render component dựa trên props so với các phép tính cụ thể. Tương tự như `useMemo`, component đã memoize chỉ cache lần render cuối cùng với các giá trị prop cuối cùng. Khi props thay đổi, cache bị vô hiệu hóa và component re-render.
 
 </DeepDive>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### My memoized function still runs even though I've called it with the same arguments {/*memoized-function-still-runs*/}
+### Hàm memoized của tôi vẫn chạy mặc dù tôi đã gọi nó với cùng các tham số {/*memoized-function-still-runs*/}
 
-See prior mentioned pitfalls
-* [Calling different memoized functions will read from different caches.](#pitfall-different-memoized-functions)
-* [Calling a memoized function outside of a component will not use the cache.](#pitfall-memoized-call-outside-component)
+Xem các pitfall đã đề cập trước đó
+* [Gọi các hàm memoized khác nhau sẽ đọc từ các cache khác nhau.](#pitfall-different-memoized-functions)
+* [Gọi một hàm memoized bên ngoài component sẽ không sử dụng cache.](#pitfall-memoized-call-outside-component)
 
-If none of the above apply, it may be a problem with how React checks if something exists in cache.
+Nếu không có điều nào ở trên áp dụng, có thể là vấn đề với cách React kiểm tra xem có gì đó tồn tại trong cache không.
 
-If your arguments are not [primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
+Nếu các tham số của bạn không phải là [primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ví dụ: objects, functions, arrays), hãy đảm bảo bạn đang truyền cùng một object reference.
 
-When calling a memoized function, React will look up the input arguments to see if a result is already cached. React will use shallow equality of the arguments to determine if there is a cache hit.
+Khi gọi một hàm memoized, React sẽ tra cứu các tham số đầu vào để xem liệu kết quả đã được cache chưa. React sẽ sử dụng shallow equality của các tham số để xác định có cache hit không.
 
 ```js
 import {cache} from 'react';
@@ -423,7 +423,7 @@ const calculateNorm = cache((vector) => {
 });
 
 function MapMarker(props) {
-  // 🚩 Wrong: props is an object that changes every render.
+  // 🚩 Sai: props là một object thay đổi mỗi lần render.
   const length = calculateNorm(props);
   // ...
 }
@@ -438,9 +438,9 @@ function App() {
 }
 ```
 
-In this case the two `MapMarker`s look like they're doing the same work and calling `calculateNorm` with the same value of `{x: 10, y: 10, z:10}`. Even though the objects contain the same values, they are not the same object reference as each component creates its own `props` object.
+Trong trường hợp này hai `MapMarker` có vẻ như đang làm cùng một công việc và gọi `calculateNorm` với cùng giá trị `{x: 10, y: 10, z:10}`. Mặc dù các object chứa cùng giá trị, chúng không phải là cùng một object reference vì mỗi component tạo ra object `props` riêng của mình.
 
-React will call [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) on the input to verify if there is a cache hit.
+React sẽ gọi [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) trên đầu vào để xác minh có cache hit không.
 
 ```js {3,9}
 import {cache} from 'react';
@@ -450,7 +450,7 @@ const calculateNorm = cache((x, y, z) => {
 });
 
 function MapMarker(props) {
-  // ✅ Good: Pass primitives to memoized function
+  // ✅ Tốt: Truyền primitives cho hàm memoized
   const length = calculateNorm(props.x, props.y, props.z);
   // ...
 }
@@ -465,9 +465,9 @@ function App() {
 }
 ```
 
-One way to address this could be to pass the vector dimensions to `calculateNorm`. This works because the dimensions themselves are primitives.
+Một cách để giải quyết vấn đề này là truyền các chiều của vector cho `calculateNorm`. Điều này hoạt động vì bản thân các chiều là primitives.
 
-Another solution may be to pass the vector object itself as a prop to the component. We'll need to pass the same object to both component instances.
+Một giải pháp khác có thể là truyền chính object vector như một prop cho component. Chúng ta cần truyền cùng một object cho cả hai instance component.
 
 ```js {3,9,14}
 import {cache} from 'react';
@@ -477,7 +477,7 @@ const calculateNorm = cache((vector) => {
 });
 
 function MapMarker(props) {
-  // ✅ Good: Pass the same `vector` object
+  // ✅ Tốt: Truyền cùng một object `vector`
   const length = calculateNorm(props.vector);
   // ...
 }

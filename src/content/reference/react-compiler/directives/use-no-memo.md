@@ -1,11 +1,11 @@
 ---
 title: "use no memo"
-titleForTitleTag: "'use no memo' directive"
+titleForTitleTag: "Directive 'use no memo'"
 ---
 
 <Intro>
 
-`"use no memo"` prevents a function from being optimized by React Compiler.
+`"use no memo"` ngăn một hàm không bị React Compiler tối ưu hóa.
 
 </Intro>
 
@@ -13,11 +13,11 @@ titleForTitleTag: "'use no memo' directive"
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `"use no memo"` {/*use-no-memo*/}
 
-Add `"use no memo"` at the beginning of a function to prevent React Compiler optimization.
+Thêm `"use no memo"` ở đầu hàm để ngăn React Compiler tối ưu hóa.
 
 ```js {1}
 function MyComponent() {
@@ -26,122 +26,122 @@ function MyComponent() {
 }
 ```
 
-When a function contains `"use no memo"`, the React Compiler will skip it entirely during optimization. This is useful as a temporary escape hatch when debugging or when dealing with code that doesn't work correctly with the compiler.
+Khi một hàm chứa `"use no memo"`, React Compiler sẽ bỏ qua hoàn toàn hàm đó trong quá trình tối ưu hóa. Điều này hữu ích như một cơ chế thoát hiểm tạm thời khi gỡ lỗi hoặc khi làm việc với mã không hoạt động chính xác với compiler.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* `"use no memo"` must be at the very beginning of a function body, before any imports or other code (comments are OK).
-* The directive must be written with double or single quotes, not backticks.
-* The directive must exactly match `"use no memo"` or its alias `"use no forget"`.
-* This directive takes precedence over all compilation modes and other directives.
-* It's intended as a temporary debugging tool, not a permanent solution.
+* `"use no memo"` phải ở ngay đầu thân hàm, trước bất kỳ import hoặc mã nào khác (comment thì được).
+* Directive phải được viết bằng dấu ngoặc kép đơn hoặc kép, không phải backtick.
+* Directive phải khớp chính xác `"use no memo"` hoặc bí danh `"use no forget"`.
+* Directive này được ưu tiên hơn tất cả các chế độ compile và directive khác.
+* Nó được thiết kế như một công cụ gỡ lỗi tạm thời, không phải giải pháp lâu dài.
 
-### How `"use no memo"` opts-out of optimization {/*how-use-no-memo-opts-out*/}
+### Cách `"use no memo"` loại trừ khỏi tối ưu hóa {/*how-use-no-memo-opts-out*/}
 
-React Compiler analyzes your code at build time to apply optimizations. `"use no memo"` creates an explicit boundary that tells the compiler to skip a function entirely.
+React Compiler phân tích mã của bạn tại thời điểm build để áp dụng các tối ưu hóa. `"use no memo"` tạo ra một ranh giới rõ ràng nói với compiler bỏ qua hoàn toàn một hàm.
 
-This directive takes precedence over all other settings:
-* In `all` mode: The function is skipped despite the global setting
-* In `infer` mode: The function is skipped even if heuristics would optimize it
+Directive này được ưu tiên hơn tất cả các cài đặt khác:
+* Trong chế độ `all`: Hàm bị bỏ qua bất chấp cài đặt toàn cục
+* Trong chế độ `infer`: Hàm bị bỏ qua ngay cả khi phương pháp suy luận sẽ tối ưu hóa nó
 
-The compiler treats these functions as if the React Compiler wasn't enabled, leaving them exactly as written.
+Compiler xử lý các hàm này như thể React Compiler không được bật, giữ nguyên chúng đúng như đã viết.
 
-### When to use `"use no memo"` {/*when-to-use*/}
+### Khi nào sử dụng `"use no memo"` {/*when-to-use*/}
 
-`"use no memo"` should be used sparingly and temporarily. Common scenarios include:
+`"use no memo"` nên được sử dụng một cách tiết kiệm và tạm thời. Các tình huống phổ biến bao gồm:
 
-#### Debugging compiler issues {/*debugging-compiler*/}
-When you suspect the compiler is causing issues, temporarily disable optimization to isolate the problem:
+#### Gỡ lỗi các vấn đề compiler {/*debugging-compiler*/}
+Khi bạn nghi ngờ compiler gây ra vấn đề, tạm thời tắt tối ưu hóa để cô lập vấn đề:
 
 ```js
 function ProblematicComponent({ data }) {
-  "use no memo"; // TODO: Remove after fixing issue #123
+  "use no memo"; // TODO: Xóa sau khi sửa issue #123
 
-  // Rules of React violations that weren't statically detected
+  // Vi phạm Quy tắc của React không được phát hiện tĩnh
   // ...
 }
 ```
 
-#### Third-party library integration {/*third-party*/}
-When integrating with libraries that might not be compatible with the compiler:
+#### Tích hợp thư viện bên thứ ba {/*third-party*/}
+Khi tích hợp với các thư viện có thể không tương thích với compiler:
 
 ```js
 function ThirdPartyWrapper() {
   "use no memo";
 
-  useThirdPartyHook(); // Has side effects that compiler might optimize incorrectly
+  useThirdPartyHook(); // Có side effect mà compiler có thể tối ưu hóa sai
   // ...
 }
 ```
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-The `"use no memo"` directive is placed at the beginning of a function body to prevent React Compiler from optimizing that function:
+Directive `"use no memo"` được đặt ở đầu thân hàm để ngăn React Compiler tối ưu hóa hàm đó:
 
 ```js
 function MyComponent() {
   "use no memo";
-  // Function body
+  // Thân hàm
 }
 ```
 
-The directive can also be placed at the top of a file to affect all functions in that module:
+Directive cũng có thể được đặt ở đầu file để ảnh hưởng đến tất cả các hàm trong module đó:
 
 ```js
 "use no memo";
 
-// All functions in this file will be skipped by the compiler
+// Tất cả các hàm trong file này sẽ bị compiler bỏ qua
 ```
 
-`"use no memo"` at the function level overrides the module level directive.
+`"use no memo"` ở cấp hàm ghi đè directive cấp module.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### Directive not preventing compilation {/*not-preventing*/}
+### Directive không ngăn chặn compile {/*not-preventing*/}
 
-If `"use no memo"` isn't working:
+Nếu `"use no memo"` không hoạt động:
 
 ```js
-// ❌ Wrong - directive after code
+// ❌ Sai - directive sau mã
 function Component() {
   const data = getData();
-  "use no memo"; // Too late!
+  "use no memo"; // Quá muộn!
 }
 
-// ✅ Correct - directive first
+// ✅ Đúng - directive đặt đầu tiên
 function Component() {
   "use no memo";
   const data = getData();
 }
 ```
 
-Also check:
-* Spelling - must be exactly `"use no memo"`
-* Quotes - must use single or double quotes, not backticks
+Cũng kiểm tra:
+* Chính tả - phải chính xác là `"use no memo"`
+* Dấu ngoặc kép - phải sử dụng dấu ngoặc đơn hoặc kép, không phải backtick
 
-### Best practices {/*best-practices*/}
+### Thực hành tốt nhất {/*best-practices*/}
 
-**Always document why** you're disabling optimization:
+**Luôn ghi chú lý do** bạn tắt tối ưu hóa:
 
 ```js
-// ✅ Good - clear explanation and tracking
+// ✅ Tốt - giải thích rõ ràng và có theo dõi
 function DataProcessor() {
-  "use no memo"; // TODO: Remove after fixing rule of react violation
+  "use no memo"; // TODO: Xóa sau khi sửa vi phạm quy tắc của React
   // ...
 }
 
-// ❌ Bad - no explanation
+// ❌ Không tốt - không có giải thích
 function Mystery() {
   "use no memo";
   // ...
 }
 ```
 
-### See also {/*see-also*/}
+### Xem thêm {/*see-also*/}
 
-* [`"use memo"`](/reference/react-compiler/directives/use-memo) - Opt into compilation
-* [React Compiler](/learn/react-compiler) - Getting started guide
+* [`"use memo"`](/reference/react-compiler/directives/use-memo) - Đưa vào danh sách compile
+* [React Compiler](/learn/react-compiler) - Hướng dẫn bắt đầu

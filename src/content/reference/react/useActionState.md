@@ -4,7 +4,7 @@ title: useActionState
 
 <Intro>
 
-`useActionState` is a React Hook that lets you update state with side effects using [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+`useActionState` la mot React Hook cho phep ban cap nhat state voi cac tac dung phu su dung [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
 
 ```js
 const [state, dispatchAction, isPending] = useActionState(reducerAction, initialState, permalink?);
@@ -16,11 +16,11 @@ const [state, dispatchAction, isPending] = useActionState(reducerAction, initial
 
 ---
 
-## Reference {/*reference*/}
+## Tham khao {/*reference*/}
 
 ### `useActionState(reducerAction, initialState, permalink?)` {/*useactionstate*/}
 
-Call `useActionState` at the top level of your component to create state for the result of an Action.
+Goi `useActionState` o cap cao nhat cua component de tao state cho ket qua cua mot Action.
 
 ```js
 import { useActionState } from 'react';
@@ -35,49 +35,49 @@ function MyCart({initialState}) {
 }
 ```
 
-[See more examples below.](#usage)
+[Xem them cac vi du ben duoi.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham so {/*parameters*/}
 
-* `reducerAction`: The function to be called when the Action is triggered. When called, it receives the previous state (initially the `initialState` you provided, then its previous return value) as its first argument, followed by the `actionPayload` passed to `dispatchAction`.
-* `initialState`: The value you want the state to be initially. React ignores this argument after `dispatchAction` is invoked for the first time.
-* **optional** `permalink`: A string containing the unique page URL that this form modifies.
-  * For use on pages with [React Server Components](/reference/rsc/server-components) with progressive enhancement.
-  * If `reducerAction` is a [Server Function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL rather than the current page's URL.
+* `reducerAction`: Ham duoc goi khi Action duoc kich hoat. Khi duoc goi, no nhan state truoc do (ban dau la `initialState` ban da cung cap, sau do la gia tri tra ve truoc do) lam doi so dau tien, tiep theo la `actionPayload` duoc truyen vao `dispatchAction`.
+* `initialState`: Gia tri ban muon state ban dau la. React se bo qua doi so nay sau khi `dispatchAction` duoc goi lan dau tien.
+* **tuy chon** `permalink`: Mot chuoi chua URL trang duy nhat ma form nay thay doi.
+  * De su dung tren cac trang voi [React Server Components](/reference/rsc/server-components) voi progressive enhancement.
+  * Neu `reducerAction` la mot [Server Function](/reference/rsc/server-functions) va form duoc gui truoc khi JavaScript bundle duoc tai, trinh duyet se dieu huong den URL permalink da chi dinh thay vi URL cua trang hien tai.
 
-#### Returns {/*returns*/}
+#### Gia tri tra ve {/*returns*/}
 
-`useActionState` returns an array with exactly three values:
+`useActionState` tra ve mot mang voi dung ba gia tri:
 
-1. The current state. During the first render, it will match the `initialState` you passed. After `dispatchAction` is invoked, it will match the value returned by the `reducerAction`.
-2. A `dispatchAction` function that you call inside [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
-3. The `isPending` flag that tells you if any dispatched Actions for this Hook are pending.
+1. State hien tai. Trong lan render dau tien, no se khop voi `initialState` ban da truyen. Sau khi `dispatchAction` duoc goi, no se khop voi gia tri duoc tra ve boi `reducerAction`.
+2. Mot ham `dispatchAction` ma ban goi ben trong [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+3. Co `isPending` cho ban biet lieu co bat ky Action nao da dispatch cho Hook nay dang cho xu ly hay khong.
 
-#### Caveats {/*caveats*/}
+#### Luu y {/*caveats*/}
 
-* `useActionState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React queues and executes multiple calls to `dispatchAction` sequentially. Each call to `reducerAction` receives the result of the previous call.
-* The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
-* When using the `permalink` option, ensure the same form component is rendered on the destination page (including the same `reducerAction` and `permalink`) so React knows how to pass the state through. Once the page becomes interactive, this parameter has no effect.
-* When using Server Functions, `initialState` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
-* If `dispatchAction` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
-* If there are multiple ongoing Actions, React batches them together. This is a limitation that may be removed in a future release.
+* `useActionState` la mot Hook, vi vay ban chi co the goi no **o cap cao nhat cua component** hoac cac Hook cua rieng ban. Ban khong the goi no ben trong vong lap hoac dieu kien. Neu ban can dieu do, hay trich xuat mot component moi va chuyen state vao do.
+* React xep hang doi va thuc thi nhieu loi goi den `dispatchAction` tuan tu. Moi loi goi den `reducerAction` nhan ket qua cua loi goi truoc do.
+* Ham `dispatchAction` co identity on dinh, vi vay ban se thuong thay no bi bo qua khoi cac dependency cua Effect, nhung bao gom no se khong gay ra Effect chay lai. Neu linter cho phep ban bo qua mot dependency ma khong co loi, thi viec do la an toan. [Tim hieu them ve viec loai bo cac dependency cua Effect.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+* Khi su dung tuy chon `permalink`, dam bao cung component form duoc render tren trang dich (bao gom cung `reducerAction` va `permalink`) de React biet cach truyen state. Khi trang tro nen tuong tac, tham so nay khong con tac dung.
+* Khi su dung Server Functions, `initialState` can phai [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (cac gia tri nhu object don gian, mang, chuoi va so).
+* Neu `dispatchAction` nem loi, React huy tat ca cac action da xep hang doi va hien thi [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) gan nhat.
+* Neu co nhieu Action dang dien ra, React gop chung lai voi nhau. Day la mot han che co the duoc go bo trong ban phat hanh tuong lai.
 
 <Note>
 
-`dispatchAction` must be called from an Action.
+`dispatchAction` phai duoc goi tu mot Action.
 
-You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components). Calls outside that scope won’t be treated as part of the Transition and [log an error](#async-function-outside-transition) on development mode.
+Ban co the boc no trong [`startTransition`](/reference/react/startTransition), hoac truyen no cho mot [Action prop](/reference/react/useTransition#exposing-action-props-from-components). Cac loi goi ben ngoai pham vi do se khong duoc xu ly nhu mot phan cua Transition va [ghi log loi](#async-function-outside-transition) o che do development.
 
 </Note>
 
 ---
 
-### `reducerAction` function {/*reduceraction*/}
+### Ham `reducerAction` {/*reduceraction*/}
 
-The `reducerAction` function passed to `useActionState` receives the previous state and returns a new state.
+Ham `reducerAction` duoc truyen vao `useActionState` nhan state truoc do va tra ve state moi.
 
-Unlike reducers in `useReducer`, the `reducerAction` can be async and perform side effects:
+Khong giong nhu reducer trong `useReducer`, `reducerAction` co the la async va thuc hien cac tac dung phu:
 
 ```js
 async function reducerAction(previousState, actionPayload) {
@@ -86,46 +86,46 @@ async function reducerAction(previousState, actionPayload) {
 }
 ```
 
-Each time you call `dispatchAction`, React calls the `reducerAction` with the `actionPayload`. The reducer will perform side effects such as posting data, and return the new state. If `dispatchAction` is called multiple times, React queues and executes them in order so the result of the previous call is passed as `previousState` for the current call.
+Moi khi ban goi `dispatchAction`, React goi `reducerAction` voi `actionPayload`. Reducer se thuc hien cac tac dung phu nhu gui du lieu, va tra ve state moi. Neu `dispatchAction` duoc goi nhieu lan, React xep hang doi va thuc thi chung theo thu tu de ket qua cua loi goi truoc do duoc truyen lam `previousState` cho loi goi hien tai.
 
-#### Parameters {/*reduceraction-parameters*/}
+#### Tham so {/*reduceraction-parameters*/}
 
-* `previousState`: The last state. Initially this is equal to the `initialState`. After the first call to `dispatchAction`, it's equal to the last state returned.
+* `previousState`: State cuoi cung. Ban dau no bang voi `initialState`. Sau loi goi dau tien den `dispatchAction`, no bang voi state cuoi cung duoc tra ve.
 
-* **optional** `actionPayload`: The argument passed to `dispatchAction`. It can be a value of any type. Similar to `useReducer` conventions, it is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
+* **tuy chon** `actionPayload`: Doi so duoc truyen vao `dispatchAction`. No co the la gia tri cua bat ky kieu nao. Tuong tu nhu quy uoc cua `useReducer`, no thuong la mot object voi thuoc tinh `type` de xac dinh no va, tuy chon, cac thuoc tinh khac voi thong tin bo sung.
 
-#### Returns {/*reduceraction-returns*/}
+#### Gia tri tra ve {/*reduceraction-returns*/}
 
-`reducerAction` returns the new state, and triggers a Transition to re-render with that state.
+`reducerAction` tra ve state moi, va kich hoat mot Transition de render lai voi state do.
 
-#### Caveats {/*reduceraction-caveats*/}
+#### Luu y {/*reduceraction-caveats*/}
 
-* `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server.
-* `reducerAction` is not invoked twice in `<StrictMode>` since `reducerAction` is designed to allow side effects.
-* The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
-* If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
-* When using Server Functions, `actionPayload` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
+* `reducerAction` co the la dong bo hoac bat dong bo. No co the thuc hien cac hanh dong dong bo nhu hien thi thong bao, hoac cac hanh dong bat dong bo nhu gui cap nhat len server.
+* `reducerAction` khong duoc goi hai lan trong `<StrictMode>` vi `reducerAction` duoc thiet ke de cho phep cac tac dung phu.
+* Kieu tra ve cua `reducerAction` phai khop voi kieu cua `initialState`. Neu TypeScript suy luan ra su khong khop, ban co the can chu thich ro rang kieu state cua ban.
+* Neu ban set state sau `await` trong `reducerAction`, hien tai ban can boc cap nhat state trong mot `startTransition` bo sung. Xem tai lieu [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) de biet them.
+* Khi su dung Server Functions, `actionPayload` can phai [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (cac gia tri nhu object don gian, mang, chuoi va so).
 
 <DeepDive>
 
-#### Why is it called `reducerAction`? {/*why-is-it-called-reduceraction*/}
+#### Tai sao no duoc goi la `reducerAction`? {/*why-is-it-called-reduceraction*/}
 
-The function passed to `useActionState` is called a *reducer action* because:
+Ham duoc truyen vao `useActionState` duoc goi la *reducer action* vi:
 
-- It *reduces* the previous state into a new state, like `useReducer`.
-- It's an *Action* because it's called inside a Transition and can perform side effects.
+- No *reduce* state truoc do thanh state moi, giong nhu `useReducer`.
+- No la mot *Action* vi no duoc goi ben trong mot Transition va co the thuc hien cac tac dung phu.
 
-Conceptually, `useActionState` is like `useReducer`, but you can do side effects in the reducer.
+Ve mat khai niem, `useActionState` giong nhu `useReducer`, nhung ban co the thuc hien cac tac dung phu trong reducer.
 
 </DeepDive>
 
 ---
 
-## Usage {/*usage*/}
+## Cach su dung {/*usage*/}
 
-### Adding state to an Action {/*adding-state-to-an-action*/}
+### Them state vao mot Action {/*adding-state-to-an-action*/}
 
-Call `useActionState` at the top level of your component to create state for the result of an Action.
+Goi `useActionState` o cap cao nhat cua component de tao state cho ket qua cua mot Action.
 
 ```js [[1, 7, "count"], [2, 7, "dispatchAction"], [3, 7, "isPending"]]
 import { useActionState } from 'react';
@@ -140,13 +140,13 @@ function Counter() {
 }
 ```
 
-`useActionState` returns an array with exactly three items:
+`useActionState` tra ve mot mang voi dung ba muc:
 
-1. The <CodeStep step={1}>current state</CodeStep>, initially set to the initial state you provided.
-2. The <CodeStep step={2}>action dispatcher</CodeStep> that lets you trigger `reducerAction`.
-3. A <CodeStep step={3}>pending state</CodeStep> that tells you whether the Action is in progress.
+1. <CodeStep step={1}>State hien tai</CodeStep>, ban dau duoc dat thanh state ban dau ban da cung cap.
+2. <CodeStep step={2}>Action dispatcher</CodeStep> cho phep ban kich hoat `reducerAction`.
+3. Mot <CodeStep step={3}>trang thai cho</CodeStep> cho ban biet lieu Action co dang duoc thuc hien hay khong.
 
-To call `addToCartAction`, call the <CodeStep step={2}>action dispatcher</CodeStep>. React will queue calls to `addToCartAction` with the previous count.
+De goi `addToCartAction`, goi <CodeStep step={2}>action dispatcher</CodeStep>. React se xep hang doi cac loi goi den `addToCartAction` voi so luong truoc do.
 
 <Sandpack>
 
@@ -257,29 +257,29 @@ button {
 
 </Sandpack>
 
-Every time you click "Add Ticket," React queues a call to `addToCartAction`. React shows the pending state until all the tickets are added, and then re-renders with the final state.
+Moi khi ban nhan "Add Ticket," React xep hang doi mot loi goi den `addToCartAction`. React hien thi trang thai cho cho den khi tat ca cac ve duoc them, va sau do render lai voi state cuoi cung.
 
 <DeepDive>
 
-#### How `useActionState` queuing works {/*how-useactionstate-queuing-works*/}
+#### Cach xep hang doi cua `useActionState` hoat dong {/*how-useactionstate-queuing-works*/}
 
-Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCartAction` is queued. Since there's an artificial 1 second delay, that means 4 clicks will take ~4 seconds to complete.
+Thu nhan "Add Ticket" nhieu lan. Moi khi ban nhan, mot `addToCartAction` moi duoc xep hang doi. Vi co do tre nhan tao 1 giay, dieu do co nghia la 4 lan nhan se mat ~4 giay de hoan thanh.
 
-**This is intentional in the design of `useActionState`.**
+**Day la co chu dich trong thiet ke cua `useActionState`.**
 
-We have to wait for the previous result of `addToCartAction` in order to pass the `prevCount` to the next call to `addToCartAction`. That means React has to wait for the previous Action to finish before calling the next Action.
+Chung ta phai doi ket qua truoc do cua `addToCartAction` de truyen `prevCount` cho loi goi tiep theo den `addToCartAction`. Dieu do co nghia la React phai doi Action truoc do hoan thanh truoc khi goi Action tiep theo.
 
-You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
+Ban thuong co the giai quyet dieu nay bang cach [su dung voi useOptimistic](/reference/react/useActionState#using-with-useoptimistic) nhung doi voi cac truong hop phuc tap hon ban co the muon xem xet [huy cac action da xep hang doi](#cancelling-queued-actions) hoac khong su dung `useActionState`.
 
 </DeepDive>
 
 ---
 
-### Using multiple Action types {/*using-multiple-action-types*/}
+### Su dung nhieu kieu Action {/*using-multiple-action-types*/}
 
-To handle multiple types, you can pass an argument to `dispatchAction`.
+De xu ly nhieu kieu, ban co the truyen mot doi so cho `dispatchAction`.
 
-By convention, it is common to write it as a switch statement. For each case in the switch, calculate and return some next state. The argument can have any shape, but it is common to pass objects with a `type` property identifying the action.
+Theo quy uoc, thuong viet no nhu mot cau lenh switch. Voi moi truong hop trong switch, tinh toan va tra ve mot state tiep theo nao do. Doi so co the co bat ky hinh dang nao, nhung thuong truyen cac object voi thuoc tinh `type` de xac dinh action.
 
 <Sandpack>
 
@@ -428,29 +428,29 @@ hr {
 
 </Sandpack>
 
-When you click to increase or decrease the quantity, an `"ADD"` or `"REMOVE"` is dispatched. In the `reducerAction`, different APIs are called to update the quantity.
+Khi ban nhan de tang hoac giam so luong, mot `"ADD"` hoac `"REMOVE"` duoc dispatch. Trong `reducerAction`, cac API khac nhau duoc goi de cap nhat so luong.
 
-In this example, we use the pending state of the Actions to replace both the quantity and the total. If you want to provide immediate feedback, such as immediately updating the quantity, you can use `useOptimistic`.
+Trong vi du nay, chung ta su dung trang thai cho cua cac Action de thay the ca so luong va tong. Neu ban muon cung cap phan hoi ngay lap tuc, chang han nhu cap nhat so luong ngay lap tuc, ban co the su dung `useOptimistic`.
 
 <DeepDive>
 
-#### How is `useActionState` different from `useReducer`? {/*useactionstate-vs-usereducer*/}
+#### `useActionState` khac `useReducer` nhu the nao? {/*useactionstate-vs-usereducer*/}
 
-You might notice this example looks a lot like `useReducer`, but they serve different purposes:
+Ban co the nhan thay vi du nay trang giong `useReducer`, nhung chung phuc vu cac muc dich khac nhau:
 
-- **Use `useReducer`** to manage state of your UI. The reducer must be pure.
+- **Su dung `useReducer`** de quan ly state cua UI. Reducer phai la pure.
 
-- **Use `useActionState`** to manage state of your Actions. The reducer can perform side effects.
+- **Su dung `useActionState`** de quan ly state cua cac Action. Reducer co the thuc hien cac tac dung phu.
 
-You can think of `useActionState` as `useReducer` for side effects from user Actions. Since it computes the next Action to take based on the previous Action, it has to [order the calls sequentially](/reference/react/useActionState#how-useactionstate-queuing-works). If you want to perform Actions in parallel, use `useState` and `useTransition` directly.
+Ban co the nghi ve `useActionState` nhu `useReducer` cho cac tac dung phu tu cac Action cua nguoi dung. Vi no tinh toan Action tiep theo dua tren Action truoc do, no phai [sap xep cac loi goi tuan tu](/reference/react/useActionState#how-useactionstate-queuing-works). Neu ban muon thuc hien cac Action song song, hay su dung `useState` va `useTransition` truc tiep.
 
 </DeepDive>
 
 ---
 
-### Using with `useOptimistic` {/*using-with-useoptimistic*/}
+### Su dung voi `useOptimistic` {/*using-with-useoptimistic*/}
 
-You can combine `useActionState` with [`useOptimistic`](/reference/react/useOptimistic) to show immediate UI feedback:
+Ban co the ket hop `useActionState` voi [`useOptimistic`](/reference/react/useOptimistic) de hien thi phan hoi UI ngay lap tuc:
 
 
 <Sandpack>
@@ -605,16 +605,16 @@ hr {
 </Sandpack>
 
 
-`setOptimisticCount` immediately updates the quantity, and `dispatchAction()` queues the `updateCartAction`. A pending indicator appears on both the quantity and total to give the user feedback that their update is still being applied.
+`setOptimisticCount` cap nhat so luong ngay lap tuc, va `dispatchAction()` xep hang doi `updateCartAction`. Mot chi bao cho xuat hien tren ca so luong va tong de phan hoi cho nguoi dung rang cap nhat cua ho van dang duoc ap dung.
 
 ---
 
 
-### Using with Action props {/*using-with-action-props*/}
+### Su dung voi Action props {/*using-with-action-props*/}
 
-When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to call `startTransition` or `useOptimistic` yourself.
+Khi ban truyen ham `dispatchAction` cho mot component hien thi mot [Action prop](/reference/react/useTransition#exposing-action-props-from-components), ban khong can goi `startTransition` hoac `useOptimistic` ban than.
 
-This example shows using the `increaseAction` and `decreaseAction` props of a QuantityStepper component:
+Vi du nay cho thay viec su dung cac prop `increaseAction` va `decreaseAction` cua component QuantityStepper:
 
 <Sandpack>
 
@@ -791,13 +791,13 @@ hr {
 
 </Sandpack>
 
-Since `<QuantityStepper>` has built-in support for transitions, pending state, and optimistically updating the count, you just need to tell the Action _what_ to change, and _how_ to change it is handled for you.
+Vi `<QuantityStepper>` co ho tro san cho transition, trang thai cho, va cap nhat optimistic so luong, ban chi can cho Action biet _can thay doi gi_, va _cach thay doi_ duoc xu ly cho ban.
 
 ---
 
-### Cancelling queued Actions {/*cancelling-queued-actions*/}
+### Huy cac Action da xep hang doi {/*cancelling-queued-actions*/}
 
-You can use an `AbortController` to cancel pending Actions:
+Ban co the su dung `AbortController` de huy cac Action dang cho:
 
 <Sandpack>
 
@@ -1016,23 +1016,23 @@ hr {
 
 </Sandpack>
 
-Try clicking increase or decrease multiple times, and notice that the total updates within 1 second no matter how many times you click. This works because it uses an `AbortController` to "complete" the previous Action so the next Action can proceed.
+Thu nhan tang hoac giam nhieu lan, va nhan thay tong cap nhat trong vong 1 giay bat ke ban nhan bao nhieu lan. Dieu nay hoat dong vi no su dung `AbortController` de "hoan thanh" Action truoc do de Action tiep theo co the tien hanh.
 
 <Pitfall>
 
-Aborting an Action isn't always safe.
+Huy mot Action khong phai luc nao cung an toan.
 
-For example, if the Action performs a mutation (like writing to a database), aborting the network request doesn't undo the server-side change. This is why `useActionState` doesn't abort by default. It's only safe when you know the side effect can be safely ignored or retried.
+Vi du, neu Action thuc hien mot mutation (nhu ghi vao co so du lieu), huy yeu cau mang khong hoan tac thay doi phia server. Day la ly do `useActionState` khong huy mac dinh. Chi an toan khi ban biet tac dung phu co the duoc bo qua hoac thu lai mot cach an toan.
 
 </Pitfall>
 
 ---
 
-### Using with `<form>` Action props {/*use-with-a-form*/}
+### Su dung voi Action props cua `<form>` {/*use-with-a-form*/}
 
-You can pass the `dispatchAction` function as the `action` prop to a `<form>`.
+Ban co the truyen ham `dispatchAction` lam prop `action` cho `<form>`.
 
-When used this way, React automatically wraps the submission in a Transition, so you don't need to call `startTransition` yourself. The `reducerAction` receives the previous state and the submitted `FormData`:
+Khi su dung theo cach nay, React tu dong boc viec gui trong mot Transition, vi vay ban khong can goi `startTransition` ban than. `reducerAction` nhan state truoc do va `FormData` da gui:
 
 <Sandpack>
 
@@ -1182,25 +1182,25 @@ hr {
 
 </Sandpack>
 
-In this example, when the user clicks the stepper arrows, the button submits the form and `useActionState` calls `updateCartAction` with the form data. The example uses `useOptimistic` to immediately show the new quantity while the server confirms the update.
+Trong vi du nay, khi nguoi dung nhan cac mui ten stepper, nut gui form va `useActionState` goi `updateCartAction` voi du lieu form. Vi du su dung `useOptimistic` de hien thi so luong moi ngay lap tuc trong khi server xac nhan cap nhat.
 
 <RSC>
 
-When used with a [Server Function](/reference/rsc/server-functions), `useActionState` allows the server's response to be shown before hydration (when React attaches to server-rendered HTML) completes. You can also use the optional `permalink` parameter for progressive enhancement (allowing the form to work before JavaScript loads) on pages with dynamic content. This is typically handled by your framework for you.
+Khi su dung voi mot [Server Function](/reference/rsc/server-functions), `useActionState` cho phep phan hoi cua server duoc hien thi truoc khi hydration (khi React gan vao HTML duoc render phia server) hoan thanh. Ban cung co the su dung tham so `permalink` tuy chon cho progressive enhancement (cho phep form hoat dong truoc khi JavaScript tai) tren cac trang co noi dung dong. Dieu nay thuong duoc framework xu ly cho ban.
 
 </RSC>
 
-See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms.
+Xem tai lieu [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) de biet them ve viec su dung Action voi form.
 
 ---
 
-### Handling errors {/*handling-errors*/}
+### Xu ly loi {/*handling-errors*/}
 
-There are two ways to handle errors with `useActionState`.
+Co hai cach xu ly loi voi `useActionState`.
 
-For known errors, such as "quantity not available" validation errors from your backend, you can return it as part of your `reducerAction` state and display it in the UI.
+Doi voi cac loi da biet, chang han nhu loi xac thuc "so luong khong kha dung" tu backend cua ban, ban co the tra ve no nhu mot phan cua state `reducerAction` va hien thi no trong UI.
 
-For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
+Doi voi cac loi khong biet, chang han nhu `undefined is not a function`, ban co the nem loi. React se huy tat ca cac Action da xep hang doi va hien thi [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) gan nhat bang cach nem lai loi tu hook `useActionState`.
 
 <Sandpack>
 
@@ -1215,16 +1215,16 @@ function Checkout() {
     async (prevState, quantity) => {
       const result = await addToCart(prevState.count, quantity);
       if (result.error) {
-        // Return the error from the API as state
+        // Tra ve loi tu API nhu state
         return {...prevState, error: `Could not add quanitiy ${quantity}: ${result.error}`};
       }
 
       if (!isPending) {
-        // Clear the error state for the first dispatch.
+        // Xoa trang thai loi cho dispatch dau tien.
         return {count: result.count, error: null};
       }
 
-      // Return the new count, and any errors that happened.
+      // Tra ve so luong moi, va bat ky loi nao da xay ra.
       return {count: result.count, error: prevState.error};
 
 
@@ -1373,16 +1373,16 @@ button {
 
 </Sandpack>
 
-In this example, "Add 10" simulates an API that returns a validation error, which `updateCartAction` stores in state and displays inline. "Add NaN" results in an invalid count, so `updateCartAction` throws, which propagates through `useActionState` to the `ErrorBoundary` and shows a reset UI.
+Trong vi du nay, "Add 10" mo phong mot API tra ve loi xac thuc, ma `updateCartAction` luu trong state va hien thi inline. "Add NaN" dan den so luong khong hop le, vi vay `updateCartAction` nem loi, truyen qua `useActionState` den `ErrorBoundary` va hien thi UI dat lai.
 
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xu ly su co {/*troubleshooting*/}
 
-### My `isPending` flag is not updating {/*ispending-not-updating*/}
+### Co `isPending` cua toi khong cap nhat {/*ispending-not-updating*/}
 
-If you're calling `dispatchAction` manually (not through an Action prop), make sure you wrap the call in [`startTransition`](/reference/react/startTransition):
+Neu ban dang goi `dispatchAction` thu cong (khong thong qua Action prop), hay dam bao ban boc loi goi trong [`startTransition`](/reference/react/startTransition):
 
 ```js
 import { useActionState, startTransition } from 'react';
@@ -1391,7 +1391,7 @@ function MyComponent() {
   const [state, dispatchAction, isPending] = useActionState(myAction, null);
 
   function handleClick() {
-    // ✅ Correct: wrap in startTransition
+    // ✅ Dung: boc trong startTransition
     startTransition(() => {
       dispatchAction();
     });
@@ -1401,21 +1401,21 @@ function MyComponent() {
 }
 ```
 
-When `dispatchAction` is passed to an Action prop, React automatically wraps it in a Transition.
+Khi `dispatchAction` duoc truyen cho mot Action prop, React tu dong boc no trong mot Transition.
 
 ---
 
-### My Action cannot read form data {/*action-cannot-read-form-data*/}
+### Action cua toi khong the doc du lieu form {/*action-cannot-read-form-data*/}
 
-When you use `useActionState`, the `reducerAction` receives an extra argument as its first argument: the previous or initial state. The submitted form data is therefore its second argument instead of its first.
+Khi ban su dung `useActionState`, `reducerAction` nhan mot doi so bo sung lam doi so dau tien: state truoc do hoac state ban dau. Du lieu form da gui do do la doi so thu hai thay vi doi so dau tien.
 
 ```js {2,7}
-// Without useActionState
+// Khong co useActionState
 function action(formData) {
   const name = formData.get('name');
 }
 
-// With useActionState
+// Voi useActionState
 function action(prevState, formData) {
   const name = formData.get('name');
 }
@@ -1423,13 +1423,13 @@ function action(prevState, formData) {
 
 ---
 
-### My actions are being skipped {/*actions-skipped*/}
+### Cac action cua toi bi bo qua {/*actions-skipped*/}
 
-If you call `dispatchAction` multiple times and some of them don't run, it may be because an earlier `dispatchAction` call threw an error.
+Neu ban goi `dispatchAction` nhieu lan va mot so trong do khong chay, co the la vi mot loi goi `dispatchAction` truoc do da nem loi.
 
-When a `reducerAction` throws, React skips all subsequently queued `dispatchAction` calls.
+Khi mot `reducerAction` nem loi, React bo qua tat ca cac loi goi `dispatchAction` da xep hang doi sau do.
 
-To handle this, catch errors within your `reducerAction` and return an error state instead of throwing:
+De xu ly dieu nay, bat loi ben trong `reducerAction` va tra ve state loi thay vi nem:
 
 ```js
 async function myReducerAction(prevState, data) {
@@ -1437,7 +1437,7 @@ async function myReducerAction(prevState, data) {
     const result = await submitData(data);
     return { success: true, data: result };
   } catch (error) {
-    // ✅ Return error state instead of throwing
+    // ✅ Tra ve state loi thay vi nem
     return { success: false, error: error.message };
   }
 }
@@ -1445,19 +1445,19 @@ async function myReducerAction(prevState, data) {
 
 ---
 
-### My state doesn't reset {/*reset-state*/}
+### State cua toi khong dat lai {/*reset-state*/}
 
-`useActionState` doesn't provide a built-in reset function. To reset the state, you can design your `reducerAction` to handle a reset signal:
+`useActionState` khong cung cap ham dat lai san co. De dat lai state, ban co the thiet ke `reducerAction` de xu ly tin hieu dat lai:
 
 ```js
 const initialState = { name: '', error: null };
 
 async function formAction(prevState, payload) {
-  // Handle reset
+  // Xu ly dat lai
   if (payload === null) {
     return initialState;
   }
-  // Normal action logic
+  // Logic action binh thuong
   const result = await submitData(payload);
   return result;
 }
@@ -1467,7 +1467,7 @@ function MyComponent() {
 
   function handleReset() {
     startTransition(() => {
-      dispatchAction(null); // Pass null to trigger reset
+      dispatchAction(null); // Truyen null de kich hoat dat lai
     });
   }
 
@@ -1475,13 +1475,13 @@ function MyComponent() {
 }
 ```
 
-Alternatively, you can add a `key` prop to the component using `useActionState` to force it to remount with fresh state, or a `<form>` `action` prop, which resets automatically after submission.
+Ngoai ra, ban co the them prop `key` cho component su dung `useActionState` de buoc no mount lai voi state moi, hoac prop `action` cua `<form>`, tu dong dat lai sau khi gui.
 
 ---
 
-### I'm getting an error: "An async function with useActionState was called outside of a transition." {/*async-function-outside-transition*/}
+### Toi gap loi: "An async function with useActionState was called outside of a transition." {/*async-function-outside-transition*/}
 
-A common mistake is to forget to call `dispatchAction` from inside a Transition:
+Mot loi thuong gap la quen goi `dispatchAction` tu ben trong mot Transition:
 
 <ConsoleBlockMulti>
 <ConsoleLogLine level="error">
@@ -1492,14 +1492,14 @@ An async function with useActionState was called outside of a transition. This i
 </ConsoleBlockMulti>
 
 
-This error happens because `dispatchAction` must run inside a Transition:
+Loi nay xay ra vi `dispatchAction` phai chay ben trong mot Transition:
 
 ```js
 function MyComponent() {
   const [state, dispatchAction, isPending] = useActionState(myAsyncAction, null);
 
   function handleClick() {
-    // ❌ Wrong: calling dispatchAction outside a Transition
+    // ❌ Sai: goi dispatchAction ben ngoai Transition
     dispatchAction();
   }
 
@@ -1507,7 +1507,7 @@ function MyComponent() {
 }
 ```
 
-To fix, either wrap the call in [`startTransition`](/reference/react/startTransition):
+De sua, hoac boc loi goi trong [`startTransition`](/reference/react/startTransition):
 
 ```js
 import { useActionState, startTransition } from 'react';
@@ -1516,7 +1516,7 @@ function MyComponent() {
   const [state, dispatchAction, isPending] = useActionState(myAsyncAction, null);
 
   function handleClick() {
-    // ✅ Correct: wrap in startTransition
+    // ✅ Dung: boc trong startTransition
     startTransition(() => {
       dispatchAction();
     });
@@ -1526,22 +1526,22 @@ function MyComponent() {
 }
 ```
 
-Or pass `dispatchAction` to an Action prop, is call in a Transition:
+Hoac truyen `dispatchAction` cho mot Action prop, duoc goi trong mot Transition:
 
 ```js
 function MyComponent() {
   const [state, dispatchAction, isPending] = useActionState(myAsyncAction, null);
 
-  // ✅ Correct: action prop wraps in a Transition for you
+  // ✅ Dung: action prop boc trong Transition cho ban
   return <Button action={dispatchAction}>...</Button>;
 }
 ```
 
 ---
 
-### I'm getting an error: "Cannot update action state while rendering" {/*cannot-update-during-render*/}
+### Toi gap loi: "Cannot update action state while rendering" {/*cannot-update-during-render*/}
 
-You cannot call `dispatchAction` during render:
+Ban khong the goi `dispatchAction` trong khi render:
 
 <ConsoleBlock level="error">
 
@@ -1549,17 +1549,17 @@ Cannot update action state while rendering.
 
 </ConsoleBlock>
 
-This causes an infinite loop because calling `dispatchAction` schedules a state update, which triggers a re-render, which calls `dispatchAction` again.
+Dieu nay gay ra vong lap vo han vi goi `dispatchAction` len lich cap nhat state, kich hoat render lai, goi `dispatchAction` lai.
 
 ```js
 function MyComponent() {
   const [state, dispatchAction, isPending] = useActionState(myAction, null);
 
-  // ❌ Wrong: calling dispatchAction during render
+  // ❌ Sai: goi dispatchAction trong khi render
   dispatchAction();
 
   // ...
 }
 ```
 
-To fix, only call `dispatchAction` in response to user events (like form submissions or button clicks).
+De sua, chi goi `dispatchAction` de phan hoi cac su kien cua nguoi dung (nhu gui form hoac nhan nut).

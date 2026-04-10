@@ -1,34 +1,34 @@
 ---
-title: Choosing the State Structure
+title: Chọn cấu trúc State
 ---
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Cấu trúc state tốt có thể tạo ra sự khác biệt giữa một component dễ chỉnh sửa và debug, và một component luôn là nguồn gốc của lỗi. Dưới đây là một số mẹo bạn nên xem xét khi cấu trúc state.
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* Khi nào nên sử dụng một biến state so với nhiều biến state
+* Những gì nên tránh khi tổ chức state
+* Cách sửa các vấn đề phổ biến với cấu trúc state
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Các nguyên tắc để cấu trúc state {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+Khi bạn viết một component giữ một số state, bạn sẽ phải đưa ra lựa chọn về số lượng biến state sử dụng và hình dạng dữ liệu của chúng nên là gì. Mặc dù có thể viết các chương trình chính xác ngay cả với cấu trúc state không tối ưu, có một số nguyên tắc có thể hướng dẫn bạn đưa ra lựa chọn tốt hơn:
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Nhóm state liên quan.** Nếu bạn luôn cập nhật hai hoặc nhiều biến state cùng một lúc, hãy xem xét hợp nhất chúng thành một biến state duy nhất.
+2. **Tránh mâu thuẫn trong state.** Khi state được cấu trúc theo cách mà nhiều phần state có thể mâu thuẫn và "không đồng ý" với nhau, bạn để lại chỗ cho sai lầm. Hãy cố gắng tránh điều này.
+3. **Tránh state thừa.** Nếu bạn có thể tính toán một số thông tin từ props của component hoặc các biến state hiện có của nó trong quá trình render, bạn không nên đặt thông tin đó vào state của component đó.
+4. **Tránh trùng lặp trong state.** Khi cùng dữ liệu được sao chép giữa nhiều biến state, hoặc trong các object lồng nhau, rất khó để giữ chúng đồng bộ. Giảm trùng lặp khi có thể.
+5. **Tránh state lồng nhau sâu.** State phân cấp sâu không thuận tiện để cập nhật. Khi có thể, hãy ưu tiên cấu trúc state theo cách phẳng.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+Mục tiêu đằng sau các nguyên tắc này là *làm cho state dễ cập nhật mà không gây ra lỗi*. Loại bỏ dữ liệu thừa và trùng lặp khỏi state giúp đảm bảo tất cả các phần của nó luôn đồng bộ. Điều này tương tự như cách một kỹ sư cơ sở dữ liệu có thể muốn ["chuẩn hóa" cấu trúc cơ sở dữ liệu](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) để giảm nguy cơ bug. Diễn đạt lại Albert Einstein, **"Làm cho state của bạn đơn giản nhất có thể--nhưng không đơn giản hơn."**
 
-Now let's see how these principles apply in action.
+Bây giờ hãy xem cách các nguyên tắc này áp dụng trong thực tế.
 
 ## Group related state {/*group-related-state*/}
 

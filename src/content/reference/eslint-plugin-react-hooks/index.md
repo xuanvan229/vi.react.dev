@@ -5,36 +5,36 @@ version: rc
 
 <Intro>
 
-`eslint-plugin-react-hooks` provides ESLint rules to enforce the [Rules of React](/reference/rules).
+`eslint-plugin-react-hooks` cung cấp các quy tắc ESLint để thực thi [Các quy tắc của React](/reference/rules).
 
 </Intro>
 
-This plugin helps you catch violations of React's rules at build time, ensuring your components and hooks follow React's rules for correctness and performance. The lints cover both fundamental React patterns (exhaustive-deps and rules-of-hooks) and issues flagged by React Compiler. React Compiler diagnostics are automatically surfaced by this ESLint plugin, and can be used even if your app hasn't adopted the compiler yet.
+Plugin này giúp bạn phát hiện các vi phạm quy tắc của React tại thời điểm build, đảm bảo các component và hook của bạn tuân theo các quy tắc của React về tính đúng đắn và hiệu suất. Các lint bao gồm cả các pattern React cơ bản (exhaustive-deps và rules-of-hooks) và các vấn đề được React Compiler phát hiện. Các chuẩn đoán của React Compiler được tự động hiển thị bởi plugin ESLint này, và có thể được sử dụng ngay cả khi ứng dụng của bạn chưa áp dụng compiler.
 
 <Note>
-When the compiler reports a diagnostic, it means that the compiler was able to statically detect a pattern that is not supported or breaks the Rules of React. When it detects this, it **automatically** skips over those components and hooks, while keeping the rest of your app compiled. This ensures optimal coverage of safe optimizations that won't break your app.
+Khi compiler báo cáo một chuẩn đoán, điều đó có nghĩa là compiler đã có thể phát hiện tĩnh một pattern không được hỗ trợ hoặc vi phạm Các quy tắc của React. Khi phát hiện điều này, nó **tự động** bỏ qua các component và hook đó, trong khi vẫn giữ phần còn lại của ứng dụng được biên dịch. Điều này đảm bảo phạm vi tối ưu của các tối ưu hóa an toàn mà không làm hỏng ứng dụng của bạn.
 
-What this means for linting, is that you don’t need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
+Điều này có nghĩa đối với việc lint là bạn không cần phải sửa tất cả vi phạm ngay lập tức. Hãy xử lý chúng theo tốc độ của riêng bạn để dần dần tăng số lượng component được tối ưu hóa.
 </Note>
 
-## Recommended Rules {/*recommended*/}
+## Các quy tắc được khuyến nghị {/*recommended*/}
 
-These rules are included in the `recommended` preset in `eslint-plugin-react-hooks`:
+Các quy tắc này được bao gồm trong preset `recommended` trong `eslint-plugin-react-hooks`:
 
-* [`exhaustive-deps`](/reference/eslint-plugin-react-hooks/lints/exhaustive-deps) - Validates that dependency arrays for React hooks contain all necessary dependencies
-* [`rules-of-hooks`](/reference/eslint-plugin-react-hooks/lints/rules-of-hooks) - Validates that components and hooks follow the Rules of Hooks
-* [`component-hook-factories`](/reference/eslint-plugin-react-hooks/lints/component-hook-factories) - Validates higher order functions defining nested components or hooks
-* [`config`](/reference/eslint-plugin-react-hooks/lints/config) - Validates the compiler configuration options
-* [`error-boundaries`](/reference/eslint-plugin-react-hooks/lints/error-boundaries) - Validates usage of Error Boundaries instead of try/catch for child errors
-* [`gating`](/reference/eslint-plugin-react-hooks/lints/gating) - Validates configuration of gating mode
-* [`globals`](/reference/eslint-plugin-react-hooks/lints/globals) - Validates against assignment/mutation of globals during render
-* [`immutability`](/reference/eslint-plugin-react-hooks/lints/immutability) - Validates against mutating props, state, and other immutable values
-* [`incompatible-library`](/reference/eslint-plugin-react-hooks/lints/incompatible-library) - Validates against usage of libraries which are incompatible with memoization
-* [`preserve-manual-memoization`](/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization) - Validates that existing manual memoization is preserved by the compiler
-* [`purity`](/reference/eslint-plugin-react-hooks/lints/purity) - Validates that components/hooks are pure by checking known-impure functions
-* [`refs`](/reference/eslint-plugin-react-hooks/lints/refs) - Validates correct usage of refs, not reading/writing during render
-* [`set-state-in-effect`](/reference/eslint-plugin-react-hooks/lints/set-state-in-effect) - Validates against calling setState synchronously in an effect
-* [`set-state-in-render`](/reference/eslint-plugin-react-hooks/lints/set-state-in-render) - Validates against setting state during render
-* [`static-components`](/reference/eslint-plugin-react-hooks/lints/static-components) - Validates that components are static, not recreated every render
-* [`unsupported-syntax`](/reference/eslint-plugin-react-hooks/lints/unsupported-syntax) - Validates against syntax that React Compiler does not support
-* [`use-memo`](/reference/eslint-plugin-react-hooks/lints/use-memo) - Validates usage of the `useMemo` hook without a return value
+* [`exhaustive-deps`](/reference/eslint-plugin-react-hooks/lints/exhaustive-deps) - Kiểm tra mảng dependency cho React hook chứa tất cả các dependency cần thiết
+* [`rules-of-hooks`](/reference/eslint-plugin-react-hooks/lints/rules-of-hooks) - Kiểm tra component và hook tuân theo Quy tắc của Hook
+* [`component-hook-factories`](/reference/eslint-plugin-react-hooks/lints/component-hook-factories) - Kiểm tra các hàm bậc cao định nghĩa component hoặc hook lồng nhau
+* [`config`](/reference/eslint-plugin-react-hooks/lints/config) - Kiểm tra các tùy chọn cấu hình compiler
+* [`error-boundaries`](/reference/eslint-plugin-react-hooks/lints/error-boundaries) - Kiểm tra việc sử dụng Error Boundary thay vì try/catch cho lỗi con
+* [`gating`](/reference/eslint-plugin-react-hooks/lints/gating) - Kiểm tra cấu hình của chế độ gating
+* [`globals`](/reference/eslint-plugin-react-hooks/lints/globals) - Kiểm tra việc gán/thay đổi biến toàn cục trong quá trình render
+* [`immutability`](/reference/eslint-plugin-react-hooks/lints/immutability) - Kiểm tra việc thay đổi props, state và các giá trị bất biến khác
+* [`incompatible-library`](/reference/eslint-plugin-react-hooks/lints/incompatible-library) - Kiểm tra việc sử dụng các thư viện không tương thích với memoization
+* [`preserve-manual-memoization`](/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization) - Kiểm tra memoization thủ công hiện có được compiler bảo toàn
+* [`purity`](/reference/eslint-plugin-react-hooks/lints/purity) - Kiểm tra component/hook là thuần túy bằng cách kiểm tra các hàm không thuần túy đã biết
+* [`refs`](/reference/eslint-plugin-react-hooks/lints/refs) - Kiểm tra việc sử dụng ref đúng cách, không đọc/ghi trong quá trình render
+* [`set-state-in-effect`](/reference/eslint-plugin-react-hooks/lints/set-state-in-effect) - Kiểm tra việc gọi setState đồng bộ trong effect
+* [`set-state-in-render`](/reference/eslint-plugin-react-hooks/lints/set-state-in-render) - Kiểm tra việc set state trong quá trình render
+* [`static-components`](/reference/eslint-plugin-react-hooks/lints/static-components) - Kiểm tra component là tĩnh, không được tạo lại mỗi lần render
+* [`unsupported-syntax`](/reference/eslint-plugin-react-hooks/lints/unsupported-syntax) - Kiểm tra cú pháp mà React Compiler không hỗ trợ
+* [`use-memo`](/reference/eslint-plugin-react-hooks/lints/use-memo) - Kiểm tra việc sử dụng hook `useMemo` mà không có giá trị trả về

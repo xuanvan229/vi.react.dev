@@ -1,14 +1,14 @@
 ---
-title: Directives
+title: Directive
 ---
 
 <Intro>
-React Compiler directives are special string literals that control whether specific functions are compiled.
+Các directive của React Compiler là các chuỗi ký tự đặc biệt kiểm soát việc các hàm cụ thể có được compile hay không.
 </Intro>
 
 ```js
 function MyComponent() {
-  "use memo"; // Opt this component into compilation
+  "use memo"; // Đưa component này vào danh sách compile
   return <div>{/* ... */}</div>;
 }
 ```
@@ -17,86 +17,86 @@ function MyComponent() {
 
 ---
 
-## Overview {/*overview*/}
+## Tổng quan {/*overview*/}
 
-React Compiler directives provide fine-grained control over which functions are optimized by the compiler. They are string literals placed at the beginning of a function body or at the top of a module.
+Các directive của React Compiler cung cấp khả năng kiểm soát chi tiết về những hàm nào được compiler tối ưu hóa. Chúng là các chuỗi ký tự được đặt ở đầu thân hàm hoặc ở đầu module.
 
-### Available directives {/*available-directives*/}
+### Các directive có sẵn {/*available-directives*/}
 
-* **[`"use memo"`](/reference/react-compiler/directives/use-memo)** - Opts a function into compilation
-* **[`"use no memo"`](/reference/react-compiler/directives/use-no-memo)** - Opts a function out of compilation
+* **[`"use memo"`](/reference/react-compiler/directives/use-memo)** - Đưa một hàm vào danh sách compile
+* **[`"use no memo"`](/reference/react-compiler/directives/use-no-memo)** - Loại một hàm khỏi danh sách compile
 
-### Quick comparison {/*quick-comparison*/}
+### So sánh nhanh {/*quick-comparison*/}
 
-| Directive | Purpose | When to use |
+| Directive | Mục đích | Khi nào sử dụng |
 |-----------|---------|-------------|
-| [`"use memo"`](/reference/react-compiler/directives/use-memo) | Force compilation | When using `annotation` mode or to override `infer` mode heuristics |
-| [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) | Prevent compilation | Debugging issues or working with incompatible code |
+| [`"use memo"`](/reference/react-compiler/directives/use-memo) | Buộc compile | Khi sử dụng chế độ `annotation` hoặc để ghi đè phương pháp suy luận của chế độ `infer` |
+| [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) | Ngăn chặn compile | Gỡ lỗi hoặc làm việc với mã không tương thích |
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Function-level directives {/*function-level*/}
+### Directive cấp hàm {/*function-level*/}
 
-Place directives at the beginning of a function to control its compilation:
+Đặt directive ở đầu hàm để kiểm soát việc compile:
 
 ```js
-// Opt into compilation
+// Đưa vào danh sách compile
 function OptimizedComponent() {
   "use memo";
-  return <div>This will be optimized</div>;
+  return <div>Đây sẽ được tối ưu hóa</div>;
 }
 
-// Opt out of compilation
+// Loại khỏi danh sách compile
 function UnoptimizedComponent() {
   "use no memo";
-  return <div>This won't be optimized</div>;
+  return <div>Đây sẽ không được tối ưu hóa</div>;
 }
 ```
 
-### Module-level directives {/*module-level*/}
+### Directive cấp module {/*module-level*/}
 
-Place directives at the top of a file to affect all functions in that module:
+Đặt directive ở đầu file để ảnh hưởng đến tất cả các hàm trong module đó:
 
 ```js
-// At the very top of the file
+// Ở đầu file
 "use memo";
 
-// All functions in this file will be compiled
+// Tất cả các hàm trong file này sẽ được compile
 function Component1() {
-  return <div>Compiled</div>;
+  return <div>Đã compile</div>;
 }
 
 function Component2() {
-  return <div>Also compiled</div>;
+  return <div>Cũng được compile</div>;
 }
 
-// Can be overridden at function level
+// Có thể ghi đè ở cấp hàm
 function Component3() {
-  "use no memo"; // This overrides the module directive
-  return <div>Not compiled</div>;
+  "use no memo"; // Ghi đè directive của module
+  return <div>Không được compile</div>;
 }
 ```
 
-### Compilation modes interaction {/*compilation-modes*/}
+### Tương tác với các chế độ compile {/*compilation-modes*/}
 
-Directives behave differently depending on your [`compilationMode`](/reference/react-compiler/compilationMode):
+Các directive hoạt động khác nhau tùy thuộc vào [`compilationMode`](/reference/react-compiler/compilationMode) của bạn:
 
-* **`annotation` mode**: Only functions with `"use memo"` are compiled
-* **`infer` mode**: Compiler decides what to compile, directives override decisions
-* **`all` mode**: Everything is compiled, `"use no memo"` can exclude specific functions
+* **Chế độ `annotation`**: Chỉ các hàm có `"use memo"` được compile
+* **Chế độ `infer`**: Compiler quyết định compile gì, directive ghi đè các quyết định
+* **Chế độ `all`**: Mọi thứ đều được compile, `"use no memo"` có thể loại trừ các hàm cụ thể
 
 ---
 
-## Best practices {/*best-practices*/}
+## Thực hành tốt nhất {/*best-practices*/}
 
-### Use directives sparingly {/*use-sparingly*/}
+### Sử dụng directive một cách tiết kiệm {/*use-sparingly*/}
 
-Directives are escape hatches. Prefer configuring the compiler at the project level:
+Directive là cơ chế thoát hiểm. Ưu tiên cấu hình compiler ở cấp dự án:
 
 ```js
-// ✅ Good - project-wide configuration
+// ✅ Tốt - cấu hình toàn dự án
 {
   plugins: [
     ['babel-plugin-react-compiler', {
@@ -105,70 +105,70 @@ Directives are escape hatches. Prefer configuring the compiler at the project le
   ]
 }
 
-// ⚠️ Use directives only when needed
+// ⚠️ Chỉ sử dụng directive khi cần thiết
 function SpecialCase() {
-  "use no memo"; // Document why this is needed
+  "use no memo"; // Ghi chú tại sao cần thiết
   // ...
 }
 ```
 
-### Document directive usage {/*document-usage*/}
+### Ghi chú việc sử dụng directive {/*document-usage*/}
 
-Always explain why a directive is used:
+Luôn giải thích tại sao sử dụng directive:
 
 ```js
-// ✅ Good - clear explanation
+// ✅ Tốt - giải thích rõ ràng
 function DataGrid() {
-  "use no memo"; // TODO: Remove after fixing issue with dynamic row heights (JIRA-123)
-  // Complex grid implementation
+  "use no memo"; // TODO: Xóa sau khi sửa vấn đề chiều cao hàng động (JIRA-123)
+  // Triển khai grid phức tạp
 }
 
-// ❌ Bad - no explanation
+// ❌ Không tốt - không có giải thích
 function Mystery() {
   "use no memo";
   // ...
 }
 ```
 
-### Plan for removal {/*plan-removal*/}
+### Lên kế hoạch xóa bỏ {/*plan-removal*/}
 
-Opt-out directives should be temporary:
+Các directive loại trừ nên là tạm thời:
 
-1. Add the directive with a TODO comment
-2. Create a tracking issue
-3. Fix the underlying problem
-4. Remove the directive
+1. Thêm directive với comment TODO
+2. Tạo một issue theo dõi
+3. Sửa vấn đề gốc
+4. Xóa directive
 
 ```js
 function TemporaryWorkaround() {
-  "use no memo"; // TODO: Remove after upgrading ThirdPartyLib to v2.0
+  "use no memo"; // TODO: Xóa sau khi nâng cấp ThirdPartyLib lên v2.0
   return <ThirdPartyComponent />;
 }
 ```
 
 ---
 
-## Common patterns {/*common-patterns*/}
+## Các mẫu phổ biến {/*common-patterns*/}
 
-### Gradual adoption {/*gradual-adoption*/}
+### Áp dụng dần dần {/*gradual-adoption*/}
 
-When adopting the React Compiler in a large codebase:
+Khi áp dụng React Compiler trong một codebase lớn:
 
 ```js
-// Start with annotation mode
+// Bắt đầu với chế độ annotation
 {
   compilationMode: 'annotation'
 }
 
-// Opt in stable components
+// Đưa các component ổn định vào
 function StableComponent() {
   "use memo";
-  // Well-tested component
+  // Component đã được kiểm thử kỹ
 }
 
-// Later, switch to infer mode and opt out problematic ones
+// Sau đó, chuyển sang chế độ infer và loại trừ các component có vấn đề
 function ProblematicComponent() {
-  "use no memo"; // Fix issues before removing
+  "use no memo"; // Sửa các vấn đề trước khi xóa
   // ...
 }
 ```
@@ -176,23 +176,23 @@ function ProblematicComponent() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-For specific issues with directives, see the troubleshooting sections in:
+Đối với các vấn đề cụ thể với directive, xem phần xử lý sự cố trong:
 
-* [`"use memo"` troubleshooting](/reference/react-compiler/directives/use-memo#troubleshooting)
-* [`"use no memo"` troubleshooting](/reference/react-compiler/directives/use-no-memo#troubleshooting)
+* [Xử lý sự cố `"use memo"`](/reference/react-compiler/directives/use-memo#troubleshooting)
+* [Xử lý sự cố `"use no memo"`](/reference/react-compiler/directives/use-no-memo#troubleshooting)
 
-### Common issues {/*common-issues*/}
+### Các vấn đề phổ biến {/*common-issues*/}
 
-1. **Directive ignored**: Check placement (must be first) and spelling
-2. **Compilation still happens**: Check `ignoreUseNoForget` setting
-3. **Module directive not working**: Ensure it's before all imports
+1. **Directive bị bỏ qua**: Kiểm tra vị trí đặt (phải ở đầu tiên) và chính tả
+2. **Vẫn bị compile**: Kiểm tra cài đặt `ignoreUseNoForget`
+3. **Directive cấp module không hoạt động**: Đảm bảo đặt trước tất cả các import
 
 ---
 
-## See also {/*see-also*/}
+## Xem thêm {/*see-also*/}
 
-* [`compilationMode`](/reference/react-compiler/compilationMode) - Configure how the compiler chooses what to optimize
-* [`Configuration`](/reference/react-compiler/configuration) - Full compiler configuration options
-* [React Compiler documentation](https://react.dev/learn/react-compiler) - Getting started guide
+* [`compilationMode`](/reference/react-compiler/compilationMode) - Cấu hình cách compiler chọn những gì để tối ưu hóa
+* [`Configuration`](/reference/react-compiler/configuration) - Tất cả các tùy chọn cấu hình compiler
+* [Tài liệu React Compiler](https://react.dev/learn/react-compiler) - Hướng dẫn bắt đầu

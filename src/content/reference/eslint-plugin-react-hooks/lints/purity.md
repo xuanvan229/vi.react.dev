@@ -4,67 +4,67 @@ title: purity
 
 <Intro>
 
-Validates that [components/hooks are pure](/reference/rules/components-and-hooks-must-be-pure) by checking that they do not call known-impure functions.
+Kiểm tra rằng [component/hook là thuần túy](/reference/rules/components-and-hooks-must-be-pure) bằng cách kiểm tra rằng chúng không gọi các hàm không thuần túy đã biết.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-React components must be pure functions - given the same props, they should always return the same JSX. When components use functions like `Math.random()` or `Date.now()` during render, they produce different output each time, breaking React's assumptions and causing bugs like hydration mismatches, incorrect memoization, and unpredictable behavior.
+Component React phải là các hàm thuần túy - với cùng props, chúng nên luôn trả về cùng JSX. Khi component sử dụng các hàm như `Math.random()` hoặc `Date.now()` trong quá trình render, chúng tạo ra đầu ra khác nhau mỗi lần, phá vỡ các giả định của React và gây ra lỗi như hydration mismatch, memoization không chính xác, và hành vi không thể dự đoán.
 
-## Common Violations {/*common-violations*/}
+## Các vi phạm phổ biến {/*common-violations*/}
 
-In general, any API that returns a different value for the same inputs violates this rule. Usual examples include:
+Nói chung, bất kỳ API nào trả về giá trị khác nhau cho cùng đầu vào đều vi phạm quy tắc này. Các ví dụ thông thường bao gồm:
 
 - `Math.random()`
 - `Date.now()` / `new Date()`
 - `crypto.randomUUID()`
 - `performance.now()`
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js
-// ❌ Math.random() in render
+// ❌ Math.random() trong render
 function Component() {
-  const id = Math.random(); // Different every render
-  return <div key={id}>Content</div>;
+  const id = Math.random(); // Khác nhau mỗi lần render
+  return <div key={id}>Nội dung</div>;
 }
 
-// ❌ Date.now() for values
+// ❌ Date.now() cho giá trị
 function Component() {
-  const timestamp = Date.now(); // Changes every render
-  return <div>Created at: {timestamp}</div>;
+  const timestamp = Date.now(); // Thay đổi mỗi lần render
+  return <div>Tạo lúc: {timestamp}</div>;
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ Stable IDs from initial state
+// ✅ ID ổn định từ state ban đầu
 function Component() {
   const [id] = useState(() => crypto.randomUUID());
-  return <div key={id}>Content</div>;
+  return <div key={id}>Nội dung</div>;
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I need to show the current time {/*current-time*/}
+### Tôi cần hiển thị thời gian hiện tại {/*current-time*/}
 
-Calling `Date.now()` during render makes your component impure:
+Gọi `Date.now()` trong quá trình render làm component của bạn không thuần túy:
 
 ```js {expectedErrors: {'react-compiler': [3]}}
-// ❌ Wrong: Time changes every render
+// ❌ Sai: Thời gian thay đổi mỗi lần render
 function Clock() {
-  return <div>Current time: {Date.now()}</div>;
+  return <div>Thời gian hiện tại: {Date.now()}</div>;
 }
 ```
 
-Instead, [move the impure function outside of render](/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent):
+Thay vào đó, [chuyển hàm không thuần túy ra ngoài render](/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent):
 
 ```js
 function Clock() {
@@ -78,6 +78,6 @@ function Clock() {
     return () => clearInterval(interval);
   }, []);
 
-  return <div>Current time: {time}</div>;
+  return <div>Thời gian hiện tại: {time}</div>;
 }
 ```

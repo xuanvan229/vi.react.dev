@@ -4,59 +4,59 @@ title: incompatible-library
 
 <Intro>
 
-Validates against usage of libraries which are incompatible with memoization (manual or automatic).
+Kiểm tra việc sử dụng các thư viện không tương thích với memoization (thủ công hoặc tự động).
 
 </Intro>
 
 <Note>
 
-These libraries were designed before React's memoization rules were fully documented. They made the correct choices at the time to optimize for ergonomic ways to keep components just the right amount of reactive as app state changes. While these legacy patterns worked, we have since discovered that it's incompatible with React's programming model. We will continue working with library authors to migrate these libraries to use patterns that follow the Rules of React.
+Các thư viện này được thiết kế trước khi các quy tắc memoization của React được ghi tài liệu đầy đủ. Chúng đã đưa ra các lựa chọn đúng đắn vào thời điểm đó để tối ưu hóa các cách tiện lợi để giữ component phản ứng vừa đủ khi state ứng dụng thay đổi. Mặc dù các pattern cũ này hoạt động, chúng tôi đã phát hiện rằng chúng không tương thích với mô hình lập trình của React. Chúng tôi sẽ tiếp tục làm việc với các tác giả thư viện để chuyển đổi các thư viện này sang sử dụng các pattern tuân theo Các quy tắc của React.
 
 </Note>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-Some libraries use patterns that aren't supported by React. When the linter detects usages of these APIs from a [known list](https://github.com/facebook/react/blob/main/compiler/packages/babel-plugin-react-compiler/src/HIR/DefaultModuleTypeProvider.ts), it flags them under this rule. This means that React Compiler can automatically skip over components that use these incompatible APIs, in order to avoid breaking your app.
+Một số thư viện sử dụng các pattern không được React hỗ trợ. Khi linter phát hiện việc sử dụng các API này từ [danh sách đã biết](https://github.com/facebook/react/blob/main/compiler/packages/babel-plugin-react-compiler/src/HIR/DefaultModuleTypeProvider.ts), nó sẽ đánh dấu chúng theo quy tắc này. Điều này có nghĩa là React Compiler có thể tự động bỏ qua các component sử dụng các API không tương thích này, để tránh làm hỏng ứng dụng của bạn.
 
 ```js
-// Example of how memoization breaks with these libraries
+// Ví dụ về cách memoization bị hỏng với các thư viện này
 function Form() {
   const { watch } = useForm();
 
-  // ❌ This value will never update, even when 'name' field changes
+  // ❌ Giá trị này sẽ không bao giờ cập nhật, ngay cả khi trường 'name' thay đổi
   const name = useMemo(() => watch('name'), [watch]);
 
-  return <div>Name: {name}</div>; // UI appears "frozen"
+  return <div>Name: {name}</div>; // UI dường như "đóng băng"
 }
 ```
 
-React Compiler automatically memoizes values following the Rules of React. If something breaks with manual `useMemo`, it will also break the compiler's automatic optimization. This rule helps identify these problematic patterns.
+React Compiler tự động memoize giá trị theo Các quy tắc của React. Nếu một thứ gì đó hỏng với `useMemo` thủ công, nó cũng sẽ làm hỏng tối ưu hóa tự động của compiler. Quy tắc này giúp xác định các pattern có vấn đề này.
 
 <DeepDive>
 
-#### Designing APIs that follow the Rules of React {/*designing-apis-that-follow-the-rules-of-react*/}
+#### Thiết kế API tuân theo Các quy tắc của React {/*designing-apis-that-follow-the-rules-of-react*/}
 
-One question to think about when designing a library API or hook is whether calling the API can be safely memoized with `useMemo`. If it can't, then both manual and React Compiler memoizations will break your user's code.
+Một câu hỏi cần suy nghĩ khi thiết kế API thư viện hoặc hook là liệu việc gọi API có thể được memoize an toàn với `useMemo` hay không. Nếu không, cả memoization thủ công và của React Compiler sẽ làm hỏng code của người dùng.
 
-For example, one such incompatible pattern is "interior mutability". Interior mutability is when an object or function keeps its own hidden state that changes over time, even though the reference to it stays the same. Think of it like a box that looks the same on the outside but secretly rearranges its contents. React can't tell anything changed because it only checks if you gave it a different box, not what's inside. This breaks memoization, since React relies on the outer object (or function) changing if part of its value has changed.
+Ví dụ, một pattern không tương thích là "interior mutability". Interior mutability là khi một object hoặc function giữ state ẩn riêng của nó thay đổi theo thời gian, mặc dù tham chiếu đến nó vẫn giữ nguyên. Hãy nghĩ về nó như một cái hộp trông giống nhau bên ngoài nhưng bí mật sắp xếp lại nội dung bên trong. React không thể biết có gì thay đổi vì nó chỉ kiểm tra xem bạn có đưa cho nó một hộp khác không, chứ không phải những gì bên trong. Điều này phá vỡ memoization, vì React dựa vào việc object (hoặc function) bên ngoài thay đổi nếu một phần giá trị của nó đã thay đổi.
 
-As a rule of thumb, when designing React APIs, think about whether `useMemo` would break it:
+Theo nguyên tắc chung, khi thiết kế React API, hãy nghĩ xem liệu `useMemo` có làm hỏng nó không:
 
 ```js
 function Component() {
   const { someFunction } = useLibrary();
-  // it should always be safe to memoize functions like this
+  // luôn nên an toàn khi memoize hàm như thế này
   const result = useMemo(() => someFunction(), [someFunction]);
 }
 ```
 
-Instead, design APIs that return immutable state and use explicit update functions:
+Thay vào đó, thiết kế API trả về state bất biến và sử dụng các hàm cập nhật rõ ràng:
 
 ```js
-// ✅ Good: Return immutable state that changes reference when updated
+// ✅ Tốt: Trả về state bất biến thay đổi tham chiếu khi cập nhật
 function Component() {
   const { field, updateField } = useLibrary();
-  // this is always safe to memo
+  // luôn an toàn khi memo
   const greeting = useMemo(() => `Hello, ${field.name}!`, [field.name]);
 
   return (
@@ -73,9 +73,9 @@ function Component() {
 
 </DeepDive>
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js
 // ❌ react-hook-form `watch`
@@ -92,7 +92,7 @@ function Component({data}) {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-  // table instance uses interior mutability
+  // table instance sử dụng interior mutability
   return <Table table={table} />;
 }
 ```
@@ -101,7 +101,7 @@ function Component({data}) {
 
 #### MobX {/*mobx*/}
 
-MobX patterns like `observer` also break memoization assumptions, but the linter does not yet detect them. If you rely on MobX and find that your app doesn't work with React Compiler, you may need to use the `"use no memo" directive`.
+Các pattern MobX như `observer` cũng phá vỡ các giả định về memoization, nhưng linter chưa phát hiện được chúng. Nếu bạn dựa vào MobX và thấy ứng dụng không hoạt động với React Compiler, bạn có thể cần sử dụng directive `"use no memo"`.
 
 ```js
 // ❌ MobX `observer`
@@ -113,12 +113,12 @@ const Component = observer(() => {
 
 </Pitfall>
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ For react-hook-form, use `useWatch`:
+// ✅ Với react-hook-form, dùng `useWatch`:
 function Component() {
   const {register, control} = useForm();
   const watchedValue = useWatch({
@@ -129,10 +129,10 @@ function Component() {
   return (
     <>
       <input {...register('field')} />
-      <div>Current value: {watchedValue}</div>
+      <div>Giá trị hiện tại: {watchedValue}</div>
     </>
   );
 }
 ```
 
-Some other libraries do not yet have alternative APIs that are compatible with React's memoization model. If the linter doesn't automatically skip over your components or hooks that call these APIs, please [file an issue](https://github.com/facebook/react/issues) so we can add it to the linter.
+Một số thư viện khác chưa có API thay thế tương thích với mô hình memoization của React. Nếu linter không tự động bỏ qua các component hoặc hook gọi các API này, vui lòng [tạo issue](https://github.com/facebook/react/issues) để chúng tôi có thể thêm vào linter.

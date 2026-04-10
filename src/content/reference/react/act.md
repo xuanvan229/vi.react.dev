@@ -4,7 +4,7 @@ title: act
 
 <Intro>
 
-`act` is a test helper to apply pending React updates before making assertions.
+`act` là một test helper để áp dụng các cập nhật React đang chờ trước khi đưa ra các assertion.
 
 ```js
 await act(async actFn)
@@ -12,10 +12,10 @@ await act(async actFn)
 
 </Intro>
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an `await act()` call. This makes your test run closer to how React works in the browser.
+Để chuẩn bị một component cho các assertion, bao gọi code render nó và thực hiện các cập nhật bên trong một lệnh gọi `await act()`. Điều này làm cho bài kiểm thử của bạn chạy gần hơn với cách React hoạt động trong trình duyệt.
 
 <Note>
-You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), whose helpers are wrapped with `act()`.
+Bạn có thể thấy việc sử dụng `act()` trực tiếp hơi quá dài dòng. Để tránh một số đoạn code lặp lại, bạn có thể sử dụng thư viện như [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), có các helper được bao bọc với `act()`.
 </Note>
 
 
@@ -23,13 +23,13 @@ You might find using `act()` directly a bit too verbose. To avoid some of the bo
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `await act(async actFn)` {/*await-act-async-actfn*/}
 
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as “units” of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these “units” have been processed and applied to the DOM before you make any assertions.
+Khi viết UI test, các tác vụ như render, sự kiện người dùng hoặc tải dữ liệu có thể được coi là các "đơn vị" tương tác với giao diện người dùng. React cung cấp một helper gọi là `act()` đảm bảo tất cả các cập nhật liên quan đến các "đơn vị" này đã được xử lý và áp dụng vào DOM trước khi bạn đưa ra bất kỳ assertion nào.
 
-The name `act` comes from the [Arrange-Act-Assert](https://wiki.c2.com/?ArrangeActAssert) pattern.
+Tên `act` xuất phát từ mẫu [Arrange-Act-Assert](https://wiki.c2.com/?ArrangeActAssert).
 
 ```js {2,4}
 it ('renders with button disabled', async () => {
@@ -42,25 +42,25 @@ it ('renders with button disabled', async () => {
 
 <Note>
 
-We recommend using `act` with `await` and an `async` function. Although the sync version works in many cases, it doesn't work in all cases and due to the way React schedules updates internally, it's difficult to predict when you can use the sync version.
+Chúng tôi khuyến nghị sử dụng `act` với `await` và một hàm `async`. Mặc dù phiên bản đồng bộ hoạt động trong nhiều trường hợp, nó không hoạt động trong tất cả các trường hợp và do cách React lên lịch các cập nhật nội bộ, rất khó dự đoán khi nào bạn có thể sử dụng phiên bản đồng bộ.
 
-We will deprecate and remove the sync version in the future.
+Chúng tôi sẽ không dùng và loại bỏ phiên bản đồng bộ trong tương lai.
 
 </Note>
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `async actFn`: An async function wrapping renders or interactions for components being tested. Any updates triggered within the `actFn`, are added to an internal act queue, which are then flushed together to process and apply any changes to the DOM. Since it is async, React will also run any code that crosses an async boundary, and flush any updates scheduled.
+* `async actFn`: Một hàm async bao gọi các render hoặc tương tác cho các component đang được kiểm thử. Bất kỳ cập nhật nào được kích hoạt trong `actFn` đều được thêm vào hàng đợi act nội bộ, sau đó được flush cùng nhau để xử lý và áp dụng bất kỳ thay đổi nào vào DOM. Vì nó là async, React cũng sẽ chạy bất kỳ code nào vượt qua ranh giới async, và flush bất kỳ cập nhật nào được lên lịch.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`act` does not return anything.
+`act` không trả về gì.
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-When testing a component, you can use `act` to make assertions about its output.
+Khi kiểm thử một component, bạn có thể sử dụng `act` để đưa ra các assertion về đầu ra của nó.
 
-For example, let’s say we have this `Counter` component, the usage examples below show how to test it:
+Ví dụ, giả sử chúng ta có component `Counter` này, các ví dụ sử dụng bên dưới cho thấy cách kiểm thử nó:
 
 ```js
 function Counter() {
@@ -84,9 +84,9 @@ function Counter() {
 }
 ```
 
-### Rendering components in tests {/*rendering-components-in-tests*/}
+### Render các component trong test {/*rendering-components-in-tests*/}
 
-To test the render output of a component, wrap the render inside `act()`:
+Để kiểm thử đầu ra render của một component, bao gọi render bên trong `act()`:
 
 ```js  {10,12}
 import {act} from 'react';
@@ -109,13 +109,13 @@ it('can render and update a counter', async () => {
 });
 ```
 
-Here, we create a container, append it to the document, and render the `Counter` component inside `act()`. This ensures that the component is rendered and its effects are applied before making assertions.
+Ở đây, chúng ta tạo một container, thêm nó vào document, và render component `Counter` bên trong `act()`. Điều này đảm bảo rằng component được render và các effect của nó được áp dụng trước khi đưa ra các assertion.
 
-Using `act` ensures that all updates have been applied before we make assertions.
+Sử dụng `act` đảm bảo rằng tất cả các cập nhật đã được áp dụng trước khi chúng ta đưa ra các assertion.
 
-### Dispatching events in tests {/*dispatching-events-in-tests*/}
+### Dispatch event trong test {/*dispatching-events-in-tests*/}
 
-To test events, wrap the event dispatch inside `act()`:
+Để kiểm thử các event, bao gọi dispatch event bên trong `act()`:
 
 ```js {14,16}
 import {act} from 'react';
@@ -142,21 +142,21 @@ it.only('can render and update a counter', async () => {
 });
 ```
 
-Here, we render the component with `act`, and then dispatch the event inside another `act()`. This ensures that all updates from the event are applied before making assertions.
+Ở đây, chúng ta render component với `act`, sau đó dispatch event bên trong một `act()` khác. Điều này đảm bảo rằng tất cả các cập nhật từ event được áp dụng trước khi đưa ra các assertion.
 
 <Pitfall>
 
-Don’t forget that dispatching DOM events only works when the DOM container is added to the document. You can use a library like [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to reduce the boilerplate code.
+Đừng quên rằng dispatch các sự kiện DOM chỉ hoạt động khi container DOM được thêm vào document. Bạn có thể sử dụng thư viện như [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) để giảm đoạn code lặp lại.
 
 </Pitfall>
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+### Tôi gặp lỗi: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
 
-Using `act` requires setting `global.IS_REACT_ACT_ENVIRONMENT=true` in your test environment. This is to ensure that `act` is only used in the correct environment.
+Sử dụng `act` yêu cầu thiết lập `global.IS_REACT_ACT_ENVIRONMENT=true` trong môi trường kiểm thử của bạn. Điều này để đảm bảo rằng `act` chỉ được sử dụng trong môi trường đúng.
 
-If you don't set the global, you will see an error like this:
+Nếu bạn không thiết lập global, bạn sẽ thấy lỗi như thế này:
 
 <ConsoleBlock level="error">
 
@@ -164,7 +164,7 @@ Warning: The current testing environment is not configured to support act(...)
 
 </ConsoleBlock>
 
-To fix, add this to your global setup file for React tests:
+Để sửa, thêm điều này vào tệp thiết lập global của bạn cho các React test:
 
 ```js
 global.IS_REACT_ACT_ENVIRONMENT=true
@@ -172,6 +172,6 @@ global.IS_REACT_ACT_ENVIRONMENT=true
 
 <Note>
 
-In testing frameworks like [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), `IS_REACT_ACT_ENVIRONMENT` is already set for you.
+Trong các framework kiểm thử như [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), `IS_REACT_ACT_ENVIRONMENT` đã được thiết lập sẵn cho bạn.
 
 </Note>

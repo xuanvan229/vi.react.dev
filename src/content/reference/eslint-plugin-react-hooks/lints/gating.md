@@ -4,53 +4,53 @@ title: gating
 
 <Intro>
 
-Validates configuration of [gating mode](/reference/react-compiler/gating).
+Kiểm tra cấu hình của [chế độ gating](/reference/react-compiler/gating).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-Gating mode lets you gradually adopt React Compiler by marking specific components for optimization. This rule ensures your gating configuration is valid so the compiler knows which components to process.
+Chế độ gating cho phép bạn dần dần áp dụng React Compiler bằng cách đánh dấu các component cụ thể để tối ưu hóa. Quy tắc này đảm bảo cấu hình gating của bạn là hợp lệ để compiler biết component nào cần xử lý.
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js
-// ❌ Missing required fields
+// ❌ Thiếu các trường bắt buộc
 module.exports = {
   plugins: [
     ['babel-plugin-react-compiler', {
       gating: {
         importSpecifierName: '__experimental_useCompiler'
-        // Missing 'source' field
+        // Thiếu trường 'source'
       }
     }]
   ]
 };
 
-// ❌ Invalid gating type
+// ❌ Kiểu gating không hợp lệ
 module.exports = {
   plugins: [
     ['babel-plugin-react-compiler', {
-      gating: '__experimental_useCompiler' // Should be object
+      gating: '__experimental_useCompiler' // Nên là object
     }]
   ]
 };
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ Complete gating configuration
+// ✅ Cấu hình gating đầy đủ
 module.exports = {
   plugins: [
     ['babel-plugin-react-compiler', {
       gating: {
-        importSpecifierName: 'isCompilerEnabled', // exported function name
-        source: 'featureFlags' // module name
+        importSpecifierName: 'isCompilerEnabled', // tên hàm được export
+        source: 'featureFlags' // tên module
       }
     }]
   ]
@@ -61,11 +61,11 @@ export function isCompilerEnabled() {
   // ...
 }
 
-// ✅ No gating (compile everything)
+// ✅ Không có gating (biên dịch tất cả)
 module.exports = {
   plugins: [
     ['babel-plugin-react-compiler', {
-      // No gating field - compiles all components
+      // Không có trường gating - biên dịch tất cả component
     }]
   ]
 };

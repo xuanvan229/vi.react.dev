@@ -1,31 +1,31 @@
 ---
-title: Sharing State Between Components
+title: Chia sẻ State giữa các Component
 ---
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Đôi khi, bạn muốn state của hai component luôn thay đổi cùng nhau. Để làm điều đó, hãy xóa state khỏi cả hai, di chuyển nó lên component cha chung gần nhất, rồi truyền xuống qua props. Điều này được gọi là *nâng state lên,* và đây là một trong những việc phổ biến nhất bạn sẽ làm khi viết code React.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to share state between components by lifting it up
-- What are controlled and uncontrolled components
+- Cách chia sẻ state giữa các component bằng cách nâng nó lên
+- Component có kiểm soát và component không có kiểm soát là gì
 
 </YouWillLearn>
 
-## Lifting state up by example {/*lifting-state-up-by-example*/}
+## Nâng state lên qua ví dụ {/*lifting-state-up-by-example*/}
 
-In this example, a parent `Accordion` component renders two separate `Panel`s:
+Trong ví dụ này, component cha `Accordion` render hai `Panel` riêng biệt:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Each `Panel` component has a boolean `isActive` state that determines whether its content is visible.
+Mỗi component `Panel` có một state boolean `isActive` xác định nội dung của nó có hiển thị hay không.
 
-Press the Show button for both panels:
+Nhấn nút Show cho cả hai panel:
 
 <Sandpack>
 
@@ -73,59 +73,59 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Notice how pressing one panel's button does not affect the other panel--they are independent.
+Chú ý cách nhấn nút của một panel không ảnh hưởng đến panel kia--chúng độc lập với nhau.
 
 <DiagramGroup>
 
 <Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
 
-Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
+Ban đầu, state `isActive` của mỗi `Panel` là `false`, vì vậy cả hai đều xuất hiện ở trạng thái thu gọn
 
 </Diagram>
 
 <Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
 
-Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone
+Nhấn nút của `Panel` nào sẽ chỉ cập nhật state `isActive` của `Panel` đó
 
 </Diagram>
 
 </DiagramGroup>
 
-**But now let's say you want to change it so that only one panel is expanded at any given time.** With that design, expanding the second panel should collapse the first one. How would you do that?
+**Nhưng bây giờ giả sử bạn muốn thay đổi để chỉ một panel được mở rộng tại một thời điểm.** Với thiết kế đó, mở rộng panel thứ hai nên thu gọn panel thứ nhất. Làm thế nào để làm điều đó?
 
-To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
+Để phối hợp hai panel này, bạn cần "nâng state lên" component cha theo ba bước:
 
-1. **Remove** state from the child components.
-2. **Pass** hardcoded data from the common parent.
-3. **Add** state to the common parent and pass it down together with the event handlers.
+1. **Xóa** state khỏi các component con.
+2. **Truyền** dữ liệu cố định từ component cha chung.
+3. **Thêm** state vào component cha chung và truyền nó xuống cùng với các event handler.
 
-This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
+Điều này sẽ cho phép component `Accordion` phối hợp cả hai `Panel` và chỉ mở rộng một cái tại một thời điểm.
 
-### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
+### Bước 1: Xóa state khỏi các component con {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+Bạn sẽ trao quyền kiểm soát `isActive` của `Panel` cho component cha của nó. Điều này có nghĩa là component cha sẽ truyền `isActive` vào `Panel` dưới dạng prop thay thế. Bắt đầu bằng cách **xóa dòng này** khỏi component `Panel`:
 
 ```js
 const [isActive, setIsActive] = useState(false);
 ```
 
-And instead, add `isActive` to the `Panel`'s list of props:
+Và thay vào đó, thêm `isActive` vào danh sách props của `Panel`:
 
 ```js
 function Panel({ title, children, isActive }) {
 ```
 
-Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
+Bây giờ component cha của `Panel` có thể *kiểm soát* `isActive` bằng cách [truyền nó xuống như một prop.](/learn/passing-props-to-a-component) Ngược lại, component `Panel` bây giờ *không có quyền kiểm soát* giá trị của `isActive`--đó là việc của component cha!
 
-### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
+### Bước 2: Truyền dữ liệu cố định từ component cha chung {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
-To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
+Để nâng state lên, bạn phải xác định component cha chung gần nhất của *cả hai* component con mà bạn muốn phối hợp:
 
-* `Accordion` *(closest common parent)*
+* `Accordion` *(component cha chung gần nhất)*
   - `Panel`
   - `Panel`
 
-In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
+Trong ví dụ này, đó là component `Accordion`. Vì nó nằm phía trên cả hai panel và có thể kiểm soát props của chúng, nó sẽ trở thành "nguồn sự thật duy nhất" cho panel nào đang active. Hãy để component `Accordion` truyền giá trị cố định của `isActive` (ví dụ: `true`) cho cả hai panel:
 
 <Sandpack>
 
@@ -172,21 +172,21 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
+Thử chỉnh sửa các giá trị `isActive` cố định trong component `Accordion` và xem kết quả trên màn hình.
 
-### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
+### Bước 3: Thêm state vào component cha chung {/*step-3-add-state-to-the-common-parent*/}
 
-Lifting state up often changes the nature of what you're storing as state.
+Nâng state lên thường thay đổi bản chất của những gì bạn lưu trữ dưới dạng state.
 
-In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
+Trong trường hợp này, chỉ một panel nên active tại một thời điểm. Điều này có nghĩa là component cha chung `Accordion` cần theo dõi *panel nào* đang active. Thay vì giá trị `boolean`, nó có thể sử dụng một số làm chỉ mục của `Panel` active cho biến state:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
 ```
 
-When the `activeIndex` is `0`, the first panel is active, and when it's `1`, it's the second one.
+Khi `activeIndex` là `0`, panel đầu tiên đang active, và khi là `1`, đó là panel thứ hai.
 
-Clicking the "Show" button in either `Panel` needs to change the active index in `Accordion`. A `Panel` can't set the `activeIndex` state directly because it's defined inside the `Accordion`. The `Accordion` component needs to *explicitly allow* the `Panel` component to change its state by [passing an event handler down as a prop](/learn/responding-to-events#passing-event-handlers-as-props):
+Nhấn nút "Show" trong `Panel` nào cũng cần thay đổi chỉ mục active trong `Accordion`. Một `Panel` không thể đặt state `activeIndex` trực tiếp vì nó được định nghĩa bên trong `Accordion`. Component `Accordion` cần *cho phép rõ ràng* component `Panel` thay đổi state của nó bằng cách [truyền một event handler xuống như một prop](/learn/responding-to-events#passing-event-handlers-as-props):
 
 ```js
 <>
@@ -205,7 +205,7 @@ Clicking the "Show" button in either `Panel` needs to change the active index in
 </>
 ```
 
-The `<button>` inside the `Panel` will now use the `onShow` prop as its click event handler:
+`<button>` bên trong `Panel` bây giờ sẽ sử dụng prop `onShow` làm event handler click của nó:
 
 <Sandpack>
 
@@ -266,19 +266,19 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-This completes lifting state up! Moving state into the common parent component allowed you to coordinate the two panels. Using the active index instead of two "is shown" flags ensured that only one panel is active at a given time. And passing down the event handler to the child allowed the child to change the parent's state.
+Việc nâng state lên đã hoàn tất! Việc di chuyển state vào component cha chung cho phép bạn phối hợp hai panel. Sử dụng chỉ mục active thay vì hai cờ "is shown" đảm bảo rằng chỉ một panel active tại một thời điểm. Và việc truyền event handler xuống component con cho phép component con thay đổi state của component cha.
 
 <DiagramGroup>
 
 <Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
 
-Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
+Ban đầu, `activeIndex` của `Accordion` là `0`, vì vậy `Panel` đầu tiên nhận `isActive = true`
 
 </Diagram>
 
 <Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="The same diagram as the previous, with the activeIndex value of the parent Accordion component highlighted indicating a click with the value changed to one. The flow to both of the children Panel components is also highlighted, and the isActive value passed to each child is set to the opposite: false for the first Panel and true for the second one." >
 
-When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receives `isActive = true` instead
+Khi state `activeIndex` của `Accordion` thay đổi thành `1`, `Panel` thứ hai nhận `isActive = true` thay thế
 
 </Diagram>
 
@@ -286,48 +286,48 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 <DeepDive>
 
-#### Controlled and uncontrolled components {/*controlled-and-uncontrolled-components*/}
+#### Component có kiểm soát và component không có kiểm soát {/*controlled-and-uncontrolled-components*/}
 
-It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
+Thông thường người ta gọi một component có một số state cục bộ là "không có kiểm soát". Ví dụ, component `Panel` ban đầu với biến state `isActive` là không có kiểm soát vì component cha của nó không thể ảnh hưởng đến việc panel có active hay không.
 
-In contrast, you might say a component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent component fully specify its behavior. The final `Panel` component with the `isActive` prop is controlled by the `Accordion` component.
+Ngược lại, bạn có thể nói một component là "có kiểm soát" khi thông tin quan trọng trong nó được điều khiển bởi props thay vì state cục bộ của nó. Điều này cho phép component cha chỉ định đầy đủ hành vi của nó. Component `Panel` cuối cùng với prop `isActive` được kiểm soát bởi component `Accordion`.
 
-Uncontrolled components are easier to use within their parents because they require less configuration. But they're less flexible when you want to coordinate them together. Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+Các component không có kiểm soát dễ sử dụng hơn trong các component cha của chúng vì chúng yêu cầu ít cấu hình hơn. Nhưng chúng kém linh hoạt hơn khi bạn muốn phối hợp chúng với nhau. Các component có kiểm soát có tính linh hoạt tối đa, nhưng chúng yêu cầu các component cha cấu hình đầy đủ chúng bằng props.
 
-In practice, "controlled" and "uncontrolled" aren't strict technical terms--each component usually has some mix of both local state and props. However, this is a useful way to talk about how components are designed and what capabilities they offer.
+Trong thực tế, "có kiểm soát" và "không có kiểm soát" không phải là các thuật ngữ kỹ thuật nghiêm ngặt--mỗi component thường có sự kết hợp giữa state cục bộ và props. Tuy nhiên, đây là một cách hữu ích để nói về cách các component được thiết kế và những khả năng chúng cung cấp.
 
-When writing a component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
+Khi viết một component, hãy xem xét thông tin nào trong nó nên được kiểm soát (qua props), và thông tin nào nên không được kiểm soát (qua state). Nhưng bạn luôn có thể thay đổi suy nghĩ và tái cấu trúc sau này.
 
 </DeepDive>
 
-## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
+## Một nguồn sự thật duy nhất cho mỗi state {/*a-single-source-of-truth-for-each-state*/}
 
-In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
+Trong một ứng dụng React, nhiều component sẽ có state riêng của chúng. Một số state có thể "sống" gần các leaf component (các component ở cuối cây) như inputs. Các state khác có thể "sống" gần đỉnh của ứng dụng hơn. Ví dụ, ngay cả các thư viện routing phía client thường được triển khai bằng cách lưu trữ route hiện tại trong state React, và truyền nó xuống qua props!
 
-**For each unique piece of state, you will choose the component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
+**Với mỗi phần state duy nhất, bạn sẽ chọn component "sở hữu" nó.** Nguyên tắc này còn được gọi là có ["nguồn sự thật duy nhất".](https://en.wikipedia.org/wiki/Single_source_of_truth) Nó không có nghĩa là tất cả state sống ở một nơi--mà là với _mỗi_ phần state, có một _component cụ thể_ giữ thông tin đó. Thay vì sao chép state chia sẻ giữa các component, hãy *nâng nó lên* component cha chia sẻ chung của chúng, và *truyền nó xuống* các component con cần nó.
 
-Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
+Ứng dụng của bạn sẽ thay đổi khi bạn làm việc với nó. Thông thường bạn sẽ di chuyển state xuống hoặc ngược lên trong khi bạn vẫn đang tìm hiểu nơi mỗi phần state "sống". Đây đều là một phần của quy trình!
 
-To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
+Để xem điều này cảm giác như thế nào trong thực tế với nhiều component hơn, hãy đọc [Tư duy trong React.](/learn/thinking-in-react)
 
 <Recap>
 
-* When you want to coordinate two components, move their state to their common parent.
-* Then pass the information down through props from their common parent.
-* Finally, pass the event handlers down so that the children can change the parent's state.
-* It's useful to consider components as "controlled" (driven by props) or "uncontrolled" (driven by state).
+* Khi bạn muốn phối hợp hai component, hãy di chuyển state của chúng lên component cha chung.
+* Sau đó truyền thông tin xuống qua props từ component cha chung.
+* Cuối cùng, truyền các event handler xuống để các component con có thể thay đổi state của component cha.
+* Hữu ích khi xem xét các component là "có kiểm soát" (được điều khiển bởi props) hoặc "không có kiểm soát" (được điều khiển bởi state).
 
 </Recap>
 
 <Challenges>
 
-#### Synced inputs {/*synced-inputs*/}
+#### Các input đồng bộ {/*synced-inputs*/}
 
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
+Hai input này là độc lập. Làm cho chúng đồng bộ: chỉnh sửa một input nên cập nhật input kia với cùng văn bản, và ngược lại.
 
 <Hint>
 
-You'll need to lift their state up into the parent component.
+Bạn cần nâng state của chúng lên component cha.
 
 </Hint>
 
@@ -374,7 +374,7 @@ label { display: block; }
 
 <Solution>
 
-Move the `text` state variable into the parent component along with the `handleChange` handler. Then pass them down as props to both of the `Input` components. This will keep them in sync.
+Di chuyển biến state `text` vào component cha cùng với handler `handleChange`. Sau đó truyền chúng xuống dưới dạng props cho cả hai component `Input`. Điều này sẽ giữ chúng đồng bộ.
 
 <Sandpack>
 
@@ -427,17 +427,17 @@ label { display: block; }
 
 </Solution>
 
-#### Filtering a list {/*filtering-a-list*/}
+#### Lọc một danh sách {/*filtering-a-list*/}
 
-In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
+Trong ví dụ này, `SearchBar` có state `query` riêng điều khiển text input. Component cha `FilterableList` của nó hiển thị một `List` các mục, nhưng nó không tính đến search query.
 
-Use the `filterItems(foods, query)` function to filter the list according to the search query. To test your changes, verify that typing "s" into the input filters down the list to "Sushi", "Shish kebab", and "Dim sum".
+Sử dụng hàm `filterItems(foods, query)` để lọc danh sách theo search query. Để kiểm tra các thay đổi của bạn, hãy xác minh rằng việc nhập "s" vào input lọc danh sách xuống còn "Sushi", "Shish kebab", và "Dim sum".
 
-Note that `filterItems` is already implemented and imported so you don't need to write it yourself!
+Lưu ý rằng `filterItems` đã được triển khai và import nên bạn không cần tự viết nó!
 
 <Hint>
 
-You will want to remove the `query` state and the `handleChange` handler from the `SearchBar`, and move them to the `FilterableList`. Then pass them down to `SearchBar` as `query` and `onChange` props.
+Bạn sẽ muốn xóa state `query` và handler `handleChange` khỏi `SearchBar`, và di chuyển chúng vào `FilterableList`. Sau đó truyền chúng xuống `SearchBar` dưới dạng props `query` và `onChange`.
 
 </Hint>
 
@@ -528,7 +528,7 @@ export const foods = [{
 
 <Solution>
 
-Lift the `query` state up into the `FilterableList` component. Call `filterItems(foods, query)` to get the filtered list and pass it down to the `List`. Now changing the query input is reflected in the list:
+Nâng state `query` lên component `FilterableList`. Gọi `filterItems(foods, query)` để lấy danh sách đã lọc và truyền nó xuống `List`. Bây giờ việc thay đổi query input được phản ánh trong danh sách:
 
 <Sandpack>
 

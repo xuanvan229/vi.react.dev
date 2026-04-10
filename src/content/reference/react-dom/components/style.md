@@ -4,7 +4,7 @@ style: "<style>"
 
 <Intro>
 
-The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) lets you add inline CSS stylesheets to your document.
+[Component `<style>` tích hợp sẵn của trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) cho phép bạn thêm các stylesheet CSS inline vào tài liệu của bạn.
 
 ```js
 <style>{` p { color: red; } `}</style>
@@ -16,58 +16,58 @@ The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `<style>` {/*style*/}
 
-To add inline styles to your document, render the [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). You can render `<style>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical styles.
+Để thêm style inline vào tài liệu của bạn, hãy render [component `<style>` tích hợp sẵn của trình duyệt](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). Bạn có thể render `<style>` từ bất kỳ component nào và React sẽ [trong một số trường hợp nhất định](#special-rendering-behavior) đặt phần tử DOM tương ứng trong phần head của tài liệu và loại bỏ các style giống hệt nhau.
 
 ```js
 <style>{` p { color: red; } `}</style>
 ```
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
 #### Props {/*props*/}
 
-`<style>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<style>` hỗ trợ tất cả [các props phần tử chung.](/reference/react-dom/components/common#common-props)
 
-* `children`: a string, required. The contents of the stylesheet.
-* `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
-* `href`: a string. Allows React to [de-duplicate styles](#special-rendering-behavior) that have the same `href`.
-* `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
-* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
-* `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
+* `children`: một chuỗi, bắt buộc. Nội dung của stylesheet.
+* `precedence`: một chuỗi. Cho React biết nơi xếp hạng DOM node `<style>` so với các node khác trong `<head>` của tài liệu, điều này xác định stylesheet nào có thể ghi đè stylesheet khác. React sẽ suy ra rằng các giá trị precedence nó phát hiện trước là "thấp hơn" và các giá trị precedence nó phát hiện sau là "cao hơn". Nhiều hệ thống style có thể hoạt động tốt bằng cách sử dụng một giá trị precedence duy nhất vì các quy tắc style mang tính nguyên tử. Các stylesheet có cùng precedence đi cùng nhau dù chúng là thẻ `<link>` hay `<style>` inline hay được tải bằng các hàm [`preinit`](/reference/react-dom/preinit).
+* `href`: một chuỗi. Cho phép React [loại bỏ trùng lặp style](#special-rendering-behavior) có cùng `href`.
+* `media`: một chuỗi. Giới hạn stylesheet cho một [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) nhất định.
+* `nonce`: một chuỗi. Một [nonce mã hóa để cho phép tài nguyên](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) khi sử dụng Content Security Policy nghiêm ngặt.
+* `title`: một chuỗi. Chỉ định tên của một [stylesheet thay thế](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
 
-Props that are **not recommended** for use with React:
+Các props **không được khuyến nghị** sử dụng với React:
 
-* `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the stylesheet is loaded. React provides more fine-grained control using Suspense.
+* `blocking`: một chuỗi. Nếu được đặt thành `"render"`, hướng dẫn trình duyệt không render trang cho đến khi stylesheet được tải. React cung cấp khả năng kiểm soát chi tiết hơn bằng cách sử dụng Suspense.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Hành vi render đặc biệt {/*special-rendering-behavior*/}
 
-React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](/reference/react/Suspense) while the stylesheet is loading.
+React có thể di chuyển các component `<style>` đến `<head>` của tài liệu, loại bỏ trùng lặp các stylesheet giống hệt nhau, và [suspend](/reference/react/Suspense) trong khi stylesheet đang tải.
 
-To opt into this behavior, provide the `href` and `precedence` props. React will de-duplicate styles if they have the same `href`. The precedence prop tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other.
+Để tham gia vào hành vi này, hãy cung cấp các props `href` và `precedence`. React sẽ loại bỏ trùng lặp các style nếu chúng có cùng `href`. Prop precedence cho React biết nơi xếp hạng DOM node `<style>` so với các node khác trong `<head>` của tài liệu, điều này xác định stylesheet nào có thể ghi đè stylesheet khác.
 
-This special treatment comes with three caveats:
+Xử lý đặc biệt này đi kèm với ba lưu ý:
 
-* React will ignore changes to props after the style has been rendered. (React will issue a warning in development if this happens.)
-* React will drop all extraneous props when using the `precedence` prop (beyond `href` and `precedence`).
-* React may leave the style in the DOM even after the component that rendered it has been unmounted.
+* React sẽ bỏ qua các thay đổi đối với props sau khi style đã được render. (React sẽ đưa ra cảnh báo trong môi trường development nếu điều này xảy ra.)
+* React sẽ bỏ tất cả các props không liên quan khi sử dụng prop `precedence` (ngoài `href` và `precedence`).
+* React có thể để lại style trong DOM ngay cả sau khi component đã render nó bị unmount.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Rendering an inline CSS stylesheet {/*rendering-an-inline-css-stylesheet*/}
+### Render một stylesheet CSS inline {/*rendering-an-inline-css-stylesheet*/}
 
-If a component depends on certain CSS styles in order to be displayed correctly, you can render an inline stylesheet within the component.
+Nếu một component phụ thuộc vào một số style CSS nhất định để được hiển thị đúng cách, bạn có thể render một stylesheet inline trong component.
 
-The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
-If you supply a `precedence` prop, React will reorder inline stylesheets based on the order these values appear in the component tree.
+Prop `href` phải xác định duy nhất stylesheet, vì React sẽ loại bỏ trùng lặp các stylesheet có cùng `href`.
+Nếu bạn cung cấp prop `precedence`, React sẽ sắp xếp lại các stylesheet inline dựa trên thứ tự các giá trị này xuất hiện trong cây component.
 
-Inline stylesheets will not trigger Suspense boundaries while they're loading.
-Even if they load async resources like fonts or images.
+Các stylesheet inline sẽ không kích hoạt ranh giới Suspense trong khi chúng đang tải.
+Kể cả khi chúng tải các tài nguyên async như font hoặc hình ảnh.
 
 <SandpackWithHTMLOutput>
 

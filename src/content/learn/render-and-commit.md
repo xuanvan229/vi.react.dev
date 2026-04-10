@@ -1,27 +1,27 @@
 ---
-title: Render and Commit
+title: Render và Commit
 ---
 
 <Intro>
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Trước khi các component của bạn được hiển thị trên màn hình, chúng phải được render bởi React. Hiểu các bước trong quá trình này sẽ giúp bạn suy nghĩ về cách code của bạn thực thi và giải thích hành vi của nó.
 
 </Intro>
 
 <YouWillLearn>
 
-* What rendering means in React
-* When and why React renders a component
-* The steps involved in displaying a component on screen
-* Why rendering does not always produce a DOM update
+* Rendering có nghĩa là gì trong React
+* Khi nào và tại sao React render một component
+* Các bước liên quan đến việc hiển thị một component trên màn hình
+* Tại sao rendering không phải lúc nào cũng tạo ra một DOM update
 
 </YouWillLearn>
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Hãy tưởng tượng các component của bạn là những đầu bếp trong bếp, lắp ráp những món ăn ngon từ các nguyên liệu. Trong kịch bản này, React là người phục vụ tiếp nhận yêu cầu từ khách hàng và mang đến cho họ những món ăn. Quá trình yêu cầu và phục vụ giao diện người dùng này có ba bước:
 
-1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Triggering** một render (chuyển yêu cầu của khách đến bếp)
+2. **Rendering** component (chuẩn bị món ăn trong bếp)
+3. **Committing** vào DOM (đặt món ăn lên bàn)
 
 <IllustrationBlock sequential>
   <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
@@ -29,16 +29,16 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
   <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
+## Bước 1: Trigger một render {/*step-1-trigger-a-render*/}
 
-There are two reasons for a component to render:
+Có hai lý do để một component render:
 
-1. It's the component's **initial render.**
-2. The component's (or one of its ancestors') **state has been updated.**
+1. Đó là **render ban đầu** của component.
+2. **State** của component (hoặc một trong các tổ tiên của nó) **đã được cập nhật.**
 
-### Initial render {/*initial-render*/}
+### Render ban đầu {/*initial-render*/}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
+Khi ứng dụng của bạn khởi động, bạn cần trigger render ban đầu. Các framework và sandbox đôi khi ẩn code này, nhưng nó được thực hiện bằng cách gọi [`createRoot`](/reference/react-dom/client/createRoot) với node DOM đích, sau đó gọi phương thức `render` của nó với component của bạn:
 
 <Sandpack>
 
@@ -63,11 +63,11 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `root.render()` call and see the component disappear!
+Hãy thử comment dòng `root.render()` và xem component biến mất!
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+### Re-render khi state cập nhật {/*re-renders-when-state-updates*/}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+Sau khi component đã được render ban đầu, bạn có thể trigger thêm các lần render bằng cách cập nhật state của nó với [hàm `set`.](/reference/react/useState#setstate) Cập nhật state của component tự động đưa vào hàng đợi một render. (Bạn có thể hình dung những điều này như một vị khách nhà hàng gọi thêm trà, tráng miệng, và đủ thứ sau khi đặt món đầu tiên, tùy thuộc vào tình trạng khát hay đói của họ.)
 
 <IllustrationBlock sequential>
   <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
@@ -75,16 +75,16 @@ Once the component has been initially rendered, you can trigger further renders 
   <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+## Bước 2: React render các component của bạn {/*step-2-react-renders-your-components*/}
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+Sau khi bạn trigger một render, React gọi các component của bạn để tìm ra những gì hiển thị trên màn hình. **"Rendering" là React đang gọi các component của bạn.**
 
-* **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **Trong render ban đầu,** React sẽ gọi component gốc.
+* **Đối với các lần render tiếp theo,** React sẽ gọi function component có state update đã trigger render.
 
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+Quá trình này đệ quy: nếu component đã cập nhật trả về một component khác, React sẽ render _component đó_ tiếp theo, và nếu component đó cũng trả về gì đó, nó sẽ render _component đó_ tiếp theo, và cứ thế tiếp tục. Quá trình sẽ tiếp tục cho đến khi không còn component lồng nhau nào nữa và React biết chính xác những gì sẽ được hiển thị trên màn hình.
 
-In the following example, React will call `Gallery()` and `Image()` several times:
+Trong ví dụ sau, React sẽ gọi `Gallery()` và `Image()` nhiều lần:
 
 <Sandpack>
 
@@ -124,36 +124,36 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
-* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags.
-* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+* **Trong render ban đầu,** React sẽ [tạo các DOM node](https://developer.mozilla.org/docs/Web/API/Document/createElement) cho `<section>`, `<h1>`, và ba thẻ `<img>`.
+* **Trong một re-render,** React sẽ tính toán những thuộc tính nào của chúng, nếu có, đã thay đổi kể từ lần render trước. Nó sẽ không làm gì với thông tin đó cho đến bước tiếp theo, giai đoạn commit.
 
 <Pitfall>
 
-Rendering must always be a [pure calculation](/learn/keeping-components-pure):
+Rendering phải luôn là một [phép tính thuần túy](/learn/keeping-components-pure):
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-* **It minds its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+* **Đầu vào giống nhau, đầu ra giống nhau.** Với cùng một đầu vào, một component luôn phải trả về cùng một JSX. (Khi ai đó đặt món salad với cà chua, họ không nên nhận được salad với hành tây!)
+* **Nó chỉ quan tâm đến công việc của mình.** Nó không nên thay đổi bất kỳ đối tượng hay biến nào tồn tại trước khi rendering. (Một đơn hàng không nên thay đổi đơn hàng của người khác.)
 
-Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode", React calls each component's function twice, which can help surface mistakes caused by impure functions.
+Nếu không, bạn có thể gặp phải các lỗi khó hiểu và hành vi không thể đoán trước khi codebase của bạn ngày càng phức tạp. Khi phát triển trong "Strict Mode", React gọi hàm của mỗi component hai lần, điều này có thể giúp phát hiện các lỗi gây ra bởi các hàm không thuần túy.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Optimizing performance {/*optimizing-performance*/}
+#### Tối ưu hóa hiệu suất {/*optimizing-performance*/}
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
+Hành vi mặc định của việc render tất cả các component lồng nhau trong component đã cập nhật là không tối ưu cho hiệu suất nếu component đã cập nhật ở rất cao trong cây. Nếu bạn gặp vấn đề về hiệu suất, có một số cách tùy chọn để giải quyết nó được mô tả trong phần [Performance](https://reactjs.org/docs/optimizing-performance.html). **Đừng tối ưu hóa sớm!**
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
+## Bước 3: React commit các thay đổi vào DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
-After rendering (calling) your components, React will modify the DOM.
+Sau khi rendering (gọi) các component của bạn, React sẽ sửa đổi DOM.
 
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+* **Đối với render ban đầu,** React sẽ sử dụng API DOM [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) để đặt tất cả các DOM node mà nó đã tạo lên màn hình.
+* **Đối với re-render,** React sẽ áp dụng các thao tác tối thiểu cần thiết (được tính toán trong khi rendering!) để làm cho DOM khớp với đầu ra rendering mới nhất.
 
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
+**React chỉ thay đổi các DOM node nếu có sự khác biệt giữa các lần render.** Ví dụ, đây là một component re-render với các props khác nhau được truyền từ cha mỗi giây. Lưu ý cách bạn có thể thêm một số văn bản vào `<input>`, cập nhật `value` của nó, nhưng văn bản không biến mất khi component re-render:
 
 <Sandpack>
 
@@ -193,21 +193,20 @@ export default function App() {
 
 </Sandpack>
 
-This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint {/*epilogue-browser-paint*/}
+Điều này hoạt động vì trong bước cuối cùng này, React chỉ cập nhật nội dung của `<h1>` với `time` mới. Nó thấy rằng `<input>` xuất hiện trong JSX ở cùng vị trí với lần trước, vì vậy React không chạm vào `<input>`—hay `value` của nó!
+## Phần kết: Trình duyệt vẽ lại {/*epilogue-browser-paint*/}
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion throughout the docs.
+Sau khi rendering hoàn tất và React đã cập nhật DOM, trình duyệt sẽ vẽ lại màn hình. Mặc dù quá trình này được biết đến là "browser rendering", chúng ta sẽ gọi nó là "painting" để tránh nhầm lẫn trong suốt tài liệu.
 
 <Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
 
 <Recap>
 
-* Any screen update in a React app happens in three steps:
+* Bất kỳ cập nhật màn hình nào trong ứng dụng React đều xảy ra theo ba bước:
   1. Trigger
   2. Render
   3. Commit
-* You can use Strict Mode to find mistakes in your components
-* React does not touch the DOM if the rendering result is the same as last time
+* Bạn có thể sử dụng Strict Mode để tìm lỗi trong các component của mình
+* React không chạm vào DOM nếu kết quả rendering giống với lần trước
 
 </Recap>
-

@@ -4,7 +4,7 @@ title: captureOwnerStack
 
 <Intro>
 
-`captureOwnerStack` reads the current Owner Stack in development and returns it as a string if available.
+`captureOwnerStack` đọc Owner Stack hiện tại trong quá trình phát triển và trả về nó dưới dạng chuỗi nếu có sẵn.
 
 ```js
 const stack = captureOwnerStack();
@@ -16,11 +16,11 @@ const stack = captureOwnerStack();
 
 ---
 
-## Reference {/*reference*/}
+## Tham chiếu {/*reference*/}
 
 ### `captureOwnerStack()` {/*captureownerstack*/}
 
-Call `captureOwnerStack` to get the current Owner Stack.
+Gọi `captureOwnerStack` để lấy Owner Stack hiện tại.
 
 ```js {5,5}
 import * as React from 'react';
@@ -33,33 +33,33 @@ function Component() {
 }
 ```
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-`captureOwnerStack` does not take any parameters.
+`captureOwnerStack` không nhận tham số nào.
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`captureOwnerStack` returns `string | null`.
+`captureOwnerStack` trả về `string | null`.
 
-Owner Stacks are available in
-- Component render
-- Effects (e.g. `useEffect`)
-- React's event handlers (e.g. `<button onClick={...} />`)
-- React error handlers ([React Root options](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
+Owner Stack có sẵn trong
+- Render component
+- Effect (ví dụ: `useEffect`)
+- Các event handler của React (ví dụ: `<button onClick={...} />`)
+- Các error handler của React ([tùy chọn React Root](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, và `onUncaughtError`)
 
-If no Owner Stack is available, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null)).
+Nếu không có Owner Stack nào có sẵn, `null` được trả về (xem [Xử lý sự cố: Owner Stack là `null`](#the-owner-stack-is-null)).
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- Owner Stacks are only available in development. `captureOwnerStack` will always return `null` outside of development.
+- Owner Stack chỉ có sẵn trong quá trình phát triển. `captureOwnerStack` sẽ luôn trả về `null` bên ngoài môi trường phát triển.
 
 <DeepDive>
 
-#### Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
+#### Owner Stack so với Component Stack {/*owner-stack-vs-component-stack*/}
 
-The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
+Owner Stack khác với Component Stack có sẵn trong các error handler của React như [`errorInfo.componentStack` trong `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
 
-For example, consider the following code:
+Ví dụ, hãy xem xét code sau:
 
 <Sandpack>
 
@@ -136,8 +136,8 @@ createRoot(document.createElement('div'), {
 
 </Sandpack>
 
-`SubComponent` would throw an error.
-The Component Stack of that error would be
+`SubComponent` sẽ ném ra một lỗi.
+Component Stack của lỗi đó sẽ là
 
 ```
 at SubComponent
@@ -148,23 +148,23 @@ at React.Suspense
 at App
 ```
 
-However, the Owner Stack would only read
+Tuy nhiên, Owner Stack chỉ đọc
 
 ```
 at Component
 ```
 
-Neither `App` nor the DOM components (e.g. `fieldset`) are considered Owners in this Stack since they didn't contribute to "creating" the node containing `SubComponent`. `App` and DOM components only forwarded the node. `App` just rendered the `children` node as opposed to `Component` which created a node containing `SubComponent` via `<SubComponent />`.
+Cả `App` lẫn các component DOM (ví dụ: `fieldset`) không được coi là Owner trong Stack này vì chúng không đóng góp vào việc "tạo ra" node chứa `SubComponent`. `App` và các component DOM chỉ chuyển tiếp node. `App` chỉ render node `children` thay vì `Component` tạo ra một node chứa `SubComponent` thông qua `<SubComponent />`.
 
-Neither `Navigation` nor `legend` are in the stack at all since it's only a sibling to a node containing `<SubComponent />`.
+Cả `Navigation` lẫn `legend` đều không có trong stack vì chúng chỉ là anh em của node chứa `<SubComponent />`.
 
-`SubComponent` is omitted because it's already part of the callstack.
+`SubComponent` bị bỏ qua vì nó đã là một phần của callstack.
 
 </DeepDive>
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Enhance a custom error overlay {/*enhance-a-custom-error-overlay*/}
+### Nâng cao một error overlay tùy chỉnh {/*enhance-a-custom-error-overlay*/}
 
 ```js [[1, 5, "console.error"], [4, 7, "captureOwnerStack"]]
 import { captureOwnerStack } from "react";
@@ -183,7 +183,7 @@ console.error = function patchedConsoleError(...args) {
 };
 ```
 
-If you intercept <CodeStep step={1}>`console.error`</CodeStep> calls to highlight them in an error overlay, you can call <CodeStep step={2}>`captureOwnerStack`</CodeStep> to include the Owner Stack.
+Nếu bạn chặn các lần gọi <CodeStep step={1}>`console.error`</CodeStep> để làm nổi bật chúng trong một error overlay, bạn có thể gọi <CodeStep step={2}>`captureOwnerStack`</CodeStep> để bao gồm Owner Stack.
 
 <Sandpack>
 
@@ -347,13 +347,13 @@ export default function App() {
 
 </Sandpack>
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
+### Owner Stack là `null` {/*the-owner-stack-is-null*/}
 
-The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a `fetch` call or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+Lần gọi `captureOwnerStack` xảy ra bên ngoài một hàm được React kiểm soát, ví dụ: trong một callback `setTimeout`, sau một lần gọi `fetch` hoặc trong một event handler DOM tùy chỉnh. Trong quá trình render, Effect, các event handler của React và các error handler của React (ví dụ: `hydrateRoot#options.onCaughtError`) thì Owner Stack nên có sẵn.
 
-In the example below, clicking the button will log an empty Owner Stack because `captureOwnerStack` was called during a custom DOM event handler. The Owner Stack must be captured earlier e.g. by moving the call of `captureOwnerStack` into the Effect body.
+Trong ví dụ bên dưới, click vào button sẽ ghi lại một Owner Stack rỗng vì `captureOwnerStack` được gọi trong một event handler DOM tùy chỉnh. Owner Stack phải được capture sớm hơn, ví dụ bằng cách di chuyển lần gọi `captureOwnerStack` vào phần thân Effect.
 <Sandpack>
 
 ```js
@@ -381,9 +381,9 @@ export default function App() {
 
 </Sandpack>
 
-### `captureOwnerStack` is not available {/*captureownerstack-is-not-available*/}
+### `captureOwnerStack` không có sẵn {/*captureownerstack-is-not-available*/}
 
-`captureOwnerStack` is only exported in development builds. It will be `undefined` in production builds. If `captureOwnerStack` is used in files that are bundled for production and development, you should conditionally access it from a namespace import.
+`captureOwnerStack` chỉ được export trong các bản build phát triển. Nó sẽ là `undefined` trong các bản build production. Nếu `captureOwnerStack` được sử dụng trong các tệp được bundle cho cả production và development, bạn nên truy cập nó có điều kiện từ một namespace import.
 
 ```js
 // Don't use named imports of `captureOwnerStack` in files that are bundled for development and production.

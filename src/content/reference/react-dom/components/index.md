@@ -1,40 +1,40 @@
 ---
-title: "React DOM Components"
+title: "Các Component React DOM"
 ---
 
 <Intro>
 
-React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) components.
+React hỗ trợ tất cả các component [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) và [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) có sẵn trong trình duyệt.
 
 </Intro>
 
 ---
 
-## Common components {/*common-components*/}
+## Các component chung {/*common-components*/}
 
-All of the built-in browser components support some props and events.
+Tất cả các component có sẵn trong trình duyệt đều hỗ trợ một số props và events.
 
-* [Common components (e.g. `<div>`)](/reference/react-dom/components/common)
+* [Các component chung (ví dụ: `<div>`)](/reference/react-dom/components/common)
 
-This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
+Bao gồm các props đặc trưng của React như `ref` và `dangerouslySetInnerHTML`.
 
 ---
 
-## Form components {/*form-components*/}
+## Các component Form {/*form-components*/}
 
-These built-in browser components accept user input:
+Các component có sẵn trong trình duyệt này chấp nhận đầu vào của người dùng:
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
 
-They are special in React because passing the `value` prop to them makes them *[controlled.](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)*
+Chúng đặc biệt trong React vì việc truyền prop `value` vào chúng khiến chúng trở thành *[controlled.](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)*
 
 ---
 
-## Resource and Metadata Components {/*resource-and-metadata-components*/}
+## Các Component Tài nguyên và Metadata {/*resource-and-metadata-components*/}
 
-These built-in browser components let you load external resources or annotate the document with metadata:
+Các component có sẵn trong trình duyệt này cho phép bạn tải các tài nguyên bên ngoài hoặc chú thích tài liệu với metadata:
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
@@ -42,13 +42,13 @@ These built-in browser components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+Chúng đặc biệt trong React vì React có thể render chúng vào phần head của tài liệu, tạm dừng trong khi tài nguyên đang tải, và thực hiện các hành vi khác được mô tả trên trang tham chiếu cho từng component cụ thể.
 
 ---
 
-## All HTML components {/*all-html-components*/}
+## Tất cả các component HTML {/*all-html-components*/}
 
-React supports all built-in browser HTML components. This includes:
+React hỗ trợ tất cả các component HTML có sẵn trong trình duyệt. Bao gồm:
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
@@ -154,39 +154,39 @@ React supports all built-in browser HTML components. This includes:
 
 <Note>
 
-Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React uses a `camelCase` convention for prop names. For example, you'll write `tabIndex` instead of `tabindex`. You can convert existing HTML to JSX with an [online converter.](https://transform.tools/html-to-jsx)
+Tương tự như [chuẩn DOM,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React sử dụng quy ước `camelCase` cho tên prop. Ví dụ, bạn sẽ viết `tabIndex` thay vì `tabindex`. Bạn có thể chuyển đổi HTML hiện có sang JSX bằng [công cụ chuyển đổi trực tuyến.](https://transform.tools/html-to-jsx)
 
 </Note>
 
 ---
 
-### Custom HTML elements {/*custom-html-elements*/}
+### Các phần tử HTML tùy chỉnh {/*custom-html-elements*/}
 
-If you render a tag with a dash, like `<my-element>`, React will assume you want to render a [custom HTML element.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
+Nếu bạn render một thẻ có dấu gạch ngang, như `<my-element>`, React sẽ giả định rằng bạn muốn render một [phần tử HTML tùy chỉnh.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
 
-If you render a built-in browser HTML element with an [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) attribute, it will also be treated as a custom element.
+Nếu bạn render một phần tử HTML có sẵn trong trình duyệt với thuộc tính [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is), nó cũng sẽ được coi là phần tử tùy chỉnh.
 
-#### Setting values on custom elements {/*attributes-vs-properties*/}
+#### Thiết lập giá trị trên các phần tử tùy chỉnh {/*attributes-vs-properties*/}
 
-Custom elements have two methods of passing data into them:
+Các phần tử tùy chỉnh có hai phương thức để truyền dữ liệu vào chúng:
 
-1) Attributes: Which are displayed in markup and can only be set to string values
-2) Properties: Which are not displayed in markup and can be set to arbitrary JavaScript values
+1) Attributes: Được hiển thị trong markup và chỉ có thể được đặt thành giá trị chuỗi
+2) Properties: Không được hiển thị trong markup và có thể được đặt thành các giá trị JavaScript tùy ý
 
-By default, React will pass values bound in JSX as attributes:
+Theo mặc định, React sẽ truyền các giá trị liên kết trong JSX dưới dạng attributes:
 
 ```jsx
 <my-element value="Hello, world!"></my-element>
 ```
 
-Non-string JavaScript values passed to custom elements will be serialized by default:
+Các giá trị JavaScript không phải chuỗi được truyền vào các phần tử tùy chỉnh sẽ được serialize theo mặc định:
 
 ```jsx
-// Will be passed as `"1,2,3"` as the output of `[1,2,3].toString()`
+// Sẽ được truyền dưới dạng `"1,2,3"` là kết quả của `[1,2,3].toString()`
 <my-element value={[1,2,3]}></my-element>
 ```
 
-React will, however, recognize an custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
+Tuy nhiên, React sẽ nhận ra thuộc tính của một phần tử tùy chỉnh như một thuộc tính mà nó có thể truyền các giá trị tùy ý nếu tên thuộc tính xuất hiện trên class trong quá trình khởi tạo:
 
 <Sandpack>
 
@@ -224,9 +224,9 @@ export function App() {
 
 </Sandpack>
 
-#### Listening for events on custom elements {/*custom-element-events*/}
+#### Lắng nghe các sự kiện trên các phần tử tùy chỉnh {/*custom-element-events*/}
 
-A common pattern when using custom elements is that they may dispatch [`CustomEvent`s](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) rather than accept a function to call when an event occur. You can listen for these events using an `on` prefix when binding to the event via JSX.
+Một pattern phổ biến khi sử dụng các phần tử tùy chỉnh là chúng có thể dispatch [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) thay vì chấp nhận một hàm để gọi khi có sự kiện xảy ra. Bạn có thể lắng nghe các sự kiện này bằng cách sử dụng tiền tố `on` khi liên kết với sự kiện qua JSX.
 
 <Sandpack>
 
@@ -285,21 +285,21 @@ export function App() {
 
 <Note>
 
-Events are case-sensitive and support dashes (`-`). Preserve the casing of the event and include all dashes when listening for custom element's events:
+Các sự kiện phân biệt chữ hoa chữ thường và hỗ trợ dấu gạch ngang (`-`). Giữ nguyên kiểu chữ của sự kiện và bao gồm tất cả dấu gạch ngang khi lắng nghe các sự kiện của phần tử tùy chỉnh:
 
 ```jsx
-// Listens for `say-hi` events
+// Lắng nghe sự kiện `say-hi`
 <my-element onsay-hi={console.log}></my-element>
-// Listens for `sayHi` events
+// Lắng nghe sự kiện `sayHi`
 <my-element onsayHi={console.log}></my-element>
 ```
 
 </Note>
 ---
 
-## All SVG components {/*all-svg-components*/}
+## Tất cả các component SVG {/*all-svg-components*/}
 
-React supports all built-in browser SVG components. This includes:
+React hỗ trợ tất cả các component SVG có sẵn trong trình duyệt. Bao gồm:
 
 * [`<a>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a)
 * [`<animate>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate)
@@ -370,20 +370,20 @@ React supports all built-in browser SVG components. This includes:
 
 <Note>
 
-Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React uses a `camelCase` convention for prop names. For example, you'll write `tabIndex` instead of `tabindex`. You can convert existing SVG to JSX with an [online converter.](https://transform.tools/)
+Tương tự như [chuẩn DOM,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React sử dụng quy ước `camelCase` cho tên prop. Ví dụ, bạn sẽ viết `tabIndex` thay vì `tabindex`. Bạn có thể chuyển đổi SVG hiện có sang JSX bằng [công cụ chuyển đổi trực tuyến.](https://transform.tools/)
 
-Namespaced attributes also have to be written without the colon:
+Các thuộc tính có namespace cũng phải được viết không có dấu hai chấm:
 
-* `xlink:actuate` becomes `xlinkActuate`.
-* `xlink:arcrole` becomes `xlinkArcrole`.
-* `xlink:href` becomes `xlinkHref`.
-* `xlink:role` becomes `xlinkRole`.
-* `xlink:show` becomes `xlinkShow`.
-* `xlink:title` becomes `xlinkTitle`.
-* `xlink:type` becomes `xlinkType`.
-* `xml:base` becomes `xmlBase`.
-* `xml:lang` becomes `xmlLang`.
-* `xml:space` becomes `xmlSpace`.
-* `xmlns:xlink` becomes `xmlnsXlink`.
+* `xlink:actuate` trở thành `xlinkActuate`.
+* `xlink:arcrole` trở thành `xlinkArcrole`.
+* `xlink:href` trở thành `xlinkHref`.
+* `xlink:role` trở thành `xlinkRole`.
+* `xlink:show` trở thành `xlinkShow`.
+* `xlink:title` trở thành `xlinkTitle`.
+* `xlink:type` trở thành `xlinkType`.
+* `xml:base` trở thành `xmlBase`.
+* `xml:lang` trở thành `xmlLang`.
+* `xml:space` trở thành `xmlSpace`.
+* `xmlns:xlink` trở thành `xmlnsXlink`.
 
 </Note>

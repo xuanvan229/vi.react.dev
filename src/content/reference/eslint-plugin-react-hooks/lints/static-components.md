@@ -4,72 +4,72 @@ title: static-components
 
 <Intro>
 
-Validates that components are static, not recreated every render. Components that are recreated dynamically can reset state and trigger excessive re-rendering.
+Kiểm tra rằng component là tĩnh, không được tạo lại mỗi lần render. Component được tạo lại động có thể reset state và kích hoạt re-render quá mức.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-Components defined inside other components are recreated on every render. React sees each as a brand new component type, unmounting the old one and mounting the new one, destroying all state and DOM nodes in the process.
+Component được định nghĩa bên trong component khác sẽ được tạo lại mỗi lần render. React coi mỗi cái là một kiểu component hoàn toàn mới, unmount cái cũ và mount cái mới, hủy tất cả state và các node DOM trong quá trình đó.
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js
-// ❌ Component defined inside component
+// ❌ Component được định nghĩa bên trong component
 function Parent() {
-  const ChildComponent = () => { // New component every render!
+  const ChildComponent = () => { // Component mới mỗi lần render!
     const [count, setCount] = useState(0);
     return <button onClick={() => setCount(count + 1)}>{count}</button>;
   };
 
-  return <ChildComponent />; // State resets every render
+  return <ChildComponent />; // State reset mỗi lần render
 }
 
-// ❌ Dynamic component creation
+// ❌ Tạo component động
 function Parent({type}) {
   const Component = type === 'button'
-    ? () => <button>Click</button>
-    : () => <div>Text</div>;
+    ? () => <button>Nhấn</button>
+    : () => <div>Văn bản</div>;
 
   return <Component />;
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ Components at module level
-const ButtonComponent = () => <button>Click</button>;
-const TextComponent = () => <div>Text</div>;
+// ✅ Component ở cấp module
+const ButtonComponent = () => <button>Nhấn</button>;
+const TextComponent = () => <div>Văn bản</div>;
 
 function Parent({type}) {
   const Component = type === 'button'
-    ? ButtonComponent  // Reference existing component
+    ? ButtonComponent  // Tham chiếu component có sẵn
     : TextComponent;
 
   return <Component />;
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I need to render different components conditionally {/*conditional-components*/}
+### Tôi cần render component khác nhau có điều kiện {/*conditional-components*/}
 
-You might define components inside to access local state:
+Bạn có thể định nghĩa component bên trong để truy cập state cục bộ:
 
 ```js {expectedErrors: {'react-compiler': [13]}}
-// ❌ Wrong: Inner component to access parent state
+// ❌ Sai: Component bên trong để truy cập state cha
 function Parent() {
   const [theme, setTheme] = useState('light');
 
-  function ThemedButton() { // Recreated every render!
+  function ThemedButton() { // Được tạo lại mỗi lần render!
     return (
       <button className={theme}>
-        Click me
+        Nhấn vào đây
       </button>
     );
   }
@@ -78,14 +78,14 @@ function Parent() {
 }
 ```
 
-Pass data as props instead:
+Truyền dữ liệu qua props thay vì:
 
 ```js
-// ✅ Better: Pass props to static component
+// ✅ Tốt hơn: Truyền props cho component tĩnh
 function ThemedButton({theme}) {
   return (
     <button className={theme}>
-      Click me
+      Nhấn vào đây
     </button>
   );
 }
@@ -98,6 +98,6 @@ function Parent() {
 
 <Note>
 
-If you find yourself wanting to define components inside other components to access local variables, that's a sign you should be passing props instead. This makes components more reusable and testable.
+Nếu bạn thấy mình muốn định nghĩa component bên trong component khác để truy cập biến cục bộ, đó là dấu hiệu bạn nên truyền props thay vì. Điều này làm component dễ tái sử dụng và dễ kiểm thử hơn.
 
 </Note>

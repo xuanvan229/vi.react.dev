@@ -1,57 +1,57 @@
 ---
-title: Using TypeScript
+title: Sử dụng TypeScript
 re: https://github.com/reactjs/react.dev/issues/5960
 ---
 
 <Intro>
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. Out of the box, TypeScript [supports JSX](/learn/writing-markup-with-jsx) and you can get full React Web support by adding [`@types/react`](https://www.npmjs.com/package/@types/react) and [`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom) to your project.
+TypeScript là một cách phổ biến để thêm định nghĩa kiểu vào các codebase JavaScript. TypeScript [hỗ trợ JSX](/learn/writing-markup-with-jsx) ngay từ đầu và bạn có thể nhận được hỗ trợ React Web đầy đủ bằng cách thêm [`@types/react`](https://www.npmjs.com/package/@types/react) và [`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom) vào dự án của bạn.
 
 </Intro>
 
 <YouWillLearn>
 
-* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Examples of typing with Hooks](/learn/typescript#example-hooks)
-* [Common types from `@types/react`](/learn/typescript#useful-types)
-* [Further learning locations](/learn/typescript#further-learning)
+* [TypeScript với React Components](/learn/typescript#typescript-with-react-components)
+* [Ví dụ về typing với Hooks](/learn/typescript#example-hooks)
+* [Các kiểu phổ biến từ `@types/react`](/learn/typescript#useful-types)
+* [Các tài nguyên học thêm](/learn/typescript#further-learning)
 
 </YouWillLearn>
 
-## Installation {/*installation*/}
+## Cài đặt {/*installation*/}
 
-All [production-grade React frameworks](/learn/creating-a-react-app#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
+Tất cả các [React framework cấp độ sản xuất](/learn/creating-a-react-app#full-stack-frameworks) đều hỗ trợ sử dụng TypeScript. Làm theo hướng dẫn cài đặt dành riêng cho từng framework:
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
 - [Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/)
 - [Expo](https://docs.expo.dev/guides/typescript/)
 
-### Adding TypeScript to an existing React project {/*adding-typescript-to-an-existing-react-project*/}
+### Thêm TypeScript vào một dự án React hiện có {/*adding-typescript-to-an-existing-react-project*/}
 
-To install the latest version of React's type definitions:
+Để cài đặt phiên bản mới nhất của các định nghĩa kiểu của React:
 
 <TerminalBlock>
 npm install --save-dev @types/react @types/react-dom
 </TerminalBlock>
 
-The following compiler options need to be set in your `tsconfig.json`:
+Các tùy chọn compiler sau cần được đặt trong `tsconfig.json` của bạn:
 
-1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default).
-2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set to one of the valid options. `preserve` should suffice for most applications.
-  If you're publishing a library, consult the [`jsx` documentation](https://www.typescriptlang.org/tsconfig/#jsx) on what value to choose.
+1. `dom` phải được bao gồm trong [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Lưu ý: Nếu không có tùy chọn `lib` nào được chỉ định, `dom` được bao gồm theo mặc định).
+2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) phải được đặt thành một trong các tùy chọn hợp lệ. `preserve` nên đủ cho hầu hết các ứng dụng.
+  Nếu bạn đang xuất bản một thư viện, hãy tham khảo [tài liệu `jsx`](https://www.typescriptlang.org/tsconfig/#jsx) để biết nên chọn giá trị nào.
 
-## TypeScript with React Components {/*typescript-with-react-components*/}
+## TypeScript với React Components {/*typescript-with-react-components*/}
 
 <Note>
 
-Every file containing JSX must use the `.tsx` file extension. This is a TypeScript-specific extension that tells TypeScript that this file contains JSX.
+Mỗi file chứa JSX phải sử dụng phần mở rộng file `.tsx`. Đây là phần mở rộng dành riêng cho TypeScript cho TypeScript biết file này chứa JSX.
 
 </Note>
 
-Writing TypeScript with React is very similar to writing JavaScript with React. The key difference when working with a component is that you can provide types for your component's props. These types can be used for correctness checking and providing inline documentation in editors.
+Viết TypeScript với React rất giống với viết JavaScript với React. Sự khác biệt chính khi làm việc với một component là bạn có thể cung cấp kiểu cho props của component. Các kiểu này có thể được sử dụng để kiểm tra tính đúng đắn và cung cấp tài liệu nội tuyến trong các trình soạn thảo.
 
-Taking the [`MyButton` component](/learn#components) from the [Quick Start](/learn) guide, we can add a type describing the `title` for the button:
+Lấy [component `MyButton`](/learn#components) từ hướng dẫn [Quick Start](/learn), chúng ta có thể thêm một kiểu mô tả `title` cho button:
 
 <Sandpack>
 
@@ -80,11 +80,11 @@ export default App = AppTSX;
 
  <Note>
 
-These sandboxes can handle TypeScript code, but they do not run the type-checker. This means you can amend the TypeScript sandboxes to learn, but you won't get any type errors or warnings. To get type-checking, you can use the [TypeScript Playground](https://www.typescriptlang.org/play) or use a more fully-featured online sandbox.
+Các sandbox này có thể xử lý code TypeScript, nhưng chúng không chạy type-checker. Điều này có nghĩa là bạn có thể sửa đổi các sandbox TypeScript để học, nhưng bạn sẽ không nhận được bất kỳ lỗi kiểu hoặc cảnh báo nào. Để có type-checking, bạn có thể sử dụng [TypeScript Playground](https://www.typescriptlang.org/play) hoặc sử dụng một sandbox trực tuyến đầy đủ tính năng hơn.
 
 </Note>
 
-This inline syntax is the simplest way to provide types for a component, though once you start to have a few fields to describe it can become unwieldy. Instead, you can use an `interface` or `type` to describe the component's props:
+Cú pháp nội tuyến này là cách đơn giản nhất để cung cấp kiểu cho một component, mặc dù khi bạn bắt đầu có nhiều trường để mô tả, nó có thể trở nên khó quản lý. Thay vào đó, bạn có thể sử dụng `interface` hoặc `type` để mô tả props của component:
 
 <Sandpack>
 
@@ -119,32 +119,32 @@ export default App = AppTSX;
 
 </Sandpack>
 
-The type describing your component's props can be as simple or as complex as you need, though they should be an object type described with either a `type` or `interface`. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
+Kiểu mô tả props của component có thể đơn giản hoặc phức tạp tùy theo nhu cầu của bạn, mặc dù chúng nên là kiểu object được mô tả bằng `type` hoặc `interface`. Bạn có thể tìm hiểu về cách TypeScript mô tả các object trong [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) nhưng bạn cũng có thể quan tâm đến việc sử dụng [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) để mô tả một prop có thể là một trong vài kiểu khác nhau và hướng dẫn [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) cho các trường hợp sử dụng nâng cao hơn.
 
 
-## Example Hooks {/*example-hooks*/}
+## Ví dụ về Hooks {/*example-hooks*/}
 
-The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types.
+Các định nghĩa kiểu từ `@types/react` bao gồm các kiểu cho các Hook tích hợp, vì vậy bạn có thể sử dụng chúng trong các component của mình mà không cần bất kỳ thiết lập bổ sung nào. Chúng được xây dựng để tính đến code bạn viết trong component, vì vậy bạn sẽ nhận được [kiểu được suy luận](https://www.typescriptlang.org/docs/handbook/type-inference.html) nhiều lần và lý tưởng là không cần xử lý chi tiết nhỏ của việc cung cấp các kiểu.
 
-However, we can look at a few examples of how to provide types for Hooks.
+Tuy nhiên, chúng ta có thể xem xét một vài ví dụ về cách cung cấp kiểu cho các Hook.
 
 ### `useState` {/*typing-usestate*/}
 
-The [`useState` Hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
+[`useState` Hook](/reference/react/useState) sẽ tái sử dụng giá trị được truyền vào làm state ban đầu để xác định kiểu của giá trị nên là gì. Ví dụ:
 
 ```ts
-// Infer the type as "boolean"
+// Suy luận kiểu là "boolean"
 const [enabled, setEnabled] = useState(false);
 ```
 
-This will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the state, you can do so by providing a type argument to the `useState` call:
+Điều này sẽ gán kiểu `boolean` cho `enabled`, và `setEnabled` sẽ là một hàm chấp nhận đối số `boolean`, hoặc một hàm trả về `boolean`. Nếu bạn muốn cung cấp kiểu rõ ràng cho state, bạn có thể làm như vậy bằng cách cung cấp đối số kiểu cho lời gọi `useState`:
 
 ```ts
-// Explicitly set the type to "boolean"
+// Đặt rõ ràng kiểu là "boolean"
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
 
-This isn't very useful in this case, but a common case where you may want to provide a type is when you have a union type. For example, `status` here can be one of a few different strings:
+Điều này không hữu ích lắm trong trường hợp này, nhưng một trường hợp phổ biến mà bạn có thể muốn cung cấp kiểu là khi bạn có union type. Ví dụ, `status` ở đây có thể là một trong vài chuỗi khác nhau:
 
 ```ts
 type Status = "idle" | "loading" | "success" | "error";
@@ -152,7 +152,7 @@ type Status = "idle" | "loading" | "success" | "error";
 const [status, setStatus] = useState<Status>("idle");
 ```
 
-Or, as recommended in [Principles for structuring state](/learn/choosing-the-state-structure#principles-for-structuring-state), you can group related state as an object and describe the different possibilities via object types:
+Hoặc, như được khuyến nghị trong [Nguyên tắc cấu trúc state](/learn/choosing-the-state-structure#principles-for-structuring-state), bạn có thể nhóm state liên quan thành một object và mô tả các khả năng khác nhau qua kiểu object:
 
 ```ts
 type RequestState =
@@ -166,7 +166,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 
 ### `useReducer` {/*typing-usereducer*/}
 
-The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
+[`useReducer` Hook](/reference/react/useReducer) là một Hook phức tạp hơn nhận một hàm reducer và một state ban đầu. Các kiểu cho hàm reducer được suy luận từ state ban đầu. Bạn có thể tùy chọn cung cấp đối số kiểu cho lời gọi `useReducer` để cung cấp kiểu cho state, nhưng thường tốt hơn là đặt kiểu trên state ban đầu thay thế:
 
 <Sandpack>
 
@@ -221,14 +221,14 @@ export default App = AppTSX;
 </Sandpack>
 
 
-We are using TypeScript in a few key places:
+Chúng ta đang sử dụng TypeScript ở một vài nơi quan trọng:
 
- - `interface State` describes the shape of the reducer's state.
- - `type CounterAction` describes the different actions which can be dispatched to the reducer.
- - `const initialState: State` provides a type for the initial state, and also the type which is used by `useReducer` by default.
- - `stateReducer(state: State, action: CounterAction): State` sets the types for the reducer function's arguments and return value.
+ - `interface State` mô tả hình dạng của state của reducer.
+ - `type CounterAction` mô tả các action khác nhau có thể được dispatch đến reducer.
+ - `const initialState: State` cung cấp kiểu cho state ban đầu, và cũng là kiểu được sử dụng bởi `useReducer` theo mặc định.
+ - `stateReducer(state: State, action: CounterAction): State` đặt các kiểu cho đối số và giá trị trả về của hàm reducer.
 
-A more explicit alternative to setting the type on `initialState` is to provide a type argument to `useReducer`:
+Một cách thay thế rõ ràng hơn để đặt kiểu trên `initialState` là cung cấp đối số kiểu cho `useReducer`:
 
 ```ts
 import { stateReducer, State } from './your-reducer-implementation';
@@ -242,9 +242,9 @@ export default function App() {
 
 ### `useContext` {/*typing-usecontext*/}
 
-The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a Hook to consume the value in a child component.
+[`useContext` Hook](/reference/react/useContext) là kỹ thuật để truyền dữ liệu xuống cây component mà không cần truyền props qua các component. Nó được sử dụng bằng cách tạo một provider component và thường bằng cách tạo một Hook để tiêu thụ giá trị trong một component con.
 
-The type of the value provided by the context is inferred from the value passed to the `createContext` call:
+Kiểu của giá trị được cung cấp bởi context được suy luận từ giá trị được truyền vào lời gọi `createContext`:
 
 <Sandpack>
 
@@ -284,9 +284,9 @@ export default App = AppTSX;
 
 </Sandpack>
 
-This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`.
+Kỹ thuật này hoạt động khi bạn có giá trị mặc định có ý nghĩa - nhưng đôi khi có những trường hợp bạn không có, và trong những trường hợp đó `null` có thể cảm thấy hợp lý như giá trị mặc định. Tuy nhiên, để cho phép hệ thống kiểu hiểu code của bạn, bạn cần đặt rõ ràng `ContextShape | null` trên `createContext`.
 
-This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the Hook do a runtime check for it's existence and throw an error when not present:
+Điều này gây ra vấn đề là bạn cần loại bỏ `| null` trong kiểu cho các consumer context. Khuyến nghị của chúng tôi là để Hook thực hiện kiểm tra runtime sự tồn tại của nó và ném lỗi khi không có:
 
 ```js {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';
@@ -331,14 +331,14 @@ function MyComponent() {
 
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+[React Compiler](/learn/react-compiler) tự động ghi nhớ các giá trị và hàm, giảm nhu cầu gọi `useMemo` thủ công. Bạn có thể sử dụng compiler để xử lý memoization tự động.
 
 </Note>
 
-The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
+[`useMemo`](/reference/react/useMemo) Hook sẽ tạo/truy cập lại một giá trị đã được ghi nhớ từ một lời gọi hàm, chỉ chạy lại hàm khi các dependency được truyền vào tham số thứ 2 thay đổi. Kết quả của việc gọi Hook được suy luận từ giá trị trả về của hàm trong tham số đầu tiên. Bạn có thể rõ ràng hơn bằng cách cung cấp đối số kiểu cho Hook.
 
 ```ts
-// The type of visibleTodos is inferred from the return value of filterTodos
+// Kiểu của visibleTodos được suy luận từ giá trị trả về của filterTodos
 const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 ```
 
@@ -347,11 +347,11 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+[React Compiler](/learn/react-compiler) tự động ghi nhớ các giá trị và hàm, giảm nhu cầu gọi `useCallback` thủ công. Bạn có thể sử dụng compiler để xử lý memoization tự động.
 
 </Note>
 
-The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
+[`useCallback`](/reference/react/useCallback) cung cấp một tham chiếu ổn định đến một hàm miễn là các dependency được truyền vào tham số thứ hai là giống nhau. Giống như `useMemo`, kiểu của hàm được suy luận từ giá trị trả về của hàm trong tham số đầu tiên, và bạn có thể rõ ràng hơn bằng cách cung cấp đối số kiểu cho Hook.
 
 
 ```ts
@@ -360,9 +360,9 @@ const handleClick = useCallback(() => {
 }, [todos]);
 ```
 
-When working in TypeScript strict mode `useCallback` requires adding types for the parameters in your callback. This is because the type of the callback is inferred from the return value of the function, and without parameters the type cannot be fully understood.
+Khi làm việc trong chế độ strict của TypeScript, `useCallback` yêu cầu thêm kiểu cho các tham số trong callback của bạn. Điều này là vì kiểu của callback được suy luận từ giá trị trả về của hàm, và không có tham số, kiểu không thể được hiểu đầy đủ.
 
-Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback:
+Tùy thuộc vào sở thích về phong cách code của bạn, bạn có thể sử dụng các hàm `*EventHandler` từ các kiểu React để cung cấp kiểu cho event handler cùng lúc với việc định nghĩa callback:
 
 ```ts
 import { useState, useCallback } from 'react';
@@ -383,13 +383,13 @@ export default function Form() {
 }
 ```
 
-## Useful Types {/*useful-types*/}
+## Các kiểu hữu ích {/*useful-types*/}
 
-There is quite an expansive set of types which come from the `@types/react` package, it is worth a read when you feel comfortable with how React and TypeScript interact. You can find them [in React's folder in DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts). We will cover a few of the more common types here.
+Có một tập hợp khá rộng các kiểu đến từ package `@types/react`, đáng đọc khi bạn cảm thấy thoải mái với cách React và TypeScript tương tác. Bạn có thể tìm thấy chúng [trong thư mục React trong DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts). Chúng ta sẽ đề cập một vài kiểu phổ biến hơn ở đây.
 
 ### DOM Events {/*typing-dom-events*/}
 
-When working with DOM events in React, the type of the event can often be inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
+Khi làm việc với các DOM event trong React, kiểu của event thường có thể được suy luận từ event handler. Tuy nhiên, khi bạn muốn trích xuất một hàm để truyền vào event handler, bạn sẽ cần đặt rõ ràng kiểu của event.
 
 <Sandpack>
 
@@ -419,15 +419,15 @@ export default App = AppTSX;
 
 </Sandpack>
 
-There are many types of events provided in the React types - the full list can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) which is based on the [most popular events from the DOM](https://developer.mozilla.org/en-US/docs/Web/Events).
+Có nhiều loại event được cung cấp trong các kiểu React - danh sách đầy đủ có thể được tìm thấy [ở đây](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) dựa trên [các event phổ biến nhất từ DOM](https://developer.mozilla.org/en-US/docs/Web/Events).
 
-When determining the type you are looking for you can first look at the hover information for the event handler you are using, which will show the type of the event.
+Khi xác định kiểu bạn đang tìm kiếm, trước tiên bạn có thể xem thông tin hover cho event handler bạn đang sử dụng, điều này sẽ hiển thị kiểu của event.
 
-If you need to use an event that is not included in this list, you can use the `React.SyntheticEvent` type, which is the base type for all events.
+Nếu bạn cần sử dụng một event không có trong danh sách này, bạn có thể sử dụng kiểu `React.SyntheticEvent`, đây là kiểu cơ sở cho tất cả các event.
 
 ### Children {/*typing-children*/}
 
-There are two common paths to describing the children of a component. The first is to use the `React.ReactNode` type, which is a union of all the possible types that can be passed as children in JSX:
+Có hai con đường phổ biến để mô tả các children của một component. Đầu tiên là sử dụng kiểu `React.ReactNode`, đây là union của tất cả các kiểu có thể được truyền vào làm children trong JSX:
 
 ```ts
 interface ModalRendererProps {
@@ -436,7 +436,7 @@ interface ModalRendererProps {
 }
 ```
 
-This is a very broad definition of children. The second is to use the `React.ReactElement` type, which is only JSX elements and not JavaScript primitives like strings or numbers:
+Đây là một định nghĩa rất rộng về children. Thứ hai là sử dụng kiểu `React.ReactElement`, chỉ là các JSX element và không phải các primitive JavaScript như chuỗi hoặc số:
 
 ```ts
 interface ModalRendererProps {
@@ -445,13 +445,13 @@ interface ModalRendererProps {
 }
 ```
 
-Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children.
+Lưu ý, bạn không thể sử dụng TypeScript để mô tả rằng children là một kiểu nhất định của các JSX element, vì vậy bạn không thể sử dụng hệ thống kiểu để mô tả một component chỉ chấp nhận children `<li>`.
 
-You can see an example of both `React.ReactNode` and `React.ReactElement` with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
+Bạn có thể thấy ví dụ về cả `React.ReactNode` và `React.ReactElement` với type-checker trong [TypeScript playground này](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
 
 ### Style Props {/*typing-style-props*/}
 
-When using inline styles in React, you can use `React.CSSProperties` to describe the object passed to the `style` prop. This type is a union of all the possible CSS properties, and is a good way to ensure you are passing valid CSS properties to the `style` prop, and to get auto-complete in your editor.
+Khi sử dụng inline styles trong React, bạn có thể sử dụng `React.CSSProperties` để mô tả object được truyền vào prop `style`. Kiểu này là union của tất cả các thuộc tính CSS có thể có, và là cách tốt để đảm bảo bạn đang truyền các thuộc tính CSS hợp lệ vào prop `style`, và để nhận auto-complete trong trình soạn thảo của bạn.
 
 ```ts
 interface MyComponentProps {
@@ -459,17 +459,17 @@ interface MyComponentProps {
 }
 ```
 
-## Further learning {/*further-learning*/}
+## Học thêm {/*further-learning*/}
 
-This guide has covered the basics of using TypeScript with React, but there is a lot more to learn.
-Individual API pages on the docs may contain more in-depth documentation on how to use them with TypeScript.
+Hướng dẫn này đã đề cập đến những kiến thức cơ bản về việc sử dụng TypeScript với React, nhưng còn nhiều điều cần học hơn.
+Các trang API riêng lẻ trên tài liệu có thể chứa tài liệu chuyên sâu hơn về cách sử dụng chúng với TypeScript.
 
-We recommend the following resources:
+Chúng tôi khuyến nghị các tài nguyên sau:
 
- - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) is the official documentation for TypeScript, and covers most key language features.
+ - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) là tài liệu chính thức của TypeScript, và đề cập đến hầu hết các tính năng ngôn ngữ chính.
 
- - [The TypeScript release notes](https://devblogs.microsoft.com/typescript/) cover new features in depth.
+ - [The TypeScript release notes](https://devblogs.microsoft.com/typescript/) đề cập đến các tính năng mới chuyên sâu.
 
- - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) is a community-maintained cheatsheet for using TypeScript with React, covering a lot of useful edge cases and providing more breadth than this document.
+ - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) là một cheatsheet được cộng đồng duy trì để sử dụng TypeScript với React, đề cập đến nhiều trường hợp edge case hữu ích và cung cấp độ rộng hơn tài liệu này.
 
- - [TypeScript Community Discord](https://discord.com/invite/typescript) is a great place to ask questions and get help with TypeScript and React issues.
+ - [TypeScript Community Discord](https://discord.com/invite/typescript) là nơi tuyệt vời để đặt câu hỏi và nhận giúp đỡ về các vấn đề TypeScript và React.

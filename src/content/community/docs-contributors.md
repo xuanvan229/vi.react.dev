@@ -1,42 +1,42 @@
 ---
-title: Docs Contributors
+title: Những Người Đóng Góp Tài Liệu
 ---
 
 <Intro>
 
-React documentation is written and maintained by the [React team](/community/team) and [external contributors.](https://github.com/reactjs/react.dev/graphs/contributors) On this page, we'd like to thank a few people who've made significant contributions to this site.
+Tài liệu React được viết và duy trì bởi [đội ngũ React](/community/team) và [những người đóng góp bên ngoài.](https://github.com/reactjs/react.dev/graphs/contributors) Trên trang này, chúng tôi muốn cảm ơn một số người đã có những đóng góp đáng kể cho trang web này.
 
 </Intro>
 
-## Content {/*content*/}
+## Nội dung {/*content*/}
 
-* [Rachel Nabors](https://twitter.com/RachelNabors): editing, writing, illustrating
-* [Dan Abramov](https://bsky.app/profile/danabra.mov): writing, curriculum design
-* [Sylwia Vargas](https://twitter.com/SylwiaVargas): example code
-* [Rick Hanlon](https://twitter.com/rickhanlonii): writing
-* [David McCabe](https://twitter.com/mcc_abe): writing
-* [Sophie Alpert](https://twitter.com/sophiebits): writing
-* [Pete Hunt](https://twitter.com/floydophone): writing
-* [Andrew Clark](https://twitter.com/acdlite): writing
-* [Matt Carroll](https://twitter.com/mattcarrollcode): editing, writing
-* [Natalia Tepluhina](https://twitter.com/n_tepluhina): reviews, advice
-* [Sebastian Markbåge](https://twitter.com/sebmarkbage): feedback
+* [Rachel Nabors](https://twitter.com/RachelNabors): biên tập, viết bài, minh họa
+* [Dan Abramov](https://bsky.app/profile/danabra.mov): viết bài, thiết kế chương trình giảng dạy
+* [Sylwia Vargas](https://twitter.com/SylwiaVargas): code ví dụ
+* [Rick Hanlon](https://twitter.com/rickhanlonii): viết bài
+* [David McCabe](https://twitter.com/mcc_abe): viết bài
+* [Sophie Alpert](https://twitter.com/sophiebits): viết bài
+* [Pete Hunt](https://twitter.com/floydophone): viết bài
+* [Andrew Clark](https://twitter.com/acdlite): viết bài
+* [Matt Carroll](https://twitter.com/mattcarrollcode): biên tập, viết bài
+* [Natalia Tepluhina](https://twitter.com/n_tepluhina): đánh giá, tư vấn
+* [Sebastian Markbåge](https://twitter.com/sebmarkbage): phản hồi
 
-## Design {/*design*/}
+## Thiết kế {/*design*/}
 
-* [Dan Lebowitz](https://twitter.com/lebo): site design
-* [Razvan Gradinar](https://dribbble.com/GradinarRazvan): sandbox design
-* [Maggie Appleton](https://maggieappleton.com/): diagram system
-* [Sophie Alpert](https://twitter.com/sophiebits): color-coded explanations
+* [Dan Lebowitz](https://twitter.com/lebo): thiết kế trang web
+* [Razvan Gradinar](https://dribbble.com/GradinarRazvan): thiết kế sandbox
+* [Maggie Appleton](https://maggieappleton.com/): hệ thống sơ đồ
+* [Sophie Alpert](https://twitter.com/sophiebits): giải thích được mã hóa bằng màu sắc
 
-## Development {/*development*/}
+## Phát triển {/*development*/}
 
-* [Jared Palmer](https://twitter.com/jaredpalmer): site development
-* [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando), [Dustin Goodman](https://twitter.com/dustinsgoodman)): site development
-* [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), [Danilo Woznica](https://twitter.com/danilowoz)): sandbox integration
-* [Dan Abramov](https://bsky.app/profile/danabra.mov): site development
-* [Rick Hanlon](https://twitter.com/rickhanlonii): site development
-* [Harish Kumar](https://www.strek.in/): development and maintenance
-* [Luna Ruan](https://twitter.com/lunaruan): sandbox improvements
+* [Jared Palmer](https://twitter.com/jaredpalmer): phát triển trang web
+* [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando), [Dustin Goodman](https://twitter.com/dustinsgoodman)): phát triển trang web
+* [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), [Danilo Woznica](https://twitter.com/danilowoz)): tích hợp sandbox
+* [Dan Abramov](https://bsky.app/profile/danabra.mov): phát triển trang web
+* [Rick Hanlon](https://twitter.com/rickhanlonii): phát triển trang web
+* [Harish Kumar](https://www.strek.in/): phát triển và bảo trì
+* [Luna Ruan](https://twitter.com/lunaruan): cải tiến sandbox
 
-We'd also like to thank countless alpha testers and community members who gave us feedback along the way.
+Chúng tôi cũng muốn cảm ơn vô số người thử nghiệm alpha và thành viên cộng đồng đã đóng góp phản hồi trong suốt quá trình.

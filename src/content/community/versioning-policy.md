@@ -1,169 +1,169 @@
 ---
-title: Versioning Policy
+title: Chính Sách Phiên Bản
 ---
 
 <Intro>
 
-All stable builds of React go through a high level of testing and follow semantic versioning (semver). React also offers unstable release channels to encourage early feedback on experimental features. This page describes what you can expect from React releases.
+Tất cả các bản build ổn định của React đều trải qua quá trình kiểm thử ở mức cao và tuân theo semantic versioning (semver). React cũng cung cấp các kênh phát hành không ổn định để khuyến khích phản hồi sớm về các tính năng thử nghiệm. Trang này mô tả những gì bạn có thể mong đợi từ các bản phát hành React.
 
 </Intro>
 
-This versioning policy describes our approach to version numbers for packages such as `react` and `react-dom`. For a list of previous releases, see the [Versions](/versions) page.
+Chính sách phiên bản này mô tả cách tiếp cận của chúng tôi đối với số phiên bản cho các package như `react` và `react-dom`. Để xem danh sách các bản phát hành trước đây, hãy xem trang [Phiên Bản](/versions).
 
-## Stable releases {/*stable-releases*/}
+## Bản phát hành ổn định {/*stable-releases*/}
 
-Stable React releases (also known as "Latest" release channel) follow [semantic versioning (semver)](https://semver.org/) principles.
+Các bản phát hành React ổn định (còn được gọi là kênh phát hành "Latest") tuân theo nguyên tắc [semantic versioning (semver)](https://semver.org/).
 
-That means that with a version number **x.y.z**:
+Điều đó có nghĩa là với số phiên bản **x.y.z**:
 
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
+* Khi phát hành **sửa lỗi nghiêm trọng**, chúng tôi tạo một **bản phát hành patch** bằng cách thay đổi số **z** (ví dụ: 15.6.2 thành 15.6.3).
+* Khi phát hành **tính năng mới** hoặc **sửa lỗi không nghiêm trọng**, chúng tôi tạo một **bản phát hành minor** bằng cách thay đổi số **y** (ví dụ: 15.6.2 thành 15.7.0).
+* Khi phát hành **thay đổi không tương thích ngược**, chúng tôi tạo một **bản phát hành major** bằng cách thay đổi số **x** (ví dụ: 15.6.2 thành 16.0.0).
 
-Major releases can also contain new features, and any release can include bug fixes.
+Các bản phát hành major cũng có thể chứa tính năng mới, và bất kỳ bản phát hành nào cũng có thể bao gồm sửa lỗi.
 
-Minor releases are the most common type of release.
+Các bản phát hành minor là loại phát hành phổ biến nhất.
 
-We know our users continue to use old versions of React in production. If we learn of a security vulnerability in React, we release a backported fix for all major versions that are affected by the vulnerability.
+Chúng tôi biết rằng người dùng tiếp tục sử dụng các phiên bản cũ của React trong production. Nếu chúng tôi phát hiện lỗ hổng bảo mật trong React, chúng tôi sẽ phát hành bản sửa lỗi backport cho tất cả các phiên bản major bị ảnh hưởng bởi lỗ hổng đó.
 
-### Breaking changes {/*breaking-changes*/}
+### Thay đổi không tương thích ngược {/*breaking-changes*/}
 
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017, and React 17 was released in October 2020.
+Thay đổi không tương thích ngược gây bất tiện cho mọi người, vì vậy chúng tôi cố gắng giảm thiểu số lượng bản phát hành major -- ví dụ, React 15 được phát hành vào tháng 4 năm 2016 và React 16 được phát hành vào tháng 9 năm 2017, và React 17 được phát hành vào tháng 10 năm 2020.
 
-Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
+Thay vào đó, chúng tôi phát hành tính năng mới trong các phiên bản minor. Điều đó có nghĩa là các bản phát hành minor thường thú vị và hấp dẫn hơn các bản major, mặc dù tên gọi khiêm tốn của chúng.
 
-### Commitment to stability {/*commitment-to-stability*/}
+### Cam kết về sự ổn định {/*commitment-to-stability*/}
 
-As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](https://legacy.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](https://legacy.reactjs.org/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
+Khi chúng tôi thay đổi React theo thời gian, chúng tôi cố gắng giảm thiểu nỗ lực cần thiết để tận dụng các tính năng mới. Khi có thể, chúng tôi sẽ giữ API cũ hoạt động, ngay cả khi điều đó có nghĩa là đặt nó vào một package riêng. Ví dụ, [mixin đã bị khuyến cáo không sử dụng trong nhiều năm](https://legacy.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html) nhưng chúng vẫn được hỗ trợ cho đến ngày nay [thông qua create-react-class](https://legacy.reactjs.org/docs/react-without-es6.html#mixins) và nhiều codebase tiếp tục sử dụng chúng trong code ổn định, cũ.
 
-Over a million developers use React, collectively maintaining millions of components. The Facebook codebase alone has over 50,000 React components. That means we need to make it as easy as possible to upgrade to new versions of React; if we make large changes without a migration path, people will be stuck on old versions. We test these upgrade paths on Facebook itself – if our team of less than 10 people can update 50,000+ components alone, we hope the upgrade will be manageable for anyone using React. In many cases, we write [automated scripts](https://github.com/reactjs/react-codemod) to upgrade component syntax, which we then include in the open-source release for everyone to use.
+Hơn một triệu nhà phát triển sử dụng React, cùng nhau duy trì hàng triệu component. Riêng codebase Facebook có hơn 50.000 React component. Điều đó có nghĩa là chúng tôi cần làm cho việc nâng cấp lên phiên bản mới của React dễ dàng nhất có thể; nếu chúng tôi thực hiện những thay đổi lớn mà không có lộ trình di chuyển, mọi người sẽ bị kẹt ở phiên bản cũ. Chúng tôi kiểm tra các lộ trình nâng cấp này trên chính Facebook -- nếu đội ngũ ít hơn 10 người của chúng tôi có thể cập nhật hơn 50.000 component một mình, chúng tôi hy vọng việc nâng cấp sẽ khả thi cho bất kỳ ai sử dụng React. Trong nhiều trường hợp, chúng tôi viết [script tự động](https://github.com/reactjs/react-codemod) để nâng cấp cú pháp component, sau đó bao gồm trong bản phát hành mã nguồn mở cho mọi người sử dụng.
 
-### Gradual upgrades via warnings {/*gradual-upgrades-via-warnings*/}
+### Nâng cấp dần dần thông qua cảnh báo {/*gradual-upgrades-via-warnings*/}
 
-Development builds of React include many helpful warnings. Whenever possible, we add warnings in preparation for future breaking changes. That way, if your app has no warnings on the latest release, it will be compatible with the next major release. This allows you to upgrade your apps one component at a time.
+Các bản build phát triển của React bao gồm nhiều cảnh báo hữu ích. Bất cứ khi nào có thể, chúng tôi thêm cảnh báo để chuẩn bị cho các thay đổi không tương thích ngược trong tương lai. Bằng cách đó, nếu ứng dụng của bạn không có cảnh báo nào trên bản phát hành mới nhất, nó sẽ tương thích với bản phát hành major tiếp theo. Điều này cho phép bạn nâng cấp ứng dụng từng component một.
 
-Development warnings won't affect the runtime behavior of your app. That way, you can feel confident that your app will behave the same way between the development and production builds -- the only differences are that the production build won't log the warnings and that it is more efficient. (If you ever notice otherwise, please file an issue.)
+Các cảnh báo phát triển sẽ không ảnh hưởng đến hành vi runtime của ứng dụng. Bằng cách đó, bạn có thể tự tin rằng ứng dụng sẽ hoạt động giống nhau giữa bản build phát triển và production -- sự khác biệt duy nhất là bản build production sẽ không ghi log cảnh báo và hiệu quả hơn. (Nếu bạn nhận thấy điều ngược lại, vui lòng tạo issue.)
 
-### What counts as a breaking change? {/*what-counts-as-a-breaking-change*/}
+### Điều gì được coi là thay đổi không tương thích ngược? {/*what-counts-as-a-breaking-change*/}
 
-In general, we *don't* bump the major version number for changes to:
+Nói chung, chúng tôi *không* tăng số phiên bản major cho các thay đổi đối với:
 
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and Canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+* **Cảnh báo phát triển.** Vì các cảnh báo này không ảnh hưởng đến hành vi production, chúng tôi có thể thêm cảnh báo mới hoặc sửa đổi cảnh báo hiện có giữa các phiên bản major. Trên thực tế, đây là điều cho phép chúng tôi cảnh báo một cách đáng tin cậy về các thay đổi không tương thích ngược sắp tới.
+* **Các API bắt đầu bằng `unstable_`.** Đây là các tính năng thử nghiệm mà chúng tôi chưa tự tin về API. Bằng cách phát hành chúng với tiền tố `unstable_`, chúng tôi có thể lặp lại nhanh hơn và đạt được API ổn định sớm hơn.
+* **Phiên bản Alpha và Canary của React.** Chúng tôi cung cấp phiên bản alpha của React như một cách để kiểm tra tính năng mới sớm, nhưng chúng tôi cần sự linh hoạt để thực hiện thay đổi dựa trên những gì chúng tôi học được trong giai đoạn alpha. Nếu bạn sử dụng các phiên bản này, lưu ý rằng API có thể thay đổi trước bản phát hành ổn định.
+* **API không được ghi nhận và cấu trúc dữ liệu nội bộ.** Nếu bạn truy cập tên thuộc tính nội bộ như `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` hoặc `__reactInternalInstance$uk43rzhitjg`, không có bảo đảm nào. Bạn tự chịu trách nhiệm.
 
-This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.
+Chính sách này được thiết kế để thực dụng: chắc chắn rằng, chúng tôi không muốn gây đau đầu cho bạn. Nếu chúng tôi tăng phiên bản major cho tất cả các thay đổi này, chúng tôi sẽ phát hành nhiều phiên bản major hơn và cuối cùng gây ra nhiều khó khăn về phiên bản hơn cho cộng đồng. Điều đó cũng có nghĩa là chúng tôi không thể cải thiện React nhanh như mong muốn.
 
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
+Tuy nhiên, nếu chúng tôi dự đoán rằng một thay đổi trong danh sách này sẽ gây ra vấn đề rộng rãi trong cộng đồng, chúng tôi vẫn sẽ cố gắng hết sức để cung cấp lộ trình di chuyển dần dần.
 
-### If a minor release includes no new features, why isn't it a patch? {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
+### Nếu bản phát hành minor không có tính năng mới, tại sao nó không phải là patch? {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+Có thể xảy ra trường hợp một bản phát hành minor sẽ không bao gồm tính năng mới. [Điều này được semver cho phép](https://semver.org/#spec-item-7), trong đó nêu rõ **"[phiên bản minor] CÓ THỂ được tăng nếu chức năng mới đáng kể hoặc cải tiến được giới thiệu trong code nội bộ. Nó CÓ THỂ bao gồm các thay đổi mức patch."**
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+Tuy nhiên, điều này đặt ra câu hỏi tại sao các bản phát hành này không được đánh số phiên bản là patch.
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+Câu trả lời là bất kỳ thay đổi nào đối với React (hoặc phần mềm khác) đều mang theo một số rủi ro bị hỏng theo cách không mong đợi. Hãy tưởng tượng một kịch bản trong đó bản phát hành patch sửa một lỗi lại vô tình gây ra một lỗi khác. Điều này không chỉ gây phiền toái cho các nhà phát triển, mà còn làm giảm niềm tin vào các bản phát hành patch trong tương lai. Đặc biệt đáng tiếc nếu bản sửa lỗi ban đầu là cho một lỗi hiếm gặp trong thực tế.
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+Chúng tôi có thành tích khá tốt trong việc giữ các bản phát hành React không có lỗi, nhưng các bản phát hành patch có tiêu chuẩn cao hơn về độ tin cậy vì hầu hết các nhà phát triển cho rằng chúng có thể được áp dụng mà không có hậu quả bất lợi.
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+Vì những lý do này, chúng tôi chỉ dành bản phát hành patch cho các lỗi nghiêm trọng nhất và lỗ hổng bảo mật.
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+Nếu bản phát hành bao gồm các thay đổi không thiết yếu -- chẳng hạn như tái cấu trúc nội bộ, thay đổi chi tiết triển khai, cải tiến hiệu suất, hoặc sửa lỗi nhỏ -- chúng tôi sẽ tăng phiên bản minor ngay cả khi không có tính năng mới.
 
-## All release channels {/*all-release-channels*/}
+## Tất cả các kênh phát hành {/*all-release-channels*/}
 
-React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback we sometimes share special builds of React that include unreleased features.
+React dựa vào một cộng đồng mã nguồn mở sôi động để báo lỗi, mở pull request, và [gửi RFC](https://github.com/reactjs/rfcs). Để khuyến khích phản hồi, đôi khi chúng tôi chia sẻ các bản build đặc biệt của React bao gồm các tính năng chưa phát hành.
 
 <Note>
 
-This section will be most relevant to developers who work on frameworks, libraries, or developer tooling. Developers who use React primarily to build user-facing applications should not need to worry about our prerelease channels.
+Phần này sẽ phù hợp nhất cho các nhà phát triển làm việc trên framework, thư viện, hoặc công cụ phát triển. Các nhà phát triển sử dụng React chủ yếu để xây dựng ứng dụng hướng đến người dùng không cần lo lắng về các kênh phát hành trước.
 
 </Note>
 
-Each of React's release channels is designed for a distinct use case:
+Mỗi kênh phát hành của React được thiết kế cho một trường hợp sử dụng riêng biệt:
 
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **User-facing applications that consume React directly use this channel.**
-- [**Canary**](#canary-channel) tracks the main branch of the React source code repository. Think of these as release candidates for the next semver release. **[Frameworks or other curated setups may choose to use this channel with a pinned version of React.](/blog/2023/05/03/react-canaries) You can also use Canaries for integration testing between React and third party projects.**
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the main branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
+- [**Latest**](#latest-channel) dành cho các bản phát hành React ổn định, theo semver. Đó là những gì bạn nhận được khi cài đặt React từ npm. Đây là kênh bạn đang sử dụng hiện tại. **Các ứng dụng hướng đến người dùng sử dụng React trực tiếp dùng kênh này.**
+- [**Canary**](#canary-channel) theo dõi nhánh main của kho mã nguồn React. Hãy coi đây là các ứng cử viên phát hành cho bản phát hành semver tiếp theo. **[Các framework hoặc thiết lập được quản lý khác có thể chọn sử dụng kênh này với phiên bản React được ghim.](/blog/2023/05/03/react-canaries) Bạn cũng có thể sử dụng Canary cho kiểm thử tích hợp giữa React và các dự án bên thứ ba.**
+- [**Experimental**](#experimental-channel) bao gồm các API và tính năng thử nghiệm không có sẵn trong các bản phát hành ổn định. Chúng cũng theo dõi nhánh main, nhưng với các cờ tính năng bổ sung được bật. Sử dụng kênh này để thử các tính năng sắp tới trước khi chúng được phát hành.
 
-All releases are published to npm, but only Latest uses semantic versioning. Prereleases (those in the Canary and Experimental channels) have versions generated from a hash of their contents and the commit date, e.g. `18.3.0-canary-388686f29-20230503` for Canary and `0.0.0-experimental-388686f29-20230503` for Experimental.
+Tất cả các bản phát hành đều được công bố trên npm, nhưng chỉ Latest sử dụng semantic versioning. Các bản phát hành trước (trong kênh Canary và Experimental) có phiên bản được tạo từ hash nội dung và ngày commit, ví dụ `18.3.0-canary-388686f29-20230503` cho Canary và `0.0.0-experimental-388686f29-20230503` cho Experimental.
 
-**Both Latest and Canary channels are officially supported for user-facing applications, but with different expectations**:
+**Cả kênh Latest và Canary đều được hỗ trợ chính thức cho ứng dụng hướng đến người dùng, nhưng với kỳ vọng khác nhau**:
 
-* Latest releases follow the traditional semver model.
-* Canary releases [must be pinned](/blog/2023/05/03/react-canaries) and may include breaking changes. They exist for curated setups (like frameworks) that want to gradually release new React features and bugfixes on their own release schedule.
+* Bản phát hành Latest tuân theo mô hình semver truyền thống.
+* Bản phát hành Canary [phải được ghim phiên bản](/blog/2023/05/03/react-canaries) và có thể bao gồm thay đổi không tương thích ngược. Chúng tồn tại cho các thiết lập được quản lý (như framework) muốn dần dần phát hành tính năng và sửa lỗi React mới theo lịch phát hành riêng.
 
-The Experimental releases are provided for testing purposes only, and we provide no guarantees that behavior won't change between releases. They do not follow the semver protocol that we use for releases from Latest.
+Bản phát hành Experimental chỉ được cung cấp cho mục đích kiểm thử, và chúng tôi không đảm bảo rằng hành vi sẽ không thay đổi giữa các bản phát hành. Chúng không tuân theo giao thức semver mà chúng tôi sử dụng cho các bản phát hành từ Latest.
 
-By publishing prereleases to the same registry that we use for stable releases, we are able to take advantage of the many tools that support the npm workflow, like [unpkg](https://unpkg.com) and [CodeSandbox](https://codesandbox.io).
+Bằng cách công bố các bản phát hành trước trên cùng một registry mà chúng tôi sử dụng cho các bản phát hành ổn định, chúng tôi có thể tận dụng nhiều công cụ hỗ trợ quy trình làm việc npm, như [unpkg](https://unpkg.com) và [CodeSandbox](https://codesandbox.io).
 
-### Latest channel {/*latest-channel*/}
+### Kênh Latest {/*latest-channel*/}
 
-Latest is the channel used for stable React releases. It corresponds to the `latest` tag on npm. It is the recommended channel for all React apps that are shipped to real users.
+Latest là kênh được sử dụng cho các bản phát hành React ổn định. Nó tương ứng với thẻ `latest` trên npm. Đây là kênh được khuyến nghị cho tất cả các ứng dụng React được phân phối đến người dùng thực.
 
-**If you're not sure which channel you should use, it's Latest.** If you're using React directly, this is what you're already using. You can expect updates to Latest to be extremely stable. Versions follow the semantic versioning scheme, as [described earlier.](#stable-releases)
+**Nếu bạn không chắc nên sử dụng kênh nào, đó là Latest.** Nếu bạn sử dụng React trực tiếp, đây là những gì bạn đang sử dụng. Bạn có thể mong đợi các bản cập nhật Latest cực kỳ ổn định. Các phiên bản tuân theo mô hình semantic versioning, như [đã mô tả trước đó.](#stable-releases)
 
-### Canary channel {/*canary-channel*/}
+### Kênh Canary {/*canary-channel*/}
 
-The Canary channel is a prerelease channel that tracks the main branch of the React repository. We use prereleases in the Canary channel as release candidates for the Latest channel. You can think of Canary as a superset of Latest that is updated more frequently.
+Kênh Canary là kênh phát hành trước theo dõi nhánh main của kho React. Chúng tôi sử dụng các bản phát hành trước trong kênh Canary làm ứng cử viên phát hành cho kênh Latest. Bạn có thể coi Canary là tập mở rộng của Latest được cập nhật thường xuyên hơn.
 
-The degree of change between the most recent Canary release and the most recent Latest release is approximately the same as you would find between two minor semver releases. However, **the Canary channel does not conform to semantic versioning.** You should expect occasional breaking changes between successive releases in the Canary channel.
+Mức độ thay đổi giữa bản phát hành Canary gần nhất và bản phát hành Latest gần nhất xấp xỉ bằng mức bạn thấy giữa hai bản phát hành semver minor. Tuy nhiên, **kênh Canary không tuân thủ semantic versioning.** Bạn nên mong đợi thỉnh thoảng có thay đổi không tương thích ngược giữa các bản phát hành liên tiếp trong kênh Canary.
 
-**Do not use prereleases in user-facing applications directly unless you're following the [Canary workflow](/blog/2023/05/03/react-canaries).**
+**Không sử dụng bản phát hành trước trong ứng dụng hướng đến người dùng trực tiếp trừ khi bạn tuân theo [quy trình Canary](/blog/2023/05/03/react-canaries).**
 
-Releases in Canary are published with the `canary` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `18.3.0-canary-388686f29-20230503`.
+Bản phát hành trong Canary được công bố với thẻ `canary` trên npm. Các phiên bản được tạo từ hash nội dung bản build và ngày commit, ví dụ `18.3.0-canary-388686f29-20230503`.
 
-#### Using the canary channel for integration testing {/*using-the-canary-channel-for-integration-testing*/}
+#### Sử dụng kênh canary cho kiểm thử tích hợp {/*using-the-canary-channel-for-integration-testing*/}
 
-The Canary channel also supports integration testing between React and other projects.
+Kênh Canary cũng hỗ trợ kiểm thử tích hợp giữa React và các dự án khác.
 
-All changes to React go through extensive internal testing before they are released to the public. However, there are a myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
+Tất cả các thay đổi đối với React đều trải qua kiểm thử nội bộ kỹ lưỡng trước khi được phát hành ra công chúng. Tuy nhiên, có vô số môi trường và cấu hình được sử dụng trong hệ sinh thái React, và chúng tôi không thể kiểm thử trên từng cái một.
 
-If you're the author of a third party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
+Nếu bạn là tác giả của một framework React bên thứ ba, thư viện, công cụ phát triển, hoặc dự án cơ sở hạ tầng tương tự, bạn có thể giúp chúng tôi giữ React ổn định cho người dùng của bạn và toàn bộ cộng đồng React bằng cách định kỳ chạy bộ kiểm thử của bạn với các thay đổi gần nhất. Nếu bạn quan tâm, hãy làm theo các bước sau:
 
-- Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
-- In the cron job, update your React packages to the most recent React release in the Canary channel, using `canary` tag on npm. Using the npm cli:
+- Thiết lập cron job sử dụng nền tảng tích hợp liên tục ưa thích của bạn. Cron job được hỗ trợ bởi cả [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) và [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
+- Trong cron job, cập nhật các package React của bạn lên bản phát hành React mới nhất trong kênh Canary, sử dụng thẻ `canary` trên npm. Sử dụng npm cli:
 
   ```console
   npm update react@canary react-dom@canary
   ```
 
-  Or yarn:
+  Hoặc yarn:
 
   ```console
   yarn upgrade react@canary react-dom@canary
   ```
-- Run your test suite against the updated packages.
-- If everything passes, great! You can expect that your project will work with the next minor React release.
-- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/facebook/react/issues).
+- Chạy bộ kiểm thử của bạn với các package đã cập nhật.
+- Nếu mọi thứ đều pass, tuyệt vời! Bạn có thể mong đợi dự án của bạn sẽ hoạt động với bản phát hành React minor tiếp theo.
+- Nếu có gì đó bị hỏng bất ngờ, vui lòng cho chúng tôi biết bằng cách [tạo issue](https://github.com/facebook/react/issues).
 
-A project that uses this workflow is Next.js. You can refer to their [CircleCI configuration](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) as an example.
+Một dự án sử dụng quy trình này là Next.js. Bạn có thể tham khảo [cấu hình CircleCI](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) của họ làm ví dụ.
 
-### Experimental channel {/*experimental-channel*/}
+### Kênh Experimental {/*experimental-channel*/}
 
-Like Canary, the Experimental channel is a prerelease channel that tracks the main branch of the React repository. Unlike Canary, Experimental releases include additional features and APIs that are not ready for wider release.
+Giống như Canary, kênh Experimental là kênh phát hành trước theo dõi nhánh main của kho React. Khác với Canary, bản phát hành Experimental bao gồm các tính năng và API bổ sung chưa sẵn sàng để phát hành rộng rãi.
 
-Usually, an update to Canary is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
+Thông thường, bản cập nhật cho Canary đi kèm với bản cập nhật tương ứng cho Experimental. Chúng dựa trên cùng một revision mã nguồn, nhưng được build với bộ cờ tính năng khác nhau.
 
-Experimental releases may be significantly different than releases to Canary and Latest. **Do not use Experimental releases in user-facing applications.** You should expect frequent breaking changes between releases in the Experimental channel.
+Bản phát hành Experimental có thể khác biệt đáng kể so với bản phát hành Canary và Latest. **Không sử dụng bản phát hành Experimental trong ứng dụng hướng đến người dùng.** Bạn nên mong đợi thay đổi không tương thích ngược thường xuyên giữa các bản phát hành trong kênh Experimental.
 
-Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-experimental-68053d940-20210623`.
+Bản phát hành trong Experimental được công bố với thẻ `experimental` trên npm. Các phiên bản được tạo từ hash nội dung bản build và ngày commit, ví dụ `0.0.0-experimental-68053d940-20210623`.
 
-#### What goes into an experimental release? {/*what-goes-into-an-experimental-release*/}
+#### Bản phát hành experimental bao gồm những gì? {/*what-goes-into-an-experimental-release*/}
 
-Experimental features are ones that are not ready to be released to the wider public, and may change drastically before they are finalized. Some experiments may never be finalized -- the reason we have experiments is to test the viability of proposed changes.
+Tính năng experimental là những tính năng chưa sẵn sàng để phát hành cho công chúng rộng rãi, và có thể thay đổi đáng kể trước khi được hoàn thiện. Một số thử nghiệm có thể không bao giờ được hoàn thiện -- lý do chúng tôi có các thử nghiệm là để kiểm tra tính khả thi của các thay đổi được đề xuất.
 
-For example, if the Experimental channel had existed when we announced Hooks, we would have released Hooks to the Experimental channel weeks before they were available in Latest.
+Ví dụ, nếu kênh Experimental đã tồn tại khi chúng tôi công bố Hooks, chúng tôi sẽ phát hành Hooks lên kênh Experimental vài tuần trước khi chúng có sẵn trong Latest.
 
-You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Canary. **We do not guarantee any stability between Experimental releases.**
+Bạn có thể thấy việc chạy kiểm thử tích hợp với Experimental có giá trị. Điều này tùy thuộc vào bạn. Tuy nhiên, hãy lưu ý rằng Experimental còn kém ổn định hơn Canary. **Chúng tôi không đảm bảo bất kỳ sự ổn định nào giữa các bản phát hành Experimental.**
 
-#### How can I learn more about experimental features? {/*how-can-i-learn-more-about-experimental-features*/}
+#### Làm thế nào để tìm hiểu thêm về tính năng experimental? {/*how-can-i-learn-more-about-experimental-features*/}
 
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Canary or Latest.
+Tính năng experimental có thể hoặc không được ghi nhận. Thông thường, các thử nghiệm không được ghi nhận cho đến khi chúng sắp được phát hành trong Canary hoặc Latest.
 
-If a feature is not documented, they may be accompanied by an [RFC](https://github.com/reactjs/rfcs).
+Nếu một tính năng không được ghi nhận, chúng có thể đi kèm với một [RFC](https://github.com/reactjs/rfcs).
 
-We will post to the [React blog](/blog) when we're ready to announce new experiments, but that doesn't mean we will publicize every experiment.
+Chúng tôi sẽ đăng bài trên [blog React](/blog) khi chúng tôi sẵn sàng công bố các thử nghiệm mới, nhưng điều đó không có nghĩa là chúng tôi sẽ công khai mọi thử nghiệm.
 
-You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/main) for a comprehensive list of changes.
+Bạn luôn có thể tham khảo [lịch sử](https://github.com/facebook/react/commits/main) kho GitHub công khai của chúng tôi để có danh sách đầy đủ các thay đổi.

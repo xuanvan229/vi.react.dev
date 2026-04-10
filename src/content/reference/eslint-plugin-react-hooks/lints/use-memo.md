@@ -4,36 +4,36 @@ title: use-memo
 
 <Intro>
 
-Validates that the `useMemo` hook is used with a return value. See [`useMemo` docs](/reference/react/useMemo) for more information.
+Kiểm tra rằng hook `useMemo` được sử dụng với giá trị trả về. Xem [tài liệu `useMemo`](/reference/react/useMemo) để biết thêm.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-`useMemo` is for computing and caching expensive values, not for side effects. Without a return value, `useMemo` returns `undefined`, which defeats its purpose and likely indicates you're using the wrong hook.
+`useMemo` dùng để tính toán và cache các giá trị tốn kém, không phải cho side effect. Không có giá trị trả về, `useMemo` trả về `undefined`, điều này đánh bại mục đích của nó và có thể cho thấy bạn đang sử dụng sai hook.
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js {expectedErrors: {'react-compiler': [3]}}
-// ❌ No return value
+// ❌ Không có giá trị trả về
 function Component({ data }) {
   const processed = useMemo(() => {
     data.forEach(item => console.log(item));
-    // Missing return!
+    // Thiếu return!
   }, [data]);
 
-  return <div>{processed}</div>; // Always undefined
+  return <div>{processed}</div>; // Luôn là undefined
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ Returns computed value
+// ✅ Trả về giá trị đã tính toán
 function Component({ data }) {
   const processed = useMemo(() => {
     return data.map(item => item * 2);
@@ -43,52 +43,52 @@ function Component({ data }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I need to run side effects when dependencies change {/*side-effects*/}
+### Tôi cần chạy side effect khi dependency thay đổi {/*side-effects*/}
 
-You might try to use `useMemo` for side effects:
+Bạn có thể cố sử dụng `useMemo` cho side effect:
 
 {/* TODO(@poteto) fix compiler validation to check for unassigned useMemos */}
 ```js {expectedErrors: {'react-compiler': [4]}}
-// ❌ Wrong: Side effects in useMemo
+// ❌ Sai: Side effect trong useMemo
 function Component({user}) {
-  // No return value, just side effect
+  // Không có giá trị trả về, chỉ side effect
   useMemo(() => {
     analytics.track('UserViewed', {userId: user.id});
   }, [user.id]);
 
-  // Not assigned to a variable
+  // Không được gán cho biến
   useMemo(() => {
     return analytics.track('UserViewed', {userId: user.id});
   }, [user.id]);
 }
 ```
 
-If the side effect needs to happen in response to user interaction, it's best to colocate the side effect with the event:
+Nếu side effect cần xảy ra để phản hồi tương tác người dùng, tốt nhất là đặt side effect cùng với event:
 
 ```js
-// ✅ Good: Side effects in event handlers
+// ✅ Tốt: Side effect trong event handler
 function Component({user}) {
   const handleClick = () => {
     analytics.track('ButtonClicked', {userId: user.id});
-    // Other click logic...
+    // Logic click khác...
   };
 
-  return <button onClick={handleClick}>Click me</button>;
+  return <button onClick={handleClick}>Nhấn vào đây</button>;
 }
 ```
 
-If the side effect sychronizes React state with some external state (or vice versa), use `useEffect`:
+Nếu side effect đồng bộ React state với state bên ngoài (hoặc ngược lại), sử dụng `useEffect`:
 
 ```js
-// ✅ Good: Synchronization in useEffect
+// ✅ Tốt: Đồng bộ hóa trong useEffect
 function Component({theme}) {
   useEffect(() => {
     localStorage.setItem('preferredTheme', theme);
     document.body.className = theme;
   }, [theme]);
 
-  return <div>Current theme: {theme}</div>;
+  return <div>Theme hiện tại: {theme}</div>;
 }
 ```

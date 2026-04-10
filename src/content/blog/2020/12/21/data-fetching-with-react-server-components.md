@@ -1,34 +1,34 @@
 ---
-title: "Introducing Zero-Bundle-Size React Server Components"
+title: "Giới Thiệu React Server Components Không Cần Bundle"
 author: Dan Abramov, Lauren Tan, Joseph Savona, and Sebastian Markbage
 date: 2020/12/21
-description: 2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components.
+description: 2020 là một năm dài. Khi năm sắp kết thúc, chúng tôi muốn chia sẻ một Bản Cập Nhật Ngày Lễ đặc biệt về nghiên cứu của chúng tôi về React Server Components không cần bundle.
 ---
 
-December 21, 2020 by [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), and [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+December 21, 2020 by [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), and [Sebastian Markbage](https://twitter.com/sebmarkbage)
 
 ---
 
 <Intro>
 
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size **React Server Components**.
+2020 là một năm dài. Khi năm sắp kết thúc, chúng tôi muốn chia sẻ một Bản Cập Nhật Ngày Lễ đặc biệt về nghiên cứu của chúng tôi về **React Server Components** không cần bundle.
 
 </Intro>
 
 ---
 
-To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year.
+Để giới thiệu React Server Components, chúng tôi đã chuẩn bị một bài nói và một bản demo. Nếu muốn, bạn có thể xem chúng trong kỳ nghỉ, hoặc sau đó khi công việc tiếp tục vào năm mới.
 
 <YouTubeIframe src="https://www.youtube.com/embed/TQQPAU21ZUw" />
 
-**React Server Components are still in research and development.** We are sharing this work in the spirit of transparency and to get initial feedback from the React community. There will be plenty of time for that, so **don't feel like you have to catch up right now!**
+**React Server Components vẫn đang trong giai đoạn nghiên cứu và phát triển.** Chúng tôi chia sẻ công việc này theo tinh thần minh bạch và để nhận phản hồi ban đầu từ cộng đồng React. Sẽ có nhiều thời gian cho điều đó, nên **đừng cảm thấy bạn phải theo kịp ngay bây giờ!**
 
-If you want to check them out, we recommend going in the following order:
+Nếu bạn muốn tìm hiểu, chúng tôi khuyến bạn nên theo thứ tự sau:
 
-1. **Watch the talk** to learn about React Server Components and see the demo.
+1. **Xem bài nói** để tìm hiểu về React Server Components và xem bản demo.
 
-2. **[Clone the demo](http://github.com/reactjs/server-components-demo)** to play with React Server Components on your computer.
+2. **[Clone bản demo](http://github.com/reactjs/server-components-demo)** để thử nghiệm React Server Components trên máy tính của bạn.
 
-3. **[Read the RFC (with FAQ at the end)](https://github.com/reactjs/rfcs/pull/188)** for a deeper technical breakdown and to provide feedback.
+3. **[Đọc RFC (có FAQ ở cuối)](https://github.com/reactjs/rfcs/pull/188)** để hiểu sâu hơn về mặt kỹ thuật và cung cấp phản hồi.
 
-We are excited to hear from you on the RFC or in replies to the [@reactjs](https://twitter.com/reactjs) Twitter handle. Happy holidays, stay safe, and see you next year!
+Chúng tôi rất mong nhận được ý kiến từ bạn trên RFC hoặc trong các phản hồi đến tài khoản Twitter [@reactjs](https://twitter.com/reactjs). Chúc mừng ngày lễ, giữ gìn sức khỏe, và hẹn gặp lại vào năm mới!

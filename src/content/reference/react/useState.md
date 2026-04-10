@@ -4,7 +4,7 @@ title: useState
 
 <Intro>
 
-`useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.
+`useState` là một React Hook cho phép bạn thêm một [biến state](/learn/state-a-components-memory) vào component của mình.
 
 ```js
 const [state, setState] = useState(initialState)
@@ -16,11 +16,11 @@ const [state, setState] = useState(initialState)
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `useState(initialState)` {/*usestate*/}
 
-Call `useState` at the top level of your component to declare a [state variable.](/learn/state-a-components-memory)
+Gọi `useState` ở cấp cao nhất của component để khai báo một [biến state.](/learn/state-a-components-memory)
 
 ```js
 import { useState } from 'react';
@@ -32,32 +32,32 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+Quy ước là đặt tên biến state như `[something, setSomething]` sử dụng [array destructuring.](https://javascript.info/destructuring-assignment)
 
-[See more examples below.](#usage)
+[Xem thêm các ví dụ bên dưới.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Tham số {/*parameters*/}
 
-* `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
-  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-the-initial-state)
+* `initialState`: Giá trị bạn muốn state có ban đầu. Nó có thể là giá trị của bất kỳ kiểu nào, nhưng có một hành vi đặc biệt cho các hàm. Đối số này bị bỏ qua sau lần render đầu tiên.
+  * Nếu bạn truyền một hàm như `initialState`, nó sẽ được coi là _hàm khởi tạo_. Nó phải là pure, không có đối số, và nên trả về một giá trị của bất kỳ kiểu nào. React sẽ gọi hàm khởi tạo của bạn khi khởi tạo component, và lưu trữ giá trị trả về của nó làm state ban đầu. [Xem ví dụ bên dưới.](#avoiding-recreating-the-initial-state)
 
-#### Returns {/*returns*/}
+#### Giá trị trả về {/*returns*/}
 
-`useState` returns an array with exactly two values:
+`useState` trả về một mảng với chính xác hai giá trị:
 
-1. The current state. During the first render, it will match the `initialState` you have passed.
-2. The [`set` function](#setstate) that lets you update the state to a different value and trigger a re-render.
+1. State hiện tại. Trong lần render đầu tiên, nó sẽ khớp với `initialState` bạn đã truyền.
+2. [Hàm `set`](#setstate) cho phép bạn cập nhật state sang giá trị khác và kích hoạt re-render.
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-* `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+* `useState` là một Hook, vì vậy bạn chỉ có thể gọi nó **ở cấp cao nhất của component** hoặc các Hook của riêng bạn. Bạn không thể gọi nó bên trong vòng lặp hoặc điều kiện. Nếu bạn cần điều đó, hãy tách một component mới và chuyển state vào đó.
+* Trong Strict Mode, React sẽ **gọi hàm khởi tạo của bạn hai lần** để [giúp bạn tìm ra các tạp chất vô tình.](#my-initializer-or-updater-function-runs-twice) Đây là hành vi chỉ có trong development và không ảnh hưởng đến production. Nếu hàm khởi tạo của bạn là pure (như nó nên là), điều này sẽ không ảnh hưởng đến hành vi. Kết quả từ một trong các lần gọi sẽ bị bỏ qua.
 
 ---
 
-### `set` functions, like `setSomething(nextState)` {/*setstate*/}
+### Hàm `set`, như `setSomething(nextState)` {/*setstate*/}
 
-The `set` function returned by `useState` lets you update the state to a different value and trigger a re-render. You can pass the next state directly, or a function that calculates it from the previous state:
+Hàm `set` được trả về bởi `useState` cho phép bạn cập nhật state sang giá trị khác và kích hoạt re-render. Bạn có thể truyền trạng thái tiếp theo trực tiếp, hoặc một hàm tính toán nó từ trạng thái trước đó:
 
 ```js
 const [name, setName] = useState('Edward');
@@ -68,36 +68,36 @@ function handleClick() {
   // ...
 ```
 
-#### Parameters {/*setstate-parameters*/}
+#### Tham số {/*setstate-parameters*/}
 
-* `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
+* `nextState`: Giá trị bạn muốn state là. Nó có thể là giá trị của bất kỳ kiểu nào, nhưng có một hành vi đặc biệt cho các hàm.
+  * Nếu bạn truyền một hàm như `nextState`, nó sẽ được coi là _hàm updater_. Nó phải là pure, chỉ nhận pending state làm đối số duy nhất của nó, và nên trả về state tiếp theo. React sẽ đưa hàm updater của bạn vào hàng đợi và re-render component của bạn. Trong lần render tiếp theo, React sẽ tính toán state tiếp theo bằng cách áp dụng tất cả các updater đã xếp hàng cho state trước đó. [Xem ví dụ bên dưới.](#updating-state-based-on-the-previous-state)
 
-#### Returns {/*setstate-returns*/}
+#### Giá trị trả về {/*setstate-returns*/}
 
-`set` functions do not have a return value.
+Hàm `set` không có giá trị trả về.
 
-#### Caveats {/*setstate-caveats*/}
+#### Lưu ý {/*setstate-caveats*/}
 
-* The `set` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `set` function, [you will still get the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value) that was on the screen before your call.
+* Hàm `set` **chỉ cập nhật biến state cho lần render *tiếp theo***. Nếu bạn đọc biến state sau khi gọi hàm `set`, [bạn vẫn sẽ nhận được giá trị cũ](#ive-updated-the-state-but-logging-gives-me-the-old-value) đã có trên màn hình trước khi bạn gọi.
 
-* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
+* Nếu giá trị mới bạn cung cấp giống với `state` hiện tại, được xác định bởi so sánh [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React sẽ **bỏ qua việc re-render component và các con của nó.** Đây là một tối ưu hóa. Mặc dù trong một số trường hợp React vẫn có thể cần gọi component của bạn trước khi bỏ qua các con, nó sẽ không ảnh hưởng đến code của bạn.
 
-* React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
+* React [gom nhóm các cập nhật state.](/learn/queueing-a-series-of-state-updates) Nó cập nhật màn hình **sau khi tất cả các event handler đã chạy** và đã gọi các hàm `set` của chúng. Điều này ngăn chặn nhiều re-render trong một sự kiện duy nhất. Trong trường hợp hiếm khi bạn cần buộc React cập nhật màn hình sớm hơn, ví dụ để truy cập DOM, bạn có thể sử dụng [`flushSync`.](/reference/react-dom/flushSync)
 
-* The `set` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+* Hàm `set` có identity ổn định, vì vậy bạn sẽ thường thấy nó bị bỏ qua khỏi các dependency của Effect, nhưng bao gồm nó sẽ không gây ra Effect chạy lại. Nếu linter cho phép bạn bỏ qua một dependency mà không có lỗi, thì việc làm đó là an toàn. [Tìm hiểu thêm về việc loại bỏ các dependency của Effect.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
-* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
+* Việc gọi hàm `set` *trong quá trình render* chỉ được phép từ bên trong component đang render. React sẽ loại bỏ output của nó và ngay lập tức cố gắng render lại với state mới. Pattern này hiếm khi cần thiết, nhưng bạn có thể dùng nó để **lưu trữ thông tin từ các lần render trước**. [Xem ví dụ bên dưới.](#storing-information-from-previous-renders)
 
-* In Strict Mode, React will **call your updater function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+* Trong Strict Mode, React sẽ **gọi hàm updater của bạn hai lần** để [giúp bạn tìm ra các tạp chất vô tình.](#my-initializer-or-updater-function-runs-twice) Đây là hành vi chỉ có trong development và không ảnh hưởng đến production. Nếu hàm updater của bạn là pure (như nó nên là), điều này sẽ không ảnh hưởng đến hành vi. Kết quả từ một trong các lần gọi sẽ bị bỏ qua.
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Adding state to a component {/*adding-state-to-a-component*/}
+### Thêm state vào component {/*adding-state-to-a-component*/}
 
-Call `useState` at the top level of your component to declare one or more [state variables.](/learn/state-a-components-memory)
+Gọi `useState` ở cấp cao nhất của component để khai báo một hoặc nhiều [biến state.](/learn/state-a-components-memory)
 
 ```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
 import { useState } from 'react';
@@ -108,14 +108,14 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+Quy ước là đặt tên biến state như `[something, setSomething]` sử dụng [array destructuring.](https://javascript.info/destructuring-assignment)
 
-`useState` returns an array with exactly two items:
+`useState` trả về một mảng với chính xác hai mục:
 
-1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
-2. The <CodeStep step={2}>`set` function</CodeStep> that lets you change it to any other value in response to interaction.
+1. <CodeStep step={1}>State hiện tại</CodeStep> của biến state này, ban đầu được đặt thành <CodeStep step={3}>state ban đầu</CodeStep> bạn đã cung cấp.
+2. <CodeStep step={2}>Hàm `set`</CodeStep> cho phép bạn thay đổi nó thành bất kỳ giá trị nào khác để phản hồi tương tác.
 
-To update what’s on the screen, call the `set` function with some next state:
+Để cập nhật những gì trên màn hình, hãy gọi hàm `set` với một state tiếp theo:
 
 ```js [[2, 2, "setName"]]
 function handleClick() {
@@ -123,28 +123,28 @@ function handleClick() {
 }
 ```
 
-React will store the next state, render your component again with the new values, and update the UI.
+React sẽ lưu trữ state tiếp theo, render lại component của bạn với các giá trị mới, và cập nhật UI.
 
 <Pitfall>
 
-Calling the `set` function [**does not** change the current state in the already executing code](#ive-updated-the-state-but-logging-gives-me-the-old-value):
+Việc gọi hàm `set` [**không** thay đổi state hiện tại trong code đang thực thi](#ive-updated-the-state-but-logging-gives-me-the-old-value):
 
 ```js {3}
 function handleClick() {
   setName('Robin');
-  console.log(name); // Still "Taylor"!
+  console.log(name); // Vẫn là "Taylor"!
 }
 ```
 
-It only affects what `useState` will return starting from the *next* render.
+Nó chỉ ảnh hưởng đến những gì `useState` sẽ trả về bắt đầu từ lần render *tiếp theo*.
 
 </Pitfall>
 
-<Recipes titleText="Basic useState examples" titleId="examples-basic">
+<Recipes titleText="Các ví dụ cơ bản về useState" titleId="examples-basic">
 
-#### Counter (number) {/*counter-number*/}
+#### Bộ đếm (số) {/*counter-number*/}
 
-In this example, the `count` state variable holds a number. Clicking the button increments it.
+Trong ví dụ này, biến state `count` giữ một số. Nhấp vào nút để tăng nó.
 
 <Sandpack>
 
@@ -170,9 +170,9 @@ export default function Counter() {
 
 <Solution />
 
-#### Text field (string) {/*text-field-string*/}
+#### Ô nhập văn bản (string) {/*text-field-string*/}
 
-In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+Trong ví dụ này, biến state `text` giữ một chuỗi. Khi bạn gõ, `handleChange` đọc giá trị input mới nhất từ phần tử DOM input của trình duyệt, và gọi `setText` để cập nhật state. Điều này cho phép bạn hiển thị `text` hiện tại bên dưới.
 
 <Sandpack>
 
@@ -202,9 +202,9 @@ export default function MyInput() {
 
 <Solution />
 
-#### Checkbox (boolean) {/*checkbox-boolean*/}
+#### Hộp kiểm (boolean) {/*checkbox-boolean*/}
 
-In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+Trong ví dụ này, biến state `liked` giữ một boolean. Khi bạn nhấp vào input, `setLiked` cập nhật biến state `liked` với trạng thái có được check hay không của hộp kiểm trình duyệt. Biến `liked` được dùng để render văn bản bên dưới hộp kiểm.
 
 <Sandpack>
 
@@ -238,9 +238,9 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### Form (hai biến) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+Bạn có thể khai báo nhiều hơn một biến state trong cùng một component. Mỗi biến state hoàn toàn độc lập.
 
 <Sandpack>
 
@@ -278,9 +278,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Updating state based on the previous state {/*updating-state-based-on-the-previous-state*/}
+### Cập nhật state dựa trên state trước đó {/*updating-state-based-on-the-previous-state*/}
 
-Suppose the `age` is `42`. This handler calls `setAge(age + 1)` three times:
+Giả sử `age` là `42`. Handler này gọi `setAge(age + 1)` ba lần:
 
 ```js
 function handleClick() {
@@ -290,9 +290,9 @@ function handleClick() {
 }
 ```
 
-However, after one click, `age` will only be `43` rather than `45`! This is because calling the `set` function [does not update](/learn/state-as-a-snapshot) the `age` state variable in the already running code. So each `setAge(age + 1)` call becomes `setAge(43)`.
+Tuy nhiên, sau một lần click, `age` chỉ là `43` chứ không phải `45`! Điều này vì việc gọi hàm `set` [không cập nhật](/learn/state-as-a-snapshot) biến state `age` trong code đang chạy. Vì vậy mỗi lần gọi `setAge(age + 1)` trở thành `setAge(43)`.
 
-To solve this problem, **you may pass an *updater function*** to `setAge` instead of the next state:
+Để giải quyết vấn đề này, **bạn có thể truyền một *hàm updater*** cho `setAge` thay vì state tiếp theo:
 
 ```js [[1, 2, "a", 0], [2, 2, "a + 1"], [1, 3, "a", 0], [2, 3, "a + 1"], [1, 4, "a", 0], [2, 4, "a + 1"]]
 function handleClick() {
@@ -302,39 +302,39 @@ function handleClick() {
 }
 ```
 
-Here, `a => a + 1` is your updater function. It takes the <CodeStep step={1}>pending state</CodeStep> and calculates the <CodeStep step={2}>next state</CodeStep> from it.
+Ở đây, `a => a + 1` là hàm updater của bạn. Nó nhận <CodeStep step={1}>pending state</CodeStep> và tính toán <CodeStep step={2}>state tiếp theo</CodeStep> từ nó.
 
-React puts your updater functions in a [queue.](/learn/queueing-a-series-of-state-updates) Then, during the next render, it will call them in the same order:
+React đưa các hàm updater của bạn vào [hàng đợi.](/learn/queueing-a-series-of-state-updates) Sau đó, trong lần render tiếp theo, nó sẽ gọi chúng theo cùng thứ tự:
 
-1. `a => a + 1` will receive `42` as the pending state and return `43` as the next state.
-1. `a => a + 1` will receive `43` as the pending state and return `44` as the next state.
-1. `a => a + 1` will receive `44` as the pending state and return `45` as the next state.
+1. `a => a + 1` sẽ nhận `42` làm pending state và trả về `43` làm state tiếp theo.
+1. `a => a + 1` sẽ nhận `43` làm pending state và trả về `44` làm state tiếp theo.
+1. `a => a + 1` sẽ nhận `44` làm pending state và trả về `45` làm state tiếp theo.
 
-There are no other queued updates, so React will store `45` as the current state in the end.
+Không có cập nhật nào khác trong hàng đợi, vì vậy React sẽ lưu trữ `45` làm state hiện tại cuối cùng.
 
-By convention, it's common to name the pending state argument for the first letter of the state variable name, like `a` for `age`. However, you may also call it like `prevAge` or something else that you find clearer.
+Theo quy ước, thông thường đặt tên đối số pending state theo chữ cái đầu của tên biến state, như `a` cho `age`. Tuy nhiên, bạn cũng có thể gọi nó là `prevAge` hoặc bất cứ thứ gì bạn thấy rõ ràng hơn.
 
-React may [call your updaters twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React có thể [gọi các updater của bạn hai lần](#my-initializer-or-updater-function-runs-twice) trong development để kiểm tra rằng chúng là [pure.](/learn/keeping-components-pure)
 
 <DeepDive>
 
-#### Is using an updater always preferred? {/*is-using-an-updater-always-preferred*/}
+#### Việc dùng updater có phải luôn được ưu tiên không? {/*is-using-an-updater-always-preferred*/}
 
-You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
+Bạn có thể nghe khuyến nghị luôn viết code như `setAge(a => a + 1)` nếu state bạn đang đặt được tính toán từ state trước đó. Không có hại gì cả, nhưng cũng không phải lúc nào cũng cần thiết.
 
-In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `age` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `age` at the beginning of the event handler.
+Trong hầu hết các trường hợp, không có sự khác biệt giữa hai cách tiếp cận này. React luôn đảm bảo rằng với các hành động người dùng có chủ ý, như click, biến state `age` sẽ được cập nhật trước lần click tiếp theo. Điều này có nghĩa là không có rủi ro nào để event handler của click nhìn thấy `age` "cũ" ở đầu event handler.
 
-However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
+Tuy nhiên, nếu bạn thực hiện nhiều cập nhật trong cùng một sự kiện, updaters có thể hữu ích. Chúng cũng hữu ích nếu việc truy cập biến state trực tiếp gây khó khăn (bạn có thể gặp điều này khi tối ưu hóa re-render).
 
-If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer.](/learn/extracting-state-logic-into-a-reducer)
+Nếu bạn thích tính nhất quán hơn là cú pháp dài dòng hơn một chút, việc luôn viết updater nếu state bạn đang đặt được tính toán từ state trước đó là hợp lý. Nếu nó được tính toán từ state trước đó của một biến state *khác*, bạn có thể muốn kết hợp chúng thành một object và [sử dụng reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 </DeepDive>
 
-<Recipes titleText="The difference between passing an updater and passing the next state directly" titleId="examples-updater">
+<Recipes titleText="Sự khác biệt giữa việc truyền updater và truyền state tiếp theo trực tiếp" titleId="examples-updater">
 
-#### Passing the updater function {/*passing-the-updater-function*/}
+#### Truyền hàm updater {/*passing-the-updater-function*/}
 
-This example passes the updater function, so the "+3" button works.
+Ví dụ này truyền hàm updater, vì vậy nút "+3" hoạt động.
 
 <Sandpack>
 
@@ -373,9 +373,9 @@ h1 { display: block; margin: 10px; }
 
 <Solution />
 
-#### Passing the next state directly {/*passing-the-next-state-directly*/}
+#### Truyền state tiếp theo trực tiếp {/*passing-the-next-state-directly*/}
 
-This example **does not** pass the updater function, so the "+3" button **doesn't work as intended**.
+Ví dụ này **không** truyền hàm updater, vì vậy nút "+3" **không hoạt động như dự định**.
 
 <Sandpack>
 
@@ -418,32 +418,32 @@ h1 { display: block; margin: 10px; }
 
 ---
 
-### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
+### Cập nhật objects và arrays trong state {/*updating-objects-and-arrays-in-state*/}
 
-You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't mutate it:
+Bạn có thể đặt objects và arrays vào state. Trong React, state được coi là read-only, vì vậy **bạn nên *thay thế* nó thay vì *thay đổi trực tiếp* các objects hiện có**. Ví dụ, nếu bạn có một object `form` trong state, đừng thay đổi trực tiếp nó:
 
 ```js
-// 🚩 Don't mutate an object in state like this:
+// 🚩 Đừng thay đổi trực tiếp object trong state như thế này:
 form.firstName = 'Taylor';
 ```
 
-Instead, replace the whole object by creating a new one:
+Thay vào đó, thay thế toàn bộ object bằng cách tạo một object mới:
 
 ```js
-// ✅ Replace state with a new object
+// ✅ Thay thế state bằng object mới
 setForm({
   ...form,
   firstName: 'Taylor'
 });
 ```
 
-Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
+Đọc [cập nhật objects trong state](/learn/updating-objects-in-state) và [cập nhật arrays trong state](/learn/updating-arrays-in-state) để tìm hiểu thêm.
 
-<Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
+<Recipes titleText="Ví dụ về objects và arrays trong state" titleId="examples-objects">
 
 #### Form (object) {/*form-object*/}
 
-In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that the state object is replaced rather than mutated.
+Trong ví dụ này, biến state `form` giữ một object. Mỗi input có change handler gọi `setForm` với state tiếp theo của toàn bộ form. Cú pháp spread `{ ...form }` đảm bảo object state được thay thế thay vì thay đổi trực tiếp.
 
 <Sandpack>
 
@@ -516,7 +516,7 @@ input { margin-left: 5px; }
 
 #### Form (nested object) {/*form-nested-object*/}
 
-In this example, the state is more nested. When you update nested state, you need to create a copy of the object you're updating, as well as any objects "containing" it on the way upwards. Read [updating a nested object](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
+Trong ví dụ này, state được lồng nhau hơn. Khi bạn cập nhật state lồng nhau, bạn cần tạo bản sao của object bạn đang cập nhật, cũng như bất kỳ object nào "chứa" nó trên đường đi lên. Đọc [cập nhật object lồng nhau](/learn/updating-objects-in-state#updating-a-nested-object) để tìm hiểu thêm.
 
 <Sandpack>
 
@@ -626,9 +626,9 @@ img { width: 200px; height: 200px; }
 
 <Solution />
 
-#### List (array) {/*list-array*/}
+#### Danh sách (array) {/*list-array*/}
 
-In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
+Trong ví dụ này, biến state `todos` giữ một array. Mỗi button handler gọi `setTodos` với phiên bản tiếp theo của array đó. Cú pháp spread `[...todos]`, `todos.map()` và `todos.filter()` đảm bảo array state được thay thế thay vì thay đổi trực tiếp.
 
 <Sandpack>
 
@@ -793,9 +793,9 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Viết logic cập nhật ngắn gọn với Immer {/*writing-concise-update-logic-with-immer*/}
 
-If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
+Nếu việc cập nhật arrays và objects mà không thay đổi trực tiếp cảm thấy tẻ nhạt, bạn có thể sử dụng thư viện như [Immer](https://github.com/immerjs/use-immer) để giảm code lặp lại. Immer cho phép bạn viết code ngắn gọn như thể bạn đang thay đổi trực tiếp objects, nhưng bên dưới nó thực hiện các cập nhật bất biến:
 
 <Sandpack>
 
@@ -884,9 +884,9 @@ function ItemList({ artworks, onToggle }) {
 
 ---
 
-### Avoiding recreating the initial state {/*avoiding-recreating-the-initial-state*/}
+### Tránh tạo lại state ban đầu {/*avoiding-recreating-the-initial-state*/}
 
-React saves the initial state once and ignores it on the next renders.
+React lưu state ban đầu một lần và bỏ qua nó trong các lần render tiếp theo.
 
 ```js
 function TodoList() {
@@ -894,9 +894,9 @@ function TodoList() {
   // ...
 ```
 
-Although the result of `createInitialTodos()` is only used for the initial render, you're still calling this function on every render. This can be wasteful if it's creating large arrays or performing expensive calculations.
+Mặc dù kết quả của `createInitialTodos()` chỉ được sử dụng cho lần render đầu tiên, bạn vẫn gọi hàm này trong mọi lần render. Điều này có thể lãng phí nếu nó đang tạo các mảng lớn hoặc thực hiện các tính toán tốn kém.
 
-To solve this, you may **pass it as an _initializer_ function** to `useState` instead:
+Để giải quyết, bạn có thể **truyền nó như hàm _khởi tạo_** cho `useState` thay thế:
 
 ```js
 function TodoList() {
@@ -904,15 +904,15 @@ function TodoList() {
   // ...
 ```
 
-Notice that you’re passing `createInitialTodos`, which is the *function itself*, and not `createInitialTodos()`, which is the result of calling it. If you pass a function to `useState`, React will only call it during initialization.
+Lưu ý rằng bạn đang truyền `createInitialTodos`, đó là *bản thân hàm*, chứ không phải `createInitialTodos()`, là kết quả của việc gọi nó. Nếu bạn truyền một hàm cho `useState`, React chỉ gọi nó trong quá trình khởi tạo.
 
-React may [call your initializers twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React có thể [gọi các initializer của bạn hai lần](#my-initializer-or-updater-function-runs-twice) trong development để kiểm tra rằng chúng là [pure.](/learn/keeping-components-pure)
 
-<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
+<Recipes titleText="Sự khác biệt giữa việc truyền initializer và truyền state ban đầu trực tiếp" titleId="examples-initializer">
 
-#### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Truyền hàm initializer {/*passing-the-initializer-function*/}
 
-This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
+Ví dụ này truyền hàm initializer, vì vậy hàm `createInitialTodos` chỉ chạy trong quá trình khởi tạo. Nó không chạy khi component re-render, chẳng hạn như khi bạn gõ vào input.
 
 <Sandpack>
 
@@ -963,9 +963,9 @@ export default function TodoList() {
 
 <Solution />
 
-#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Truyền state ban đầu trực tiếp {/*passing-the-initial-state-directly*/}
 
-This example **does not** pass the initializer function, so the `createInitialTodos` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
+Ví dụ này **không** truyền hàm initializer, vì vậy hàm `createInitialTodos` chạy trong mọi lần render, chẳng hạn như khi bạn gõ vào input. Không có sự khác biệt nào có thể quan sát được trong hành vi, nhưng code này kém hiệu quả hơn.
 
 <Sandpack>
 
@@ -1020,13 +1020,13 @@ export default function TodoList() {
 
 ---
 
-### Resetting state with a key {/*resetting-state-with-a-key*/}
+### Reset state với key {/*resetting-state-with-a-key*/}
 
-You'll often encounter the `key` attribute when [rendering lists.](/learn/rendering-lists) However, it also serves another purpose.
+Bạn thường gặp thuộc tính `key` khi [render danh sách.](/learn/rendering-lists) Tuy nhiên, nó còn phục vụ một mục đích khác.
 
-You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` component (and all of its children) from scratch, so its state gets reset.
+Bạn có thể **reset state của component bằng cách truyền `key` khác cho component.** Trong ví dụ này, nút Reset thay đổi biến state `version`, mà chúng ta truyền như `key` cho `Form`. Khi `key` thay đổi, React tạo lại component `Form` (và tất cả các con của nó) từ đầu, vì vậy state của nó được reset.
 
-Read [preserving and resetting state](/learn/preserving-and-resetting-state) to learn more.
+Đọc [bảo tồn và reset state](/learn/preserving-and-resetting-state) để tìm hiểu thêm.
 
 <Sandpack>
 
@@ -1071,19 +1071,19 @@ button { display: block; margin-bottom: 20px; }
 
 ---
 
-### Storing information from previous renders {/*storing-information-from-previous-renders*/}
+### Lưu trữ thông tin từ các lần render trước {/*storing-information-from-previous-renders*/}
 
-Usually, you will update state in event handlers. However, in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes.
+Thông thường, bạn sẽ cập nhật state trong event handlers. Tuy nhiên, trong các trường hợp hiếm gặp, bạn có thể muốn điều chỉnh state để phản hồi render -- ví dụ, bạn có thể muốn thay đổi một biến state khi một prop thay đổi.
 
-In most cases, you don't need this:
+Trong hầu hết các trường hợp, bạn không cần điều này:
 
-* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)** If you're worried about recomputing too often, the [`useMemo` Hook](/reference/react/useMemo) can help.
-* If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
-* If you can, update all the relevant state in the event handlers.
+* **Nếu giá trị bạn cần có thể được tính toán hoàn toàn từ props hiện tại hoặc state khác, [hãy loại bỏ hoàn toàn state thừa đó.](/learn/choosing-the-state-structure#avoid-redundant-state)** Nếu bạn lo lắng về việc tính toán lại quá nhiều lần, [`useMemo` Hook](/reference/react/useMemo) có thể giúp ích.
+* Nếu bạn muốn reset toàn bộ state của cây component, [hãy truyền `key` khác cho component của bạn.](#resetting-state-with-a-key)
+* Nếu có thể, hãy cập nhật tất cả state liên quan trong các event handlers.
 
-In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your component is rendering.
+Trong trường hợp hiếm gặp khi không có cách nào trong số này áp dụng được, có một pattern bạn có thể dùng để cập nhật state dựa trên các giá trị đã được render cho đến nay, bằng cách gọi hàm `set` khi component của bạn đang render.
 
-Here's an example. This `CountLabel` component displays the `count` prop passed to it:
+Đây là một ví dụ. Component `CountLabel` này hiển thị prop `count` được truyền vào cho nó:
 
 ```js src/CountLabel.js
 export default function CountLabel({ count }) {
@@ -1091,7 +1091,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*.
+Giả sử bạn muốn hiển thị liệu bộ đếm có *tăng hay giảm* kể từ lần thay đổi cuối cùng. Prop `count` không cho bạn biết điều này -- bạn cần theo dõi giá trị trước đó của nó. Thêm biến state `prevCount` để theo dõi nó. Thêm một biến state khác gọi là `trend` để giữ liệu count có tăng hay giảm. So sánh `prevCount` với `count`, và nếu chúng không bằng nhau, hãy cập nhật cả `prevCount` và `trend`. Bây giờ bạn có thể hiển thị cả prop count hiện tại và *cách nó thay đổi kể từ lần render cuối cùng*.
 
 <Sandpack>
 
@@ -1140,34 +1140,34 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* component like this. Calling the `set` function of *another* component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this doesn't mean you can break other rules of [pure functions.](/learn/keeping-components-pure)
+Lưu ý rằng nếu bạn gọi hàm `set` trong quá trình render, nó phải nằm trong một điều kiện như `prevCount !== count`, và phải có một lời gọi như `setPrevCount(count)` bên trong điều kiện. Nếu không, component của bạn sẽ re-render trong vòng lặp cho đến khi crash. Ngoài ra, bạn chỉ có thể cập nhật state của component *đang render* như thế này. Việc gọi hàm `set` của *component khác* trong quá trình render là một lỗi. Cuối cùng, lời gọi `set` của bạn vẫn nên [cập nhật state mà không thay đổi trực tiếp](#updating-objects-and-arrays-in-state) -- điều này không có nghĩa là bạn có thể phá vỡ các quy tắc khác của [hàm pure.](/learn/keeping-components-pure)
 
-This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early `return;` to restart rendering earlier.
+Pattern này có thể khó hiểu và thường tốt nhất là tránh nó. Tuy nhiên, nó tốt hơn so với cập nhật state trong effect. Khi bạn gọi hàm `set` trong quá trình render, React sẽ re-render component ngay sau khi component của bạn thoát với câu lệnh `return`, và trước khi render các con. Bằng cách này, các con không cần render hai lần. Phần còn lại của hàm component của bạn vẫn sẽ thực thi (và kết quả sẽ bị loại bỏ). Nếu điều kiện của bạn nằm dưới tất cả các lời gọi Hook, bạn có thể thêm `return;` sớm để khởi động lại render sớm hơn.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I've updated the state, but logging gives me the old value {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
+### Tôi đã cập nhật state, nhưng log cho tôi giá trị cũ {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
 
-Calling the `set` function **does not change state in the running code**:
+Việc gọi hàm `set` **không thay đổi state trong code đang chạy**:
 
 ```js {4,5,8}
 function handleClick() {
   console.log(count);  // 0
 
-  setCount(count + 1); // Request a re-render with 1
-  console.log(count);  // Still 0!
+  setCount(count + 1); // Yêu cầu re-render với 1
+  console.log(count);  // Vẫn là 0!
 
   setTimeout(() => {
-    console.log(count); // Also 0!
+    console.log(count); // Cũng là 0!
   }, 5000);
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
+Điều này vì [state hoạt động như một snapshot.](/learn/state-as-a-snapshot) Cập nhật state yêu cầu một render khác với giá trị state mới, nhưng không ảnh hưởng đến biến JavaScript `count` trong event handler đang chạy của bạn.
 
-If you need to use the next state, you can save it in a variable before passing it to the `set` function:
+Nếu bạn cần sử dụng state tiếp theo, bạn có thể lưu nó trong một biến trước khi truyền nó cho hàm `set`:
 
 ```js
 const nextCount = count + 1;
@@ -1179,19 +1179,19 @@ console.log(nextCount); // 1
 
 ---
 
-### I've updated the state, but the screen doesn't update {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
+### Tôi đã cập nhật state, nhưng màn hình không cập nhật {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
-React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+React sẽ **bỏ qua cập nhật của bạn nếu state tiếp theo bằng state trước đó,** được xác định bởi so sánh [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Điều này thường xảy ra khi bạn thay đổi trực tiếp một object hoặc array trong state:
 
 ```js
-obj.x = 10;  // 🚩 Wrong: mutating existing object
-setObj(obj); // 🚩 Doesn't do anything
+obj.x = 10;  // 🚩 Sai: thay đổi trực tiếp object hiện có
+setObj(obj); // 🚩 Không làm gì cả
 ```
 
-You mutated an existing `obj` object and passed it back to `setObj`, so React ignored the update. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+Bạn đã thay đổi trực tiếp object `obj` hiện có và truyền nó lại cho `setObj`, vì vậy React đã bỏ qua cập nhật. Để sửa điều này, bạn cần đảm bảo rằng bạn luôn [_thay thế_ objects và arrays trong state thay vì _thay đổi trực tiếp_ chúng](#updating-objects-and-arrays-in-state):
 
 ```js
-// ✅ Correct: creating a new object
+// ✅ Đúng: tạo object mới
 setObj({
   ...obj,
   x: 10
@@ -1200,78 +1200,78 @@ setObj({
 
 ---
 
-### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### Tôi nhận được lỗi: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
-You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+Bạn có thể nhận được lỗi: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Thông thường, điều này có nghĩa là bạn đang đặt state vô điều kiện *trong quá trình render*, vì vậy component của bạn vào vòng lặp: render, đặt state (gây ra render), render, đặt state (gây ra render), v.v. Rất thường xuyên, điều này được gây ra bởi sai lầm trong việc chỉ định event handler:
 
 ```js {1-2}
-// 🚩 Wrong: calls the handler during render
+// 🚩 Sai: gọi handler trong quá trình render
 return <button onClick={handleClick()}>Click me</button>
 
-// ✅ Correct: passes down the event handler
+// ✅ Đúng: truyền event handler xuống
 return <button onClick={handleClick}>Click me</button>
 
-// ✅ Correct: passes down an inline function
+// ✅ Đúng: truyền hàm inline xuống
 return <button onClick={(e) => handleClick(e)}>Click me</button>
 ```
 
-If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `set` function call responsible for the error.
+Nếu bạn không thể tìm ra nguyên nhân của lỗi này, hãy nhấp vào mũi tên bên cạnh lỗi trong console và tìm qua JavaScript stack để tìm lời gọi hàm `set` cụ thể chịu trách nhiệm cho lỗi.
 
 ---
 
-### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
+### Hàm khởi tạo hoặc updater của tôi chạy hai lần {/*my-initializer-or-updater-function-runs-twice*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+Trong [Strict Mode](/reference/react/StrictMode), React sẽ gọi một số hàm của bạn hai lần thay vì một lần:
 
 ```js {2,5-6,11-12}
 function TodoList() {
-  // This component function will run twice for every render.
+  // Hàm component này sẽ chạy hai lần cho mỗi lần render.
 
   const [todos, setTodos] = useState(() => {
-    // This initializer function will run twice during initialization.
+    // Hàm initializer này sẽ chạy hai lần trong quá trình khởi tạo.
     return createTodos();
   });
 
   function handleClick() {
     setTodos(prevTodos => {
-      // This updater function will run twice for every click.
+      // Hàm updater này sẽ chạy hai lần cho mỗi lần click.
       return [...prevTodos, createTodo()];
     });
   }
   // ...
 ```
 
-This is expected and shouldn't break your code.
+Điều này là dự kiến và không nên làm hỏng code của bạn.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
+Hành vi **chỉ có trong development** này giúp bạn [giữ cho components pure.](/learn/keeping-components-pure) React sử dụng kết quả của một trong các lần gọi, và bỏ qua kết quả của lần gọi kia. Miễn là các hàm component, initializer, và updater của bạn là pure, điều này sẽ không ảnh hưởng đến logic của bạn. Tuy nhiên, nếu chúng vô tình không pure, điều này giúp bạn nhận thấy các sai lầm.
 
-For example, this impure updater function mutates an array in state:
+Ví dụ, hàm updater không pure này thay đổi trực tiếp một array trong state:
 
 ```js {2,3}
 setTodos(prevTodos => {
-  // 🚩 Mistake: mutating state
+  // 🚩 Sai lầm: thay đổi trực tiếp state
   prevTodos.push(createTodo());
 });
 ```
 
-Because React calls your updater function twice, you'll see the todo was added twice, so you'll know that there is a mistake. In this example, you can fix the mistake by [replacing the array instead of mutating it](#updating-objects-and-arrays-in-state):
+Vì React gọi hàm updater của bạn hai lần, bạn sẽ thấy todo được thêm hai lần, vì vậy bạn sẽ biết rằng có một sai lầm. Trong ví dụ này, bạn có thể sửa sai lầm bằng cách [thay thế array thay vì thay đổi trực tiếp nó](#updating-objects-and-arrays-in-state):
 
 ```js {2,3}
 setTodos(prevTodos => {
-  // ✅ Correct: replacing with new state
+  // ✅ Đúng: thay thế bằng state mới
   return [...prevTodos, createTodo()];
 });
 ```
 
-Now that this updater function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and updater functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
+Bây giờ hàm updater này là pure, việc gọi nó thêm một lần không tạo ra sự khác biệt trong hành vi. Đây là lý do tại sao React gọi nó hai lần giúp bạn tìm ra các sai lầm. **Chỉ các hàm component, initializer, và updater cần phải pure.** Event handlers không cần phải pure, vì vậy React sẽ không bao giờ gọi event handlers của bạn hai lần.
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more.
+Đọc [giữ cho components pure](/learn/keeping-components-pure) để tìm hiểu thêm.
 
 ---
 
-### I'm trying to set state to a function, but it gets called instead {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
+### Tôi đang cố gắng đặt state thành một hàm, nhưng nó được gọi thay thế {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
 
-You can't put a function into state like this:
+Bạn không thể đặt một hàm vào state như thế này:
 
 ```js
 const [fn, setFn] = useState(someFunction);
@@ -1281,7 +1281,7 @@ function handleClick() {
 }
 ```
 
-Because you're passing a function, React assumes that `someFunction` is an [initializer function](#avoiding-recreating-the-initial-state), and that `someOtherFunction` is an [updater function](#updating-state-based-on-the-previous-state), so it tries to call them and store the result. To actually *store* a function, you have to put `() =>` before them in both cases. Then React will store the functions you pass.
+Vì bạn đang truyền một hàm, React giả định rằng `someFunction` là [hàm khởi tạo](#avoiding-recreating-the-initial-state), và `someOtherFunction` là [hàm updater](#updating-state-based-on-the-previous-state), vì vậy nó cố gắng gọi chúng và lưu kết quả. Để thực sự *lưu trữ* một hàm, bạn phải đặt `() =>` trước chúng trong cả hai trường hợp. Sau đó React sẽ lưu trữ các hàm bạn truyền.
 
 ```js {1,4}
 const [fn, setFn] = useState(() => someFunction);

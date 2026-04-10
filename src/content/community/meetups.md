@@ -1,10 +1,10 @@
 ---
-title: React Meetups
+title: Meetup React
 ---
 
 <Intro>
 
-Do you have a local React.js meetup? Add it here! (Please keep the list alphabetical)
+Bạn có một meetup React.js tại địa phương? Hãy thêm vào đây! (Vui lòng giữ danh sách theo thứ tự bảng chữ cái)
 
 </Intro>
 

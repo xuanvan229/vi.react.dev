@@ -4,27 +4,27 @@ title: component-hook-factories
 
 <Intro>
 
-Validates against higher order functions defining nested components or hooks. Components and hooks should be defined at the module level.
+Kiểm tra việc sử dụng các hàm bậc cao định nghĩa component hoặc hook lồng nhau. Component và hook nên được định nghĩa ở cấp module.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Chi tiết quy tắc {/*rule-details*/}
 
-Defining components or hooks inside other functions creates new instances on every call. React treats each as a completely different component, destroying and recreating the entire component tree, losing all state, and causing performance problems.
+Việc định nghĩa component hoặc hook bên trong các hàm khác tạo ra các instance mới mỗi lần gọi. React coi mỗi cái là một component hoàn toàn khác, hủy và tạo lại toàn bộ cây component, mất tất cả state, và gây ra vấn đề hiệu suất.
 
-### Invalid {/*invalid*/}
+### Không hợp lệ {/*invalid*/}
 
-Examples of incorrect code for this rule:
+Ví dụ về code không đúng cho quy tắc này:
 
 ```js {expectedErrors: {'react-compiler': [14]}}
-// ❌ Factory function creating components
+// ❌ Hàm factory tạo component
 function createComponent(defaultValue) {
   return function Component() {
     // ...
   };
 }
 
-// ❌ Component defined inside component
+// ❌ Component được định nghĩa bên trong component
 function Parent() {
   function Child() {
     // ...
@@ -33,7 +33,7 @@ function Parent() {
   return <Child />;
 }
 
-// ❌ Hook factory function
+// ❌ Hàm factory cho hook
 function createCustomHook(endpoint) {
   return function useData() {
     // ...
@@ -41,30 +41,30 @@ function createCustomHook(endpoint) {
 }
 ```
 
-### Valid {/*valid*/}
+### Hợp lệ {/*valid*/}
 
-Examples of correct code for this rule:
+Ví dụ về code đúng cho quy tắc này:
 
 ```js
-// ✅ Component defined at module level
+// ✅ Component được định nghĩa ở cấp module
 function Component({ defaultValue }) {
   // ...
 }
 
-// ✅ Custom hook at module level
+// ✅ Custom hook ở cấp module
 function useData(endpoint) {
   // ...
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### I need dynamic component behavior {/*dynamic-behavior*/}
+### Tôi cần hành vi component động {/*dynamic-behavior*/}
 
-You might think you need a factory to create customized components:
+Bạn có thể nghĩ rằng bạn cần factory để tạo các component tùy chỉnh:
 
 ```js
-// ❌ Wrong: Factory pattern
+// ❌ Sai: Pattern factory
 function makeButton(color) {
   return function Button({children}) {
     return (
@@ -79,10 +79,10 @@ const RedButton = makeButton('red');
 const BlueButton = makeButton('blue');
 ```
 
-Pass [JSX as children](/learn/passing-props-to-a-component#passing-jsx-as-children) instead:
+Thay vào đó hãy truyền [JSX như children](/learn/passing-props-to-a-component#passing-jsx-as-children):
 
 ```js
-// ✅ Better: Pass JSX as children
+// ✅ Tốt hơn: Truyền JSX như children
 function Button({color, children}) {
   return (
     <button style={{backgroundColor: color}}>

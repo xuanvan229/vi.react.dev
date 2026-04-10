@@ -4,7 +4,7 @@ title: gating
 
 <Intro>
 
-The `gating` option enables conditional compilation, allowing you to control when optimized code is used at runtime.
+Tùy chọn `gating` cho phép compile có điều kiện, giúp bạn kiểm soát khi nào mã đã tối ưu hóa được sử dụng tại runtime.
 
 </Intro>
 
@@ -21,13 +21,13 @@ The `gating` option enables conditional compilation, allowing you to control whe
 
 ---
 
-## Reference {/*reference*/}
+## Tham khảo {/*reference*/}
 
 ### `gating` {/*gating*/}
 
-Configures runtime feature flag gating for compiled functions.
+Cấu hình feature flag runtime cho các hàm đã compile.
 
-#### Type {/*type*/}
+#### Kiểu {/*type*/}
 
 ```
 {
@@ -36,38 +36,38 @@ Configures runtime feature flag gating for compiled functions.
 } | null
 ```
 
-#### Default value {/*default-value*/}
+#### Giá trị mặc định {/*default-value*/}
 
 `null`
 
-#### Properties {/*properties*/}
+#### Thuộc tính {/*properties*/}
 
-- **`source`**: Module path to import the feature flag from
-- **`importSpecifierName`**: Name of the exported function to import
+- **`source`**: Đường dẫn module để import feature flag
+- **`importSpecifierName`**: Tên của hàm được export để import
 
-#### Caveats {/*caveats*/}
+#### Lưu ý {/*caveats*/}
 
-- The gating function must return a boolean
-- Both compiled and original versions increase bundle size
-- The import is added to every file with compiled functions
+- Hàm gating phải trả về giá trị boolean
+- Cả phiên bản đã compile và phiên bản gốc đều làm tăng kích thước bundle
+- Import được thêm vào mỗi file có các hàm đã compile
 
 ---
 
-## Usage {/*usage*/}
+## Cách sử dụng {/*usage*/}
 
-### Basic feature flag setup {/*basic-setup*/}
+### Thiết lập feature flag cơ bản {/*basic-setup*/}
 
-1. Create a feature flag module:
+1. Tạo một module feature flag:
 
 ```js
 // src/utils/feature-flags.js
 export function shouldUseCompiler() {
-  // your logic here
+  // logic của bạn ở đây
   return getFeatureFlag('react-compiler-enabled');
 }
 ```
 
-2. Configure the compiler:
+2. Cấu hình compiler:
 
 ```js
 {
@@ -78,62 +78,62 @@ export function shouldUseCompiler() {
 }
 ```
 
-3. The compiler generates gated code:
+3. Compiler tạo mã có điều kiện:
 
 ```js
-// Input
+// Đầu vào
 function Button(props) {
   return <button>{props.label}</button>;
 }
 
-// Output (simplified)
+// Đầu ra (đã đơn giản hóa)
 import { shouldUseCompiler } from './src/utils/feature-flags';
 
 const Button = shouldUseCompiler()
-  ? function Button_optimized(props) { /* compiled version */ }
-  : function Button_original(props) { /* original version */ };
+  ? function Button_optimized(props) { /* phiên bản đã compile */ }
+  : function Button_original(props) { /* phiên bản gốc */ };
 ```
 
-Note that the gating function is evaluated once at module time, so once the JS bundle has been parsed and evaluated the choice of component stays static for the rest of the browser session.
+Lưu ý rằng hàm gating được đánh giá một lần tại thời điểm module, vì vậy sau khi bundle JS được phân tích và thực thi, lựa chọn component sẽ giữ nguyên cho phần còn lại của phiên trình duyệt.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Xử lý sự cố {/*troubleshooting*/}
 
-### Feature flag not working {/*flag-not-working*/}
+### Feature flag không hoạt động {/*flag-not-working*/}
 
-Verify your flag module exports the correct function:
+Xác nhận module flag của bạn export đúng hàm:
 
 ```js
-// ❌ Wrong: Default export
+// ❌ Sai: Export mặc định
 export default function shouldUseCompiler() {
   return true;
 }
 
-// ✅ Correct: Named export matching importSpecifierName
+// ✅ Đúng: Export có tên khớp với importSpecifierName
 export function shouldUseCompiler() {
   return true;
 }
 ```
 
-### Import errors {/*import-errors*/}
+### Lỗi import {/*import-errors*/}
 
-Ensure the source path is correct:
+Đảm bảo đường dẫn source chính xác:
 
 ```js
-// ❌ Wrong: Relative to babel.config.js
+// ❌ Sai: Tương đối so với babel.config.js
 {
   source: './src/flags',
   importSpecifierName: 'flag'
 }
 
-// ✅ Correct: Module resolution path
+// ✅ Đúng: Đường dẫn phân giải module
 {
   source: '@myapp/feature-flags',
   importSpecifierName: 'flag'
 }
 
-// ✅ Also correct: Absolute path from project root
+// ✅ Cũng đúng: Đường dẫn tuyệt đối từ thư mục gốc dự án
 {
   source: './src/utils/flags',
   importSpecifierName: 'flag'
