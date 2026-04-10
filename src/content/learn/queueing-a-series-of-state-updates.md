@@ -55,9 +55,9 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at play here. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+Nhưng có một yếu tố khác đang diễn ra ở đây. **React chờ cho đến khi *tất cả* code trong các event handler đã chạy trước khi xử lý các cập nhật state của bạn.** Đây là lý do tại sao re-render chỉ xảy ra *sau* tất cả các lệnh gọi `setNumber()` này.
 
-This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
+Điều này có thể gợi nhắc bạn về một người phục vụ đang nhận đơn hàng tại nhà hàng. Người phục vụ không chạy vào bếp khi nghe bạn đặt món đầu tiên! Thay vào đó, họ để bạn hoàn thành đơn hàng của mình, để bạn thay đổi nó, và thậm chí nhận đơn hàng từ những người khác tại bàn.
 
 <Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
 
